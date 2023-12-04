@@ -45,6 +45,20 @@ const GlobalStyle = createGlobalStyle`
   img {
     width : 100%;
   }
+
+  li {
+    list-style: none;
+  }
+
+  a {
+    display : block;
+    color : initial;
+    text-decoration: none;
+  }
+
+  input, textarea {
+    font-family : "NanumSquareRoundR", "Rubik", sans-serif;
+  }
 `;
 
 export default GlobalStyle;
