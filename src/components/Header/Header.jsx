@@ -38,7 +38,9 @@ const Header = () => {
             navigate('/');
           }}
         >
-          <img src="../goobne/images/logo.png" alt="로고 이미지" />
+          <h1>
+            <img src="../goobne/images/logo.png" alt="로고 이미지" />
+          </h1>
         </HeaderLogo>
         <AddressWrap>
           <Cursor />
