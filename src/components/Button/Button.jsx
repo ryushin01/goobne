@@ -1,8 +1,17 @@
 import styled from 'styled-components';
 
+/**
+ * Button props list
+ * @property {string} type: button, submit, reset           - 버튼 타입을 정의합니다.
+ * @property {string} color: primary,black,beige            - 버튼 색상을 정의합니다.
+ * @property {string} size: small, medium, large            - 버튼 크기를 정의합니다.
+ * @property {string} content                               - 버튼 내부 텍스트에 사용합니다.
+ * @property {function} onClick                             - 버튼 클릭 시 실행할 함수를 위해 미리 정의합니다.
+ * @property {boolean} disabled                             - 버튼의 비활성화 상태를 정의합니다.
+ */
 const Button = ({
   type = 'button',
-  context = '기본버튼입니다',
+  context,
   size,
   color,
   onClick,
@@ -10,28 +19,20 @@ const Button = ({
   ...props
 }) => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
+    <DefaultButton
+      type={type}
+      size={size}
+      color={color}
+      onClick={onClick}
+      disabled={disabled}
+      {...props}
     >
-      <DefaultButton
-        type={type}
-        size={size}
-        color={color}
-        onClick={onClick}
-        disabled={disabled}
-        {...props}
-      >
-        {context}
-      </DefaultButton>
-    </div>
+      {context}
+    </DefaultButton>
   );
 };
 
-/**버튼에 사이즈 스타일을 정의합니다. padding간격,글씨크기 */
+/**버튼에 사이즈 padding,font-size 스타일을 정의합니다.*/
 const SIZE_STYLES = {
   small: {
     padding: '10px 10px',
@@ -47,16 +48,27 @@ const SIZE_STYLES = {
   },
 };
 
+/**기본으로 적용되는 스타일된 버튼컴포넌틍입니다. */
 const DefaultButton = styled.button`
-  border: 1px solid ${props => props.theme.grayscaleB};
   border-radius: 5px;
   font-weight: 400;
   width: 100%;
   cursor: pointer;
+  /**props.color에 따라 border색상이 변경됩니다. */
+  border: 1px solid
+    ${props =>
+      (props.color === 'primary' && props.theme.primaryColor) ||
+      (props.color === 'black' && props.theme.grayscaleH) ||
+      (props.color === 'beige' && props.theme.grayscaleH) ||
+      props.theme.primaryColor};
 
+  /***props.size값에 따라서 위 SIZE_STYLES 객체에 접근하여 조건에 맞는 padding을 적용합니다.  */
   padding: ${({ size }) => SIZE_STYLES[size]?.padding || '10px 10px'};
+
+  /**props.size값에 따라서 위 SIZE_STYLES 객체에 접근하여 조건에 맞는 fontsize 적용합니다. */
   font-size: ${({ size }) => SIZE_STYLES[size]?.fontSize || '14px'};
 
+  /**disabled 가 활성화가 되었을때 적용되는 스타일 입니다. */
   &[disabled] {
     opacity: 0.2;
     cursor: not-allowed;
@@ -64,33 +76,24 @@ const DefaultButton = styled.button`
       opacity: 0.2;
     }
   }
-
+  /**버튼이 마우스 커서가 올라갔을때 hover 를 적용하는 스타일입니다. */
   &:hover {
     opacity: 0.8;
   }
 
+  /**props.color 에 값에따라 background 색상이 적용됩니다.*/
   background-color: ${props =>
     (props.color === 'primary' && props.theme.primaryColor) ||
     (props.color === 'black' && props.theme.grayscaleH) ||
     (props.color === 'beige' && props.theme.grayscaleB) ||
     props.theme.primaryColor};
 
+  /**props.color 에 값에따라 font 색상이 적용됩니다.*/
   color: ${props =>
     (props.color === 'primary' && props.theme.grayscaleA) ||
     (props.color === 'black' && props.theme.grayscaleA) ||
     (props.color === 'beige' && props.theme.grayscaleH) ||
     props.theme.grayscaleA};
 `;
-
-/**
- * Button props list
- * @property {string} type: button, submit, reset           - 버튼 타입을 정의합니다.
- * @property {string} color: primary,black,beige            - 버튼 색상을 정의합니다.
- * @property {string} size: small, medium, large            - 버튼 크기를 정의합니다.
- * @property {string} content                               - 버튼 내부 텍스트에 사용합니다.
- * @property {function} onClick                             - 버튼 클릭 시 실행할 함수를 위해 미리 정의합니다.
- * @property {boolean} disabled                             - 버튼의 비활성화 상태를 정의합니다.
- * @property {string} shape:                                - 버튼 형태를 정의합니다.  << 필요성을 아직 잘모르겠습니다. 리뷰좀 부탁드려요.
- */
 
 export default Button;
