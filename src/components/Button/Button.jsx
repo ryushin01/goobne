@@ -60,6 +60,7 @@ const DefaultButton = styled.button`
       (props.color === 'primary' && props.theme.primaryColor) ||
       (props.color === 'black' && props.theme.grayscaleH) ||
       (props.color === 'beige' && props.theme.grayscaleH) ||
+      (props.color === 'brown' && props.theme.grayscaleI) ||
       props.theme.primaryColor};
 
   /***props.size값에 따라서 위 SIZE_STYLES 객체에 접근하여 조건에 맞는 padding을 적용합니다.  */
@@ -86,6 +87,7 @@ const DefaultButton = styled.button`
     (props.color === 'primary' && props.theme.primaryColor) ||
     (props.color === 'black' && props.theme.grayscaleH) ||
     (props.color === 'beige' && props.theme.grayscaleB) ||
+    (props.color === 'brown' && props.theme.grayscaleI) ||
     props.theme.primaryColor};
 
   /**props.color 에 값에따라 font 색상이 적용됩니다.*/
@@ -93,6 +95,7 @@ const DefaultButton = styled.button`
     (props.color === 'primary' && props.theme.grayscaleA) ||
     (props.color === 'black' && props.theme.grayscaleA) ||
     (props.color === 'beige' && props.theme.grayscaleH) ||
+    (props.color === 'brown' && props.theme.grayscaleA) ||
     props.theme.grayscaleA};
 `;
 
