@@ -66,13 +66,6 @@ const DefaultButton = styled.button`
   &[disabled] {
     opacity: 0.2;
     cursor: not-allowed;
-    &:hover {
-      opacity: 0.2;
-    }
-  }
-  /**버튼이 마우스 커서가 올라갔을때 hover 를 적용하는 스타일입니다. */
-  &:hover {
-    opacity: 0.8;
   }
 
   /**props.color 에 값에따라 background 색상이 적용됩니다.*/
