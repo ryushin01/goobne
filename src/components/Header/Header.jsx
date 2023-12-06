@@ -17,14 +17,14 @@ const Header = () => {
 
   // function
   /**
-   * @param header '주문하기' 에 마우스 hover 시 SubMenu를 Opne 시키도록 하기위한 함수
+   * '주문하기' 에 마우스 hover 시 SubMenu를 Open 시키도록 하기위한 함수
    */
   const handleSubMenuOpen = () => {
     setSubMenuOpen(true);
   };
 
   /**
-   * @param header '주문하기' 에서 마우스를 뗄 때 SubMenu가 Close 되도록 하기위한 함수
+   * '주문하기' 에서 마우스를 뗄 때 SubMenu가 Close 되도록 하기위한 함수
    */
   const handleSubMenuClose = () => {
     setSubMenuOpen(false);
@@ -33,14 +33,14 @@ const Header = () => {
   return (
     <HeaderContainer>
       <HeaderInnerWrap>
-        <HeaderLogo
-          onClick={() => {
-            navigate('/');
-          }}
-        >
-          <h1>
-            <img src="../goobne/images/logo.png" alt="로고 이미지" />
-          </h1>
+        <HeaderLogo>
+          <Link to="/goobne">
+            {' '}
+            {/* Logo Click 시 메인으로 이동되도록 하기 위해 navigate 추가 */}
+            <h1>
+              <img src="../goobne/images/logo.png" alt="로고 이미지" />
+            </h1>
+          </Link>
         </HeaderLogo>
         <AddressWrap>
           <Cursor />
@@ -110,7 +110,7 @@ const HeaderContainer = styled.header`
   height: 110px;
   top: 0;
   z-index: 99;
-  background-color: #fbf5f0;
+  background-color: ${props => props.theme.grayscaleB};
 `;
 
 const HeaderInnerWrap = styled.section`
@@ -162,7 +162,7 @@ const MenuWrap = styled.div`
 
   & > ul > li > a {
     &:hover {
-      color: #ff0000;
+      color: ${props => props.theme.primaryColor};
     }
   }
 `;
@@ -196,7 +196,7 @@ const SubMenuWrap = styled.ul`
   position: absolute;
   top: 90px;
   left: -60px;
-  border: 1px solid #000;
+  border: 1px solid ${props => props.theme.grayscaleH};
   border-radius: 8px;
   padding: 15px 15px;
 
