@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ReactComponent as Cursor } from '../../svg/Header/HeaderCursorIcon.svg';
 import { ReactComponent as Menu } from '../../svg/Header/HeaderMenuIcon.svg';
 import { ReactComponent as MenuSearch } from '../../svg/Header/HeaderMenuSearchIcon.svg';
