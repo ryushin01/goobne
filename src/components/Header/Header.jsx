@@ -7,36 +7,11 @@ import { ReactComponent as Store } from '../../svg/Header/HeaderStoreIcon.svg';
 import styled from 'styled-components';
 
 const Header = () => {
-  // hooks
-  /** '주문하기'에 마우스 hover 시 SubMenu가 on/off 되도록 하기 위해 State hook 추가 */
-  const [subMenuOpen, setSubMenuOpen] = useState(false);
-
-  // var
-  /** Logo Click 시 메인으로 이동되도록 하기 위해 navigate 추가 */
-  const navigate = useNavigate();
-
-  // function
-  /**
-   * '주문하기' 에 마우스 hover 시 SubMenu를 Open 시키도록 하기위한 함수
-   */
-  const handleSubMenuOpen = () => {
-    setSubMenuOpen(true);
-  };
-
-  /**
-   * '주문하기' 에서 마우스를 뗄 때 SubMenu가 Close 되도록 하기위한 함수
-   */
-  const handleSubMenuClose = () => {
-    setSubMenuOpen(false);
-  };
-
   return (
     <HeaderContainer>
       <HeaderInnerWrap>
         <HeaderLogo>
           <Link to="/goobne">
-            {' '}
-            {/* Logo Click 시 메인으로 이동되도록 하기 위해 navigate 추가 */}
             <h1>
               <img src="../goobne/images/logo.png" alt="로고 이미지" />
             </h1>
@@ -48,23 +23,18 @@ const Header = () => {
         </AddressWrap>
         <MenuWrap>
           <ul>
-            <li
-              onMouseEnter={handleSubMenuOpen} // Mouse Hover 감지하는 함수
-              onMouseLeave={handleSubMenuClose} // Mouse 이탈을 감지하는 함수
-            >
+            <li>
               <Link to="">주문하기</Link>
-              {subMenuOpen && ( // subMenuOpen가 true이면 subMenu Open false이면 subMenu Close
-                <SubMenuWrap>
-                  <li>
-                    <MenuSearch />
-                    <span>메뉴보기</span>
-                  </li>
-                  <li>
-                    <Store />
-                    <span>매장선택</span>
-                  </li>
-                </SubMenuWrap>
-              )}
+              <SubMenuWrap>
+                <li>
+                  <MenuSearch />
+                  <span>메뉴보기</span>
+                </li>
+                <li>
+                  <Store />
+                  <span>매장선택</span>
+                </li>
+              </SubMenuWrap>
             </li>
             <li>
               <Link to="">메뉴소개</Link>
@@ -158,6 +128,12 @@ const MenuWrap = styled.div`
     font-size: 20px;
     font-weight: bold;
     white-space: nowrap;
+
+    &:hover {
+      & > ul {
+        display: flex;
+      }
+    }
   }
 
   & > ul > li > a {
@@ -192,7 +168,7 @@ const SignWrap = styled.div`
 `;
 
 const SubMenuWrap = styled.ul`
-  display: flex;
+  display: none;
   position: absolute;
   top: 90px;
   left: -60px;
