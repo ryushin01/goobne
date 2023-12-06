@@ -1,9 +1,12 @@
-import React from 'react';
 import styled from 'styled-components';
 import { ReactComponent as Instagram } from '../../../public/images/instagram_icon.svg';
 import { ReactComponent as Facebook } from '../../../public/images/facebook_icon.svg';
 import { ReactComponent as Naverblog } from '../../../public/images/blog_icon.svg';
 import { ReactComponent as Youtube } from '../../../public/images/youtube_icon.svg';
+
+/**
+ * @default javascript:void(0)  - HTML상 a태그의 링크기능을 무효화 하는것을 의미합니다.
+ */
 
 const Footer = () => {
   return (
