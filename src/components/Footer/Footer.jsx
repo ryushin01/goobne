@@ -108,7 +108,7 @@ const FooterContainer = styled.footer`
 const InnerTopSection = styled.section`
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid ${props => props.theme.grayscaleJ};
+  border-bottom: 1px solid ${props => props.theme.transparentA};
   padding: 35px 0 30px 0;
 `;
 
@@ -189,7 +189,7 @@ const AddressSection = styled.section`
   & > span {
     font-size: 12px;
     font-weight: 700;
-    color: ${props => props.theme.grayscaleJ};
+    color: ${props => props.theme.transparentA};
   }
 `;
 
@@ -197,7 +197,7 @@ const AddressDetailList = styled.li`
   margin-right: 32px;
   position: relative;
   font-size: 11px;
-  color: ${props => props.theme.grayscaleJ};
+  color: ${props => props.theme.transparentA};
   font-weight: 700;
 
   &:last-child {
@@ -213,7 +213,7 @@ const AddressDetailList = styled.li`
     display: block;
     width: 1px;
     height: 8px;
-    background: ${props => props.theme.grayscaleJ};
+    background: ${props => props.theme.transparentA};
     position: absolute;
     top: 33%;
     right: -16px;
