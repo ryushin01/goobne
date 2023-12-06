@@ -10,5 +10,6 @@ export const theme = {
   grayscaleF: '#212121',
   grayscaleG: '#1b1b1b',
   grayscaleH: '#000',
-  grayscaleI: '#ffffff80',
+  grayscaleI: '#8e4901',
+  grayscaleJ: '#ffffff80',
 };
