@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import IconButton from '../IconButton/IconButton';
 const Nav = () => {
   return (
     <NavContainerDiv>
       <CloseBtnContainerDiv>
-        <button>closeBtn자리</button>
+        <IconButton content="close" size="medium" />
       </CloseBtnContainerDiv>
 
       <LoginBtnContainerDiv>
@@ -18,20 +19,72 @@ const Nav = () => {
 
       <NavListContainerDiv>
         <ul>
-          <li>굽네 스토리</li>
+          <li>
+            <span>굽네스토리</span>
+            <NavListChildContainerUl>
+              <li>브랜드스토리</li>
+              <li>경영철학</li>
+              <li>인재채용</li>
+              <li>글로벌</li>
+            </NavListChildContainerUl>
+          </li>
+
           <li>굽네 플레이타운</li>
           <li>바사삭 유니버스</li>
-          <li>브랜드관</li>
+
+          <li>
+            <span>브랜드관</span>
+            <NavListChildContainerUl>
+              <li>어나더사이드</li>
+              <li>양철북 곱창</li>
+            </NavListChildContainerUl>
+          </li>
+
           <li>e-쿠폰</li>
-          <li>신제품</li>
-          <li>메뉴소개</li>
+
+          <li>
+            <span>신제품</span>
+            <NavListChildContainerUl>
+              <li>싱글 피자&파스타</li>
+              <li>포토제닉 테이스트 피자</li>
+              <li>최고의 고추.마늘 모았다!</li>
+              <li>맵달떡볶이</li>
+              <li>남해마늘 바사삭</li>
+            </NavListChildContainerUl>
+          </li>
+
+          <li>
+            <span>메뉴소개</span>
+            <NavListChildContainerUl>
+              <li>전체</li>
+              <li>치킨</li>
+              <li>피자</li>
+              <li>사이드</li>
+              <li>세트</li>
+            </NavListChildContainerUl>
+          </li>
+
           <li>매장찾기</li>
           <li>이벤트</li>
-          <li>창업안내</li>
+
+          <li>
+            <span>창업안내</span>
+            <NavListChildContainerUl>
+              <li>프렌차이즈굽네</li>
+              <li>창업프로세스 및 예상비용</li>
+              <li>온라인 창업상담</li>
+            </NavListChildContainerUl>
+          </li>
+
           <li>굽뉴스</li>
           <li>굽민의소리</li>
         </ul>
       </NavListContainerDiv>
+
+      <NavCallNumBerContainerDl>
+        <dt>주문전화</dt>
+        <dd>031-112-119</dd>
+      </NavCallNumBerContainerDl>
     </NavContainerDiv>
   );
 };
@@ -87,10 +140,48 @@ const NavListContainerDiv = styled.div`
     flex-direction: column;
     gap: 30px;
   }
+
   & > ul > li {
     font-weight: 900;
     font-size: 27px;
+    cursor: pointer;
+
+    & > span {
+      position: relative;
+      padding-right: 25px;
+    }
   }
+
+  & > ul > li > span::after {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 3px;
+    right: 0px;
+    width: 20px;
+    height: 20px;
+    background-image: url('/goobne/src/svg/NavDownArrow.svg');
+    background-repeat: no-repeat;
+  }
+`;
+
+const NavListChildContainerUl = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-top: 20px;
+  font-size: 20px;
+  color: ${props => props.theme.grayscaleD};
+`;
+
+const NavCallNumBerContainerDl = styled.dl`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  font-size: 20px;
+  font-weight: 900;
+  padding: 0px 0px 50px 60px;
 `;
 
 export default Nav;
