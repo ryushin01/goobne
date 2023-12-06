@@ -72,6 +72,7 @@ const Footer = () => {
           </SnsConnectionArea>
         </InnerTopSection>
         <AddressSection>
+          <p>© 2009-2023 REUNION.CO.ALL RIGHT RESERVED</p>
           <address>
             <AddressDetailList>
               주식회사 리유니온 대표자 : 류창선
@@ -89,7 +90,6 @@ const Footer = () => {
               광고 제휴 문의 example@example.com
             </AddressDetailList>
           </address>
-          <p>© 2009-2023 REUNION.CO.ALL RIGHT RESERVED</p>
         </AddressSection>
       </div>
     </FooterContainer>
@@ -98,23 +98,22 @@ const Footer = () => {
 
 const FooterContainer = styled.footer`
   width: 100%;
-  padding: 0 5%;
-  margin-top: 15rem;
+  padding: 0 95px 30px 95px;
+  margin-top: 240px;
   background-color: #212121;
 `;
 
 const InnerTopSection = styled.section`
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  box-sizing: border-box;
-  padding: 3.5rem 0 3rem 0;
+  border-bottom: 1px solid #ffffff80;
+  padding: 35px 0 30px 0;
 `;
 
 const InquirySubText = styled.p`
   display: inline-block;
   vertical-align: middle;
-  font-size: 2.1rem;
+  font-size: 20px;
   font-weight: 600;
   margin-left: 5px;
   color: #fff;
@@ -123,13 +122,13 @@ const InquirySubText = styled.p`
 const InquiryNumber = styled.p`
   display: inline-block;
   vertical-align: middle;
-  font-size: 3.9rem;
+  font-size: 40px;
   font-weight: 900;
   color: #fff;
 `;
 
 const InfoArea = styled.div`
-  margin-top: 2.5rem;
+  margin-top: 25px;
 
   & > ul {
     display: flex;
@@ -138,57 +137,71 @@ const InfoArea = styled.div`
 `;
 
 const InfoAreaTarget = styled.a`
-  margin-right: 2rem;
-  font-size: 1.3rem;
+  margin-right: 32px;
+  font-size: 13px;
   font-weight: 700;
   color: #fff;
 `;
 
 const SnsConnectionArea = styled.div`
-  margin-top: 2rem;
+  margin-top: 20px;
 
   & > ul {
     display: flex;
   }
 
   & > ul > li {
-    margin-right: 2rem;
+    margin-right: 32px;
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 `;
 
 const AddressSection = styled.section`
-  margin-top: 3rem;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 35px;
 
   & > address {
-    float: right;
+    display: flex;
+    white-space: nowrap;
   }
 
   & > p {
-    font-size: 1.4rem;
+    font-size: 12px;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.5);
-    float: left;
+    color: #ffffff80;
   }
 `;
 
 const AddressDetailList = styled.p`
-  float: left;
+  margin-right: 32px;
   position: relative;
-  margin-right: 2rem;
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+  color: #ffffff80;
   font-weight: 700;
+
+  &:last-child {
+    margin-right: 0px;
+  }
 
   &::after {
     content: '';
     display: block;
-    position: absolute;
-    top: 50%;
-    right: -1rem;
-    transform: translate(0, -50%);
     width: 1px;
     height: 8px;
-    background: rgba(255, 255, 255, 0.5);
+    background: #ffffff80;
+    position: absolute;
+    top: 33%;
+    right: -16px;
+    transform: translate(0, -50%);
+
+    &:last-child {
+      color: #000;
+      display: none;
+    }
   }
 `;
 
