@@ -2,9 +2,8 @@ import styled from 'styled-components';
 import { ReactComponent as BadgePepperIcon } from '../../svg/Badge/BadgePepperIcon.svg';
 
 /**
- * @param  Badge  New, MD추천, BEST, HOT 으로 총 4가지가 있다.
- * @param  shape  Badge의 모양을 결정한다. - new, best, md, hot
- * @returns
+ *  Badge Component props list
+ *  @property {string} shape: new, best, md, hot
  */
 const Badge = ({ shape }) => {
   return (
@@ -28,25 +27,21 @@ export default Badge;
 
 const BADGELIST = {
   new: {
-    padding: '1px 3px',
     backgroundColor: '#ff0000',
     borderColor: '#ff0000',
     marginRight: '0',
   },
   best: {
-    padding: '1px 3px',
     backgroundColor: '#ff7b5a',
     borderColor: '#ff7b5a',
     marginRight: '0',
   },
   md: {
-    padding: '1px 3px',
     backgroundColor: '#ffaf28',
     borderColor: '#ffaf28',
     marginRight: '0',
   },
   hot: {
-    padding: '1px 3px',
     backgroundColor: '#000',
     borderColor: '#000',
     marginRight: '4px',
