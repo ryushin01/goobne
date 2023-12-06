@@ -1,8 +1,5 @@
 import styled from 'styled-components';
-import { ReactComponent as Instagram } from '../../../public/images/instagram_icon.svg';
-import { ReactComponent as Facebook } from '../../../public/images/facebook_icon.svg';
-import { ReactComponent as Naverblog } from '../../../public/images/blog_icon.svg';
-import { ReactComponent as Youtube } from '../../../public/images/youtube_icon.svg';
+import IconButton from '../IconButton/IconButton';
 
 /**
  * @default javascript:void(0)  - HTML상 a태그의 링크기능을 무효화 하는것을 의미합니다.
@@ -16,11 +13,11 @@ const Footer = () => {
           <div>
             <ul>
               <li>
-                <InquirySubText>전화주문 </InquirySubText>
+                <InquirySubText>전화주문&nbsp;</InquirySubText>
                 <InquiryNumber>1544-0000</InquiryNumber>
               </li>
               <li>
-                <InquirySubText>창업문의 </InquirySubText>
+                <InquirySubText>창업문의&nbsp;</InquirySubText>
                 <InquiryNumber>1644-0000</InquiryNumber>
               </li>
             </ul>
@@ -28,24 +25,24 @@ const Footer = () => {
           <InfoArea>
             <ul>
               <li>
-                <InfoAreaTarget href="javascript:void(0)">
+                <InfoAreaTargetButton type="button">
                   이용약관
-                </InfoAreaTarget>
+                </InfoAreaTargetButton>
               </li>
               <li>
-                <InfoAreaTarget href="javascript:void(0)">
+                <InfoAreaTargetButton type="button">
                   개인정보처리방침
-                </InfoAreaTarget>
+                </InfoAreaTargetButton>
               </li>
               <li>
-                <InfoAreaTarget href="javascript:void(0)">
+                <InfoAreaTargetButton type="button">
                   이메일무단수집거부
-                </InfoAreaTarget>
+                </InfoAreaTargetButton>
               </li>
               <li>
-                <InfoAreaTarget href="javascript:void(0)">
+                <InfoAreaTargetLink href="javascript:void(0)">
                   찾아오시는길
-                </InfoAreaTarget>
+                </InfoAreaTargetLink>
               </li>
             </ul>
           </InfoArea>
@@ -53,22 +50,22 @@ const Footer = () => {
             <ul>
               <li>
                 <a href="javascript:void(0)">
-                  <Instagram alt="인스타그램 이동이미지" />
+                  <IconButton type="button" content="instagram" size="small" />
                 </a>
               </li>
               <li>
                 <a href="javascript:void(0)">
-                  <Facebook alt="페이스북 이동이미지" />
+                  <IconButton type="button" content="facebook" size="small" />
                 </a>
               </li>
               <li>
                 <a href="javascript:void(0)">
-                  <Naverblog alt="네이버블로그 이동이미지" />
+                  <IconButton type="button" content="blog" size="small" />
                 </a>
               </li>
               <li>
                 <a href="javascript:void(0)">
-                  <Youtube alt="유튜브 이동이미지" />
+                  <IconButton type="button" content="youtube" size="small" />
                 </a>
               </li>
             </ul>
@@ -136,10 +133,26 @@ const InfoArea = styled.div`
   & > ul {
     display: flex;
     flex-direction: row;
+
+    & > li {
+      &:last-child {
+        margin-top: 3px;
+      }
+    }
   }
 `;
 
-const InfoAreaTarget = styled.a`
+const InfoAreaTargetButton = styled.button`
+  background: none;
+  border: none;
+  margin-right: 32px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  color: ${props => props.theme.grayscaleA};
+`;
+
+const InfoAreaTargetLink = styled.a`
   margin-right: 32px;
   font-size: 13px;
   font-weight: 700;
