@@ -75,23 +75,25 @@ const Footer = () => {
           </SnsConnectionArea>
         </InnerTopSection>
         <AddressSection>
-          <p>© 2009-2023 REUNION.CO.ALL RIGHT RESERVED</p>
+          <span>© 2009-2023 REUNION.CO.ALL RIGHT RESERVED</span>
           <address>
-            <AddressDetailList>
-              주식회사 리유니온 대표자 : 류창선
-            </AddressDetailList>
-            <AddressDetailList>
-              주소 서울특별시 중구 한강대로 416 서울스퀘어 13층
-            </AddressDetailList>
-            <AddressDetailList>사업자등록번호 000-00-00000</AddressDetailList>
-            <AddressDetailList>
-              통신판매업신고번호 제 2023-서울중구-0000호
-            </AddressDetailList>
-            <AddressDetailList>TEL 00-0000-0000</AddressDetailList>
-            <AddressDetailList>FAX 00-0000-0000</AddressDetailList>
-            <AddressDetailList>
-              광고 제휴 문의 example@example.com
-            </AddressDetailList>
+            <ul>
+              <AddressDetailList>
+                주식회사 리유니온 대표자 : 류창선
+              </AddressDetailList>
+              <AddressDetailList>
+                주소 서울특별시 중구 한강대로 416 서울스퀘어 13층
+              </AddressDetailList>
+              <AddressDetailList>사업자등록번호 000-00-00000</AddressDetailList>
+              <AddressDetailList>
+                통신판매업신고번호 제 2023-서울중구-0000호
+              </AddressDetailList>
+              <AddressDetailList>TEL 00-0000-0000</AddressDetailList>
+              <AddressDetailList>FAX 00-0000-0000</AddressDetailList>
+              <AddressDetailList>
+                광고 제휴 문의 example@example.com
+              </AddressDetailList>
+            </ul>
           </address>
         </AddressSection>
       </div>
@@ -103,31 +105,29 @@ const FooterContainer = styled.footer`
   width: 100%;
   padding: 0 95px 30px 95px;
   margin-top: 240px;
-  background-color: #212121;
+  background-color: ${props => props.theme.grayscaleF};
 `;
 
 const InnerTopSection = styled.section`
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #ffffff80;
+  border-bottom: 1px solid ${props => props.theme.grayscaleI};
   padding: 35px 0 30px 0;
 `;
 
-const InquirySubText = styled.p`
-  display: inline-block;
+const InquirySubText = styled.span`
   vertical-align: middle;
   font-size: 20px;
   font-weight: 600;
   margin-left: 5px;
-  color: #fff;
+  color: ${props => props.theme.grayscaleA};
 `;
 
-const InquiryNumber = styled.p`
-  display: inline-block;
+const InquiryNumber = styled.span`
   vertical-align: middle;
   font-size: 40px;
   font-weight: 900;
-  color: #fff;
+  color: ${props => props.theme.grayscaleA};
 `;
 
 const InfoArea = styled.div`
@@ -143,7 +143,7 @@ const InfoAreaTarget = styled.a`
   margin-right: 32px;
   font-size: 13px;
   font-weight: 700;
-  color: #fff;
+  color: ${props => props.theme.grayscaleA};
 `;
 
 const SnsConnectionArea = styled.div`
@@ -168,26 +168,31 @@ const AddressSection = styled.section`
   margin-top: 35px;
 
   & > address {
-    display: flex;
-    white-space: nowrap;
+    & > ul {
+      display: flex;
+    }
   }
 
-  & > p {
+  & > span {
     font-size: 12px;
     font-weight: 700;
-    color: #ffffff80;
+    color: ${props => props.theme.grayscaleI};
   }
 `;
 
-const AddressDetailList = styled.p`
+const AddressDetailList = styled.li`
   margin-right: 32px;
   position: relative;
   font-size: 11px;
-  color: #ffffff80;
+  color: ${props => props.theme.grayscaleI};
   font-weight: 700;
 
   &:last-child {
     margin-right: 0px;
+
+    &::after {
+      display: none;
+    }
   }
 
   &::after {
@@ -195,16 +200,11 @@ const AddressDetailList = styled.p`
     display: block;
     width: 1px;
     height: 8px;
-    background: #ffffff80;
+    background: ${props => props.theme.grayscaleI};
     position: absolute;
     top: 33%;
     right: -16px;
     transform: translate(0, -50%);
-
-    &:last-child {
-      color: #000;
-      display: none;
-    }
   }
 `;
 
