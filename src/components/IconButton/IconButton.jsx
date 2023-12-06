@@ -14,6 +14,7 @@ import { ReactComponent as List } from '../../svg/HeaderListIconBtn.svg';
  * @property {string} content: blog,facebook ,instagram, youtube, cart, close, list - 버튼 내부 svgicon 컴포넌트를 정의합니다.
  * @property {function} onClick                                                     - 버튼 클릭 시 실행할 함수를 위해 미리 정의합니다.
  */
+
 const IconButton = ({ type = 'button', onClick, content, ...props }) => {
   return (
     <ButtonContainer>
@@ -72,11 +73,6 @@ const DefaultIconButton = styled.button`
   border: none;
   background-color: transparent;
   cursor: pointer;
-
-  /**iconBtn포커스가 되었을때 hover 효과를 적용합니다. */
-  :hover {
-    opacity: 0.9;
-  }
 `;
 
 /**svg파일은 w,h 100% 입니다 그렇기때문에  svg 감싸는 부모 div스타일 컴포넌트입니다.
