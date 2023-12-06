@@ -9,25 +9,17 @@ import styled from 'styled-components';
  * @property {function} onClick                             - 버튼 클릭 시 실행할 함수를 위해 미리 정의합니다.
  * @property {boolean} disabled                             - 버튼의 비활성화 상태를 정의합니다.
  */
+
 const Button = ({
   type = 'button',
-  context,
-  size,
-  color,
+  content = '확인',
   onClick,
   disabled = false,
   ...props
 }) => {
   return (
-    <DefaultButton
-      type={type}
-      size={size}
-      color={color}
-      onClick={onClick}
-      disabled={disabled}
-      {...props}
-    >
-      {context}
+    <DefaultButton type={type} onClick={onClick} disabled={disabled} {...props}>
+      {content}
     </DefaultButton>
   );
 };
@@ -48,12 +40,13 @@ const SIZE_STYLES = {
   },
 };
 
-/**기본으로 적용되는 스타일된 버튼컴포넌틍입니다. */
+/**기본으로 적용되는 스타일된 버튼컴포넌트 입니다. */
 const DefaultButton = styled.button`
   border-radius: 5px;
   font-weight: 400;
   width: 100%;
   cursor: pointer;
+
   /**props.color에 따라 border색상이 변경됩니다. */
   border: 1px solid
     ${props =>
