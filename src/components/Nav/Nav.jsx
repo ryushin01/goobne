@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import IconButton from '../IconButton/IconButton';
 import { useState } from 'react';
+
 const Nav = () => {
   const [isShow, setIsShow] = useState(false);
+
   const click = () => {
     setIsShow(!isShow);
   };
@@ -175,8 +177,19 @@ const NavListContainerDiv = styled.div`
     right: 0px;
     width: 20px;
     height: 20px;
-    background-image: url('/goobne/src/svg/NavDownArrow.svg');
     background-repeat: no-repeat;
+
+    ${props => {
+      if (isShow === 'true') {
+        return `
+        background-image : url('/goobne/src/svg/Nav/UpArrow.svg');
+        `;
+      } else {
+        return `
+        background-image : url('/goobne/src/svg/NavDownArrow.svg');
+        `;
+      }
+    }}
   }
 `;
 
