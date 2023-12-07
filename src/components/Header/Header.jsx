@@ -90,6 +90,7 @@ const Header = () => {
 
 export default Header;
 
+/* Background-color를 scrollY 값이 200 이상일 경우 theme 색상을 적용하고, 미만일 경우에는 transparent 색상을 적용시킨다. */
 const HeaderContainer = styled.header`
   display: flex;
   margin: 0 auto;
@@ -100,7 +101,6 @@ const HeaderContainer = styled.header`
   z-index: 99;
   transition: all 0.3s ease-in-out;
 
-  /* scrollY 값이 200 이상일 경우 theme 색상을 적용하고, 미만일 경우에는 transparent 색상을 적용시킨다. */
   ${props => {
     if (scrollY >= 200) {
       return `
