@@ -1,18 +1,26 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { ReactComponent as Cursor } from '../../svg/Header/HeaderCursorIcon.svg';
-import { ReactComponent as Menu } from '../../svg/Header/HeaderMenuIcon.svg';
 import { ReactComponent as MenuSearch } from '../../svg/Header/HeaderMenuSearchIcon.svg';
 import { ReactComponent as Store } from '../../svg/Header/HeaderStoreIcon.svg';
+import IconButton from '../IconButton/IconButton';
 import styled from 'styled-components';
 const Header = () => {
+  /** Scroll Y값을 저장하기 위한 state */
   const [scrollY, setScrollY] = useState(0);
 
+  /**
+   * useEffect를 이용하여 scroll에 대한 값을 scrollY 값이 변경될 때마다 업데이트 (의존성 배열에 scrollY를 넣어줌)
+   * removeEventListener를 이용하여 메모리 누수 방지 (사용안하면 메모리 누수 발생 [계속 데이터가 쌓임])
+   * */
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [scrollY]);
 
+  /**
+   * 스크롤 이벤트가 발생할 때마다 scrollY값을 업데이트
+   */
   const handleScroll = () => {
     setScrollY(window.scrollY);
   };
@@ -72,7 +80,7 @@ const Header = () => {
             </ul>
           </div>
           <div>
-            <Menu />
+            <IconButton content="list" />
           </div>
         </SignWrap>
       </HeaderInnerWrap>
@@ -92,6 +100,7 @@ const HeaderContainer = styled.header`
   z-index: 99;
   transition: all 0.3s ease-in-out;
 
+  /* scrollY 값이 200 이상일 경우 theme 색상을 적용하고, 미만일 경우에는 transparent 색상을 적용시킨다. */
   ${props => {
     if (scrollY >= 200) {
       return `
