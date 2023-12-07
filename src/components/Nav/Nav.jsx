@@ -3,11 +3,52 @@ import IconButton from '../IconButton/IconButton';
 import { useState } from 'react';
 
 const Nav = () => {
-  const [isShow, setIsShow] = useState(false);
+  const [isStoryToggle, setIsStoryToggle] = useState(false);
+  const [isBrandToggle, setIsBrandToggle] = useState(false);
+  const [isNewProductToggle, setIsNewProductToggle] = useState(false);
+  const [isMenuListToggle, setIsMenuListToggle] = useState(false);
+  const [isGuideToggle, setIsGuideToggle] = useState(false);
 
-  const click = () => {
-    setIsShow(!isShow);
+  const storyToggle = () => {
+    setIsStoryToggle(!isStoryToggle);
+    setIsBrandToggle(false);
+    setIsNewProductToggle(false);
+    setIsMenuListToggle(false);
+    setIsGuideToggle(false);
   };
+
+  const BrandToggle = () => {
+    setIsBrandToggle(!isBrandToggle);
+    setIsStoryToggle(false);
+    setIsNewProductToggle(false);
+    setIsMenuListToggle(false);
+    setIsGuideToggle(false);
+  };
+
+  const newProductToggle = () => {
+    setIsNewProductToggle(!isNewProductToggle);
+    setIsStoryToggle(false);
+    setIsBrandToggle(false);
+    setIsMenuListToggle(false);
+    setIsGuideToggle(false);
+  };
+
+  const menuListToggle = () => {
+    setIsMenuListToggle(!isMenuListToggle);
+    setIsStoryToggle(false);
+    setIsBrandToggle(false);
+    setIsNewProductToggle(false);
+    setIsGuideToggle(false);
+  };
+
+  const guideToggle = () => {
+    setIsGuideToggle(!isGuideToggle);
+    setIsStoryToggle(false);
+    setIsBrandToggle(false);
+    setIsNewProductToggle(false);
+    setIsMenuListToggle(false);
+  };
+
   return (
     <NavContainerDiv>
       <CloseBtnContainerDiv>
@@ -26,9 +67,14 @@ const Nav = () => {
 
       <NavListContainerDiv>
         <ul>
-          <li onClick={click}>
-            <span>굽네스토리</span>
-            {isShow ? (
+          <li>
+            <span
+              onClick={storyToggle}
+              className={isStoryToggle ? 'upArrow' : ''}
+            >
+              굽네스토리
+            </span>
+            {isStoryToggle ? (
               <NavListChildContainerUl>
                 <li>브랜드스토리</li>
                 <li>경영철학</li>
@@ -42,8 +88,13 @@ const Nav = () => {
           <li>바사삭 유니버스</li>
 
           <li>
-            <span>브랜드관</span>
-            {isShow ? (
+            <span
+              onClick={BrandToggle}
+              className={isBrandToggle ? 'upArrow' : ''}
+            >
+              브랜드관
+            </span>
+            {isBrandToggle ? (
               <NavListChildContainerUl>
                 <li>어나더사이드</li>
                 <li>양철북 곱창</li>
@@ -54,21 +105,31 @@ const Nav = () => {
           <li>e-쿠폰</li>
 
           <li>
-            <span>신제품</span>
-            {isShow ? (
+            <span
+              onClick={newProductToggle}
+              className={isNewProductToggle ? 'upArrow' : ''}
+            >
+              신제품
+            </span>
+            {isNewProductToggle && (
               <NavListChildContainerUl>
-                <li>싱글 피자&파스타</li>
+                <li>싱글 피자&amp;파스타</li>
                 <li>포토제닉 테이스트 피자</li>
                 <li>최고의 고추.마늘 모았다!</li>
                 <li>맵달떡볶이</li>
                 <li>남해마늘 바사삭</li>
               </NavListChildContainerUl>
-            ) : null}
+            )}
           </li>
 
           <li>
-            <span>메뉴소개</span>
-            {isShow ? (
+            <span
+              onClick={menuListToggle}
+              className={isMenuListToggle ? 'upArrow' : ''}
+            >
+              메뉴소개
+            </span>
+            {isMenuListToggle ? (
               <NavListChildContainerUl>
                 <li>전체</li>
                 <li>치킨</li>
@@ -83,8 +144,13 @@ const Nav = () => {
           <li>이벤트</li>
 
           <li>
-            <span>창업안내</span>
-            {isShow ? (
+            <span
+              onClick={guideToggle}
+              className={isGuideToggle ? 'upArrow' : ''}
+            >
+              창업안내
+            </span>
+            {isGuideToggle ? (
               <NavListChildContainerUl>
                 <li>프렌차이즈굽네</li>
                 <li>창업프로세스 및 예상비용</li>
@@ -177,19 +243,19 @@ const NavListContainerDiv = styled.div`
     right: 0px;
     width: 20px;
     height: 20px;
+    background-image: url('/goobne/src/svg/NavDownArrow.svg');
     background-repeat: no-repeat;
-
-    ${props => {
-      if (isShow === 'true') {
-        return `
-        background-image : url('/goobne/src/svg/Nav/UpArrow.svg');
-        `;
-      } else {
-        return `
-        background-image : url('/goobne/src/svg/NavDownArrow.svg');
-        `;
-      }
-    }}
+  }
+  & > ul > li > .upArrow::after {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 3px;
+    right: 0px;
+    width: 20px;
+    height: 20px;
+    background-image: url('/goobne/src/svg/NavUpArrow.svg');
+    background-repeat: no-repeat;
   }
 `;
 
