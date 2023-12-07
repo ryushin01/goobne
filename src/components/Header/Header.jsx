@@ -1,16 +1,27 @@
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { ReactComponent as Cursor } from '../../svg/Header/HeaderCursorIcon.svg';
 import { ReactComponent as Menu } from '../../svg/Header/HeaderMenuIcon.svg';
 import { ReactComponent as MenuSearch } from '../../svg/Header/HeaderMenuSearchIcon.svg';
 import { ReactComponent as Store } from '../../svg/Header/HeaderStoreIcon.svg';
 import styled from 'styled-components';
-
 const Header = () => {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [scrollY]);
+
+  const handleScroll = () => {
+    setScrollY(window.scrollY);
+  };
+
   return (
     <HeaderContainer>
       <HeaderInnerWrap>
         <HeaderLogo>
-          <Link to="/goobne">
+          <Link to="/">
             <h1>
               <img src="../goobne/images/logo.png" alt="로고 이미지" />
             </h1>
@@ -74,12 +85,24 @@ export default Header;
 const HeaderContainer = styled.header`
   display: flex;
   margin: 0 auto;
-  position: sticky;
+  position: fixed;
   width: 100%;
   height: 110px;
   top: 0;
   z-index: 99;
-  background-color: ${props => props.theme.grayscaleB};
+  transition: all 0.3s ease-in-out;
+
+  ${props => {
+    if (scrollY >= 200) {
+      return `
+      background-color: ${props.theme.grayscaleB};
+      `;
+    } else {
+      return `
+      background-color : transparent;  
+      `;
+    }
+  }};
 `;
 
 const HeaderInnerWrap = styled.section`
@@ -171,6 +194,7 @@ const SubMenuWrap = styled.ul`
   position: absolute;
   top: 90px;
   left: -60px;
+  background-color: ${props => props.theme.grayscaleA};
   border: 1px solid ${props => props.theme.grayscaleH};
   border-radius: 8px;
   padding: 15px 15px;
