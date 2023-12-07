@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import IconButton from '../IconButton/IconButton';
+import { useState } from 'react';
 const Nav = () => {
+  const [isShow, setIsShow] = useState(false);
+  const click = () => {
+    setIsShow(!isShow);
+  };
   return (
     <NavContainerDiv>
       <CloseBtnContainerDiv>
@@ -19,14 +24,16 @@ const Nav = () => {
 
       <NavListContainerDiv>
         <ul>
-          <li>
+          <li onClick={click}>
             <span>굽네스토리</span>
-            <NavListChildContainerUl>
-              <li>브랜드스토리</li>
-              <li>경영철학</li>
-              <li>인재채용</li>
-              <li>글로벌</li>
-            </NavListChildContainerUl>
+            {isShow ? (
+              <NavListChildContainerUl>
+                <li>브랜드스토리</li>
+                <li>경영철학</li>
+                <li>인재채용</li>
+                <li>글로벌</li>
+              </NavListChildContainerUl>
+            ) : null}
           </li>
 
           <li>굽네 플레이타운</li>
@@ -34,34 +41,40 @@ const Nav = () => {
 
           <li>
             <span>브랜드관</span>
-            <NavListChildContainerUl>
-              <li>어나더사이드</li>
-              <li>양철북 곱창</li>
-            </NavListChildContainerUl>
+            {isShow ? (
+              <NavListChildContainerUl>
+                <li>어나더사이드</li>
+                <li>양철북 곱창</li>
+              </NavListChildContainerUl>
+            ) : null}
           </li>
 
           <li>e-쿠폰</li>
 
           <li>
             <span>신제품</span>
-            <NavListChildContainerUl>
-              <li>싱글 피자&파스타</li>
-              <li>포토제닉 테이스트 피자</li>
-              <li>최고의 고추.마늘 모았다!</li>
-              <li>맵달떡볶이</li>
-              <li>남해마늘 바사삭</li>
-            </NavListChildContainerUl>
+            {isShow ? (
+              <NavListChildContainerUl>
+                <li>싱글 피자&파스타</li>
+                <li>포토제닉 테이스트 피자</li>
+                <li>최고의 고추.마늘 모았다!</li>
+                <li>맵달떡볶이</li>
+                <li>남해마늘 바사삭</li>
+              </NavListChildContainerUl>
+            ) : null}
           </li>
 
           <li>
             <span>메뉴소개</span>
-            <NavListChildContainerUl>
-              <li>전체</li>
-              <li>치킨</li>
-              <li>피자</li>
-              <li>사이드</li>
-              <li>세트</li>
-            </NavListChildContainerUl>
+            {isShow ? (
+              <NavListChildContainerUl>
+                <li>전체</li>
+                <li>치킨</li>
+                <li>피자</li>
+                <li>사이드</li>
+                <li>세트</li>
+              </NavListChildContainerUl>
+            ) : null}
           </li>
 
           <li>매장찾기</li>
@@ -69,11 +82,13 @@ const Nav = () => {
 
           <li>
             <span>창업안내</span>
-            <NavListChildContainerUl>
-              <li>프렌차이즈굽네</li>
-              <li>창업프로세스 및 예상비용</li>
-              <li>온라인 창업상담</li>
-            </NavListChildContainerUl>
+            {isShow ? (
+              <NavListChildContainerUl>
+                <li>프렌차이즈굽네</li>
+                <li>창업프로세스 및 예상비용</li>
+                <li>온라인 창업상담</li>
+              </NavListChildContainerUl>
+            ) : null}
           </li>
 
           <li>굽뉴스</li>
