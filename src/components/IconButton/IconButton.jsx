@@ -11,13 +11,21 @@ import { ReactComponent as List } from '../../svg/HeaderListIconBtn.svg';
  * IconButton props list
  * @property {string} type: button, submit, reset                                   - 버튼 타입을 정의합니다.
  * @property {string} size: small, medium, large                                    - 버튼 크기를 정의합니다.
+ * @property {string} size: black, white                                        - svgIcon 색상을 정의합니다.
  * @property {string} content: blog,facebook ,instagram, youtube, cart, close, list - 버튼 내부 svgicon 컴포넌트를 정의합니다.
  * @property {function} onClick                                                     - 버튼 클릭 시 실행할 함수를 위해 미리 정의합니다.
  */
 
-const IconButton = ({ type = 'button', onClick, content, ...props }) => {
+const IconButton = ({
+  type = 'button',
+  onClick,
+  content,
+  size,
+  color,
+  ...props
+}) => {
   return (
-    <ButtonContainer>
+    <ButtonContainer size={size} color={color}>
       <DefaultIconButton type={type} onClick={onClick} {...props}>
         {ICONBTNLIST[content].tag}
       </DefaultIconButton>
