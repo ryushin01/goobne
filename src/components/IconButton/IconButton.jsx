@@ -19,14 +19,14 @@ const IconButton = ({ type = 'button', onClick, content, ...props }) => {
   return (
     <ButtonContainer>
       <DefaultIconButton type={type} onClick={onClick} {...props}>
-        {ICONBTNLIST[content].tag}
+        {ICON_BTN_LIST[content].tag}
       </DefaultIconButton>
     </ButtonContainer>
   );
 };
 
 /**svg 파일컴포넌트를 정의합니다. */
-const ICONBTNLIST = {
+const ICON_BTN_LIST = {
   blog: {
     tag: <Blog />,
   },
