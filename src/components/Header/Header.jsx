@@ -1,16 +1,35 @@
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { ReactComponent as Cursor } from '../../svg/Header/HeaderCursorIcon.svg';
-import { ReactComponent as Menu } from '../../svg/Header/HeaderMenuIcon.svg';
 import { ReactComponent as MenuSearch } from '../../svg/Header/HeaderMenuSearchIcon.svg';
 import { ReactComponent as Store } from '../../svg/Header/HeaderStoreIcon.svg';
+import IconButton from '../IconButton/IconButton';
 import styled from 'styled-components';
-
 const Header = () => {
+  /** Scroll Y값을 저장하기 위한 state */
+  const [scrollY, setScrollY] = useState(0);
+
+  /**
+   * useEffect를 이용하여 scroll에 대한 값을 scrollY 값이 변경될 때마다 업데이트 (의존성 배열에 scrollY를 넣어줌)
+   * removeEventListener를 이용하여 메모리 누수 방지 (사용안하면 메모리 누수 발생 [계속 데이터가 쌓임])
+   * */
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [scrollY]);
+
+  /**
+   * 스크롤 이벤트가 발생할 때마다 scrollY값을 업데이트
+   */
+  const handleScroll = () => {
+    setScrollY(window.scrollY);
+  };
+
   return (
     <HeaderContainer>
       <HeaderInnerWrap>
         <HeaderLogo>
-          <Link to="/goobne">
+          <Link to="/">
             <h1>
               <img src="../goobne/images/logo.png" alt="로고 이미지" />
             </h1>
@@ -61,7 +80,7 @@ const Header = () => {
             </ul>
           </div>
           <div>
-            <Menu />
+            <IconButton content="list" />
           </div>
         </SignWrap>
       </HeaderInnerWrap>
@@ -71,15 +90,28 @@ const Header = () => {
 
 export default Header;
 
+/* Background-color를 scrollY 값이 200 이상일 경우 theme 색상을 적용하고, 미만일 경우에는 transparent 색상을 적용시킨다. */
 const HeaderContainer = styled.header`
   display: flex;
   margin: 0 auto;
-  position: sticky;
+  position: fixed;
   width: 100%;
   height: 110px;
   top: 0;
   z-index: 99;
-  background-color: ${props => props.theme.grayscaleB};
+  transition: all 0.3s ease-in-out;
+
+  ${props => {
+    if (scrollY >= 200) {
+      return `
+      background-color: ${props.theme.grayscaleB};
+      `;
+    } else {
+      return `
+      background-color : transparent;  
+      `;
+    }
+  }};
 `;
 
 const HeaderInnerWrap = styled.section`
@@ -171,6 +203,7 @@ const SubMenuWrap = styled.ul`
   position: absolute;
   top: 90px;
   left: -60px;
+  background-color: ${props => props.theme.grayscaleA};
   border: 1px solid ${props => props.theme.grayscaleH};
   border-radius: 8px;
   padding: 15px 15px;
