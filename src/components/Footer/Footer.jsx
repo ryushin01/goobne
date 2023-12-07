@@ -238,7 +238,7 @@ const AddressDetailList = styled.li`
     height: 8px;
     background: ${props => props.theme.transparentA};
     position: absolute;
-    top: 50%;
+    top: 40%;
     right: -16px;
     transform: translate(0, -50%);
   }
