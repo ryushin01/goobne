@@ -50,22 +50,42 @@ const Footer = () => {
             <ul>
               <li>
                 <a href="javascript:void(0)">
-                  <IconButton type="button" content="instagram" size="small" />
+                  <IconButton
+                    type="button"
+                    content="instagram"
+                    size="small"
+                    color="white"
+                  />
                 </a>
               </li>
               <li>
                 <a href="javascript:void(0)">
-                  <IconButton type="button" content="facebook" size="small" />
+                  <IconButton
+                    type="button"
+                    content="facebook"
+                    size="small"
+                    color="white"
+                  />
                 </a>
               </li>
               <li>
                 <a href="javascript:void(0)">
-                  <IconButton type="button" content="blog" size="small" />
+                  <IconButton
+                    type="button"
+                    content="blog"
+                    size="small"
+                    color="white"
+                  />
                 </a>
               </li>
               <li>
                 <a href="javascript:void(0)">
-                  <IconButton type="button" content="youtube" size="small" />
+                  <IconButton
+                    type="button"
+                    content="youtube"
+                    size="small"
+                    color="white"
+                  />
                 </a>
               </li>
             </ul>
@@ -136,7 +156,7 @@ const InfoArea = styled.div`
 
     & > li {
       &:last-child {
-        margin-top: 3px;
+        margin-top: 1px;
       }
     }
   }
@@ -156,6 +176,7 @@ const InfoAreaTargetLink = styled.a`
   margin-right: 32px;
   font-size: 13px;
   font-weight: 700;
+  font-family: 'sans-serif';
   color: ${props => props.theme.grayscaleA};
 `;
 
@@ -189,6 +210,7 @@ const AddressSection = styled.section`
   & > span {
     font-size: 12px;
     font-weight: 700;
+    font-family: 'NanumSquareRoundR';
     color: ${props => props.theme.transparentA};
   }
 `;
@@ -197,6 +219,7 @@ const AddressDetailList = styled.li`
   margin-right: 32px;
   position: relative;
   font-size: 11px;
+  font-family: 'NanumSquareRoundR';
   color: ${props => props.theme.transparentA};
   font-weight: 700;
 
@@ -215,7 +238,7 @@ const AddressDetailList = styled.li`
     height: 8px;
     background: ${props => props.theme.transparentA};
     position: absolute;
-    top: 33%;
+    top: 40%;
     right: -16px;
     transform: translate(0, -50%);
   }
