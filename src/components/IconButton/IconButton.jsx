@@ -83,6 +83,16 @@ const DefaultIconButton = styled.button`
 const ButtonContainer = styled.div`
   width: ${({ size }) => BTN_CONTAINTNER_SIZE_STYLES[size]?.width || '20px'};
   height: ${({ size }) => BTN_CONTAINTNER_SIZE_STYLES[size]?.height || '20px'};
+
+  /**props.color 값에 따라 svgIcon색상이 변경됩니다. 기본색상은 검정색입니다.*/
+  svg {
+    path {
+      stroke: ${props =>
+        (props.color === 'black' && props.theme.grayscaleH) ||
+        (props.color === 'white' && props.theme.grayscaleA) ||
+        props.theme.grayscaleH};
+    }
+  }
 `;
 
 export default IconButton;
