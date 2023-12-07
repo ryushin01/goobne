@@ -176,7 +176,7 @@ const InfoAreaTargetLink = styled.a`
   margin-right: 32px;
   font-size: 13px;
   font-weight: 700;
-  font-family: 'nomal';
+  font-family: 'sans-serif';
   color: ${props => props.theme.grayscaleA};
 `;
 
@@ -210,7 +210,7 @@ const AddressSection = styled.section`
   & > span {
     font-size: 12px;
     font-weight: 700;
-    font-family: 'nomal';
+    font-family: 'NanumSquareRoundR';
     color: ${props => props.theme.transparentA};
   }
 `;
@@ -219,7 +219,7 @@ const AddressDetailList = styled.li`
   margin-right: 32px;
   position: relative;
   font-size: 11px;
-  font-family: 'nomal';
+  font-family: 'NanumSquareRoundR';
   color: ${props => props.theme.transparentA};
   font-weight: 700;
 
