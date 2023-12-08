@@ -39,6 +39,7 @@ const SelectBoxContainer = styled.section`
   background-color: #fff;
   align-self: center;
   cursor: pointer;
+  user-select: none;
 
   &::before {
     content: '';
@@ -50,6 +51,20 @@ const SelectBoxContainer = styled.section`
     border-top: 2px solid #999;
     border-right: 2px solid #999;
     transform: rotate(135deg);
+    transition: all 0.3s ease-in;
+  }
+
+  &.open::before {
+    content: '';
+    position: absolute;
+    top: 17px;
+    right: 10px;
+    width: 7px;
+    height: 7px;
+    border-top: 2px solid #999;
+    border-right: 2px solid #999;
+    transform: rotate(315deg);
+    transition: all 0.3s ease-out;
   }
 
   & > label {
@@ -58,6 +73,7 @@ const SelectBoxContainer = styled.section`
     line-height: 40px;
     margin-left: 10px;
     text-align: center;
+    cursor: pointer;
   }
 
   &.open {
@@ -82,6 +98,7 @@ const SelectBoxContainer = styled.section`
     & > li {
       font-size: 16px;
       padding: 10px 20px;
+      user-select: none;
 
       &:first-child {
         font-weight: bold;
