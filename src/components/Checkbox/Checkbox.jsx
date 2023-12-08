@@ -5,14 +5,20 @@ import styled from 'styled-components';
  * @property {function} onChange   - 체크박스의 상태 변경을 위한 함수
  * @property {boolean} checked     - 체크박스가 체크 된 상태
  * @property {string} label        - 체크박스의 라벨
- * @property {string} weight       - 라벨의 font-weight
+ * @property {string} id           - 체크박스별 고유의 id
  */
 
-const CheckBox = ({ onChange, checked, label, weight }) => {
+const CheckBox = ({ onChange, checked, label, id, ...props }) => {
   return (
     <CheckboxWrap>
-      <CheckboxInput type="checkbox" onChange={onChange} checked={checked} />
-      <CheckboxLabel weight={weight}>{label}</CheckboxLabel>
+      <CheckboxInput
+        type="checkbox"
+        onChange={onChange}
+        checked={checked}
+        id={id}
+        {...props}
+      />
+      <CheckboxLabel {...props}>{label}</CheckboxLabel>
     </CheckboxWrap>
   );
 };
@@ -61,9 +67,8 @@ const CheckboxInput = styled.input`
 
   &:after {
     ${CHECKBOX_DEFAULT}
-    border: 1px solid ${props => props.theme.grayscaleC};
-    border-top: none;
-    border-right: none;
+    border-left: 1px solid ${props => props.theme.grayscaleC};
+    border-bottom: 1px solid ${props => props.theme.grayscaleC};
   }
 
   &:checked {
@@ -71,9 +76,8 @@ const CheckboxInput = styled.input`
 
     &:after {
       ${CHECKBOX_DEFAULT}
-      border: 1px solid ${props => props.theme.grayscaleA};
-      border-top: none;
-      border-right: none;
+      border: 0 0 1px 1px  solid ${props => props.theme.grayscaleA};
+      border-bottom: 1px solid ${props => props.theme.grayscaleA};
     }
   }
 `;
