@@ -6,6 +6,7 @@ import styled from 'styled-components';
  * @property {boolean} checked     - 체크박스가 체크 된 상태
  * @property {string} label        - 체크박스의 라벨
  * @property {string} id           - 체크박스별 고유의 id
+ * @property {string} weight       - 라벨의 font-weight
  */
 
 const CheckBox = ({ onChange, checked, label, id, ...props }) => {
@@ -16,7 +17,6 @@ const CheckBox = ({ onChange, checked, label, id, ...props }) => {
         onChange={onChange}
         checked={checked}
         id={id}
-        {...props}
       />
       <CheckboxLabel {...props}>{label}</CheckboxLabel>
     </CheckboxWrap>
