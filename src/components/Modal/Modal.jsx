@@ -44,8 +44,10 @@ const Modal = ({ title, desc, closeBtn, bottomBtn, ...props }) => {
               <ModalDesc>{desc}</ModalDesc>
               {bottomBtn && (
                 <ModalBtnWrap>
-                  <button onClick={closeModal}>오늘 하루 보지 않기</button>
-                  <button onClick={closeModal}>닫기</button>
+                  <ModalButton onClick={closeModal}>
+                    오늘 하루 보지 않기
+                  </ModalButton>
+                  <ModalButton onClick={closeModal}>닫기</ModalButton>
                 </ModalBtnWrap>
               )}
             </ModalContainer>
@@ -69,6 +71,12 @@ const MODAL_TYPE = {
   },
 };
 
+const FLEX_CENTER = `
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const ModalMain = styled.section`
   width: 100%;
   z-index: 20;
@@ -86,6 +94,7 @@ const ModalDim = styled.div`
 `;
 
 const ModalWrap = styled.div`
+  ${FLEX_CENTER}
   width: 100%;
   max-width: 500px;
   border: 1px solid;
@@ -105,10 +114,8 @@ const ModalContainer = styled.div`
 `;
 
 const ModalTitle = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding-bottom: 15px;
+  text-align: center;
   font-size: 18px;
   font-weight: 800;
 `;
@@ -118,6 +125,19 @@ const ModalDesc = styled.div`
   text-align: center;
   font-size: 14px;
 `;
-const ModalBtnWrap = styled.div`
-  display: flex;
+
+const ModalBtnWrap = styled.ul`
+  ${FLEX_CENTER}
+  width: 100%;
+`;
+
+const ModalButton = styled.li`
+  ${FLEX_CENTER}
+  width: 50%;
+  background-color: #9f1818;
+  color: ${props => props.theme.grayscaleA};
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 50px;
+  cursor: pointer;
 `;
