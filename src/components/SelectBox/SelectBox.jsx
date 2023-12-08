@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 /**
  * SelectBox Component
+ * @param data SelectBox에 들어갈 Data를 props로 받습니다.
  */
 const SelectBox = ({ data }) => {
   /** SelectBox를 onClick했을 때 ul부분을 open/close 하기 위한 state입니다. */
@@ -10,7 +11,7 @@ const SelectBox = ({ data }) => {
   /** SelectBox의 선택된 option 값을 저장하기 위한 state입니다. */
   const [currentValue, setCurrentValue] = useState('직접 입력');
   /** SelectBox의 Data를 props로 받은 것을 useState에 저장 */
-  const [selectDate, setSelectData] = useState(data);
+  const [selectDate, setSelectData] = useState(data); //eslint-disable-line no-unused-vars
   /** selectBox의 외부를 선택했을 때 Open된 것을 Close 시키기 위해 useRef 사용 */
   const selectBoxRef = useRef();
 
