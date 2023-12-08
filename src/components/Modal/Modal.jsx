@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
+import IconButton from '../IconButton/IconButton';
 
-const Modal = ({ onClick, title, desc, closeBtn, bottomBtn }) => {
+const Modal = ({ title, desc, closeBtn, bottomBtn, ...props }) => {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const modalRef = useRef(null);
 
@@ -32,15 +33,15 @@ const Modal = ({ onClick, title, desc, closeBtn, bottomBtn }) => {
   return (
     <>
       {isModalOpen && (
-        <Main>
-          <ModalWrap ref={modalRef}>
+        <ModalMain>
+          <ModalDim />
+          <ModalWrap ref={modalRef} {...props}>
             <ModalContainer>
-              {closeBtn && <button onClick={closeModal}>x</button>}
-              <div>{title}</div>
-              <div>
-                {desc}
-                <button onClick={onClick} />
-              </div>
+              {closeBtn && (
+                <IconButton content="close" onClick={closeModal}></IconButton>
+              )}
+              <ModalTitle>{title}</ModalTitle>
+              <ModalDesc>{desc}</ModalDesc>
               {bottomBtn && (
                 <ModalBtnWrap>
                   <button onClick={closeModal}>오늘 하루 보지 않기</button>
@@ -49,34 +50,53 @@ const Modal = ({ onClick, title, desc, closeBtn, bottomBtn }) => {
               )}
             </ModalContainer>
           </ModalWrap>
-        </Main>
+        </ModalMain>
       )}
     </>
   );
 };
 
-const Main = styled.section`
+export default Modal;
+
+const MODAL_TYPE = {
+  map: {
+    padding: '15px 20px',
+    borderRadius: '5px',
+  },
+  main: {
+    padding: '0',
+    borderRadius: '20px',
+  },
+};
+
+const ModalMain = styled.section`
   width: 100%;
-  height: 100vh;
+  z-index: 20;
+`;
+
+const ModalDim = styled.div`
+  width: 100%;
+  height: 100%;
   top: 0;
   left: 0;
   position: fixed;
   background-color: #000;
   opacity: 0.5;
-  z-index: 50;
+  z-index: 10;
 `;
 
 const ModalWrap = styled.div`
-  /* width: 100%; */
+  width: 100%;
+  max-width: 500px;
   border: 1px solid;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   position: fixed;
-  padding: 20px;
-  border-radius: 5px;
-  background-color: ${({ theme }) => theme.grayscaleA};
-  z-index: 10;
+  padding: ${({ type }) => MODAL_TYPE[type]?.padding || '20px'};
+  border-radius: ${({ type }) => MODAL_TYPE[type]?.borderRadius || '5px'};
+  background-color: ${props => props.theme.grayscaleA};
+  z-index: 20;
 `;
 
 const ModalContainer = styled.div`
@@ -84,8 +104,20 @@ const ModalContainer = styled.div`
   margin: auto;
 `;
 
+const ModalTitle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 15px;
+  font-size: 18px;
+  font-weight: 800;
+`;
+
+const ModalDesc = styled.div`
+  padding: 15px;
+  text-align: center;
+  font-size: 14px;
+`;
 const ModalBtnWrap = styled.div`
   display: flex;
 `;
-
-export default Modal;
