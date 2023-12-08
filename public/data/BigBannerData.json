@@ -1,0 +1,36 @@
+{
+  "result": [
+    {
+      "id": 1,
+      "href": "/",
+      "src": "../goobne/images/main_banner_01.jpg",
+      "alt": "메인 빅배너 이미지 1",
+      "title": "웅치치 닭강정",
+      "subTitle": "로봇마저 군침을 흘리는 웅치치 닭강정!"
+    },
+    {
+      "id": 2,
+      "href": "/new",
+      "src": "../goobne/images/main_banner_02.jpg",
+      "alt": "메인 빅배너 이미지 2",
+      "title": "치키사라다",
+      "subTitle": "치킨만 먹기 느끼할 때~ 치키사라다!"
+    },
+    {
+      "id": 3,
+      "href": "/new",
+      "src": "../goobne/images/main_banner_03.jpg",
+      "alt": "메인 빅배너 이미지 3",
+      "title": "피카추 치킨",
+      "subTitle": "피카추가 직접 구워준 백만볼트로 구워진 피카추 치킨!"
+    },
+    {
+      "id": 4,
+      "href": "/new",
+      "src": "../goobne/images/main_banner_04.jpg",
+      "alt": "메인 빅배너 이미지 4",
+      "title": "웅치킨",
+      "subTitle": "너만 먹냐? 나도 먹는다! 웅치킨!"
+    }
+  ]
+}
