@@ -76,7 +76,7 @@ const CheckboxInput = styled.input`
 
     &:after {
       ${CHECKBOX_DEFAULT}
-      border: 0 0 1px 1px  solid ${props => props.theme.grayscaleA};
+      border-left: 1px solid ${props => props.theme.grayscaleA};
       border-bottom: 1px solid ${props => props.theme.grayscaleA};
     }
   }
