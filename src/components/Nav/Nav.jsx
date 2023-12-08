@@ -180,7 +180,8 @@ const NavContainerDiv = styled.div`
   background-color: ${props => props.theme.grayscaleB};
   padding: 20px;
   width: 450px;
-  height: 100%;
+  height: 100vh;
+  overflow: scroll;
 `;
 const CloseBtnContainerDiv = styled.div`
   display: flex;
