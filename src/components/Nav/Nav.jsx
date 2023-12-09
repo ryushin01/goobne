@@ -4,7 +4,12 @@ import { NavListAxios } from '../../API/API';
 import IconButton from '../IconButton/IconButton';
 import styled from 'styled-components';
 
-const Nav = () => {
+/**
+ * Nav props list
+ * @property {function} setNavToggle                             - 버튼 클릭 시 실행할 함수를 위해 미리 정의합니다.
+ */
+
+const Nav = ({ setNavToggle }) => {
   /**
    * 1.useEffect 실행됩니다.
    * 2.useEffect 실행되면서 axios get 방식이 실행되면 response받은 데이터를 담아놓을
@@ -48,6 +53,14 @@ const Nav = () => {
     );
   };
 
+  /**
+  부모에서 props로 받은 setNavToggle 사용하여 NavToggle 블리언 값을 변경하는 함수입니다.
+   */
+
+  const navClose = () => {
+    setNavToggle(false);
+  };
+
   /**로그인 페이지로 navigate 해주는 함수입니다. */
 
   const goLoginPage = () => {
@@ -57,7 +70,7 @@ const Nav = () => {
   /**회원가입 페이지로 navigate 해주는 함수입니다. */
 
   const goJoinPage = () => {
-    navigate('/login');
+    navigate('/Join');
   };
 
   /**
@@ -85,75 +98,86 @@ const Nav = () => {
   if (!navListData) return null;
 
   return (
-    <NavContainerDiv>
-      <CloseBtnContainerDiv>
-        <IconButton content="close" size="medium" />
-      </CloseBtnContainerDiv>
+    <NavContainerBgDiv>
+      <NavContainerDiv>
+        <CloseBtnContainerDiv>
+          <IconButton content="close" size="medium" onClick={navClose} />
+        </CloseBtnContainerDiv>
 
-      <LoginBtnContainerDiv>
-        <button type="button" onClick={goLoginPage}>
-          Login
-        </button>
-        <span></span>
-        <button type="button" onClick={goJoinPage}>
-          Join
-        </button>
-      </LoginBtnContainerDiv>
+        <LoginBtnContainerDiv>
+          <button type="button" onClick={goLoginPage}>
+            Login
+          </button>
+          <span></span>
+          <button type="button" onClick={goJoinPage}>
+            Join
+          </button>
+        </LoginBtnContainerDiv>
 
-      <ImgBannerContainerDiv>
-        <img src="../goobne/images/banner.png" alt="르세라핀배너" />
-      </ImgBannerContainerDiv>
+        <ImgBannerContainerDiv>
+          <img src="../goobne/images/banner.png" alt="르세라핀배너" />
+        </ImgBannerContainerDiv>
 
-      <nav>
-        <NavListContainerDiv>
-          {navListData?.map(({ id, label, depth, path, open }, index) => {
-            return (
-              <ParentsContainerUl key={index}>
-                <ParentsListLi>
-                  <Link to={path}>
-                    <span onClick={() => toggle(id)}>{label}</span>
-                  </Link>
+        <nav>
+          <NavListContainerDiv>
+            {navListData?.map(({ id, label, depth, path, open }, index) => {
+              return (
+                <ParentsContainerUl key={index}>
+                  <ParentsListLi>
+                    <Link to={path}>
+                      <span onClick={() => toggle(id)}>{label}</span>
+                    </Link>
 
-                  {depth && depth.length > 0 ? (
-                    <span
-                      onClick={toggle}
-                      className={open ? 'upArrow' : 'downArrow'}
-                    ></span>
-                  ) : null}
-                </ParentsListLi>
+                    {depth && depth.length > 0 ? (
+                      <span
+                        onClick={toggle}
+                        className={open ? 'upArrow' : 'downArrow'}
+                      ></span>
+                    ) : null}
+                  </ParentsListLi>
 
-                {open && (
-                  <ChildContainerUl>
-                    {depth?.map((data, index) => {
-                      return (
-                        <ChildListLi key={index}>
-                          <Link key={index} to={data.path}>
-                            <span> {data.depthLabel}</span>
-                          </Link>
-                        </ChildListLi>
-                      );
-                    })}
-                  </ChildContainerUl>
-                )}
-              </ParentsContainerUl>
-            );
-          })}
-        </NavListContainerDiv>
-      </nav>
+                  {open && (
+                    <ChildContainerUl>
+                      {depth?.map((data, index) => {
+                        return (
+                          <ChildListLi key={index}>
+                            <Link key={index} to={data.path}>
+                              <span> {data.depthLabel}</span>
+                            </Link>
+                          </ChildListLi>
+                        );
+                      })}
+                    </ChildContainerUl>
+                  )}
+                </ParentsContainerUl>
+              );
+            })}
+          </NavListContainerDiv>
+        </nav>
 
-      <NavCallNumBerContainerDl>
-        <dt>주문전화</dt>
-        <dd>031-112-119</dd>
-      </NavCallNumBerContainerDl>
-    </NavContainerDiv>
+        <NavCallNumBerContainerDl>
+          <dt>주문전화</dt>
+          <dd>031-112-119</dd>
+        </NavCallNumBerContainerDl>
+      </NavContainerDiv>
+    </NavContainerBgDiv>
   );
 };
 
 export default Nav;
 
-/**네비게이션 전체를 감싸는 컨테이너 div스타일컴포넌트  입니다 */
+const NavContainerBgDiv = styled.div`
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  display: flex;
+  z-index: 1;
+`;
 
 const NavContainerDiv = styled.div`
+  position: fixed;
+  right: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -162,14 +186,14 @@ const NavContainerDiv = styled.div`
   padding: 20px;
   width: 450px;
   height: 100vh;
+  z-index: 100;
   overflow-y: scroll;
   overflow-x: hidden;
+
   & > nav {
     width: 100%;
   }
 `;
-
-/** closeIconBtn을 감싸는 컨테이너 div스타일컴포넌트  입니다. */
 
 const CloseBtnContainerDiv = styled.div`
   display: flex;
@@ -177,8 +201,6 @@ const CloseBtnContainerDiv = styled.div`
   width: 100%;
   padding: 10px 0px;
 `;
-
-/**LoginBtn,JoinBtn 감싸는 컨테이너 div스타일컴포넌트  입니다. */
 
 const LoginBtnContainerDiv = styled.div`
   display: flex;
@@ -188,7 +210,6 @@ const LoginBtnContainerDiv = styled.div`
   width: 100%;
   padding: 60px 0px;
 
-  //button을 스타일합니다.
   & > button {
     border: none;
     background-color: ${props => props.theme.grayscaleB};
@@ -197,7 +218,6 @@ const LoginBtnContainerDiv = styled.div`
     font-weight: 700;
     cursor: pointer;
   }
-  //Btn 사이를 구분지어주는 Bar 스타일입니다.
   & > span {
     width: 1px;
     height: 18px;
@@ -205,13 +225,9 @@ const LoginBtnContainerDiv = styled.div`
   }
 `;
 
-/**이미지 배너를 감싸는 컨테이너 div스타일컴포넌트 입니다. */
-
 const ImgBannerContainerDiv = styled.div`
   width: 450px;
 `;
-
-/**네비게이션 부모 ul태그 스타일컴포넌트 입니다. */
 
 const ParentsContainerUl = styled.ul`
   display: inline-block;
@@ -219,19 +235,15 @@ const ParentsContainerUl = styled.ul`
   font-size: 27px;
 `;
 
-/**ParentsContainerUl 스타일컴포넌트 자식인 li태그 스타일컴포넌트입니다. */
-
 const ParentsListLi = styled.li`
   display: inline-block;
   cursor: pointer;
   position: relative;
 
-  //Link태그를 스타일합니다.
   & > a > span {
     padding-right: 25px;
   }
 
-  //svg파일 아래를 가르키는 화살표를 스타일합니다.
   & > .downArrow {
     display: block;
     position: absolute;
@@ -243,7 +255,6 @@ const ParentsListLi = styled.li`
     background-repeat: no-repeat;
   }
 
-  //svg파일 위를 가르키는 화살표를 스타일합니다.
   & > .upArrow {
     display: block;
     position: absolute;
@@ -255,7 +266,6 @@ const ParentsListLi = styled.li`
     background-repeat: no-repeat;
   }
 `;
-/**ParentsContainerUl 부모컴포넌트안에 들어가있는 ul스타일링하는 ul 스타일컴포넌트입니다.  */
 
 const ChildContainerUl = styled.ul`
   display: flex;
@@ -265,15 +275,11 @@ const ChildContainerUl = styled.ul`
   margin-top: 20px;
 `;
 
-/**ChildContainerUl 부모컴포넌트안에 들어가있는 li스타일링하는 li 스타일컴포넌트입니다.  */
-
 const ChildListLi = styled.li`
   & > a > span {
     color: ${props => props.theme.grayscaleD};
   }
 `;
-
-/** nev태그안에 리스트를 감싸는 div스타일 컴포넌트입니다. */
 
 const NavListContainerDiv = styled.div`
   display: flex;
@@ -283,7 +289,6 @@ const NavListContainerDiv = styled.div`
   padding: 50px 0px 50px 60px;
 `;
 
-/**dl 태그를 스타일하는 dl스타일 컴포넌트 입니다. */
 const NavCallNumBerContainerDl = styled.dl`
   display: flex;
   flex-direction: column;
