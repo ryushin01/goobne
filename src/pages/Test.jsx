@@ -1,11 +1,9 @@
 import Nav from '../components/Nav/Nav';
-import TestNav from '../components/Nav/TestNav';
 
 const Test = () => {
   return (
-    <div style={{ display: 'flex', gap: '20px' }}>
+    <div>
       <Nav></Nav>
-      <TestNav></TestNav>
     </div>
   );
 };

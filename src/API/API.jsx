@@ -17,7 +17,7 @@ export const BigBannerAxios = axios.create({
 });
 
 export const NavListAxios = axios.create({
-  baseURL: '../goobne/data/navlist.json',
+  baseURL: '../goobne/data/NavListData.json',
   headers: {
     Authorization: localStorage.getItem('token'),
   },

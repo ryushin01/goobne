@@ -3,6 +3,7 @@
     {
       "id": 1,
       "label": "굽네 스토리",
+      "open": false,
       "depth": [
         { "depthLabel": "브랜드스토리", "path": "/brand" },
         { "depthLabel": "경영철학", "path": "/managementphilosophy" },
@@ -23,6 +24,7 @@
     {
       "id": 4,
       "label": "브랜드관",
+      "open": false,
       "depth": [
         {
           "depthLabel": "어나더사이드",
@@ -39,6 +41,7 @@
     {
       "id": 6,
       "label": "신제품",
+      "open": false,
       "depth": [
         { "depthLabel": "싱글 피자&파스타", "path": "/newsiggle" },
         { "depthLabel": "포토제닉 테이스트 피자 ", "path": "/photogenic" },
@@ -50,6 +53,7 @@
     {
       "id": 7,
       "label": "메뉴소개 ",
+      "open": false,
       "depth": [
         { "depthLabel": "전체 ", "path": "/all" },
         { "depthLabel": "치킨 ", "path": "/chicken" },
@@ -71,6 +75,7 @@
     {
       "id": 11,
       "label": "창업안내 ",
+      "open": false,
       "depth": [
         { "depthLabel": "프렌차이즈쿱네 ", "path": "/brd/const/franchise" },
         {
