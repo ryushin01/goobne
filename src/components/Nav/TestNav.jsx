@@ -1,15 +1,32 @@
 import styled from 'styled-components';
-import { NAV_LIST_DATA } from '../../data/navlist';
 import IconButton from '../IconButton/IconButton';
 import { useEffect, useState } from 'react';
+import { NavListAxios } from '../../API/API';
+import { Link } from 'react-router-dom';
 
 const TestNav = () => {
-  const [navList, setNavList] = useState(NAV_LIST_DATA);
+  const [navList, setNavList] = useState('');
   const [isToggle, setToggle] = useState(false);
+
+  useEffect(() => {
+    requestNavListDataGet();
+  }, []);
+
   const toggle = () => {
     setToggle(!isToggle);
   };
-  useEffect(() => {});
+
+  const requestNavListDataGet = async () => {
+    const response = await NavListAxios.get() //eslint-disable-line no-unused-vars
+      .then(result => {
+        setNavList(result.data.result);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  if (!navList) return null;
 
   return (
     <NavContainerDiv>
@@ -29,13 +46,16 @@ const TestNav = () => {
 
       <nav>
         <NavListContainerDiv>
-          {navList.map(data => {
-            const { id, label, deps } = data;
+          {navList?.map((data, index) => {
+            const { label, depth, path } = data;
             return (
-              <ParentsContainerUl key={id}>
+              <ParentsContainerUl key={index}>
                 <ParentsListLi>
-                  <span onClick={toggle}>{label}</span>
-                  {deps && deps.length > 0 ? (
+                  <Link to={path}>
+                    <span onClick={toggle}>{label}</span>
+                  </Link>
+
+                  {depth && depth.length > 0 ? (
                     <span
                       onClick={toggle}
                       className={isToggle ? 'upArrow' : 'downArrow'}
@@ -45,9 +65,13 @@ const TestNav = () => {
 
                 {isToggle && (
                   <ChildContainerUl>
-                    {deps?.map(data => {
+                    {depth?.map((data, index) => {
                       return (
-                        <ChildListLi key={id}>{data.depsLabel}</ChildListLi>
+                        <ChildListLi key={index}>
+                          <Link key={index} to={data.path}>
+                            <span> {data.depthLabel}</span>
+                          </Link>
+                        </ChildListLi>
                       );
                     })}
                   </ChildContainerUl>
@@ -77,7 +101,8 @@ const NavContainerDiv = styled.div`
   padding: 20px;
   width: 450px;
   height: 100vh;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   & > nav {
     width: 100%;
   }
@@ -116,36 +141,34 @@ const ImgBannerContainerDiv = styled.div`
 `;
 
 const ParentsContainerUl = styled.ul`
-  display: flex;
-  flex-direction: column;
+  display: inline-block;
   font-weight: 900;
   font-size: 27px;
 `;
 
 const ParentsListLi = styled.li`
+  display: inline-block;
   cursor: pointer;
-
-  & > span {
-    position: relative;
-    padding-right: 12px;
+  position: relative;
+  & > a > span {
+    padding-right: 25px;
   }
-  & > .downArrow::after {
+
+  & > .downArrow {
     display: block;
-    content: '';
     position: absolute;
-    top: 3px;
-    right: 0px;
+    top: 1px;
+    right: 0;
     width: 20px;
     height: 20px;
     background-image: url('/goobne/src/svg/NavDownArrow.svg');
     background-repeat: no-repeat;
   }
-  & > .upArrow::after {
+  & > .upArrow {
     display: block;
-    content: '';
     position: absolute;
-    top: 3px;
-    right: 0px;
+    top: 1px;
+    right: 0;
     width: 20px;
     height: 20px;
     background-image: url('/goobne/src/svg/NavUpArrow.svg');
@@ -158,9 +181,13 @@ const ChildContainerUl = styled.ul`
   flex-direction: column;
   gap: 5px;
   font-size: 20px;
-  color: ${props => props.theme.grayscaleD};
+  margin-top: 20px;
 `;
-const ChildListLi = styled.li``;
+const ChildListLi = styled.li`
+  & > a > span {
+    color: ${props => props.theme.grayscaleD};
+  }
+`;
 
 const NavListContainerDiv = styled.div`
   display: flex;
