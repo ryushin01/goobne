@@ -1,5 +1,7 @@
+// import NavTest from '../components/Nav/NavTest';
+
 const Test = () => {
-  return <div></div>;
+  return <div>{/* <NavTest></NavTest> */}</div>;
 };
 
 export default Test;

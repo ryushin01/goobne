@@ -6,6 +6,7 @@ import { ReactComponent as Store } from '../../svg/Header/HeaderStoreIcon.svg';
 import IconButton from '../IconButton/IconButton';
 import styled from 'styled-components';
 import Nav from '../Nav/Nav';
+
 const Header = () => {
   /** Scroll Y값을 저장하기 위한 state */
   const [scrollY, setScrollY] = useState(0);

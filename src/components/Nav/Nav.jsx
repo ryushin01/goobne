@@ -15,7 +15,6 @@ const Nav = ({ setNavToggle }) => {
    * 2.useEffect 실행되면서 axios get 방식이 실행되면 response받은 데이터를 담아놓을
    * navListData useState입니다.
    */
-
   const [navListData, setNavListData] = useState('');
 
   /**
@@ -26,7 +25,6 @@ const Nav = ({ setNavToggle }) => {
   /**
    * 화면을 랜더링 하기전  requestNavListDataGet 실행 시킵니다.
    */
-
   useEffect(() => {
     requestNavListDataGet();
   }, []);
@@ -35,14 +33,14 @@ const Nav = ({ setNavToggle }) => {
    * NavList에서 클릭된 콘텐츠의 open 상태를 토글합니다.
    * 1. 클릭이 된 함수의 id를 받아옵니다.
    * 2. NavList의 data를 받아와서 map을 이용하여 클릭된 콘텐츠의 id와 클릭된 id가 같은 것을 찾습니다.
-   * 3. 아이디가 서로 같으면 navList를 스프레드 오퍼레이트로 복사하여 open을 토글시켜줍니다.
-   * 4. 아이디가 서로 다르면 navList를 스프레드 오퍼레이트로 복사하여 open을 false로 설정하여 닫아줍니다.
+   * 3. 아이디가 서로 같으면 navList를 스프레드 오퍼레이터(연산자)로 복사하여 open을 토글시켜줍니다.
+   * 4. 아이디가 서로 다르면 navList를 스프레드 오퍼레이터(연산자)로 복사하여 open을 false로 설정하여 닫아줍니다.
    */
-
-  const toggle = id => {
+  const toggle = ({ id, path }) => {
     setNavListData(navListData =>
       navListData.map(data => {
         if (data.id === id) {
+          navigate(path);
           // 클릭된 콘텐츠의 'open' 상태를 토글합니다.
           return { ...data, open: !data.open };
         } else {
@@ -56,21 +54,18 @@ const Nav = ({ setNavToggle }) => {
   /**
   부모에서 props로 받은 setNavToggle 사용하여 NavToggle 블리언 값을 변경하는 함수입니다.
    */
-
   const navClose = () => {
     setNavToggle(false);
   };
 
   /**로그인 페이지로 navigate 해주는 함수입니다. */
-
   const goLoginPage = () => {
     navigate('/login');
   };
 
   /**회원가입 페이지로 navigate 해주는 함수입니다. */
-
   const goJoinPage = () => {
-    navigate('/Join');
+    navigate('/join');
   };
 
   /**
@@ -78,11 +73,10 @@ const Nav = ({ setNavToggle }) => {
    * 2.axios를 get메서드로 필요한 NavListData를 요청합니다.
    * 3.useState훅을 사용하여 NavListData에 데이터를 저장합니다.
    */
-
   const requestNavListDataGet = async () => {
     const response = await NavListAxios.get() //eslint-disable-line no-unused-vars
-      .then(result => {
-        setNavListData(result.data.result);
+      .then(response => {
+        setNavListData(response.data.result);
       })
       .catch(error => {
         console.log(error);
@@ -94,7 +88,6 @@ const Nav = ({ setNavToggle }) => {
    * useState에 navListData 데이터가 비어있다면 아래로직을 실행하지않고
    * return 종료 합니다. navListData 가있다면 아래로직을 랜더링합니다.
    */
-
   if (!navListData) return null;
 
   return (
@@ -119,40 +112,37 @@ const Nav = ({ setNavToggle }) => {
         </ImgBannerContainerDiv>
 
         <nav>
-          <NavListContainerDiv>
+          <NavListAccordionContainerDiv>
             {navListData?.map(({ id, label, depth, path, open }, index) => {
               return (
-                <ParentsContainerUl key={index}>
-                  <ParentsListLi>
-                    <Link to={path}>
-                      <span onClick={() => toggle(id)}>{label}</span>
-                    </Link>
+                <ParentsAccordionContainerUl key={index}>
+                  <ParentsAccordionListLi>
+                    <NavAccordionButton
+                      type="button"
+                      onClick={() => {
+                        toggle({ id, path });
+                      }}
+                      className={path ? '' : open ? 'UpArrow' : 'DownArrow'}
+                    >
+                      {label}
+                    </NavAccordionButton>
 
-                    {depth && depth.length > 0 ? (
-                      <span
-                        onClick={toggle}
-                        className={open ? 'upArrow' : 'downArrow'}
-                      ></span>
-                    ) : null}
-                  </ParentsListLi>
-
-                  {open && (
-                    <ChildContainerUl>
-                      {depth?.map((data, index) => {
-                        return (
-                          <ChildListLi key={index}>
-                            <Link key={index} to={data.path}>
-                              <span> {data.depthLabel}</span>
-                            </Link>
-                          </ChildListLi>
-                        );
-                      })}
-                    </ChildContainerUl>
-                  )}
-                </ParentsContainerUl>
+                    {open && (
+                      <ChildAccordionContainerUl>
+                        {depth?.map((data, index) => {
+                          return (
+                            <ChildAccordionListLi key={index}>
+                              <Link to={data.path}>{data.depthLabel}</Link>
+                            </ChildAccordionListLi>
+                          );
+                        })}
+                      </ChildAccordionContainerUl>
+                    )}
+                  </ParentsAccordionListLi>
+                </ParentsAccordionContainerUl>
               );
             })}
-          </NavListContainerDiv>
+          </NavListAccordionContainerDiv>
         </nav>
 
         <NavCallNumBerContainerDl>
@@ -225,40 +215,52 @@ const LoginBtnContainerDiv = styled.div`
   }
 `;
 
+const LoginBtnButton = styled.button``;
+
 const ImgBannerContainerDiv = styled.div`
   width: 450px;
 `;
 
-const ParentsContainerUl = styled.ul`
-  display: inline-block;
-  font-weight: 900;
-  font-size: 27px;
+const NavListAccordionContainerDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  padding: 50px 0px 50px 60px;
 `;
 
-const ParentsListLi = styled.li`
-  display: inline-block;
-  cursor: pointer;
+const ParentsAccordionContainerUl = styled.ul``;
+
+const ParentsAccordionListLi = styled.li`
   position: relative;
+  cursor: pointer;
+  display: inline-block;
+`;
 
-  & > a > span {
-    padding-right: 25px;
-  }
+const NavAccordionButton = styled.button`
+  border: none;
+  font-size: 27px;
+  font-weight: 900;
+  background-color: transparent;
+  cursor: pointer;
+  padding-right: 25px;
 
-  & > .downArrow {
+  &.DownArrow::after {
+    content: '';
     display: block;
     position: absolute;
-    top: 1px;
+    top: 3px;
     right: 0;
     width: 20px;
     height: 20px;
     background-image: url('/goobne/src/svg/NavDownArrow.svg');
     background-repeat: no-repeat;
   }
-
-  & > .upArrow {
+  &.UpArrow::after {
+    content: '';
     display: block;
     position: absolute;
-    top: 1px;
+    top: 3px;
     right: 0;
     width: 20px;
     height: 20px;
@@ -267,7 +269,7 @@ const ParentsListLi = styled.li`
   }
 `;
 
-const ChildContainerUl = styled.ul`
+const ChildAccordionContainerUl = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -275,18 +277,8 @@ const ChildContainerUl = styled.ul`
   margin-top: 20px;
 `;
 
-const ChildListLi = styled.li`
-  & > a > span {
-    color: ${props => props.theme.grayscaleD};
-  }
-`;
-
-const NavListContainerDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
-  padding: 50px 0px 50px 60px;
+const ChildAccordionListLi = styled.li`
+  color: ${props => props.theme.grayscaleD};
 `;
 
 const NavCallNumBerContainerDl = styled.dl`
