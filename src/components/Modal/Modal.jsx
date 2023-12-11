@@ -6,7 +6,7 @@ import { ReactComponent as ModalClose } from '../../svg/ModalClose.svg';
  * Modal props list
  * @property {string} title                          - 해당 모달의 제목
  * @property {string} desc                           - 해당 모달의 내용
- * @property {boolean} isCloseBtn                      - 모달 닫기 버튼의 표시 여부
+ * @property {boolean} isCloseBtn                    - 모달 닫기 버튼의 표시 여부
  * @property {string} size: small, medium, large     - 모달창의 크기
  */
 
@@ -66,7 +66,7 @@ const MODAL_SIZE = {
     padding: '25px',
   },
   large: {
-    width: '866px',
+    width: '860px',
     padding: '15px',
   },
 };
