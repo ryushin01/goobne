@@ -12,10 +12,16 @@ const Header = () => {
   /**
    * useEffect를 이용하여 scroll에 대한 값을 scrollY 값이 변경될 때마다 업데이트 (의존성 배열에 scrollY를 넣어줌)
    * removeEventListener를 이용하여 메모리 누수 방지 (사용안하면 메모리 누수 발생 [계속 데이터가 쌓임])
+   * setInterval을 이용하여 0.1초마다 scrollY값을 업데이트 (중복되는 이벤트를 막기 위해 0.1초마다 실행)
    * */
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const timer = setInterval(() => {
+      window.addEventListener('scroll', handleScroll);
+    }, 100);
+    return () => {
+      clearInterval(timer);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, [scrollY]);
 
   /**
