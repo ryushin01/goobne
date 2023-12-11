@@ -34,7 +34,7 @@ const LABEL_FONT_WEIGHT = {
 };
 
 // 체크의 모양을 위한 정의
-const CHECKBOX_DEFAULT = `
+const CheckDefault = `
   content: '';
   height: 4px;
   width: 7px;
@@ -66,7 +66,7 @@ const CheckboxInput = styled.input`
   cursor: pointer;
 
   &:after {
-    ${CHECKBOX_DEFAULT}
+    ${CheckDefault};
     border-left: 1px solid ${props => props.theme.grayscaleC};
     border-bottom: 1px solid ${props => props.theme.grayscaleC};
   }
@@ -75,7 +75,7 @@ const CheckboxInput = styled.input`
     background-color: ${props => props.theme.grayscaleG};
 
     &:after {
-      ${CHECKBOX_DEFAULT}
+      ${CheckDefault};
       border-left: 1px solid ${props => props.theme.grayscaleA};
       border-bottom: 1px solid ${props => props.theme.grayscaleA};
     }
