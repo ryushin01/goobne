@@ -4,7 +4,7 @@ const Radio = ({
   type = 'radio',
   name,
   value,
-  checked,
+  defaultChecked,
   onChange,
   text,
   ...props
@@ -15,7 +15,7 @@ const Radio = ({
         type={type}
         name={name}
         value={value}
-        checked={checked}
+        defaultChecked={defaultChecked}
         onChange={onChange}
         {...props}
       />
@@ -43,7 +43,7 @@ const RadioLabel = styled.label`
 //라디오 속성값을 정의합니다.
 const DefaultRadio = styled.input`
   position: absolute;
-  top: 0;
+  top: 1px;
   left: 0;
   appearance: none; //라디오 기본속성을 제거하는속성
   width: 18px;
@@ -56,10 +56,9 @@ const DefaultRadio = styled.input`
   &:checked + span:after {
     content: '';
     position: absolute;
-    top: 45%;
+    top: 4px;
     left: 5px;
-    transform: translate(0, -50%);
-    background: ${props => props.theme.grayscaleF};
+    background: #212121;
     width: 8px;
     height: 8px;
     background-size: contain;
@@ -71,5 +70,6 @@ const RadioText = styled.span`
   position: relative;
   padding: 0px 0px 0px 25px;
   font-size: 14px;
+  user-select: none;
 `;
 export default Radio;
