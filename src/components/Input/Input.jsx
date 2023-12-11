@@ -7,17 +7,22 @@ const Input = ({
   name,
   value,
   label,
+  labelForId,
+  before,
   ...props
 }) => {
   return (
     <InputWrap>
-      <InputLabel>{label}</InputLabel>
+      <InputText before={before} htmlFor={labelForId}>
+        {label}
+      </InputText>
       <DefaultInput
         type={type}
         placeholder={placeholder}
         onChange={onChange}
         name={name}
         value={value}
+        id={labelForId}
         {...props}
       />
     </InputWrap>
@@ -32,9 +37,28 @@ const Input = ({
  *@property {function} onChange                        - 인풋의 값이 변경될시 실행할 함수를 정의합니다.
  */
 
-const InputWrap = styled.div``;
+const InputWrap = styled.div`
+  display: flex;
+`;
+const InputText = styled.label`
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 700;
 
-const InputLabel = styled.label``;
+  &[before] {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #000;
+  }
+`;
 
 //Default input속성값을 정의합니다.
 const DefaultInput = styled.input`
@@ -43,12 +67,6 @@ const DefaultInput = styled.input`
   border: 1px solid ${props => props.theme.grayscaleF};
   border-radius: 5px;
   font-size: 16px;
-  outline: none;
-
-  &:focus {
-    border-color: ${props => props.theme.primaryColor};
-    box-shadow: 0 0 0 1px ${props => props.theme.primaryColor} inset;
-  }
 `;
 
 export default Input;
