@@ -89,6 +89,19 @@ const Nav = ({ navToggle, setNavToggle }) => {
   };
 
   /**
+   * stopPropagation() 란? JavaScript의 Event 인터페이스에서 제공하는 내장 메소드입니다.
+   * 그 목적은 캡처 및 버블링 단계 모두에서 현재 이벤트의 추가 전파를 중지하는 것입니다.
+   * 1.onClick 이벤트를 인자로 받습니다.
+   * 2 인자로 받은 event에 stopPropagation()메서드를 사용해 클릭이벤트가
+   * 상위 DOM트리로 전달되는것을 막습니다.
+   * 3.setNavToggle() 실행시켜 nav 컴포넌트를 close 해줍니다.
+   */
+  const closeNavOnBackgroundClick = event => {
+    event.stopPropagation();
+    setNavToggle(false);
+  };
+
+  /**
    * early return
    * useState에 navListData 데이터가 비어있다면 아래로직을 실행하지않고
    * return 종료 합니다. navListData 가있다면 아래로직을 랜더링합니다.
@@ -96,22 +109,28 @@ const Nav = ({ navToggle, setNavToggle }) => {
   if (!navListData) return null;
 
   return (
-    <NavContainerBgDiv className={navToggle ? 'showNav' : ''}>
+    <NavContainerBgDiv
+      className={navToggle ? 'showNav' : ''}
+      onClick={closeNavOnBackgroundClick}
+    >
       <NavContainerDiv
         className={navToggle ? 'showNavContent' : 'noShowNavContent'}
+        // stopPropagation()메서드를 사용해
+        // 상위 <NavContainerBgDiv>컴포넌트에 이벤트가 전달되는것을 막습니다.
+        onClick={event => event.stopPropagation()}
       >
         <CloseBtnContainerDiv>
           <IconButton content="close" size="medium" onClick={navClose} />
         </CloseBtnContainerDiv>
 
-        <LoginBtnContainerDiv>
+        <LoginJoinBtnContainerDiv>
           <LoginBtnButton type="button" onClick={goLoginPage} Login>
             Login
           </LoginBtnButton>
           <JoinBtnButton type="button" onClick={goJoinPage}>
             Join
           </JoinBtnButton>
-        </LoginBtnContainerDiv>
+        </LoginJoinBtnContainerDiv>
 
         <ImgBannerContainerDiv>
           <img src="../goobne/images/banner.png" alt="르세라핀배너" />
@@ -208,7 +227,7 @@ const CloseBtnContainerDiv = styled.div`
   padding: 10px 0px;
 `;
 
-const LoginBtnContainerDiv = styled.div`
+const LoginJoinBtnContainerDiv = styled.div`
   display: flex;
   align-items: center;
   flex-direction: row;
