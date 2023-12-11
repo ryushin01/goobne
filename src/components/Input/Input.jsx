@@ -14,12 +14,12 @@ const Input = ({
 }) => {
   return (
     <InputWrap position={position}>
-      <InputText htmlFor={labelForId} isRequired={required}>
-        {label}{' '}
+      <InputLabel htmlFor={labelForId} isRequired={required}>
+        {label}
         {required === 'required' && (
           <span style={{ color: 'red' }}>&nbsp;*</span>
         )}
-      </InputText>
+      </InputLabel>
       <DefaultInput
         type={type}
         placeholder={placeholder}
@@ -58,7 +58,7 @@ const InputWrap = styled.div`
     INPUT_WRAP_POSITION_STYLES[position]?.flexDirection || 'row'};
 `;
 
-const InputText = styled.label`
+const InputLabel = styled.label`
   display: flex;
   align-items: center;
   width: 200px;
