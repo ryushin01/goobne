@@ -95,8 +95,9 @@ const BigBannerContainer = styled.section`
     }
   }
 
-  & > img {
-    object-fit: contain;
+  & img {
+    height: 100vh;
+    object-fit: cover;
   }
 `;
 
