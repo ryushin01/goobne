@@ -182,6 +182,7 @@ const Nav = ({ navToggle, setNavToggle }) => {
 export default Nav;
 
 const NavContainerBgDiv = styled.div`
+  display: none;
   &.showNav {
     width: 100%;
     height: 100vh;
