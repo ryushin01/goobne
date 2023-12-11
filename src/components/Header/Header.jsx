@@ -5,9 +5,14 @@ import { ReactComponent as MenuSearch } from '../../svg/Header/HeaderMenuSearchI
 import { ReactComponent as Store } from '../../svg/Header/HeaderStoreIcon.svg';
 import IconButton from '../IconButton/IconButton';
 import styled from 'styled-components';
+import Nav from '../Nav/Nav';
+
 const Header = () => {
   /** Scroll Y값을 저장하기 위한 state */
   const [scrollY, setScrollY] = useState(0);
+
+  /** Nav자식컴포넌트에 부여해서 사용할 useState 입니다.*/
+  const [navToggle, setNavToggle] = useState(false);
 
   /**
    * useEffect를 이용하여 scroll에 대한 값을 scrollY 값이 변경될 때마다 업데이트 (의존성 배열에 scrollY를 넣어줌)
@@ -23,6 +28,12 @@ const Header = () => {
    */
   const handleScroll = () => {
     setScrollY(window.scrollY);
+  };
+  /**
+   * Nav컴포넌트를 open close 하는 함수입니다.
+   */
+  const navShow = () => {
+    setNavToggle(true);
   };
 
   return (
@@ -80,10 +91,11 @@ const Header = () => {
             </ul>
           </div>
           <div>
-            <IconButton content="list" />
+            <IconButton content="list" onClick={navShow} />
           </div>
         </SignWrap>
       </HeaderInnerWrap>
+      {<Nav navToggle={navToggle} setNavToggle={setNavToggle} />}
     </HeaderContainer>
   );
 };
