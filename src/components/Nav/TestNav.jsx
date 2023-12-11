@@ -9,7 +9,7 @@ import styled from 'styled-components';
  * @property {function} setNavToggle                             - 버튼 클릭 시 실행할 함수를 위해 미리 정의합니다.
  */
 
-const Nav = ({ navToggle, setNavToggle }) => {
+const TestNav = ({ navToggle, setNavToggle }) => {
   /**
    * 1.useEffect 실행됩니다.
    * 2.useEffect 실행되면서 axios get 방식이 실행되면 response받은 데이터를 담아놓을
@@ -160,7 +160,7 @@ const Nav = ({ navToggle, setNavToggle }) => {
   );
 };
 
-export default Nav;
+export default TestNav;
 
 const NavContainerBgDiv = styled.div`
   &.showNav {
