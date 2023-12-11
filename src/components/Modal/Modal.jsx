@@ -1,8 +1,16 @@
 import { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import IconButton from '../IconButton/IconButton';
+import { ReactComponent as ModalClose } from '../../svg/ModalClose.svg';
 
-const Modal = ({ title, desc, closeBtn, bottomBtn, ...props }) => {
+/**
+ * Modal props list
+ * @property {string} title                          - 해당 모달의 제목
+ * @property {string} desc                           - 해당 모달의 내용
+ * @property {boolean} closeBtn                      - 모달 닫기 버튼의 표시 여부
+ * @property {string} size: small, medium, large     - 모달창의 크기
+ */
+
+const Modal = ({ title, desc, closeBtn, ...props }) => {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const modalRef = useRef(null);
 
@@ -25,7 +33,17 @@ const Modal = ({ title, desc, closeBtn, bottomBtn, ...props }) => {
     };
   }, [isModalOpen]);
 
-  // 모달 닫기
+  // esc 누르면 모달 닫기
+  useEffect(() => {
+    const esc = e => {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    };
+    window.addEventListener('keydown', esc);
+  }, []);
+
+  // 모달 닫기시 실행되는 함수
   const closeModal = () => {
     setIsModalOpen(false);
   };
@@ -37,19 +55,11 @@ const Modal = ({ title, desc, closeBtn, bottomBtn, ...props }) => {
           <ModalDim />
           <ModalWrap ref={modalRef} {...props}>
             <ModalContainer>
-              {closeBtn && (
-                <IconButton content="close" onClick={closeModal}></IconButton>
-              )}
+              <ModalButton>
+                {closeBtn && <ModalClose onClick={closeModal}></ModalClose>}
+              </ModalButton>
               <ModalTitle>{title}</ModalTitle>
               <ModalDesc>{desc}</ModalDesc>
-              {bottomBtn && (
-                <ModalBtnWrap>
-                  <ModalButton onClick={closeModal}>
-                    오늘 하루 보지 않기
-                  </ModalButton>
-                  <ModalButton onClick={closeModal}>닫기</ModalButton>
-                </ModalBtnWrap>
-              )}
             </ModalContainer>
           </ModalWrap>
         </ModalMain>
@@ -60,7 +70,7 @@ const Modal = ({ title, desc, closeBtn, bottomBtn, ...props }) => {
 
 export default Modal;
 
-const MODAL_TYPE = {
+const MODAL_SIZE = {
   map: {
     padding: '15px 20px',
     borderRadius: '5px',
@@ -71,7 +81,7 @@ const MODAL_TYPE = {
   },
 };
 
-const FLEX_CENTER = `
+const FlexCenter = `
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,7 +104,7 @@ const ModalDim = styled.div`
 `;
 
 const ModalWrap = styled.div`
-  ${FLEX_CENTER}
+  ${FlexCenter}
   width: 100%;
   max-width: 500px;
   border: 1px solid;
@@ -102,8 +112,8 @@ const ModalWrap = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   position: fixed;
-  padding: ${({ type }) => MODAL_TYPE[type]?.padding || '20px'};
-  border-radius: ${({ type }) => MODAL_TYPE[type]?.borderRadius || '5px'};
+  padding: ${({ size }) => MODAL_SIZE[size]?.padding || '20px'};
+  border-radius: ${({ size }) => MODAL_SIZE[size]?.borderRadius || '5px'};
   background-color: ${props => props.theme.grayscaleA};
   z-index: 20;
 `;
@@ -111,6 +121,11 @@ const ModalWrap = styled.div`
 const ModalContainer = styled.div`
   width: 90%;
   margin: auto;
+`;
+
+const ModalButton = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `;
 
 const ModalTitle = styled.div`
@@ -122,22 +137,5 @@ const ModalTitle = styled.div`
 
 const ModalDesc = styled.div`
   padding: 15px;
-  text-align: center;
   font-size: 14px;
-`;
-
-const ModalBtnWrap = styled.ul`
-  ${FLEX_CENTER}
-  width: 100%;
-`;
-
-const ModalButton = styled.li`
-  ${FLEX_CENTER}
-  width: 50%;
-  background-color: #9f1818;
-  color: ${props => props.theme.grayscaleA};
-  font-weight: 600;
-  font-size: 17px;
-  line-height: 50px;
-  cursor: pointer;
 `;
