@@ -111,7 +111,7 @@ const ModalWrap = styled.div`
   z-index: 20;
 `;
 
-const ModalButton = styled.p`
+const ModalButton = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
