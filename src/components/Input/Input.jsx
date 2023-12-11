@@ -14,11 +14,9 @@ const Input = ({
 }) => {
   return (
     <InputWrap position={position}>
-      <InputLabel htmlFor={labelForId} isRequired={required}>
+      <InputLabel htmlFor={labelForId}>
         {label}
-        {required === 'required' && (
-          <span style={{ color: 'red' }}>&nbsp;*</span>
-        )}
+        {required === 'required' && <span>&nbsp;*</span>}
       </InputLabel>
       <DefaultInput
         type={type}
@@ -37,8 +35,8 @@ const Input = ({
  *@property {string} type: text, password              - 인풋의 타입을 정의합니다.
  *@property {string} placeholder                       - 인풋의 입력될 값에 대한 짧은 힌트를 정의합니다.
  *@property {string} name                              - 인풋의 form을 제출시 서버에서 데이터를 참조하기 위하여 정의합니다.
- *@property {any} value                                - 인풋의 초깃값을 정의합니다.
- *@property {any} position: column, 기본값 = row        - 인풋의 Wrap의 포지션을 해당 조건에따라 적용하는것을 정의합니다.
+ *@property {string} value                             - 인풋의 초깃값을 정의합니다.
+ *@property {string} position: column, 기본값 = row     - 인풋의 Wrap의 포지션을 해당 조건에따라 적용하는것을 정의합니다.
  *@property {function} onChange                        - 인풋의 값이 변경될시 실행할 함수를 정의합니다.
  */
 
@@ -79,6 +77,10 @@ const InputLabel = styled.label`
     height: 4px;
     border-radius: 50%;
     background-color: #000;
+  }
+
+  & > span {
+    color: ${props => props.theme.primaryColor};
   }
 `;
 
