@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Portal from './components/Modal/Portal';
-import Modal from './components/Modal/Modal';
+import Portal from './Portal';
+import Modal from './Modal';
 import styled from 'styled-components';
 import TestComponent from './TestComponent';
 

@@ -5,7 +5,7 @@ import { ReactComponent as ModalClose } from '../../svg/ModalClose.svg';
 /**
  * Modal props list
  * @property {string} title                          - 해당 모달의 제목
- * @property {string} desc                           - 해당 모달의 내용
+ * @property {string} content                        - 해당 모달의 내용
  * @property {boolean} isCloseBtn                    - 모달 닫기 버튼의 표시 여부
  * @property {string} size: small, medium, large     - 모달창의 크기
  */
@@ -24,6 +24,8 @@ const Modal = ({ title, content, isCloseBtn, ...props }) => {
     };
     // keydown event를 감지하여 esc 함수를 실행
     window.addEventListener('keydown', esc);
+
+    // 해당 이벤트를 삭제하여 메모리 누수를 방지함
     return () => {
       window.removeEventListener('keydown', esc);
     };
@@ -115,7 +117,7 @@ const ModalButton = styled.p`
 `;
 
 const ModalBox = styled.div`
-  ${FlexCenter}
+  ${FlexCenter};
   flex-direction: column;
   width: 100%;
 `;
