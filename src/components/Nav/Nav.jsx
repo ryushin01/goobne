@@ -33,14 +33,17 @@ const Nav = ({ navToggle, setNavToggle }) => {
    * NavList에서 클릭된 콘텐츠의 open 상태를 토글합니다.
    * 1. 클릭이 된 함수의 id,path 를 받아옵니다.
    * 2. NavList의 data를 받아와서 map을 이용하여 클릭된 콘텐츠의 id,path 와 클릭된 id,path 가 같은 것을 찾습니다.
-   * 3. 아이디가 서로 같으면 navList를 스프레드 오퍼레이터(연산자)로 복사하여 open을 토글후 고유한 id에 지정 되어있는 path 값을 네비게이트 해줍니다.
-   * 4. 아이디가 서로 다르면 navList를 스프레드 오퍼레이터(연산자)로 복사하여 open을 false로 설정하여 닫아줍니다.
+   * 3. 아이디가 서로 같으면 navList를 스프레드 오퍼레이터(연산자)로 복사하여 open을 토글후 고유한 id에 지정 되어있는 path 값을
+   *    네비게이트 해준후 setNavToggle 실행되면서 nav컴포넌트가 close 됩니다.
    */
   const toggle = ({ id, path }) => {
     setNavListData(navListData =>
       navListData.map(data => {
         if (data.id === id) {
-          navigate(path);
+          if (path) {
+            navigate(path);
+            setNavToggle(false);
+          }
           // 클릭된 콘텐츠의 'open' 상태를 토글합니다.
           return { ...data, open: !data.open };
         } else {
@@ -52,7 +55,7 @@ const Nav = ({ navToggle, setNavToggle }) => {
   };
 
   /**
-  부모에서 props로 받은 setNavToggle 사용하여 NavToggle 블리언 값을 변경하는 함수입니다.
+  부모에서 props로 받은 setNavToggle 사용하여 NavToggle 값을 false 변경하여 Navcomponent를 close하는 함수입니다.
    */
   const navClose = () => {
     setNavToggle(false);
@@ -105,7 +108,6 @@ const Nav = ({ navToggle, setNavToggle }) => {
           <LoginBtnButton type="button" onClick={goLoginPage} Login>
             Login
           </LoginBtnButton>
-          <span></span>
           <JoinBtnButton type="button" onClick={goJoinPage}>
             Join
           </JoinBtnButton>
@@ -136,7 +138,9 @@ const Nav = ({ navToggle, setNavToggle }) => {
                         {depth?.map((data, index) => {
                           return (
                             <ChildAccordionListLi key={index}>
-                              <Link to={data.path}>{data.depthLabel}</Link>
+                              <Link onClick={navClose} to={data.path}>
+                                {data.depthLabel}
+                              </Link>
                             </ChildAccordionListLi>
                           );
                         })}
@@ -213,20 +217,27 @@ const LoginBtnContainerDiv = styled.div`
   gap: 10px;
   width: 100%;
   padding: 60px 0px;
-
-  & > span {
-    width: 1px;
-    height: 18px;
-    background-color: ${props => props.theme.grayscaleC};
-  }
 `;
 const LoginBtnButton = styled.button`
+  position: relative;
   border: none;
   background-color: ${props => props.theme.grayscaleB};
   color: ${props => props.theme.grayscaleD};
   font-size: 25px;
   font-weight: 700;
   cursor: pointer;
+  margin-right: 20px;
+
+  &::after {
+    position: absolute;
+    content: '';
+    width: 1px;
+    height: 18px;
+    background-color: ${props => props.theme.grayscaleC};
+    top: 50%;
+    right: -26px;
+    transform: translate(-50%, -50%);
+  }
 `;
 
 const JoinBtnButton = styled.button`
@@ -236,6 +247,7 @@ const JoinBtnButton = styled.button`
   font-size: 25px;
   font-weight: 700;
   cursor: pointer;
+  margin-left: 20px;
 `;
 
 const ImgBannerContainerDiv = styled.div`

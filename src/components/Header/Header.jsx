@@ -137,7 +137,7 @@ const HeaderInnerWrap = styled.section`
 
 const HeaderLogo = styled.div`
   display: flex;
-  width: 105px;
+  width: 150px;
   cursor: pointer;
 `;
 
