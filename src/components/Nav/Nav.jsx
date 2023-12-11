@@ -9,11 +9,11 @@ import styled from 'styled-components';
  * @property {function} setNavToggle                             - 버튼 클릭 시 실행할 함수를 위해 미리 정의합니다.
  */
 
-const Nav = ({ setNavToggle }) => {
+const Nav = ({ navToggle, setNavToggle }) => {
   /**
    * 1.useEffect 실행됩니다.
    * 2.useEffect 실행되면서 axios get 방식이 실행되면 response받은 데이터를 담아놓을
-   * navListData useState입니다.
+   * useState입니다.
    */
   const [navListData, setNavListData] = useState('');
 
@@ -31,9 +31,9 @@ const Nav = ({ setNavToggle }) => {
 
   /**
    * NavList에서 클릭된 콘텐츠의 open 상태를 토글합니다.
-   * 1. 클릭이 된 함수의 id를 받아옵니다.
-   * 2. NavList의 data를 받아와서 map을 이용하여 클릭된 콘텐츠의 id와 클릭된 id가 같은 것을 찾습니다.
-   * 3. 아이디가 서로 같으면 navList를 스프레드 오퍼레이터(연산자)로 복사하여 open을 토글시켜줍니다.
+   * 1. 클릭이 된 함수의 id,path 를 받아옵니다.
+   * 2. NavList의 data를 받아와서 map을 이용하여 클릭된 콘텐츠의 id,path 와 클릭된 id,path 가 같은 것을 찾습니다.
+   * 3. 아이디가 서로 같으면 navList를 스프레드 오퍼레이터(연산자)로 복사하여 open을 토글후 고유한 id에 지정 되어있는 path 값을 네비게이트 해줍니다.
    * 4. 아이디가 서로 다르면 navList를 스프레드 오퍼레이터(연산자)로 복사하여 open을 false로 설정하여 닫아줍니다.
    */
   const toggle = ({ id, path }) => {
@@ -61,11 +61,13 @@ const Nav = ({ setNavToggle }) => {
   /**로그인 페이지로 navigate 해주는 함수입니다. */
   const goLoginPage = () => {
     navigate('/login');
+    setNavToggle(false);
   };
 
   /**회원가입 페이지로 navigate 해주는 함수입니다. */
   const goJoinPage = () => {
     navigate('/join');
+    setNavToggle(false);
   };
 
   /**
@@ -84,27 +86,29 @@ const Nav = ({ setNavToggle }) => {
   };
 
   /**
-   * 얼리 리턴
+   * early return
    * useState에 navListData 데이터가 비어있다면 아래로직을 실행하지않고
    * return 종료 합니다. navListData 가있다면 아래로직을 랜더링합니다.
    */
   if (!navListData) return null;
 
   return (
-    <NavContainerBgDiv>
-      <NavContainerDiv>
+    <NavContainerBgDiv className={navToggle ? 'showNav' : ''}>
+      <NavContainerDiv
+        className={navToggle ? 'showNavContent' : 'noShowNavContent'}
+      >
         <CloseBtnContainerDiv>
           <IconButton content="close" size="medium" onClick={navClose} />
         </CloseBtnContainerDiv>
 
         <LoginBtnContainerDiv>
-          <button type="button" onClick={goLoginPage}>
+          <LoginBtnButton type="button" onClick={goLoginPage} Login>
             Login
-          </button>
+          </LoginBtnButton>
           <span></span>
-          <button type="button" onClick={goJoinPage}>
+          <JoinBtnButton type="button" onClick={goJoinPage}>
             Join
-          </button>
+          </JoinBtnButton>
         </LoginBtnContainerDiv>
 
         <ImgBannerContainerDiv>
@@ -157,12 +161,14 @@ const Nav = ({ setNavToggle }) => {
 export default Nav;
 
 const NavContainerBgDiv = styled.div`
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3);
-  position: fixed;
-  display: flex;
-  z-index: 1;
+  &.showNav {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    display: flex;
+    z-index: 1;
+  }
 `;
 
 const NavContainerDiv = styled.div`
@@ -173,15 +179,23 @@ const NavContainerDiv = styled.div`
   align-items: center;
   border: 1px solid ${props => props.theme.grayscaleB};
   background-color: ${props => props.theme.grayscaleB};
-  padding: 20px;
-  width: 450px;
   height: 100vh;
   z-index: 100;
   overflow-y: scroll;
   overflow-x: hidden;
+  transition: all 0.2s ease-in-out;
 
   & > nav {
     width: 100%;
+  }
+
+  &.noShowNavContent {
+    width: 0px;
+  }
+
+  &.showNavContent {
+    padding: 20px;
+    width: 500px;
   }
 `;
 
@@ -200,25 +214,32 @@ const LoginBtnContainerDiv = styled.div`
   width: 100%;
   padding: 60px 0px;
 
-  & > button {
-    border: none;
-    background-color: ${props => props.theme.grayscaleB};
-    color: ${props => props.theme.grayscaleD};
-    font-size: 25px;
-    font-weight: 700;
-    cursor: pointer;
-  }
   & > span {
     width: 1px;
     height: 18px;
     background-color: ${props => props.theme.grayscaleC};
   }
 `;
+const LoginBtnButton = styled.button`
+  border: none;
+  background-color: ${props => props.theme.grayscaleB};
+  color: ${props => props.theme.grayscaleD};
+  font-size: 25px;
+  font-weight: 700;
+  cursor: pointer;
+`;
 
-const LoginBtnButton = styled.button``;
+const JoinBtnButton = styled.button`
+  border: none;
+  background-color: ${props => props.theme.grayscaleB};
+  color: ${props => props.theme.grayscaleD};
+  font-size: 25px;
+  font-weight: 700;
+  cursor: pointer;
+`;
 
 const ImgBannerContainerDiv = styled.div`
-  width: 450px;
+  width: 500px;
 `;
 
 const NavListAccordionContainerDiv = styled.div`
@@ -232,9 +253,7 @@ const NavListAccordionContainerDiv = styled.div`
 const ParentsAccordionContainerUl = styled.ul``;
 
 const ParentsAccordionListLi = styled.li`
-  position: relative;
   cursor: pointer;
-  display: inline-block;
 `;
 
 const NavAccordionButton = styled.button`
@@ -244,6 +263,8 @@ const NavAccordionButton = styled.button`
   background-color: transparent;
   cursor: pointer;
   padding-right: 25px;
+  margin-bottom: 10px;
+  position: relative;
 
   &.DownArrow::after {
     content: '';
@@ -274,11 +295,13 @@ const ChildAccordionContainerUl = styled.ul`
   flex-direction: column;
   gap: 5px;
   font-size: 20px;
-  margin-top: 20px;
 `;
 
 const ChildAccordionListLi = styled.li`
-  color: ${props => props.theme.grayscaleD};
+  & > a {
+    font-size: 20px;
+    color: ${props => props.theme.grayscaleD};
+  }
 `;
 
 const NavCallNumBerContainerDl = styled.dl`

@@ -11,7 +11,7 @@ const Header = () => {
   /** Scroll Y값을 저장하기 위한 state */
   const [scrollY, setScrollY] = useState(0);
 
-  /** Nav컴포넌트를 open close 를 하기위한 state*/
+  /** Nav자식컴포넌트에 부여해서 사용할 useState 입니다.*/
   const [navToggle, setNavToggle] = useState(false);
 
   /**
@@ -95,7 +95,7 @@ const Header = () => {
           </div>
         </SignWrap>
       </HeaderInnerWrap>
-      {navToggle && <Nav setNavToggle={setNavToggle} />}
+      {<Nav navToggle={navToggle} setNavToggle={setNavToggle} />}
     </HeaderContainer>
   );
 };
