@@ -15,3 +15,10 @@ export const BigBannerAxios = axios.create({
     Authorization: localStorage.getItem('token'),
   },
 });
+
+export const NavListAxios = axios.create({
+  baseURL: '../goobne/data/NavListData.json',
+  headers: {
+    Authorization: localStorage.getItem('token'),
+  },
+});
