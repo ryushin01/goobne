@@ -6,17 +6,21 @@ const Input = ({
   onChange,
   name,
   value,
+  label,
   ...props
 }) => {
   return (
-    <DefaultInput
-      type={type}
-      placeholder={placeholder}
-      onChange={onChange}
-      name={name}
-      value={value}
-      {...props}
-    />
+    <InputWrap>
+      <InputLabel>{label}</InputLabel>
+      <DefaultInput
+        type={type}
+        placeholder={placeholder}
+        onChange={onChange}
+        name={name}
+        value={value}
+        {...props}
+      />
+    </InputWrap>
   );
 };
 
@@ -27,6 +31,10 @@ const Input = ({
  *@property {any} value                                - 인풋의 초깃값을 정의합니다.
  *@property {function} onChange                        - 인풋의 값이 변경될시 실행할 함수를 정의합니다.
  */
+
+const InputWrap = styled.div``;
+
+const InputLabel = styled.label``;
 
 //Default input속성값을 정의합니다.
 const DefaultInput = styled.input`
