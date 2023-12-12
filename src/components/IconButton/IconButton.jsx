@@ -87,7 +87,6 @@ const DefaultIconButton = styled.button`
  * ICONBTNLIST wrap size를 조절합니다.
  * props.size 변화에 따라 사이즈를 조절합니다.
  */
-
 const ButtonContainer = styled.div`
   width: ${({ size }) => BTN_CONTAINTNER_SIZE_STYLES[size]?.width || '20px'};
   height: ${({ size }) => BTN_CONTAINTNER_SIZE_STYLES[size]?.height || '20px'};
