@@ -126,6 +126,7 @@ const HeaderInnerWrap = styled.section`
 const HeaderLogo = styled.div`
   display: flex;
   width: 150px;
+  min-width: 150px;
   cursor: pointer;
 `;
 
