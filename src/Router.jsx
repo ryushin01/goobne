@@ -8,7 +8,7 @@ const Router = () => {
     <BrowserRouter basename="/goobne">
       <Header />
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       <Footer />
     </BrowserRouter>
