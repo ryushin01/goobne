@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import IconButton from '../IconButton/IconButton';
 
 /**
- * @default javascript:void(0)  - HTML상 a태그의 링크기능을 무효화 하는것을 의미합니다.
+ * @default "#"  - a태그의 링크기능을 무효화 하는것을 의미합니다.
  */
 
 const Footer = () => {
@@ -40,31 +40,29 @@ const Footer = () => {
                 </InfoAreaTargetButton>
               </li>
               <li>
-                <InfoAreaTargetLink href="javascript:void(0)">
-                  찾아오시는길
-                </InfoAreaTargetLink>
+                <InfoAreaTargetLink href="#">찾아오시는길</InfoAreaTargetLink>
               </li>
             </ul>
           </InfoArea>
           <SnsConnectionArea>
             <ul>
               <li>
-                <a href="javascript:void(0)">
+                <a href="#">
                   <IconButton type="button" content="instagram" size="small" />
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0)">
+                <a href="#">
                   <IconButton type="button" content="facebook" size="small" />
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0)">
+                <a href="#">
                   <IconButton type="button" content="blog" size="small" />
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0)">
+                <a href="#">
                   <IconButton type="button" content="youtube" size="small" />
                 </a>
               </li>
@@ -101,6 +99,7 @@ const Footer = () => {
 const FooterContainer = styled.footer`
   width: 100%;
   padding: 0 95px 30px 95px;
+  margin-top: 240px;
   background-color: ${props => props.theme.grayscaleF};
 `;
 
