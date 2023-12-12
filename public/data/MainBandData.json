@@ -3,72 +3,58 @@
     {
       "id": 1,
       "href": "/",
-      "src": "https://picsum.photos/id/111/280/280",
+      "src": "../goobne/images/main_chicken_01.jpg",
       "alt": "SmallBand 이미지 1",
-      "tag": "PIZZA"
+      "tag": "BEST CHICKEN"
     },
     {
       "id": 2,
       "href": "/new",
-      "src": "https://picsum.photos/id/121/280/280",
+      "src": "../goobne/images/main_chicken_02.jpg",
       "alt": "SmallBand 이미지 2",
-      "tag": "ORANGE"
+      "tag": "CHICKEN"
     },
     {
       "id": 3,
       "href": "/new",
-      "src": "https://picsum.photos/id/131/280/280",
+      "src": "../goobne/images/main_chicken_03.jpg",
       "alt": "SmallBand 이미지 3",
-      "tag": "RAMON"
+      "tag": "BEST SET"
     },
     {
       "id": 4,
       "href": "/new",
-      "src": "https://picsum.photos/id/141/280/280",
+      "src": "../goobne/images/main-pizza.jpg",
       "alt": "SmallBand 이미지 4",
-      "tag": "MAKE"
+      "tag": "PIZZA"
     },
     {
       "id": 5,
       "href": "/new",
-      "src": "https://picsum.photos/id/151/280/280",
+      "src": "../goobne/images/main_wast_set.jpg",
       "alt": "SmallBand 이미지 5",
-      "tag": "WORK"
+      "tag": "WAST SET"
     },
     {
       "id": 6,
       "href": "/new",
-      "src": "https://picsum.photos/id/161/280/280",
+      "src": "../goobne/images/main_salad.jpg",
       "alt": "SmallBand 이미지 6",
-      "tag": "WER"
+      "tag": "SALAD"
     },
     {
       "id": 7,
       "href": "/new",
-      "src": "https://picsum.photos/id/171/280/280",
+      "src": "../goobne/images/main_side_dish.jpg",
       "alt": "SmallBand 이미지 7",
-      "tag": "COMPUTER"
+      "tag": "SIDE DISH"
     },
     {
       "id": 8,
       "href": "/new",
-      "src": "https://picsum.photos/id/181/280/280",
+      "src": "../goobne/images/main_beer.jpg",
       "alt": "SmallBand 이미지 8",
-      "tag": "E-BOOK"
-    },
-    {
-      "id": 9,
-      "href": "/new",
-      "src": "https://picsum.photos/id/191/280/280",
-      "alt": "SmallBand 이미지 9",
-      "tag": "R-BOOK"
-    },
-    {
-      "id": 10,
-      "href": "/new",
-      "src": "https://picsum.photos/id/201/280/280",
-      "alt": "SmallBand 이미지 10",
-      "tag": "N-BOOK"
+      "tag": "BEER"
     }
   ]
 }
