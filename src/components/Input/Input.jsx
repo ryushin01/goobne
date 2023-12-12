@@ -62,6 +62,7 @@ const InputLabel = styled.label`
   width: 200px;
   font-size: 14px;
   font-weight: 700;
+  margin-bottom: 10px;
   padding: 0px 0px 0px 10px;
   position: relative;
 
@@ -91,6 +92,7 @@ const DefaultInput = styled.input`
   border: 1px solid ${props => props.theme.grayscaleF};
   border-radius: 5px;
   font-size: 16px;
+  background-color: transparent;
 `;
 
 export default Input;
