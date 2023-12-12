@@ -4,15 +4,15 @@ import Button from '../components/Button/Button';
 const Delivery = () => {
   return (
     <main>
-      <OrderMain>
-        <OrderWrap>
-          <OrderSwiperBox>swiper</OrderSwiperBox>
-          <OrderMethodWrap>
-            <OrderTitle>주문방법선택</OrderTitle>
-            <OrderMethod>
+      <DeliveryMain>
+        <DeliveryWrap>
+          <SwiperBox>swiper</SwiperBox>
+          <MethodWrap>
+            <Title>주문방법선택</Title>
+            <DeliveryMethod>
               listBox
               <div>listComponent</div>
-            </OrderMethod>
+            </DeliveryMethod>
             <MethodBottom>
               <BottomLeft>
                 <li>개인정보 수집 이용 동의 (필수)</li>
@@ -26,34 +26,34 @@ const Delivery = () => {
                 <Button size="medium">선택</Button>
               </BottomRight>
             </MethodBottom>
-          </OrderMethodWrap>
-        </OrderWrap>
-      </OrderMain>
+          </MethodWrap>
+        </DeliveryWrap>
+      </DeliveryMain>
     </main>
   );
 };
 
 export default Delivery;
 
-const OrderMain = styled.section`
+const DeliveryMain = styled.section`
   width: 100%;
 `;
 
-const OrderWrap = styled.div`
+const DeliveryWrap = styled.div`
   width: 70%;
   margin: auto;
 `;
 
-const OrderSwiperBox = styled.div`
+const SwiperBox = styled.div`
   width: 100%;
   height: 156px;
 `;
 
-const OrderMethodWrap = styled.div`
+const MethodWrap = styled.div`
   margin: 20px 0;
 `;
 
-const OrderTitle = styled.span`
+const Title = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -61,7 +61,7 @@ const OrderTitle = styled.span`
   font-weight: 800;
 `;
 
-const OrderMethod = styled.div`
+const DeliveryMethod = styled.div`
   width: 100%;
   margin: 20px 0;
 `;
