@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Input from '../components/Input/Input';
+import SelectBox from '../components/SelectBox/SelectBox';
 
 const Order = () => {
   return (
@@ -27,10 +28,17 @@ const Order = () => {
                 <Input type="text" label="연락처" />
               </li>
               <li>
-                <Input label="연락처" />
+                <span>가게사장님께 요청사항</span>
               </li>
-              <li></li>
-              <li></li>
+              <li>
+                <textarea></textarea>
+              </li>
+              <li>
+                <div>
+                  <span>배달</span>
+                  <span>라이더님께</span>
+                </div>
+              </li>
             </ul>
           </fieldset>
         </form>
