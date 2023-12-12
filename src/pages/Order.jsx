@@ -10,6 +10,15 @@ const Order = () => {
         <form>
           <fieldset>
             <legend>배달정보</legend>
+            <ui>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ui>
           </fieldset>
         </form>
       </OrderContentWrap>
