@@ -13,4 +13,5 @@ export const theme = {
   grayscaleI: '#8e4901',
   grayscaleJ: '#f8e6d3',
   transparentA: 'rgba(255, 255, 255, 0.5)',
+  transparentB: 'rgba(0, 0, 0, 0.5)',
 };
