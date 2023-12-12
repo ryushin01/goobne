@@ -107,6 +107,7 @@ const InnerTopSection = styled.section`
   justify-content: space-between;
   border-bottom: 1px solid ${props => props.theme.transparentA};
   padding: 35px 0 30px 0;
+  white-space: nowrap;
 `;
 
 const InquirySubText = styled.span`
@@ -176,6 +177,7 @@ const AddressSection = styled.section`
   display: flex;
   justify-content: space-between;
   margin-top: 35px;
+  white-space: nowrap;
 
   & > address {
     & > ul {
