@@ -57,6 +57,7 @@ const InputWrap = styled.div`
 `;
 
 const InputLabel = styled.label`
+  width: 200px;
   font-size: 14px;
   font-weight: 700;
   margin-bottom: 10px;
@@ -68,7 +69,7 @@ const InputLabel = styled.label`
     content: '';
     display: inline-block;
     position: absolute;
-    top: 19%;
+    top: 50%;
     left: 0;
     transform: translateY(-50%);
     width: 4px;
