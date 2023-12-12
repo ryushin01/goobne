@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
-import { BigBannerAxios } from '../../API/API';
+import { createCustomAxios } from '../../API/API';
 import styled from 'styled-components';
 
 // Import Swiper styles
@@ -22,6 +22,10 @@ const BigBanner = () => {
    * Custom Axios를 이용하여 BigBanner에 대한 Data를 Json파일에서 받아온다.
    * @property response는 변수지정을 하지만 실제로 사용하지 않기 때문에 에러줄을 없애기 위해 eslint-disable-line no-unused-vars를 사용
    * */
+  const BigBannerAxiosBaseURL = '../goobne/data/BigBannerData.json';
+
+  const BigBannerAxios = createCustomAxios(BigBannerAxiosBaseURL);
+
   const requestBigBannerDataGet = async () => {
     const response = await BigBannerAxios.get() //eslint-disable-line no-unused-vars
       .then(response => {
