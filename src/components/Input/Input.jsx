@@ -69,7 +69,7 @@ const InputLabel = styled.label`
     content: '';
     display: inline-block;
     position: absolute;
-    top: 50%;
+    top: 19%;
     left: 0;
     transform: translateY(-50%);
     width: 4px;
