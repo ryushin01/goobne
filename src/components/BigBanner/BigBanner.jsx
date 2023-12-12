@@ -89,12 +89,12 @@ const BigBannerContainer = styled.section`
     transform: translateX(-50%);
 
     .swiper-pagination-bullet {
-      border: 6px solid #ff0000;
+      border: 6px solid ${props => props.theme.primaryColor};
       margin-right: 15px;
     }
 
     .swiper-pagination-bullet-active {
-      background-color: #fff;
+      background-color: ${props => props.theme.grayscaleA};
       width: 25px;
       height: 25px;
     }
@@ -120,8 +120,8 @@ const TextInnerWrap = styled.div`
   justify-content: center;
   font-size: 30px;
   font-weight: bold;
-  color: #fff;
-  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+  color: ${props => props.theme.grayscaleA};
+  text-shadow: 3px 3px 3px ${props => props.theme.transparentB};
   line-height: 1.6;
 
   & > span:first-child {
