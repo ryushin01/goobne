@@ -99,7 +99,7 @@ const BandContainer = styled.section`
   width: 100%;
   height: 100vh;
   padding-top: 150px;
-  background-color: #f8e6d3;
+  background-color: ${props => props.theme.grayscaleJ};
   overflow: hidden;
 
   & > .mySwiper {
@@ -129,8 +129,6 @@ const TitleWrap = styled.div`
 `;
 
 const SlideInnerWrap = styled.div`
-  /* display: flex; */
-  /* flex-direction: column; */
   position: relative;
   border-radius: 15px;
   overflow: hidden;
@@ -139,7 +137,7 @@ const SlideInnerWrap = styled.div`
 const ImageWrap = styled.div`
   width: 100%;
   height: 100%;
-  background-color: #e0e0e0;
+  background-color: ${props => props.theme.grayscaleC};
 
   & > a {
     width: 100%;
@@ -158,7 +156,7 @@ const TextWrap = styled.div`
   height: 70px;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${props => props.theme.transparentB};
 
   & span {
     display: flex;
@@ -169,6 +167,6 @@ const TextWrap = styled.div`
     font-size: 25px;
     font-family: 'Rubik';
     font-weight: 700;
-    color: #fff;
+    color: ${props => props.theme.grayscaleA};
   }
 `;
