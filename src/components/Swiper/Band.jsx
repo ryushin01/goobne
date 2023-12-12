@@ -99,7 +99,7 @@ const BandContainer = styled.section`
   width: 100%;
   height: 100vh;
   padding-top: 150px;
-  background-color: #e0e0e0;
+  background-color: #f8e6d3;
   overflow: hidden;
 
   & > .mySwiper {
