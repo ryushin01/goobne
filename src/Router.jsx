@@ -7,10 +7,7 @@ const Router = () => {
   return (
     <BrowserRouter basename="/goobne">
       <Herder />
-      <Routes>
-        {/* <Route path="/" element={<Test />} /> */}
-        <Route path="/order" element={<Order />} />
-      </Routes>
+      <Routes>{/* <Route path="/" element={<Test />} /> */}</Routes>
       <Footer />
     </BrowserRouter>
   );
