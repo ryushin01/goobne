@@ -49,6 +49,7 @@ const INPUT_WRAP_POSITION_STYLES = {
 
 const InputWrap = styled.div`
   display: flex;
+  width: 100%; //수정
 
   /* props position이 전달되지 않은 경우 기본설정에 따르고, 
   props를 전달 받으면 지정조건에 따른다 */
@@ -57,6 +58,7 @@ const InputWrap = styled.div`
 `;
 
 const InputLabel = styled.label`
+  margin-bottom: 5px; //수정
   display: flex;
   align-items: center;
   width: 200px;
@@ -87,10 +89,11 @@ const InputLabel = styled.label`
 //Default input속성값을 정의합니다.
 const DefaultInput = styled.input`
   width: 100%;
-  padding: 13px 0px 13px 15px;
+  padding: 12px 10px; //수정
   border: 1px solid ${props => props.theme.grayscaleF};
   border-radius: 5px;
   font-size: 16px;
+  background-color: transparent;
 `;
 
 export default Input;

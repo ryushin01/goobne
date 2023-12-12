@@ -121,7 +121,6 @@ const Footer = () => {
 const FooterContainer = styled.footer`
   width: 100%;
   padding: 0 95px 30px 95px;
-  margin-top: 240px;
   background-color: ${props => props.theme.grayscaleF};
 `;
 

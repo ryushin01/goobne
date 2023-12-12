@@ -12,4 +12,5 @@ export const theme = {
   grayscaleH: '#000',
   grayscaleI: '#8e4901',
   transparentA: 'rgba(255, 255, 255, 0.5)',
+  kakao: '#FFDA43',
 };

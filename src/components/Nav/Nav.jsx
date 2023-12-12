@@ -249,7 +249,7 @@ const LoginBtnButton = styled.button`
     position: absolute;
     content: '';
     width: 1px;
-    height: 18px;
+    height: 15px;
     background-color: ${props => props.theme.grayscaleC};
     top: 50%;
     right: -26px;
