@@ -11,22 +11,30 @@ import { ReactComponent as List } from '../../svg/HeaderListIconBtn.svg';
  * IconButton props list
  * @property {string} type: button, submit, reset                                   - 버튼 타입을 정의합니다.
  * @property {string} size: small, medium, large                                    - 버튼 크기를 정의합니다.
+ * @property {string} color: black, white                                        - svgIcon 색상을 정의합니다.
  * @property {string} content: blog,facebook ,instagram, youtube, cart, close, list - 버튼 내부 svgicon 컴포넌트를 정의합니다.
  * @property {function} onClick                                                     - 버튼 클릭 시 실행할 함수를 위해 미리 정의합니다.
  */
 
-const IconButton = ({ type = 'button', onClick, content, ...props }) => {
+const IconButton = ({
+  type = 'button',
+  onClick,
+  content,
+  size,
+  color,
+  ...props
+}) => {
   return (
-    <ButtonContainer>
+    <ButtonContainer size={size} color={color}>
       <DefaultIconButton type={type} onClick={onClick} {...props}>
-        {ICONBTNLIST[content].tag}
+        {ICON_BTN_LIST[content].tag}
       </DefaultIconButton>
     </ButtonContainer>
   );
 };
 
 /**svg 파일컴포넌트를 정의합니다. */
-const ICONBTNLIST = {
+const ICON_BTN_LIST = {
   blog: {
     tag: <Blog />,
   },
@@ -79,10 +87,19 @@ const DefaultIconButton = styled.button`
  * ICONBTNLIST wrap size를 조절합니다.
  * props.size 변화에 따라 사이즈를 조절합니다.
  */
-
 const ButtonContainer = styled.div`
   width: ${({ size }) => BTN_CONTAINTNER_SIZE_STYLES[size]?.width || '20px'};
   height: ${({ size }) => BTN_CONTAINTNER_SIZE_STYLES[size]?.height || '20px'};
+
+  /**props.color 값에 따라 svgIcon색상이 변경됩니다. 기본색상은 검정색입니다.*/
+  svg {
+    path {
+      stroke: ${props =>
+        (props.color === 'black' && props.theme.grayscaleH) ||
+        (props.color === 'white' && props.theme.grayscaleA) ||
+        props.theme.grayscaleH};
+    }
+  }
 `;
 
 export default IconButton;

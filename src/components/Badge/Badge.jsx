@@ -5,6 +5,7 @@ import { ReactComponent as BadgePepperIcon } from '../../svg/Badge/BadgePepperIc
  *  Badge Component props list
  *  @property {string} shape: new, best, md, hot
  */
+
 const Badge = ({ shape }) => {
   return (
     <BadgeContainer>
@@ -25,7 +26,7 @@ const Badge = ({ shape }) => {
 
 export default Badge;
 
-const BADGELIST = {
+const BADGE_LIST = {
   new: {
     backgroundColor: '#ff0000',
     borderColor: '#ff0000',
@@ -59,13 +60,13 @@ const BadgeWrap = styled.div`
   font-size: 12px;
   font-family: 'Rubik';
   color: #fff;
-  border: 1px solid ${({ shape }) => BADGELIST[shape]?.borderColor};
-  background-color: ${({ shape }) => BADGELIST[shape]?.backgroundColor};
+  border: 1px solid ${({ shape }) => BADGE_LIST[shape]?.borderColor};
+  background-color: ${({ shape }) => BADGE_LIST[shape]?.backgroundColor};
   border-radius: 2px;
   padding: 1px 3px;
   text-transform: uppercase; // 소문자를 대문자로 변환
 
   & > span {
-    margin-right: ${({ shape }) => BADGELIST[shape]?.marginRight};
+    margin-right: ${({ shape }) => BADGE_LIST[shape]?.marginRight};
   }
 `;
