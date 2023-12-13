@@ -8,14 +8,12 @@ const Input = ({
   value,
   label,
   labelForId,
-  direction,
   required,
-  isDot = false,
   ...props
 }) => {
   return (
-    <InputWrap direction={direction}>
-      <InputLabel htmlFor={labelForId} isDot={isDot}>
+    <InputWrap {...props}>
+      <InputLabel htmlFor={labelForId} {...props}>
         {label}
         {required === 'required' && <span>&nbsp;*</span>}
       </InputLabel>
