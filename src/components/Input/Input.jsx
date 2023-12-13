@@ -8,14 +8,14 @@ const Input = ({
   value,
   label,
   labelForId,
-  position,
+  direction,
   required,
-  dot,
+  isDot = false,
   ...props
 }) => {
   return (
-    <InputWrap position={position}>
-      <InputLabel htmlFor={labelForId} dot={dot}>
+    <InputWrap direction={direction}>
+      <InputLabel htmlFor={labelForId} isDot={isDot}>
         {label}
         {required === 'required' && <span>&nbsp;*</span>}
       </InputLabel>
@@ -38,7 +38,7 @@ const Input = ({
  *@property {string} name                              - 인풋의 form을 제출시 서버에서 데이터를 참조하기 위하여 정의합니다.
  *@property {string} value                             - 인풋의 초깃값을 정의합니다.
  *@property {string} position: column,  기본값 = row    - 인풋의 Wrap의 포지션을 해당 조건에따라 적용하는것을 정의합니다.
- *@property {string} dot: on                           - 값이 on일 경우 label 태그의 before속성이 적용되며, padding-left 10px까지 적용됩니다.
+ *@property {string} isDot                             - 값이 true일 경우 label 태그의 before속성이 적용되며, padding-left 10px과 함께 적용됩니다.
  *@property {function} onChange                        - 인풋의 값이 변경될시 실행할 함수를 정의합니다.
  */
 
@@ -55,8 +55,8 @@ const InputWrap = styled.div`
 
   /* props position이 전달되지 않은 경우 기본설정에 따르고, 
   props를 전달 받으면 지정조건에 따른다 */
-  flex-direction: ${({ position }) =>
-    INPUT_WRAP_POSITION_STYLES[position]?.flexDirection || 'row'};
+  flex-direction: ${({ direction }) =>
+    INPUT_WRAP_POSITION_STYLES[direction]?.flexDirection || 'row'};
 `;
 
 const InputLabel = styled.label`
@@ -64,15 +64,14 @@ const InputLabel = styled.label`
   font-size: 14px;
   font-weight: 700;
   margin-bottom: 5px;
-
-  //props값으로 dot='on'일때 padding-left 10px을 적용
-  padding-left: ${props => (props.dot === 'on' && '10px') || '0px'};
+  //props isDot true일때 padding-left 10px값을 적용합니다.
+  padding-left: ${props => (props.isDot === true && '10px') || '0px'};
   position: relative;
 
   //flex-direction row의 기본값에서 Label의 앞쪽 before속성을 의미한다.
-  //또한 props값으로 dot='on'일때 점을 표시
+  //props isDot의 값이 true일시 before속성을 적용시킵니다.
   ${props => {
-    if (props.dot === 'on') {
+    if (props.isDot === true) {
       return `
     &::before {
       content: '';
