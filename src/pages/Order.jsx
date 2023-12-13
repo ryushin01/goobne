@@ -10,8 +10,8 @@ const Order = () => {
           <span>결제하기</span>
         </OrderTitle>
         <form>
-          <fieldset>
-            <legend>배달정보</legend>
+          <DeliveryInfo>
+            <DeliveryInfoTitle>배달정보</DeliveryInfoTitle>
             <ul>
               <li>
                 <span>주소</span>
@@ -29,18 +29,20 @@ const Order = () => {
               </li>
               <li>
                 <span>가게사장님께 요청사항</span>
-              </li>
-              <li>
-                <textarea></textarea>
+                <div>
+                  <SelectBox />
+                  <textarea></textarea>
+                </div>
               </li>
               <li>
                 <div>
                   <span>배달</span>
                   <span>라이더님께</span>
+                  <SelectBox />
                 </div>
               </li>
             </ul>
-          </fieldset>
+          </DeliveryInfo>
         </form>
       </OrderContentWrap>
     </OrderContainer>
@@ -71,4 +73,16 @@ const OrderTitle = styled.div`
     font-size: 40px;
     font-weight: 800;
   }
+`;
+
+const DeliveryInfo = styled.fieldset`
+  padding-bottom: 120px;
+  margin: 0 auto;
+  width: 675px;
+`;
+
+const DeliveryInfoTitle = styled.legend`
+  display: block;
+  padding-bottom: 35px;
+  border-bottom: 1px solid #212121;
 `;
