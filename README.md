@@ -6,11 +6,10 @@
 
 - 참여 개발자 및 담당 파트
 
-  - 김기영: 컴포넌트 개발 / 결제 페이지
-  - 박민재: 컴포넌트 개발 / 장바구니 페이지
-  - 박요진: 컴포넌트 개발 / 메인 페이지 / 상세 페이지
-  - 이주은: 컴포넌트 개발 / 목록 페이지
-  - 이청원: 컴포넌트 개발 / 로그인 페이지 / 회원가입 페이지
+  - 김기영: 컴포넌트 개발(Input, Footer, Radio) / 결제 페이지
+  - 박민재: 컴포넌트 개발(Chip, CheckBox, Modal) / 장바구니 페이지
+  - 박요진: 컴포넌트 개발(SelectBox, Swiper, Header, Badge) / 메인 페이지 / 상세 페이지
+  - 이청원: 컴포넌트 개발(Nav, IconButton, Button, ) / 로그인 페이지 / 회원가입 페이지 / 목록 페이지
 
 - 기술 스택
   - <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&amp;logo=React&amp;logoColor=black">
