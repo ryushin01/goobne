@@ -31,7 +31,7 @@ const SIZE_STYLES = {
     fontSize: '14px',
   },
   medium: {
-    padding: '12px 10px',
+    padding: '11px 10px',
     fontSize: '16px',
   },
   large: {
