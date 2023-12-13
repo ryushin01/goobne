@@ -21,8 +21,8 @@ const Delivery = () => {
               <li>(전자상거래 등에서의 소비자보호에 관한 법률 5년)</li>
             </DeliveryBottomLeft>
             <DeliveryBottomRight>
-              <di>해당 배달 주소로 주문을 진행하시겠습니까?</di>
-              <Button size="medium">선택</Button>
+              <div>해당 배달 주소로 주문을 진행하시겠습니까?</div>
+              <Button size="medium" content="선택" />
             </DeliveryBottomRight>
           </DeliveryMethodBottom>
         </MethodWrap>
@@ -45,11 +45,14 @@ const FlexBetween = `
 
 const DeliveryMain = styled.main`
   width: 100%;
+  height: 100%;
+  background-color: ${props => props.theme.grayscaleB};
 `;
 
 const DeliveryWrap = styled.section`
-  width: 71%;
-  margin: auto;
+  width: 100%;
+  max-width: 1200px;
+  margin: 120px auto;
 `;
 
 const SwiperBox = styled.div`
@@ -77,11 +80,13 @@ const DeliveryMethod = styled.div`
 
 const DeliveryMethodBottom = styled.div`
   ${FlexBetween};
+  margin-bottom: 40px;
 `;
 
 const DeliveryBottomLeft = styled.ul`
   font-size: 11px;
   color: ${props => props.theme.grayscaleD};
+  padding-bottom: 10px;
 
   & > li {
     line-height: 1.4;
