@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-// import { NavListAxios } from '../../API/API';
 import IconButton from '../IconButton/IconButton';
 import styled from 'styled-components';
+import { createCustomAxios } from '../../API/API';
+import { API } from '../../config';
 
 /**
  * Nav props list
@@ -25,9 +26,9 @@ const Nav = ({ navToggle, setNavToggle }) => {
   /**
    * 화면을 랜더링 하기전  requestNavListDataGet 실행 시킵니다.
    */
-  // useEffect(() => {
-  //   requestNavListDataGet();
-  // }, []);
+  useEffect(() => {
+    requestNavListDataGet();
+  }, []);
 
   /**
    * NavList에서 클릭된 콘텐츠의 open 상태를 토글합니다.
@@ -78,15 +79,17 @@ const Nav = ({ navToggle, setNavToggle }) => {
    * 2.axios를 get메서드로 필요한 NavListData를 요청합니다.
    * 3.useState훅을 사용하여 NavListData에 데이터를 저장합니다.
    */
-  // const requestNavListDataGet = async () => {
-  //   const response = await NavListAxios.get() //eslint-disable-line no-unused-vars
-  //     .then(response => {
-  //       setNavListData(response.data.result);
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // };
+
+  const NavAxios = createCustomAxios(API.NAV);
+  const requestNavListDataGet = async () => {
+    const response = await NavAxios.get() //eslint-disable-line no-unused-vars
+      .then(response => {
+        setNavListData(response.data.result);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   /**
    * stopPropagation() 란? JavaScript의 Event 인터페이스에서 제공하는 내장 메소드입니다.
