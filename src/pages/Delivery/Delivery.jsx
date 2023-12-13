@@ -50,7 +50,7 @@ const DeliveryMain = styled.main`
 `;
 
 const DeliveryWrap = styled.section`
-  width: 70%;
+  width: 100%;
   max-width: 1200px;
   margin: 120px auto;
 `;
