@@ -1,14 +1,18 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
-// import Test from './pages/Test';
-import Herder from './components/Header/Header';
+import Header from './components/Header/Header';
+import Login from './pages/Login/Login';
+import BaseJoin from './pages/BaseJoin/BaseJoin';
+import Delivery from './pages/Delivery/Delivery';
 import Order from './pages/Order';
 const Router = () => {
   return (
     <BrowserRouter basename="/goobne">
-      <Herder />
+      <Header />
       <Routes>
-        {/* <Route path="/" element={<Test />} /> */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/basejoin" element={<BaseJoin />} />
+        <Route path="/delivery" element={<Delivery />} />
         {<Route path="/order" element={<Order />} />}
       </Routes>
       <Footer />
