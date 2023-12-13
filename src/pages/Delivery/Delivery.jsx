@@ -21,7 +21,7 @@ const Delivery = () => {
               <li>(전자상거래 등에서의 소비자보호에 관한 법률 5년)</li>
             </DeliveryBottomLeft>
             <DeliveryBottomRight>
-              <di>해당 배달 주소로 주문을 진행하시겠습니까?</di>
+              <div>해당 배달 주소로 주문을 진행하시겠습니까?</div>
               <Button size="medium" content="선택" />
             </DeliveryBottomRight>
           </DeliveryMethodBottom>
@@ -50,7 +50,8 @@ const DeliveryMain = styled.main`
 `;
 
 const DeliveryWrap = styled.section`
-  width: 71%;
+  width: 70%;
+  max-width: 1200px;
   margin: 120px auto;
 `;
 
