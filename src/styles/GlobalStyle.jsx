@@ -51,6 +51,7 @@ const GlobalStyle = createGlobalStyle`
   /** 이미지의 원본 비율을 유지시키기 위해 디폴트 속성을 100%로 지정  */
   img {
     width : 100%;
+    height: 100%;
   }
 
   /** li 기호 또는 점을 없애기 위한 속성 */

@@ -26,19 +26,21 @@ const Login = () => {
 
   return (
     <LoginContainerMain>
-      <LoginContainerDiv>
-        <LoginHeading>로그인</LoginHeading>
+      <LoginContainerSection>
+        <h2>로그인</h2>
 
         <LoginTabContainerDiv>
           <TabBtnButton
+            type="button"
             onClick={() => handleTabClick('member')}
-            active={selectedTab === 'member'}
+            active={selectedTab === 'member' ? 'true' : undefined}
           >
             회원로그인
           </TabBtnButton>
           <TabBtnButton
+            type="button"
             onClick={() => handleTabClick('nonMember')}
-            active={selectedTab === 'nonMember'}
+            active={selectedTab === 'nonMember' ? 'true' : undefined}
           >
             비회원주문
           </TabBtnButton>
@@ -55,15 +57,15 @@ const Login = () => {
         </CouponBannerImgInner>
 
         <JoinMemberContainerDiv>
-          <p>아직 회원이 아니신가요?</p>
+          <h3>아직 회원이 아니신가요?</h3>
           <Button color="beige" content="회원가입" size="large" />
         </JoinMemberContainerDiv>
 
         <EasyLoginContainerDiv>
-          <p>SNS 간편 회원가입</p>
-          <IconButton content={'kakao'} size={'bigLarge'} />
+          <h3>SNS 간편 회원가입</h3>
+          <IconButton content="kakao" size="bigLarge" />
         </EasyLoginContainerDiv>
-      </LoginContainerDiv>
+      </LoginContainerSection>
     </LoginContainerMain>
   );
 };
@@ -77,17 +79,17 @@ const LoginContainerMain = styled.main`
   background-color: ${props => props.theme.grayscaleB};
 `;
 
-const LoginContainerDiv = styled.div`
+const LoginContainerSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 500px;
   min-width: 500px;
   margin: 0 auto;
-`;
-const LoginHeading = styled.h1`
-  font-weight: 900;
-  font-size: 40px;
+  & > h1 {
+    font-weight: 900;
+    font-size: 40px;
+  }
 `;
 const LoginTabContainerDiv = styled.div`
   display: flex;
@@ -125,7 +127,7 @@ const JoinMemberContainerDiv = styled.div`
   width: 100%;
   margin-bottom: 40px;
 
-  & > p {
+  & > h3 {
     font-size: 14px;
     font-weight: 800;
   }
@@ -138,7 +140,7 @@ const EasyLoginContainerDiv = styled.div`
   width: 100%;
   padding: 0px 20px;
   margin-bottom: 100px;
-  & > p {
+  & > h3 {
     font-size: 14px;
     font-weight: 900;
   }

@@ -5,11 +5,11 @@ import KakaoBtn from './components/kakaoBtn';
 const BaseJoin = () => {
   return (
     <BasejoinContainerMain>
-      <BasejoinContainerDiv>
+      <BasejoinContainerSection>
         <BasejoinHeading>회원가입</BasejoinHeading>
 
         <BasicJoinAreaDiv>
-          <p>굽으네 회원가입</p>
+          <h3>굽으네 회원가입</h3>
           <Button
             color="black"
             type="button"
@@ -19,10 +19,10 @@ const BaseJoin = () => {
         </BasicJoinAreaDiv>
 
         <SocialJoinAreaDiv>
-          <p>SNS 회원가입</p>
-          <p className="socialGuide">
+          <h3>SNS 회원가입</h3>
+          <span className="socialGuide">
             자주사용하는 소셜계정으로 간편하게 가입해보세요.
-          </p>
+          </span>
           <KakaoBtn></KakaoBtn>
         </SocialJoinAreaDiv>
 
@@ -32,7 +32,7 @@ const BaseJoin = () => {
             alt="쿠폰배너"
           />
         </CouponBannerImgInner>
-      </BasejoinContainerDiv>
+      </BasejoinContainerSection>
     </BasejoinContainerMain>
   );
 };
@@ -46,7 +46,7 @@ const BasejoinContainerMain = styled.main`
   background-color: ${props => props.theme.grayscaleB};
 `;
 
-const BasejoinContainerDiv = styled.div`
+const BasejoinContainerSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,7 +54,7 @@ const BasejoinContainerDiv = styled.div`
   min-width: 500px;
   margin: 0 auto;
 `;
-const BasejoinHeading = styled.h1`
+const BasejoinHeading = styled.h2`
   font-weight: 900;
   font-size: 35px;
 `;
@@ -76,7 +76,7 @@ const BasicJoinAreaDiv = styled.div`
   gap: 10px;
   width: 100%;
   margin: 30px 0px;
-  & > p {
+  & > h3 {
     font-size: 18px;
     font-weight: 800;
   }
@@ -89,7 +89,7 @@ const SocialJoinAreaDiv = styled.div`
   gap: 10px;
   width: 100%;
   margin: 30px 0px 60px 0px;
-  & > p {
+  & > h3 {
     font-size: 18px;
     font-weight: 900;
   }
