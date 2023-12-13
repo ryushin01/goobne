@@ -31,13 +31,14 @@ const OrderSelection = styled.ul`
   border-bottom: 1px solid ${props => props.theme.grayscaleH};
 
   & > li {
-    background-color: ${props => props.theme.grayscaleH};
+    /* background-color: ${props => props.theme.grayscaleH}; */
     padding: 12px 16px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     color: ${props => props.theme.grayscaleD};
     font-size: 14px;
-    font-weight: 800;
+    /* font-weight: 800; */
+    cursor: pointer;
   }
 `;
 
