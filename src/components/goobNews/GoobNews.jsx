@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { createCustomAxios } from '../../API/API';
 import { API } from '../../config';
+import Button from '../Button/Button';
 import styled from 'styled-components';
 
 const GoobNews = () => {
@@ -9,6 +10,9 @@ const GoobNews = () => {
   const [newsDataList, setNewsDataList] = useState([]);
   /** Mouse Hover 시 Image를 Load 하기 위한 useState 생성 */
   const [imgLoad, setImgLoad] = useState(false);
+
+  /** Button에서 페이지 이동을 위한 Navigate 함수 추가 */
+  const navigate = useNavigate();
 
   /** 화면이 처음 로딩될 때 배너에 대한 정보를 받아오기 위한 useEffect */
   useEffect(() => {
@@ -63,6 +67,17 @@ const GoobNews = () => {
           );
         })}
       </MainInnerListWrap>
+      <ButtonWrap>
+        <Button
+          type="button"
+          content="더보기 >"
+          color="beige"
+          size="large"
+          onClick={() => {
+            navigate('/');
+          }}
+        />
+      </ButtonWrap>
     </MainContainer>
   );
 };
@@ -71,6 +86,7 @@ export default GoobNews;
 
 const MainContainer = styled.main`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -153,4 +169,9 @@ const ImgWrap = styled.div`
   &.load {
     opacity: 1;
   }
+`;
+
+const ButtonWrap = styled.div`
+  width: 300px;
+  margin-top: 50px;
 `;
