@@ -56,12 +56,12 @@ const OrderContainer = styled.main`
   width: 100%;
   height: 100%;
   padding-top: 170px;
+  background-color: #fbf5f0;
 `;
 
 const OrderContentWrap = styled.div`
   width: 1200px;
   margin: 0 auto;
-  background-color: #a6a6a6;
 `;
 
 const OrderTitle = styled.div`
@@ -70,7 +70,7 @@ const OrderTitle = styled.div`
   margin-bottom: 20px;
 
   & > span {
-    font-size: 40px;
+    font-size: 33px;
     font-weight: 800;
   }
 `;
@@ -79,10 +79,16 @@ const DeliveryInfo = styled.fieldset`
   padding-bottom: 120px;
   margin: 0 auto;
   width: 675px;
+
+  & > ul {
+    padding: 25px 0;
+    border-bottom: 1px solid #bebebe;
+  }
 `;
 
 const DeliveryInfoTitle = styled.legend`
-  display: block;
-  padding-bottom: 35px;
+  width: 100%;
+  font-size: 20px;
+  padding-bottom: 20px;
   border-bottom: 1px solid #212121;
 `;
