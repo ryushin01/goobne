@@ -4,7 +4,7 @@ import { createCustomAxios } from '../../API/API';
 import styled from 'styled-components';
 
 const GoobNews = () => {
-  /** BigBanner의 데이터를 받아오기 위한 useState 생성 */
+  /** newsData 데이터를 받아오기 위한 useState 생성 */
   const [newsDataList, setNewsDataList] = useState([]);
   /** Mouse Hover 시 Image를 Load 하기 위한 useState 생성 */
   const [imgLoad, setImgLoad] = useState(false);
