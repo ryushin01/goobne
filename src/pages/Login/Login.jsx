@@ -27,7 +27,7 @@ const Login = () => {
   return (
     <LoginContainerMain>
       <LoginContainerDiv>
-        <h1>로그인</h1>
+        <LoginHeading>로그인</LoginHeading>
 
         <LoginTabContainerDiv>
           <TabBtnButton
@@ -84,10 +84,10 @@ const LoginContainerDiv = styled.div`
   width: 500px;
   min-width: 500px;
   margin: 0 auto;
-  & > h1 {
-    font-weight: 900;
-    font-size: 40px;
-  }
+`;
+const LoginHeading = styled.h1`
+  font-weight: 900;
+  font-size: 40px;
 `;
 const LoginTabContainerDiv = styled.div`
   display: flex;
