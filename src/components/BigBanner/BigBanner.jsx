@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import { createCustomAxios } from '../../API/API';
-import styled from 'styled-components';
+import { API } from '../../config';
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
+import styled from 'styled-components';
 
 const BigBanner = () => {
   /** BigBanner의 데이터를 받아오기 위한 useState 생성 */
@@ -18,10 +19,8 @@ const BigBanner = () => {
     requestBigBannerDataGet();
   }, []);
 
-  /** BigBanner에 대한 Data를 받아오기 위한 Axios BaseURL */
-  const BigBannerAxiosBaseURL = '../goobne/data/BigBannerData.json';
   /** createCustomAxios 함수를 불러와 BaseURL을 적용시켜준다. */
-  const BigBannerAxios = createCustomAxios(BigBannerAxiosBaseURL);
+  const BigBannerAxios = createCustomAxios(API.BIG_BANNER);
 
   /**
    * Custom Axios를 이용하여 BigBanner에 대한 Data를 Json파일에서 받아온다.
