@@ -50,7 +50,7 @@ const INPUT_WRAP_POSITION_STYLES = {
 const InputWrap = styled.div`
   display: flex;
   width: 100%;
-
+  
   /* props position이 전달되지 않은 경우 기본설정에 따르고, 
   props를 전달 받으면 지정조건에 따른다 */
   flex-direction: ${({ direction }) =>
