@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import CartDetail from './Components/CartDetail';
 
 const Cart = () => {
   return (
@@ -6,7 +7,7 @@ const Cart = () => {
       <CartWrap>
         <CartTitle>장바구니</CartTitle>
         <CartDetailWrap>
-          <div>배달주문</div>
+          <CartDetail />
           <div>주문내역</div>
         </CartDetailWrap>
         <CartSwiperWrap>swiper</CartSwiperWrap>
