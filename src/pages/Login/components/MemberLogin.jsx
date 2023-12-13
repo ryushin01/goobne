@@ -14,14 +14,14 @@ const MemberLogin = () => {
             placeholder="아이디를 입력하세요"
             type="text"
             label="아이디"
-            position="column"
+            direction="column"
             name="id"
           />
           <Input
             placeholder="비밀번호 영문/특수문자/숫자8~16자"
             type="password"
             label="비밀번호"
-            position="column"
+            direction="column"
             name="password"
           />
 

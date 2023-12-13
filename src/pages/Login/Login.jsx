@@ -86,7 +86,7 @@ const LoginContainerSection = styled.section`
   width: 500px;
   min-width: 500px;
   margin: 0 auto;
-  & > h1 {
+  & > h2 {
     font-weight: 900;
     font-size: 40px;
   }

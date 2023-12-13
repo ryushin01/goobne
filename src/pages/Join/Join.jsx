@@ -27,6 +27,7 @@ const Join = () => {
               required="required"
               placeholder="이름을 입력해주세요."
               type="text"
+              direction="column"
             />
             <IdWrapDiv>
               <Input
@@ -34,6 +35,7 @@ const Join = () => {
                 required="required"
                 placeholder="아이디를 입력해주세요."
                 type="text"
+                direction="column"
               />
 
               <DoubleCheckBtnInner>
@@ -46,6 +48,7 @@ const Join = () => {
               required="required"
               placeholder="비밀번호을 입력해주세요."
               type="password"
+              direction="column"
             />
 
             <Input
@@ -53,6 +56,7 @@ const Join = () => {
               required="required"
               placeholder="비밀번호을 입력해주세요."
               type="password"
+              direction="column"
             />
 
             <Input
@@ -60,25 +64,47 @@ const Join = () => {
               required="required"
               placeholder="이메일을 입력해주세요."
               type="text"
+              direction="column"
             />
+
             <EmailWrapDiv>
               <span>@</span>
               <Input />
               <SelectBox />
             </EmailWrapDiv>
 
-            <CheckBox />
-            <Input label="휴대폰번호" required="required" />
-            <Button content="인증번호 발송" color="black" />
+            <CheckBox label="정보/이벤트 메일 수신에 동의합니다." />
 
-            <CheckBox />
-            <Input />
-            <Button content="인증하기" color="black" />
+            <PhoneAuthenticationDiv>
+              <Input
+                label="휴대폰번호"
+                required="required"
+                direction="column"
+                placeholder="- 없이 휴대폰 번호를 입력하세요."
+              />
+              <SandAuthenticationBtnDiv>
+                <Button content="인증번호 발송" color="black" size="medium" />
+              </SandAuthenticationBtnDiv>
+            </PhoneAuthenticationDiv>
 
-            <Input />
-            <Button content="주소검색" color="black" />
-            <Input />
-            <Input />
+            <CheckBox label="정보/이벤트 SNS 수신에 동의합니다." />
+
+            <CertificationWrap>
+              <Input direction="column" placeholder="인증번호를 입력하세요." />
+              <CertificationBtnInner>
+                <Button content="인증하기" color="black" size="medium" />
+              </CertificationBtnInner>
+            </CertificationWrap>
+
+            <AddressSearchWrap>
+              <Input direction="column" placeholder="우편번호" />
+              <AddressSearchBtnInner>
+                <Button content="주소검색" color="black" size="medium" />
+              </AddressSearchBtnInner>
+            </AddressSearchWrap>
+
+            <Input direction="column" placeholder="주소" />
+            <Input direction="column" placeholder="상세주소" />
           </BasicInfoSection>
 
           <section>
@@ -111,7 +137,7 @@ const JoinContainerSection = styled.section`
   flex-direction: column;
   align-items: center;
   width: 500px;
-  min-width: 675px;
+  min-width: 550px;
   margin: 0 auto;
 `;
 const JoinHeading = styled.h2`
@@ -155,6 +181,7 @@ const BasicInfoSection = styled.section`
 
 const IdWrapDiv = styled.div`
   display: flex;
+  align-items: flex-end;
   gap: 5px;
 `;
 const DoubleCheckBtnInner = styled.div`
@@ -163,4 +190,38 @@ const DoubleCheckBtnInner = styled.div`
 
 const EmailWrapDiv = styled.div`
   display: flex;
+  align-items: center;
+  gap: 5px;
+`;
+
+const PhoneAuthenticationDiv = styled.div`
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  margin: 10px 0px;
+`;
+const SandAuthenticationBtnDiv = styled.div`
+  width: 300px;
+`;
+
+const CertificationWrap = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+`;
+
+const CertificationBtnInner = styled.div`
+  width: 300px;
+`;
+
+const AddressSearchWrap = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+`;
+
+const AddressSearchBtnInner = styled.div`
+  width: 300px;
 `;
