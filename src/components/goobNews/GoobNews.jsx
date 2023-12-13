@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { createCustomAxios } from '../../API/API';
+import { API } from '../../config';
 import styled from 'styled-components';
 
 const GoobNews = () => {
@@ -14,10 +15,8 @@ const GoobNews = () => {
     requestNewsDataGet();
   }, []);
 
-  /** BigBanner에 대한 Data를 받아오기 위한 Axios BaseURL */
-  const NewsAxiosBaseURL = '../goobne/data/GoobNewsData.json';
   /** createCustomAxios 함수를 불러와 BaseURL을 적용시켜준다. */
-  const NewsAxios = createCustomAxios(NewsAxiosBaseURL);
+  const NewsAxios = createCustomAxios(API.GOOB_NEWS);
 
   /**
    * Custom Axios를 이용하여 BigBanner에 대한 Data를 Json파일에서 받아온다.
