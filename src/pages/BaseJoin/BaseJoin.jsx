@@ -23,7 +23,7 @@ const BaseJoin = () => {
           <span className="socialGuide">
             자주사용하는 소셜계정으로 간편하게 가입해보세요.
           </span>
-          <KakaoBtn></KakaoBtn>
+          <KakaoBtn />
         </SocialJoinAreaDiv>
 
         <CouponBannerImgInner>
