@@ -17,4 +17,3 @@ export const createCustomAxios = baseURL => {
     },
   });
 };
-
