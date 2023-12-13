@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import IconButton from '../IconButton/IconButton';
 
 /**
- * @default javascript:void(0)  - HTML상 a태그의 링크기능을 무효화 하는것을 의미합니다.
+ * @default "#"  - a태그의 링크기능을 무효화 하는것을 의미합니다.
  */
 
 const Footer = () => {
@@ -40,9 +40,7 @@ const Footer = () => {
                 </InfoAreaTargetButton>
               </li>
               <li>
-                <InfoAreaTargetLink href="javascript:void(0)">
-                  찾아오시는길
-                </InfoAreaTargetLink>
+                <InfoAreaTargetLink href="#">찾아오시는길</InfoAreaTargetLink>
               </li>
             </ul>
           </InfoArea>
@@ -121,7 +119,6 @@ const Footer = () => {
 const FooterContainer = styled.footer`
   width: 100%;
   padding: 0 95px 30px 95px;
-  margin-top: 240px;
   background-color: ${props => props.theme.grayscaleF};
 `;
 
@@ -130,6 +127,7 @@ const InnerTopSection = styled.section`
   justify-content: space-between;
   border-bottom: 1px solid ${props => props.theme.transparentA};
   padding: 35px 0 30px 0;
+  white-space: nowrap;
 `;
 
 const InquirySubText = styled.span`
@@ -200,6 +198,7 @@ const AddressSection = styled.section`
   display: flex;
   justify-content: space-between;
   margin-top: 35px;
+  white-space: nowrap;
 
   & > address {
     & > ul {
