@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Input from '../../../components/Input/Input';
 import Button from '../../../components/Button/Button';
 import CheckBox from '../../../components/CheckBox/CheckBox';
+import { Link } from 'react-router-dom';
 
 const MemberLogin = () => {
   return (
@@ -24,7 +25,7 @@ const MemberLogin = () => {
             name="password"
           />
 
-          <CheckBox label={'아이디 저장'} />
+          <CheckBox label="아이디 저장" />
 
           <LoginBtnContainerDiv>
             <Button
@@ -40,15 +41,19 @@ const MemberLogin = () => {
 
       <FindContainerUl>
         <FindListItemLi>
-          <button className="findBtn">아이디 찾기</button>
+          <Link to="/" className="findIdPw">
+            아이디 찾기
+          </Link>
         </FindListItemLi>
 
         <FindListItemLi>
-          <button className="findBtn">비밀번호찾기</button>
+          <Link to="/" className="findIdPw">
+            비밀번호찾기
+          </Link>
         </FindListItemLi>
 
         <FindListItemLi>
-          <button>비회원 주문조회</button>
+          <Link to="/">비회원 주문조회</Link>
         </FindListItemLi>
       </FindContainerUl>
     </>
@@ -84,12 +89,13 @@ const FindContainerUl = styled.ul`
 `;
 
 const FindListItemLi = styled.li`
-  & > button {
+  & > a {
+    font-size: 12px;
     border: none;
     background-color: transparent;
     color: ${props => props.theme.grayscaleD};
   }
-  & > .findBtn {
+  & > .findIdPw {
     position: relative;
     border: none;
     background-color: transparent;
