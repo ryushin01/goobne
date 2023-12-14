@@ -5,17 +5,28 @@ import { ReactComponent as MenuSearch } from '../../svg/Header/HeaderMenuSearchI
 import { ReactComponent as Store } from '../../svg/Header/HeaderStoreIcon.svg';
 import IconButton from '../IconButton/IconButton';
 import styled from 'styled-components';
+import Nav from '../Nav/Nav';
+
 const Header = () => {
   /** Scroll Y값을 저장하기 위한 state */
   const [scrollY, setScrollY] = useState(0);
 
+  /** Nav자식컴포넌트에 부여해서 사용할 useState 입니다.*/
+  const [navToggle, setNavToggle] = useState(false);
+
   /**
    * useEffect를 이용하여 scroll에 대한 값을 scrollY 값이 변경될 때마다 업데이트 (의존성 배열에 scrollY를 넣어줌)
    * removeEventListener를 이용하여 메모리 누수 방지 (사용안하면 메모리 누수 발생 [계속 데이터가 쌓임])
+   * setInterval을 이용하여 0.1초마다 scrollY값을 업데이트 (중복되는 이벤트를 막기 위해 0.1초마다 실행)
    * */
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const timer = setInterval(() => {
+      window.addEventListener('scroll', handleScroll);
+    }, 100);
+    return () => {
+      clearInterval(timer);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, [scrollY]);
 
   /**
@@ -23,6 +34,12 @@ const Header = () => {
    */
   const handleScroll = () => {
     setScrollY(window.scrollY);
+  };
+  /**
+   * Nav컴포넌트를 open close 하는 함수입니다.
+   */
+  const navShow = () => {
+    setNavToggle(true);
   };
 
   return (
@@ -72,18 +89,19 @@ const Header = () => {
           <div>
             <ul>
               <li>
-                <Link to="">Login</Link>
+                <Link to="/login">Login</Link>
               </li>
               <li>
-                <Link to="">Join</Link>
+                <Link to="/basejoin">Join</Link>
               </li>
             </ul>
           </div>
           <div>
-            <IconButton content="list" />
+            <IconButton content="list" onClick={navShow} />
           </div>
         </SignWrap>
       </HeaderInnerWrap>
+      {<Nav navToggle={navToggle} setNavToggle={setNavToggle} />}
     </HeaderContainer>
   );
 };
@@ -102,7 +120,7 @@ const HeaderContainer = styled.header`
   transition: all 0.3s ease-in-out;
 
   ${props => {
-    if (scrollY >= 200) {
+    if (scrollY >= 100) {
       return `
       background-color: ${props.theme.grayscaleB};
       `;
@@ -126,6 +144,7 @@ const HeaderInnerWrap = styled.section`
 const HeaderLogo = styled.div`
   display: flex;
   width: 150px;
+  min-width: 150px;
   cursor: pointer;
 `;
 

@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
-import { createCustomAxios } from '../../API/API';
-import styled from 'styled-components';
+import { createCustomAxios } from '../../../API/API';
+import { API } from '../../../config';
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
+import styled from 'styled-components';
 
 const BigBanner = () => {
   /** BigBanner의 데이터를 받아오기 위한 useState 생성 */
@@ -18,10 +19,8 @@ const BigBanner = () => {
     requestBigBannerDataGet();
   }, []);
 
-  /** BigBanner에 대한 Data를 받아오기 위한 Axios BaseURL */
-  const BigBannerAxiosBaseURL = '../goobne/data/BigBannerData.json';
   /** createCustomAxios 함수를 불러와 BaseURL을 적용시켜준다. */
-  const BigBannerAxios = createCustomAxios(BigBannerAxiosBaseURL);
+  const BigBannerAxios = createCustomAxios(API.BIG_BANNER);
 
   /**
    * Custom Axios를 이용하여 BigBanner에 대한 Data를 Json파일에서 받아온다.
@@ -75,6 +74,8 @@ const BigBanner = () => {
 export default BigBanner;
 
 const BigBannerContainer = styled.section`
+  width: 100%;
+  height: 100vh;
   & > .swiperContainer {
     width: 100%;
     height: 100vh;
@@ -89,12 +90,12 @@ const BigBannerContainer = styled.section`
     transform: translateX(-50%);
 
     .swiper-pagination-bullet {
-      border: 6px solid #ff0000;
+      border: 6px solid ${props => props.theme.primaryColor};
       margin-right: 15px;
     }
 
     .swiper-pagination-bullet-active {
-      background-color: #fff;
+      background-color: ${props => props.theme.grayscaleA};
       width: 25px;
       height: 25px;
     }
@@ -120,8 +121,8 @@ const TextInnerWrap = styled.div`
   justify-content: center;
   font-size: 30px;
   font-weight: bold;
-  color: #fff;
-  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+  color: ${props => props.theme.grayscaleA};
+  text-shadow: 3px 3px 3px ${props => props.theme.transparentB};
   line-height: 1.6;
 
   & > span:first-child {

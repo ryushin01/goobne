@@ -3,7 +3,7 @@ import styled from 'styled-components';
 /**
  * Button props list
  * @property {string} type: button, submit, reset           - 버튼 타입을 정의합니다.
- * @property {string} color: primary,black,beige            - 버튼 색상을 정의합니다.
+ * @property {string} color: primary,black,beige,brown      - 버튼 색상을 정의합니다.
  * @property {string} size: small, medium, large            - 버튼 크기를 정의합니다.
  * @property {string} content                               - 버튼 내부 텍스트에 사용합니다.
  * @property {function} onClick                             - 버튼 클릭 시 실행할 함수를 위해 미리 정의합니다.
@@ -31,7 +31,7 @@ const SIZE_STYLES = {
     fontSize: '14px',
   },
   medium: {
-    padding: '12px 10px',
+    padding: '11px 10px',
     fontSize: '16px',
   },
   large: {

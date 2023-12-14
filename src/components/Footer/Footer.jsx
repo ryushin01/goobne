@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import IconButton from '../IconButton/IconButton';
 
 /**
- * @default javascript:void(0)  - HTML상 a태그의 링크기능을 무효화 하는것을 의미합니다.
+ * @default "#"  - a태그의 링크기능을 무효화 하는것을 의미합니다.
  */
 
 const Footer = () => {
@@ -40,32 +40,50 @@ const Footer = () => {
                 </InfoAreaTargetButton>
               </li>
               <li>
-                <InfoAreaTargetLink href="javascript:void(0)">
-                  찾아오시는길
-                </InfoAreaTargetLink>
+                <InfoAreaTargetLink href="#">찾아오시는길</InfoAreaTargetLink>
               </li>
             </ul>
           </InfoArea>
           <SnsConnectionArea>
             <ul>
               <li>
-                <a href="javascript:void(0)">
-                  <IconButton type="button" content="instagram" size="small" />
+                <a href="#">
+                  <IconButton
+                    type="button"
+                    content="instagram"
+                    size="small"
+                    color="white"
+                  />
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0)">
-                  <IconButton type="button" content="facebook" size="small" />
+                <a href="#">
+                  <IconButton
+                    type="button"
+                    content="facebook"
+                    size="small"
+                    color="white"
+                  />
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0)">
-                  <IconButton type="button" content="blog" size="small" />
+                <a href="#">
+                  <IconButton
+                    type="button"
+                    content="blog"
+                    size="small"
+                    color="white"
+                  />
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0)">
-                  <IconButton type="button" content="youtube" size="small" />
+                <a href="#">
+                  <IconButton
+                    type="button"
+                    content="youtube"
+                    size="small"
+                    color="white"
+                  />
                 </a>
               </li>
             </ul>
@@ -101,15 +119,17 @@ const Footer = () => {
 const FooterContainer = styled.footer`
   width: 100%;
   padding: 0 95px 30px 95px;
-  margin-top: 240px;
   background-color: ${props => props.theme.grayscaleF};
 `;
 
 const InnerTopSection = styled.section`
+  width: 100%;
+  min-width: 1730px;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid ${props => props.theme.transparentA};
   padding: 35px 0 30px 0;
+  white-space: nowrap;
 `;
 
 const InquirySubText = styled.span`
@@ -136,7 +156,7 @@ const InfoArea = styled.div`
 
     & > li {
       &:last-child {
-        margin-top: 3px;
+        margin-top: 1px;
       }
     }
   }
@@ -156,6 +176,7 @@ const InfoAreaTargetLink = styled.a`
   margin-right: 32px;
   font-size: 13px;
   font-weight: 700;
+  font-family: 'sans-serif';
   color: ${props => props.theme.grayscaleA};
 `;
 
@@ -176,9 +197,12 @@ const SnsConnectionArea = styled.div`
 `;
 
 const AddressSection = styled.section`
+  width: 100%;
+  min-width: 1730px;
   display: flex;
   justify-content: space-between;
   margin-top: 35px;
+  white-space: nowrap;
 
   & > address {
     & > ul {
@@ -189,6 +213,7 @@ const AddressSection = styled.section`
   & > span {
     font-size: 12px;
     font-weight: 700;
+    font-family: 'NanumSquareRoundR';
     color: ${props => props.theme.transparentA};
   }
 `;
@@ -197,6 +222,7 @@ const AddressDetailList = styled.li`
   margin-right: 32px;
   position: relative;
   font-size: 11px;
+  font-family: 'NanumSquareRoundR';
   color: ${props => props.theme.transparentA};
   font-weight: 700;
 
@@ -215,7 +241,7 @@ const AddressDetailList = styled.li`
     height: 8px;
     background: ${props => props.theme.transparentA};
     position: absolute;
-    top: 33%;
+    top: 40%;
     right: -16px;
     transform: translate(0, -50%);
   }

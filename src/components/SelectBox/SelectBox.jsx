@@ -73,11 +73,11 @@ export default SelectBox;
 const SelectBoxContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 40px;
-  padding: 0 10px;
+  padding: 13px 10px;
+  padding: 13px 10px;
   border: 1px solid ${props => props.theme.grayscaleG};
   border-radius: 4px;
-  background-color: ${props => props.theme.grayscaleA};
+  background-color: transparent;
   align-self: center;
   cursor: pointer;
   user-select: none;
@@ -111,7 +111,6 @@ const SelectBoxContainer = styled.div`
   & > span {
     font-size: 16px;
     color: ${props => props.theme.grayscaleC};
-    line-height: 40px;
     margin-left: 10px;
     text-align: center;
     cursor: pointer;
@@ -127,7 +126,7 @@ const SelectBoxContainer = styled.div`
     display: none;
     flex-direction: column;
     position: absolute;
-    top: 40px;
+    top: 43px;
     left: 0;
     width: 100%;
     max-height: 180px;
@@ -135,7 +134,7 @@ const SelectBoxContainer = styled.div`
     border-radius: 4px;
     background-color: ${props => props.theme.grayscaleA};
     z-index: 1;
-    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
     overflow-y: auto;
 
     & > li {

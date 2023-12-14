@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Autoplay } from 'swiper/modules';
-import { createCustomAxios } from '../../API/API';
+import { createCustomAxios } from '../../../API/API';
+import { API } from '../../../config';
 import 'swiper/css';
 import 'swiper/css/autoplay';
 import 'swiper/css/effect-coverflow';
@@ -20,14 +21,13 @@ const Band = ({ scrollY }) => {
     requestBandDataGet();
   }, []);
 
-  /** BigBanner에 대한 Data를 받아오기 위한 Axios BaseURL */
-  const BandAxiosBaseURL = '../goobne/data/MainBandData.json';
   /** createCustomAxios 함수를 불러와 BaseURL을 적용시켜준다. */
-  const BandAxios = createCustomAxios(BandAxiosBaseURL);
+  const BandAxios = createCustomAxios(API.BAND_SWIPER);
 
   /**
    * Custom Axios를 이용하여 BigBanner에 대한 Data를 Json파일에서 받아온다.
-   * @property response는 변수지정을 하지만 실제로 사용하지 않기 때문에 에러줄을 없애기 위해 eslint-disable-line no-unused-vars를 사용
+   *
+   * response는 변수지정을 하지만 실제로 사용하지 않기 때문에 에러줄을 없애기 위해 eslint-disable-line no-unused-vars를 사용
    * */
   const requestBandDataGet = async () => {
     const response = await BandAxios.get() //eslint-disable-line no-unused-vars
@@ -99,7 +99,7 @@ const BandContainer = styled.section`
   width: 100%;
   height: 100vh;
   padding-top: 150px;
-  background-color: #f8e6d3;
+  background-color: ${props => props.theme.grayscaleJ};
   overflow: hidden;
 
   & > .mySwiper {
@@ -129,8 +129,6 @@ const TitleWrap = styled.div`
 `;
 
 const SlideInnerWrap = styled.div`
-  /* display: flex; */
-  /* flex-direction: column; */
   position: relative;
   border-radius: 15px;
   overflow: hidden;
@@ -139,7 +137,7 @@ const SlideInnerWrap = styled.div`
 const ImageWrap = styled.div`
   width: 100%;
   height: 100%;
-  background-color: #e0e0e0;
+  background-color: ${props => props.theme.grayscaleC};
 
   & > a {
     width: 100%;
@@ -158,7 +156,7 @@ const TextWrap = styled.div`
   height: 70px;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${props => props.theme.transparentB};
 
   & span {
     display: flex;
@@ -169,6 +167,6 @@ const TextWrap = styled.div`
     font-size: 25px;
     font-family: 'Rubik';
     font-weight: 700;
-    color: #fff;
+    color: ${props => props.theme.grayscaleA};
   }
 `;

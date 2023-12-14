@@ -1,0 +1,46 @@
+{
+  "result": [
+    {
+      "id": 1,
+      "href": "/",
+      "src": "../goobne/images/main_chicken_01.jpg",
+      "alt": "GoobStar 이미지 1"
+    },
+    {
+      "id": 2,
+      "href": "/new",
+      "src": "../goobne/images/main_chicken_02.jpg",
+      "alt": "GoobStar 이미지 2"
+    },
+    {
+      "id": 3,
+      "href": "/new",
+      "src": "../goobne/images/main_chicken_03.jpg",
+      "alt": "GoobStar 이미지 3"
+    },
+    {
+      "id": 4,
+      "href": "/new",
+      "src": "../goobne/images/main-pizza.jpg",
+      "alt": "GoobStar 이미지 4"
+    },
+    {
+      "id": 5,
+      "href": "/new",
+      "src": "../goobne/images/main_wast_set.jpg",
+      "alt": "GoobStar 이미지 5"
+    },
+    {
+      "id": 6,
+      "href": "/new",
+      "src": "../goobne/images/main_salad.jpg",
+      "alt": "GoobStar 이미지 6"
+    },
+    {
+      "id": 7,
+      "href": "/new",
+      "src": "../goobne/images/main_side_dish.jpg",
+      "alt": "GoobStar 이미지 7"
+    }
+  ]
+}
