@@ -111,7 +111,7 @@ const TitleWrap = styled.div`
     top: 10%;
     left: 50%;
     transform: translate(-50%);
-    font-size: 64px;
+    font-size: 52px;
     font-weight: 800;
     font-family: 'Rubik', sans-serif;
   }
