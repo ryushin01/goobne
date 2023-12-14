@@ -89,10 +89,10 @@ const Header = () => {
           <div>
             <ul>
               <li>
-                <Link to="">Login</Link>
+                <Link to="/login">Login</Link>
               </li>
               <li>
-                <Link to="">Join</Link>
+                <Link to="/basejoin">Join</Link>
               </li>
             </ul>
           </div>
@@ -120,7 +120,7 @@ const HeaderContainer = styled.header`
   transition: all 0.3s ease-in-out;
 
   ${props => {
-    if (scrollY >= 200) {
+    if (scrollY >= 100) {
       return `
       background-color: ${props.theme.grayscaleB};
       `;
