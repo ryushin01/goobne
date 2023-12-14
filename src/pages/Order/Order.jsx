@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Input from '../components/Input/Input';
-import SelectBox from '../components/SelectBox/SelectBox';
+import Input from '../../components/Input/Input';
+import SelectBox from '../../components/SelectBox/SelectBox';
 
 const Order = () => {
   return (
@@ -22,10 +22,10 @@ const Order = () => {
                 <span>주소</span>
               </li>
               <li>
-                <Input type="text" label="이름" />
+                <Input type="text" label="이름" isDot={true} />
               </li>
               <li>
-                <Input type="text" label="연락처" />
+                <Input type="text" label="연락처" isDot={true} />
               </li>
               <li>
                 <span>가게사장님께 요청사항</span>
@@ -43,6 +43,9 @@ const Order = () => {
               </li>
             </ul>
           </DeliveryInfo>
+          <fieldset></fieldset>
+          <fieldset></fieldset>
+          <fieldset></fieldset>
         </form>
       </OrderContentWrap>
     </OrderContainer>

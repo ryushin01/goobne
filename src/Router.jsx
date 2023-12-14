@@ -4,7 +4,7 @@ import Header from './components/Header/Header';
 import Login from './pages/Login/Login';
 import BaseJoin from './pages/BaseJoin/BaseJoin';
 import Delivery from './pages/Delivery/Delivery';
-import Order from './pages/Order';
+import Order from './pages/Order/Order';
 const Router = () => {
   return (
     <BrowserRouter basename="/goobne">
@@ -13,7 +13,7 @@ const Router = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/basejoin" element={<BaseJoin />} />
         <Route path="/delivery" element={<Delivery />} />
-        {<Route path="/order" element={<Order />} />}
+        <Route path="/order" element={<Order />} />
       </Routes>
       <Footer />
     </BrowserRouter>
