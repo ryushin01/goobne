@@ -127,7 +127,7 @@ const Nav = ({ navToggle, setNavToggle }) => {
         </CloseBtnContainerDiv>
 
         <LoginJoinBtnContainerDiv>
-          <LoginBtnButton type="button" onClick={goLoginPage} Login>
+          <LoginBtnButton type="button" onClick={goLoginPage}>
             Login
           </LoginBtnButton>
           <JoinBtnButton type="button" onClick={goJoinPage}>

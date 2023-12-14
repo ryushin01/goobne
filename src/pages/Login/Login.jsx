@@ -33,14 +33,14 @@ const Login = () => {
           <TabBtnButton
             type="button"
             onClick={() => handleTabClick('member')}
-            active={selectedTab === 'member' ? 'true' : undefined}
+            $active={selectedTab === 'member' ? 'true' : undefined}
           >
             회원로그인
           </TabBtnButton>
           <TabBtnButton
             type="button"
             onClick={() => handleTabClick('nonMember')}
-            active={selectedTab === 'nonMember' ? 'true' : undefined}
+            $active={selectedTab === 'nonMember' ? 'true' : undefined}
           >
             비회원주문
           </TabBtnButton>
@@ -104,9 +104,10 @@ const TabBtnButton = styled.button`
   font-size: 16px;
   padding: 10px 0;
   border-bottom: 1px solid
-    ${props => (props.active ? props.theme.grayscaleH : props.theme.grayscaleC)};
+    ${props =>
+      props.$active ? props.theme.grayscaleH : props.theme.grayscaleC};
   color: ${props =>
-    props.active ? props.theme.grayscaleH : props.theme.grayscaleD};
+    props.$active ? props.theme.grayscaleH : props.theme.grayscaleD};
   cursor: pointer;
 `;
 
