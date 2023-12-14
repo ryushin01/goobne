@@ -14,11 +14,11 @@ const Order = () => {
             <DeliveryInfoTitle>배달정보</DeliveryInfoTitle>
             <ul>
               <li>
-                <span>주소</span>
+                <DeliveryAddress>주소</DeliveryAddress>
                 <span>기입한 배달주소구역</span>
               </li>
               <li>
-                <span>주문매장</span>
+                <DeliveryAddress>주문매장</DeliveryAddress>
                 <span>주소</span>
               </li>
               <li>
@@ -27,13 +27,13 @@ const Order = () => {
               <li>
                 <Input type="text" label="연락처" isDot={true} />
               </li>
-              <li>
-                <span>가게사장님께 요청사항</span>
-                <div>
+              <DeliveryRequest>
+                <RequestTitle>가게사장님께 요청사항</RequestTitle>
+                <SelectArea>
                   <SelectBox />
-                  <textarea></textarea>
-                </div>
-              </li>
+                  <RequestTextArea></RequestTextArea>
+                </SelectArea>
+              </DeliveryRequest>
               <li>
                 <div>
                   <span>배달</span>
@@ -86,7 +86,66 @@ const DeliveryInfo = styled.fieldset`
   & > ul {
     padding: 25px 0;
     border-bottom: 1px solid #bebebe;
+
+    & > li {
+      margin-bottom: 24px;
+    }
   }
+`;
+
+const DeliveryAddress = styled.span`
+  display: inline-block;
+  width: 30%;
+  font-size: 16px;
+  position: relative;
+  padding-left: 10px;
+
+  &:before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 45%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #000;
+  }
+`;
+
+const DeliveryRequest = styled.li`
+  display: flex;
+`;
+
+const RequestTitle = styled.span`
+  display: inline-block;
+  width: 42%;
+  font-size: 16px;
+  position: relative;
+  padding-left: 10px;
+
+  &:before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 10%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #000;
+  }
+`;
+
+const SelectArea = styled.div`
+  width: 100%;
+  flex-direction: column;
+`;
+
+const RequestTextArea = styled.textarea`
+  width: 100%;
 `;
 
 const DeliveryInfoTitle = styled.legend`
