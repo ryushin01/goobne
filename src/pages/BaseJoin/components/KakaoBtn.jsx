@@ -1,6 +1,10 @@
 import styled from 'styled-components';
-const KakaoBtn = () => {
-  return <KakaoBtnButton type="button">카카오 로그인</KakaoBtnButton>;
+const KakaoBtn = ({ onClick }) => {
+  return (
+    <KakaoBtnButton onClick={onClick} type="button">
+      카카오 로그인
+    </KakaoBtnButton>
+  );
 };
 
 export default KakaoBtn;

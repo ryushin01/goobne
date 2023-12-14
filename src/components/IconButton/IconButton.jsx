@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import { ReactComponent as Blog } from '../../svg/FooterBlogIconBtn.svg';
-import { ReactComponent as Facebook } from '../../svg/FooterFacebookIcon.svg';
-import { ReactComponent as Instagram } from '../../svg/FooterInstagramIcon.svg';
-import { ReactComponent as Youtube } from '../../svg/FooterYouTubeIcon.svg';
-import { ReactComponent as Cart } from '../../svg/GlobalCartIconBtn.svg';
-import { ReactComponent as Close } from '../../svg/GlobalCloseIconBtn.svg';
-import { ReactComponent as List } from '../../svg/HeaderListIconBtn.svg';
-import { ReactComponent as KaKao } from '../../svg/GlobalKaKaoIconBtn.svg';
+import { ReactComponent as Blog } from '../../svg/Footer/FooterBlogIconBtn.svg';
+import { ReactComponent as Facebook } from '../../svg/Footer/FooterFacebookIcon.svg';
+import { ReactComponent as Instagram } from '../../svg/Footer/FooterInstagramIcon.svg';
+import { ReactComponent as Youtube } from '../../svg/Footer/FooterYouTubeIcon.svg';
+import { ReactComponent as Cart } from '../../svg/Global/GlobalCartIconBtn.svg';
+import { ReactComponent as Close } from '../../svg/Global/GlobalCloseIconBtn.svg';
+import { ReactComponent as KaKao } from '../../svg/Global/GlobalKaKaoIconBtn.svg';
+import { ReactComponent as List } from '../../svg/Header/HeaderListIconBtn.svg';
 
 /**
  * IconButton props list
