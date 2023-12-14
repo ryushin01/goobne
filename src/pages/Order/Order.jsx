@@ -15,23 +15,24 @@ const Order = () => {
             <ul>
               <li>
                 <DeliveryAddress>주소</DeliveryAddress>
-                <span>기입한 배달주소구역</span>
+                <span>서울&nbsp;관악구&nbsp;관악산&nbsp;0-0&nbsp;(우리집)</span>
               </li>
               <li>
                 <DeliveryAddress>주문매장</DeliveryAddress>
-                <span>주소</span>
+                <OrderArea>주소</OrderArea>
+                <span>02-000-000</span>
               </li>
-              <li>
+              <NameArea>
                 <Input type="text" label="이름" isDot={true} />
-              </li>
-              <li>
+              </NameArea>
+              <PhoneNumberArea>
                 <Input type="text" label="연락처" isDot={true} />
-              </li>
+              </PhoneNumberArea>
               <DeliveryRequest>
                 <RequestTitle>가게사장님께 요청사항</RequestTitle>
                 <SelectArea>
                   <SelectBox />
-                  <RequestTextArea></RequestTextArea>
+                  <RequestTextArea placeholder="매장 요청사항을 입력해주세요"></RequestTextArea>
                 </SelectArea>
               </DeliveryRequest>
               <li>
@@ -93,6 +94,29 @@ const DeliveryInfo = styled.fieldset`
   }
 `;
 
+const DeliveryInfoTitle = styled.legend`
+  width: 100%;
+  font-size: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #212121;
+`;
+
+const NameArea = styled.li`
+  & > div {
+    & > label {
+      width: 43%;
+    }
+  }
+`;
+
+const PhoneNumberArea = styled.li`
+  & > div {
+    & > label {
+      width: 43%;
+    }
+  }
+`;
+
 const DeliveryAddress = styled.span`
   display: inline-block;
   width: 30%;
@@ -104,7 +128,7 @@ const DeliveryAddress = styled.span`
     content: '';
     display: inline-block;
     position: absolute;
-    top: 45%;
+    top: 50%;
     left: 0;
     transform: translateY(-50%);
     width: 4px;
@@ -123,13 +147,13 @@ const RequestTitle = styled.span`
   width: 42%;
   font-size: 16px;
   position: relative;
-  padding-left: 10px;
+  padding-left: 11px;
 
   &:before {
     content: '';
     display: inline-block;
     position: absolute;
-    top: 10%;
+    top: 5%;
     left: 0;
     transform: translateY(-50%);
     width: 4px;
@@ -139,18 +163,24 @@ const RequestTitle = styled.span`
   }
 `;
 
+const OrderArea = styled.span`
+  border: 1px solid #000;
+  padding: 5px 10px;
+  border-radius: 9px;
+  background: #000;
+  color: #fff;
+`;
+
 const SelectArea = styled.div`
   width: 100%;
-  flex-direction: column;
 `;
 
 const RequestTextArea = styled.textarea`
   width: 100%;
-`;
-
-const DeliveryInfoTitle = styled.legend`
-  width: 100%;
-  font-size: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #212121;
+  height: 100px;
+  margin-top: 10px;
+  padding: 13px;
+  border: 1px solid #212121;
+  border-radius: 5px;
+  resize: none;
 `;
