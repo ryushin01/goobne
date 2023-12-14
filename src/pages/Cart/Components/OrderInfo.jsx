@@ -9,15 +9,15 @@ const OrderInfo = () => {
       <OrderInfoBox>
         <OrderInfoColumn>
           <OrderInfosubject>주문매장</OrderInfosubject>
-          <span>1</span>
+          <span>삼성중앙점</span>
         </OrderInfoColumn>
         <OrderInfoColumn>
           <OrderInfosubject>매장번호</OrderInfosubject>
-          <span>1</span>
+          <span>02-000-0000</span>
         </OrderInfoColumn>
         <OrderInfoColumn>
           <OrderInfosubject>매장 주소</OrderInfosubject>
-          <span>1</span>
+          <span>서울시 강남구 삼성동</span>
         </OrderInfoColumn>
       </OrderInfoBox>
     </OrderInfoMain>

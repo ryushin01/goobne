@@ -24,11 +24,6 @@ const FlexCenter = `
   justify-content: center;
 `;
 
-// const FlexBetween = `
-//   display: flex;
-//   justify-content: space-between;
-// `;
-
 const CartMainContainer = styled.main`
   width: 100%;
   height: 100%;
