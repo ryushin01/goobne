@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { createCustomAxios } from '../../API/API';
-import { API } from '../../config';
-import Button from '../Button/Button';
+import { createCustomAxios } from '../../../API/API';
+import { API } from '../../../config';
+import Button from '../../../components/Button/Button';
 import styled from 'styled-components';
 
 const GoobNews = () => {
@@ -74,7 +74,7 @@ const GoobNews = () => {
           color="beige"
           size="large"
           onClick={() => {
-            navigate('/');
+            navigate('/goobne');
           }}
         />
       </ButtonWrap>
@@ -84,7 +84,7 @@ const GoobNews = () => {
 
 export default GoobNews;
 
-const MainContainer = styled.main`
+const MainContainer = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -110,7 +110,7 @@ const MainInnerListWrap = styled.ul`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 100px;
+  margin-top: 200px;
   border-bottom: 1px solid ${props => props.theme.grayscaleH};
 
   & > li {
