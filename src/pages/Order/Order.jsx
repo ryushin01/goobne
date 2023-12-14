@@ -291,6 +291,7 @@ const RequestTextArea = styled.textarea`
   border-radius: 5px;
   resize: none;
   font-size: 16px;
+  background-color: transparent;
 `;
 
 const RiderArea = styled.li`
