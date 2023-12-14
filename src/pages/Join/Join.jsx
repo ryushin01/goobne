@@ -3,16 +3,17 @@ import Input from '../../components/Input/Input';
 import SelectBox from '../../components/SelectBox/SelectBox';
 import Button from '../../components/Button/Button';
 import CheckBox from '../../components/CheckBox/CheckBox';
-
+import Radio from '../../components/Radio/Radio';
 const Join = () => {
   return (
     <JoinContainerMain>
-      <JoinContainerSection>
+      <JoinContainerWrapSection>
         <JoinHeading>회원가입</JoinHeading>
 
         <FormContainerForm>
           <Legend>회원가입 유저정보</Legend>
 
+          {/* 기본정보 입력창 영역 */}
           <BasicInfoSection>
             <InfoGuideInnerDiv>
               <h3>기본정보</h3>
@@ -22,13 +23,16 @@ const Join = () => {
               </div>
             </InfoGuideInnerDiv>
 
-            <Input
-              label="이름"
-              required="required"
-              placeholder="이름을 입력해주세요."
-              type="text"
-              direction="column"
-            />
+            <InfoNameInnerDiv>
+              <Input
+                label="이름"
+                required="required"
+                placeholder="이름을 입력해주세요."
+                type="text"
+                direction="column"
+              />
+            </InfoNameInnerDiv>
+
             <IdWrapDiv>
               <Input
                 label="아이디"
@@ -38,9 +42,9 @@ const Join = () => {
                 direction="column"
               />
 
-              <DoubleCheckBtnInner>
+              <DoubleCheckBtnInnerDiv>
                 <Button content="중복확인" color="black" size="medium" />
-              </DoubleCheckBtnInner>
+              </DoubleCheckBtnInnerDiv>
             </IdWrapDiv>
 
             <Input
@@ -75,17 +79,17 @@ const Join = () => {
 
             <CheckBox label="정보/이벤트 메일 수신에 동의합니다." />
 
-            <PhoneAuthenticationDiv>
+            <PhoneAuthenticationWrapDiv>
               <Input
                 label="휴대폰번호"
                 required="required"
                 direction="column"
                 placeholder="- 없이 휴대폰 번호를 입력하세요."
               />
-              <SandAuthenticationBtnDiv>
+              <SandAuthenticationBtnInnerDiv>
                 <Button content="인증번호 발송" color="black" size="medium" />
-              </SandAuthenticationBtnDiv>
-            </PhoneAuthenticationDiv>
+              </SandAuthenticationBtnInnerDiv>
+            </PhoneAuthenticationWrapDiv>
 
             <CheckBox label="정보/이벤트 SNS 수신에 동의합니다." />
 
@@ -107,24 +111,113 @@ const Join = () => {
             <Input direction="column" placeholder="상세주소" />
           </BasicInfoSection>
 
-          <section>
+          {/* 부가정보 입력창 영역 */}
+          <AdditionalInfoWrapSection>
             <h3>부가정보</h3>
-          </section>
 
-          <section>
+            <GenderSelectWrapDiv>
+              <div>
+                <span>성별</span>
+                <span className="required">&nbsp;*</span>
+              </div>
+              <GenderRadioInnerDiv>
+                <Radio text="남자" defaultChecked={true} />
+                <Radio text="여자" defaultChecked={true} />
+              </GenderRadioInnerDiv>
+            </GenderSelectWrapDiv>
+
+            <BirthDateWrapDiv>
+              <div>
+                <span>생년월일</span>
+                <span className="required">&nbsp;*</span>
+              </div>
+
+              <BirthDateSelectBoxInnerDiv>
+                <SelectBox />
+                <SelectBox />
+                <SelectBox />
+              </BirthDateSelectBoxInnerDiv>
+            </BirthDateWrapDiv>
+          </AdditionalInfoWrapSection>
+
+          {/* 약관 동의 체크사항 영역 */}
+          <AgreementWrapSection>
             <h3>약관동의</h3>
-          </section>
+            <PrivacyWrapDiv>
+              <CheckBox label="전체 약관에 동의합니다. (선택 항목도 포함합니다.)" />
+              <CheckBox label="(필수) 이용약관에 모두 동의합니다." />
+              <ul>
+                <AgreementItemLi>
+                  <AgreementContentSpan>
+                    구부네 치킨 이용약관
+                  </AgreementContentSpan>
+                  <AgreementContentButton>내용보기{'>'}</AgreementContentButton>
+                </AgreementItemLi>
 
-          <section>
+                <AgreementItemLi>
+                  <AgreementContentSpan>
+                    개인정보 수집/이용
+                  </AgreementContentSpan>
+                  <AgreementContentButton>내용보기{'>'}</AgreementContentButton>
+                </AgreementItemLi>
+
+                <AgreementItemLi>
+                  <AgreementContentSpan>
+                    개인정보취급 위탁안내
+                  </AgreementContentSpan>
+                  <AgreementContentButton>내용보기{'>'}</AgreementContentButton>
+                </AgreementItemLi>
+
+                <AgreementItemLi>
+                  <AgreementContentSpan>
+                    개인정보 제3자동의
+                  </AgreementContentSpan>
+                  <AgreementContentButton>내용보기{'>'}</AgreementContentButton>
+                </AgreementItemLi>
+              </ul>
+            </PrivacyWrapDiv>
+
+            <AgeCheckWrapDiv>
+              <CheckBox label="(필수) 본인은 만 14세 이상입니다." />
+            </AgeCheckWrapDiv>
+
+            <EventCheckWrapDiv>
+              <CheckBox label="(선택) 정보 / 이벤트 메일 / SMS 수신에 동의합니다." />
+
+              <EventReceptionCheckInnerDiv>
+                <CheckBox label="SMS알림톡" />
+                <CheckBox label="APP푸시" />
+                <CheckBox label="이메일" />
+              </EventReceptionCheckInnerDiv>
+            </EventCheckWrapDiv>
+          </AgreementWrapSection>
+
+          {/* 가입추천인 입력영역 */}
+          <RecommenderWrapSection>
             <h3>가입 추천인 아이디 {'(선택)'}</h3>
-          </section>
+
+            <RecommenderInnerDiv>
+              <Input direction="column" label="아이디" />
+
+              <RecommenderBtnInnerDiv>
+                <Button color="black" content="확인" size="medium" />
+              </RecommenderBtnInnerDiv>
+            </RecommenderInnerDiv>
+          </RecommenderWrapSection>
+
+          {/* 제출 버튼 영역 */}
+          <FormSelectBtnInner>
+            <Button color="beige" content="이전단계" />
+            <Button color="black" content="가입하기" />
+          </FormSelectBtnInner>
         </FormContainerForm>
-      </JoinContainerSection>
+      </JoinContainerWrapSection>
     </JoinContainerMain>
   );
 };
 
 export default Join;
+/**전체 컨테이너 스타일 영역 */
 const JoinContainerMain = styled.main`
   width: 100%;
   height: 100%;
@@ -132,7 +225,7 @@ const JoinContainerMain = styled.main`
   background-color: ${props => props.theme.grayscaleB};
 `;
 
-const JoinContainerSection = styled.section`
+const JoinContainerWrapSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -150,6 +243,15 @@ const FormContainerForm = styled.form`
 `;
 const Legend = styled.legend`
   font-size: 0;
+`;
+
+/** 기본정보 스타일 시작 */
+const BasicInfoSection = styled.section`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 50px;
 `;
 
 const InfoGuideInnerDiv = styled.div`
@@ -172,11 +274,9 @@ const InfoGuideInnerDiv = styled.div`
     color: red;
   }
 `;
-const BasicInfoSection = styled.section`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+
+const InfoNameInnerDiv = styled.div`
+  margin-top: 30px;
 `;
 
 const IdWrapDiv = styled.div`
@@ -184,7 +284,8 @@ const IdWrapDiv = styled.div`
   align-items: flex-end;
   gap: 5px;
 `;
-const DoubleCheckBtnInner = styled.div`
+
+const DoubleCheckBtnInnerDiv = styled.div`
   width: 150px;
 `;
 
@@ -194,13 +295,14 @@ const EmailWrapDiv = styled.div`
   gap: 5px;
 `;
 
-const PhoneAuthenticationDiv = styled.div`
+const PhoneAuthenticationWrapDiv = styled.div`
   display: flex;
   align-items: flex-end;
   gap: 5px;
   margin: 10px 0px;
 `;
-const SandAuthenticationBtnDiv = styled.div`
+
+const SandAuthenticationBtnInnerDiv = styled.div`
   width: 300px;
 `;
 
@@ -225,3 +327,150 @@ const AddressSearchWrap = styled.div`
 const AddressSearchBtnInner = styled.div`
   width: 300px;
 `;
+/** 기본정보 스타일 하단 끝 */
+
+/** 부가정보 스타일 시작 */
+const AdditionalInfoWrapSection = styled.section`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 30px;
+
+  & > h3 {
+    font-size: 20px;
+    font-weight: 800;
+    border-bottom: 1px solid ${props => props.theme.grayscaleH};
+    padding-bottom: 20px;
+  }
+`;
+const GenderSelectWrapDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 10px 0px;
+  & > div > span {
+    font-size: 14px;
+    font-weight: 800;
+  }
+  & > div > .required {
+    color: ${props => props.theme.primaryColor};
+  }
+`;
+const GenderRadioInnerDiv = styled.div`
+  margin-top: 10px;
+`;
+const BirthDateWrapDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-bottom: 30px;
+  & > div > span {
+    font-size: 14px;
+    font-weight: 800;
+  }
+  & > div > .required {
+    color: ${props => props.theme.primaryColor};
+  }
+`;
+const BirthDateSelectBoxInnerDiv = styled.div`
+  display: flex;
+  gap: 5px;
+`;
+/** 부가정보 스타일 하단 끝 */
+
+/** 약관동의 스타일 시작 */
+const AgreementWrapSection = styled.section`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 30px;
+
+  & > h3 {
+    font-size: 20px;
+    font-weight: 800;
+    border-bottom: 1px solid ${props => props.theme.grayscaleH};
+    padding-bottom: 20px;
+  }
+`;
+
+const PrivacyWrapDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid ${props => props.theme.grayscaleH};
+`;
+const AgreementItemLi = styled.li`
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 30px;
+`;
+
+const AgreementContentSpan = styled.span`
+  font-size: 12px;
+  color: ${props => props.theme.grayscaleE};
+`;
+const AgreementContentButton = styled.button`
+  border: none;
+  background-color: transparent;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+`;
+
+const AgeCheckWrapDiv = styled.div`
+  padding: 10px 0px;
+`;
+
+const EventCheckWrapDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px 0px 30px 0;
+  border-top: 1px solid ${props => props.theme.grayscaleH};
+`;
+const EventReceptionCheckInnerDiv = styled.div`
+  display: flex;
+  gap: 5px;
+`;
+/** 약관동의 스타일 끝 */
+
+/** 추천인 입력 영역 스타일 시작 */
+const RecommenderWrapSection = styled.section`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 30px;
+
+  & > h3 {
+    font-size: 20px;
+    font-weight: 800;
+    border-bottom: 1px solid ${props => props.theme.grayscaleH};
+    padding-bottom: 20px;
+  }
+`;
+
+const RecommenderInnerDiv = styled.div`
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  margin-top: 30px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid ${props => props.theme.grayscaleH};
+`;
+
+const RecommenderBtnInnerDiv = styled.div`
+  width: 200px;
+`;
+
+const FormSelectBtnInner = styled.div`
+  display: flex;
+  gap: 5px;
+  width: 400px;
+  margin: 50px auto;
+`;
+/** 추천인 입력 영역 스타일 끝 */
