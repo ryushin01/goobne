@@ -13,7 +13,7 @@ const NonMemberLogin = () => {
             placeholder="이름"
             type="text"
             label="이름"
-            position="column"
+            direction="column"
             name="name"
           />
           <PhoneAuthenticationDiv>
@@ -21,7 +21,7 @@ const NonMemberLogin = () => {
               placeholder="- 없이 입력하세요."
               type="text"
               label="핸드폰 번호"
-              position="column"
+              direction="column"
               name="phoneNum"
             />
             <BtnInner>
@@ -38,7 +38,7 @@ const NonMemberLogin = () => {
             placeholder="인증번호를 입력헤주세요."
             type="text"
             label="인증번호"
-            position="column"
+            direction="column"
             name="id"
           />
         </fieldset>

@@ -74,6 +74,7 @@ const SelectBoxContainer = styled.div`
   position: relative;
   width: 100%;
   padding: 13px 10px;
+  padding: 13px 10px;
   border: 1px solid ${props => props.theme.grayscaleG};
   border-radius: 4px;
   background-color: transparent;
