@@ -1,8 +1,20 @@
 import styled from 'styled-components';
 import Button from '../../components/Button/Button';
 import KakaoBtn from './components/kakaoBtn';
+import { useNavigate } from 'react-router-dom';
 
 const BaseJoin = () => {
+  /**
+   * useNavigate()를 navigate 이름으로 변수로 지정합니다.
+   */
+  const navigate = useNavigate();
+
+  /**
+   * Join 페이지로 네비게이트 해주는 함수입니다.
+   */
+  const goBasicJoin = () => {
+    navigate('/join');
+  };
   return (
     <BasejoinContainerMain>
       <BasejoinContainerSection>
@@ -15,6 +27,7 @@ const BaseJoin = () => {
             type="button"
             size="medium"
             content="기본 회원가입"
+            onClick={goBasicJoin}
           />
         </BasicJoinAreaDiv>
 
@@ -23,7 +36,7 @@ const BaseJoin = () => {
           <span className="socialGuide">
             자주사용하는 소셜계정으로 간편하게 가입해보세요.
           </span>
-          <KakaoBtn />
+          <KakaoBtn onClick={goBasicJoin} />
         </SocialJoinAreaDiv>
 
         <CouponBannerImgInner>

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { createCustomAxios } from '../../API/API';
-import { API } from '../../config';
-import { ReactComponent as GoobstarIcon } from '../../svg/Main/MainInstar.svg';
+import { createCustomAxios } from '../../../API/API';
+import { API } from '../../../config';
+import { ReactComponent as GoobstarIcon } from '../../../svg/Main/MainInstar.svg';
 import 'swiper/css';
 import styled from 'styled-components';
 

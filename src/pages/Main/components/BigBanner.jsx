@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
-import { createCustomAxios } from '../../API/API';
-import { API } from '../../config';
+import { createCustomAxios } from '../../../API/API';
+import { API } from '../../../config';
 
 // Import Swiper styles
 import 'swiper/css';

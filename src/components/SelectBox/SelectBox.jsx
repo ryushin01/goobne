@@ -74,9 +74,10 @@ const SelectBoxContainer = styled.div`
   position: relative;
   width: 100%;
   padding: 13px 10px;
+  padding: 13px 10px;
   border: 1px solid ${props => props.theme.grayscaleG};
   border-radius: 4px;
-  background-color: ${props => props.theme.transparentA};
+  background-color: transparent;
   align-self: center;
   cursor: pointer;
   user-select: none;
@@ -133,7 +134,7 @@ const SelectBoxContainer = styled.div`
     border-radius: 4px;
     background-color: ${props => props.theme.grayscaleA};
     z-index: 1;
-    box-shadow: 0px 13px 13px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
     overflow-y: auto;
 
     & > li {

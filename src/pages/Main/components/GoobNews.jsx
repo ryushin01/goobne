@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { createCustomAxios } from '../../API/API';
-import { API } from '../../config';
-import Button from '../Button/Button';
+import { createCustomAxios } from '../../../API/API';
+import { API } from '../../../config';
+import Button from '../../../components/Button/Button';
 import styled from 'styled-components';
 
 const GoobNews = () => {

@@ -13,7 +13,7 @@ const Input = ({
 }) => {
   return (
     <InputWrap {...props}>
-      <InputLabel htmlFor={labelForId} {...props}>
+      <InputLabel htmlFor={labelForId} label={label} {...props}>
         {label}
         {required === 'required' && <span>&nbsp;*</span>}
       </InputLabel>
@@ -25,6 +25,7 @@ const Input = ({
         value={value}
         id={labelForId}
         {...props}
+        autoComplete="false"
       />
     </InputWrap>
   );
@@ -50,7 +51,7 @@ const INPUT_WRAP_POSITION_STYLES = {
 const InputWrap = styled.div`
   display: flex;
   width: 100%;
-  
+
   /* props position이 전달되지 않은 경우 기본설정에 따르고, 
   props를 전달 받으면 지정조건에 따른다 */
   flex-direction: ${({ direction }) =>
@@ -58,6 +59,8 @@ const InputWrap = styled.div`
 `;
 
 const InputLabel = styled.label`
+  display: ${props => (props.label ? 'block' : 'none')};
+  width: 200px;
   font-size: 14px;
   font-weight: 700;
   margin-bottom: 5px;
@@ -97,7 +100,7 @@ const DefaultInput = styled.input`
   border: 1px solid ${props => props.theme.grayscaleF};
   border-radius: 5px;
   font-size: 16px;
-  background-color: ${props => props.theme.transparentA};
+  background-color: transparent;
 `;
 
 export default Input;
