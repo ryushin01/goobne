@@ -74,6 +74,8 @@ const BigBanner = () => {
 export default BigBanner;
 
 const BigBannerContainer = styled.section`
+  width: 100%;
+  height: 100vh;
   & > .swiperContainer {
     width: 100%;
     height: 100vh;
