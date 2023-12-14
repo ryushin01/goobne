@@ -97,7 +97,7 @@ const DefaultInput = styled.input`
   border: 1px solid ${props => props.theme.grayscaleF};
   border-radius: 5px;
   font-size: 16px;
-  background-color: ${props => props.theme.transparentA};
+  background-color: transparent;
 `;
 
 export default Input;
