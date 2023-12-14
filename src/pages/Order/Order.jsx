@@ -159,7 +159,7 @@ const OrderContainer = styled.main`
   width: 100%;
   height: 100%;
   padding-top: 170px;
-  background-color: #fbf5f0;
+  background-color: ${props => props.theme.grayscaleB};
 `;
 
 const OrderContentWrap = styled.div`
@@ -185,7 +185,7 @@ const DeliveryInfo = styled.fieldset`
 
   & > ul {
     padding-top: 25px;
-    border-bottom: 1px solid #bebebe;
+    border-bottom: 1px solid ${props => props.theme.grayscaleC};
 
     & > li {
       margin-bottom: 24px;
@@ -198,7 +198,7 @@ const DeliveryInfoTitle = styled.legend`
   font-size: 20px;
   font-weight: 700;
   padding-bottom: 20px;
-  border-bottom: 1px solid #212121;
+  border-bottom: 1px solid ${props => props.theme.grayscaleF};
 `;
 
 const NameArea = styled.li`
@@ -235,7 +235,7 @@ const DeliveryAddress = styled.span`
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background-color: #000;
+    background-color: ${props => props.theme.grayscaleH};
   }
 `;
 
@@ -265,16 +265,16 @@ const RequestTitle = styled.span`
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background-color: #000;
+    background-color: ${props => props.theme.grayscaleH};
   }
 `;
 
 const OrderArea = styled.span`
-  border: 1px solid #000;
+  border: 1px solid ${props => props.theme.grayscaleH};
   padding: 5px 10px;
   border-radius: 9px;
-  background: #000;
-  color: #fff;
+  background-color: ${props => props.theme.grayscaleH};
+  color: ${props => props.theme.grayscaleA};
   margin-right: 5px;
 `;
 
@@ -287,7 +287,7 @@ const RequestTextArea = styled.textarea`
   height: 100px;
   margin-top: 10px;
   padding: 13px;
-  border: 1px solid #212121;
+  border: 1px solid ${props => props.theme.grayscaleF};
   border-radius: 5px;
   resize: none;
   font-size: 16px;
@@ -312,8 +312,8 @@ const RiderInfo = styled.div`
 
 const RiderTopArea = styled.span`
   position: relative;
-  background-color: #999;
-  color: #fff;
+  background-color: ${props => props.theme.grayscaleC};
+  color: ${props => props.theme.grayscaleA};
   width: 50px;
   text-align: center;
   padding: 2px 0;
@@ -330,7 +330,7 @@ const RiderTopArea = styled.span`
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background-color: #000;
+    background-color: ${props => props.theme.grayscaleH};
   }
 `;
 
@@ -341,7 +341,7 @@ const PaymentInfo = styled.fieldset`
 
   & > ul {
     padding: 25px 0;
-    border-bottom: 1px solid #bebebe;
+    border-bottom: 1px solid ${props => props.theme.grayscaleC};
 
     & > li {
       margin-bottom: 20px;
@@ -354,7 +354,7 @@ const PaymentMethod = styled.legend`
   font-size: 20px;
   font-weight: 700;
   padding-bottom: 20px;
-  border-bottom: 1px solid #212121;
+  border-bottom: 1px solid ${props => props.theme.grayscaleF};
 `;
 
 const CouponList = styled.li`
@@ -379,7 +379,7 @@ const CouponTitle = styled.span`
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background-color: #000;
+    background-color: ${props => props.theme.grayscaleH};
   }
 `;
 
@@ -406,7 +406,7 @@ const PointTitle = styled.span`
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background-color: #000;
+    background-color: ${props => props.theme.grayscaleH};
   }
 `;
 
@@ -430,15 +430,15 @@ const PointInformation = styled.div`
   & > span {
     font-size: 13px;
     line-height: 1.4;
-    color: #6b6b6b;
+    color: ${props => props.theme.grayscaleD};
   }
 
   & > button {
-    background-color: #999;
+    background-color: ${props => props.theme.grayscaleC};
     padding: 3px 7px;
     border: none;
     border-radius: 50%;
-    color: #fff;
+    color: ${props => props.theme.grayscaleA};
     font-weight: 700;
     margin-left: 3px;
     cursor: pointer;
@@ -466,7 +466,7 @@ const PaymentList = styled.div`
       width: 4px;
       height: 4px;
       border-radius: 50%;
-      background-color: #000;
+      background-color: ${props => props.theme.grayscaleH};
     }
   }
 `;
@@ -481,7 +481,7 @@ const PaymentButtonList = styled.div`
     display: inline-block;
     height: 70px;
     width: 100%;
-    border: 1px solid #333;
+    border: 1px solid ${props => props.theme.grayscaleG};
     line-height: 90px;
     text-align: center;
     font-weight: bold;
@@ -512,7 +512,7 @@ const OrderDetailInfo = styled.legend`
   font-size: 20px;
   font-weight: 700;
   padding-bottom: 20px;
-  border-bottom: 1px solid #212121;
+  border-bottom: 1px solid ${props => props.theme.grayscaleF};
 `;
 
 const ProductDetailArea = styled.div`
@@ -520,7 +520,7 @@ const ProductDetailArea = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px 15px;
-  background-color: #f5ece4;
+  background-color: ${props => props.theme.grayscaleK};
 
   & > span {
     font-size: 14px;
@@ -540,7 +540,7 @@ const ProductDetailInner = styled.div`
 
 const DetailItemName = styled.span`
   position: relative;
-  color: #000;
+  color: ${props => props.theme.grayscaleH};
   font-weight: 700;
   padding-left: 10px;
 
@@ -554,7 +554,7 @@ const DetailItemName = styled.span`
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background-color: #000;
+    background-color: ${props => props.theme.grayscaleH};
   }
 `;
 
@@ -569,7 +569,7 @@ const PaymentAmountSection = styled.legend`
   font-size: 20px;
   font-weight: 700;
   padding-bottom: 20px;
-  border-bottom: 1px solid #212121;
+  border-bottom: 1px solid ${props => props.theme.grayscaleF};
 `;
 
 const PaymentAmountInfo = styled.div`
@@ -577,7 +577,7 @@ const PaymentAmountInfo = styled.div`
   align-items: center;
   flex-direction: column;
   padding: 10px 20px 15px;
-  background-color: #f5ece4;
+  background-color: ${props => props.theme.grayscaleK};
 `;
 
 const PaymentAmountItem = styled.div`
@@ -597,10 +597,10 @@ const PaymentAmountItemBottom = styled.div`
   justify-content: space-between;
   width: 100%;
   padding: 24px 10px;
-  border-top: 1px solid #000;
+  border-top: 1px solid ${props => props.theme.grayscaleH};
 
   & > span {
-    color: #d4000b;
+    color: ${props => props.theme.primaryColor};
     font-size: 18px;
     font-weight: 700;
   }
@@ -623,7 +623,7 @@ const PaymentAmountLeftArea = styled.span`
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background-color: #000;
+    background-color: ${props => props.theme.grayscaleH};
   }
 `;
 
@@ -632,7 +632,7 @@ const StoreStreetInfo = styled.span`
   width: 100%;
   font-size: 16px;
   font-weight: 700;
-  color: #d4000b;
+  color: ${props => props.theme.primaryColor};
   margin-top: 10px;
 `;
 
