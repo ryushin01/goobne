@@ -4,7 +4,28 @@ import SelectBox from '../../components/SelectBox/SelectBox';
 import Button from '../../components/Button/Button';
 import CheckBox from '../../components/CheckBox/CheckBox';
 import Radio from '../../components/Radio/Radio';
+
 const Join = () => {
+  // userInfo 1차 데이터 목록 체크
+
+  // name:          //이름
+  // id:           //아이디
+  // duplication:   //중복체크여부 0 1 또는 블리언 = 중복체크를했는지안했는지
+  // password:      //비밀번호
+  // confirmPassword: //비밀번호 확인
+  // email:        // 이메일아이디
+  // emailAddress: // 이메일뒤에 주소
+  // eventEmail    // 0 1 이벤트체크여부 또는 블리언
+  // phoneNum:       //핸드폰번호
+  // certificationNum  // 인증번호입력
+  // certification:   //인증체크여부 0 1 또는 블리언 = 인증체크를했는지안했는지
+  // zipCode:       // 우편주소
+  //  Address:      //주소
+  // detailedAddress  //상세주소
+  // gender:         // 성별
+  // BirthDate :    //  생년월일
+  // recommendedId:  // 아이디 //있는지 여부 체크
+
   return (
     <JoinContainerMain>
       <JoinContainerWrapSection>
@@ -30,6 +51,8 @@ const Join = () => {
                 placeholder="이름을 입력해주세요."
                 type="text"
                 direction="column"
+                name="name"
+                // onChange={}
               />
             </InfoNameInnerDiv>
 
@@ -40,10 +63,18 @@ const Join = () => {
                 placeholder="아이디를 입력해주세요."
                 type="text"
                 direction="column"
+                name="id"
+                // onChange={}
               />
 
               <DoubleCheckBtnInnerDiv>
-                <Button content="중복확인" color="black" size="medium" />
+                <Button
+                  content="중복확인"
+                  color="black"
+                  size="medium"
+                  type="button"
+                  // onClick={}
+                />
               </DoubleCheckBtnInnerDiv>
             </IdWrapDiv>
 
@@ -53,6 +84,7 @@ const Join = () => {
               placeholder="비밀번호을 입력해주세요."
               type="password"
               direction="column"
+              name="password"
             />
 
             <Input
@@ -61,6 +93,7 @@ const Join = () => {
               placeholder="비밀번호을 입력해주세요."
               type="password"
               direction="column"
+              name="confirmPassword"
             />
 
             <Input
@@ -69,11 +102,12 @@ const Join = () => {
               placeholder="이메일을 입력해주세요."
               type="text"
               direction="column"
+              name="email"
             />
 
             <EmailWrapDiv>
               <span>@</span>
-              <Input />
+              <Input name="emailAddress" />
               <SelectBox />
             </EmailWrapDiv>
 
@@ -85,30 +119,59 @@ const Join = () => {
                 required="required"
                 direction="column"
                 placeholder="- 없이 휴대폰 번호를 입력하세요."
+                name="phoneNum"
+                // onChange={}
               />
               <SandAuthenticationBtnInnerDiv>
-                <Button content="인증번호 발송" color="black" size="medium" />
+                <Button
+                  content="인증번호 발송"
+                  color="black"
+                  size="medium"
+                  type="button"
+                  // onClick={}
+                />
               </SandAuthenticationBtnInnerDiv>
             </PhoneAuthenticationWrapDiv>
 
             <CheckBox label="정보/이벤트 SNS 수신에 동의합니다." />
 
             <CertificationWrap>
-              <Input direction="column" placeholder="인증번호를 입력하세요." />
+              <Input
+                direction="column"
+                placeholder="인증번호를 입력하세요."
+                name="certificationNum"
+                type="text"
+                // onChange={}
+              />
               <CertificationBtnInner>
-                <Button content="인증하기" color="black" size="medium" />
+                <Button
+                  content="인증하기"
+                  color="black"
+                  size="medium"
+                  type="button"
+                  // onClick={}
+                />
               </CertificationBtnInner>
             </CertificationWrap>
 
             <AddressSearchWrap>
-              <Input direction="column" placeholder="우편번호" />
+              <Input direction="column" placeholder="우편번호" name="zipCode" />
               <AddressSearchBtnInner>
-                <Button content="주소검색" color="black" size="medium" />
+                <Button
+                  content="주소검색"
+                  color="black"
+                  size="medium"
+                  type="button"
+                />
               </AddressSearchBtnInner>
             </AddressSearchWrap>
 
             <Input direction="column" placeholder="주소" />
-            <Input direction="column" placeholder="상세주소" />
+            <Input
+              direction="column"
+              placeholder="상세주소"
+              name="detailedAddress"
+            />
           </BasicInfoSection>
 
           {/* 부가정보 입력창 영역 */}
@@ -197,10 +260,15 @@ const Join = () => {
             <h3>가입 추천인 아이디 {'(선택)'}</h3>
 
             <RecommenderInnerDiv>
-              <Input direction="column" label="아이디" />
+              <Input direction="column" label="아이디" name="recommendedId" />
 
               <RecommenderBtnInnerDiv>
-                <Button color="black" content="확인" size="medium" />
+                <Button
+                  color="black"
+                  content="확인"
+                  size="medium"
+                  type="button"
+                />
               </RecommenderBtnInnerDiv>
             </RecommenderInnerDiv>
           </RecommenderWrapSection>
