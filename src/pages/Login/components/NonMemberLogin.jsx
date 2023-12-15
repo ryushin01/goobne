@@ -2,8 +2,21 @@ import Input from '../../../components/Input/Input';
 import Button from '../../../components/Button/Button';
 import CheckBox from '../../../components/CheckBox/CheckBox';
 import styled from 'styled-components';
+import { useState } from 'react';
 
 const NonMemberLogin = () => {
+  const [nonMemberUserInfo, setNonMemberUserInfo] = useState({
+    name: '',
+    phoneNum: '',
+    certificationNum: '',
+  });
+
+  const saveNonMemberLoginInfo = event => {
+    const { name, value } = event.target;
+    setNonMemberUserInfo({ ...nonMemberUserInfo, [name]: value });
+  };
+  console.log(nonMemberUserInfo);
+
   return (
     <>
       <NonLoginWrapForm>
@@ -15,14 +28,17 @@ const NonMemberLogin = () => {
             label="이름"
             direction="column"
             name="name"
+            onChange={saveNonMemberLoginInfo}
           />
           <PhoneAuthenticationDiv>
             <Input
               placeholder="- 없이 입력하세요."
-              type="text"
+              type="number"
               label="핸드폰 번호"
               direction="column"
               name="phoneNum"
+              onChange={saveNonMemberLoginInfo}
+              onWheel={e => e.target.blur()}
             />
             <BtnInner>
               <Button
@@ -39,7 +55,8 @@ const NonMemberLogin = () => {
             type="text"
             label="인증번호"
             direction="column"
-            name="id"
+            name="certificationNum"
+            onChange={saveNonMemberLoginInfo}
           />
         </fieldset>
       </NonLoginWrapForm>
