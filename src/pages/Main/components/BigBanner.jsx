@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
-import { createCustomAxios } from '../../../API/API';
+import { customAxios } from '../../../API/API';
 import { API } from '../../../config';
 
 // Import Swiper styles
@@ -19,15 +19,16 @@ const BigBanner = () => {
     requestBigBannerDataGet();
   }, []);
 
-  /** createCustomAxios 함수를 불러와 BaseURL을 적용시켜준다. */
-  const BigBannerAxios = createCustomAxios(API.BIG_BANNER);
-
   /**
    * Custom Axios를 이용하여 BigBanner에 대한 Data를 Json파일에서 받아온다.
-   * @property response는 변수지정을 하지만 실제로 사용하지 않기 때문에 에러줄을 없애기 위해 eslint-disable-line no-unused-vars를 사용
+   * response는 변수지정을 하지만 실제로 사용하지 않기 때문에 에러줄을 없애기 위해 eslint-disable-line no-unused-vars를 사용
+   * 1. customAxios를 이용하여 API.BIG_BANNER에 대한 Data를 받아온다.
+   * 2. 받아온 Data를 setBigBannerList를 이용하여 bigBannerList에 저장한다.
+   * 3. 에러가 발생했을 경우 alert를 띄운다.
    * */
   const requestBigBannerDataGet = async () => {
-    const response = await BigBannerAxios.get() //eslint-disable-line no-unused-vars
+    const response = await customAxios //eslint-disable-line no-unused-vars
+      .get(`${API.BIG_BANNER}`)
       .then(response => {
         setBigBannerList(response.data.result);
       })

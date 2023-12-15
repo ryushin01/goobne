@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { createCustomAxios } from '../../../API/API';
+import { customAxios } from '../../../API/API';
 import { API } from '../../../config';
 import Button from '../../../components/Button/Button';
 import styled from 'styled-components';
@@ -19,15 +19,16 @@ const GoobNews = () => {
     requestNewsDataGet();
   }, []);
 
-  /** createCustomAxios 함수를 불러와 BaseURL을 적용시켜준다. */
-  const NewsAxios = createCustomAxios(API.GOOB_NEWS);
-
   /**
-   * Custom Axios를 이용하여 BigBanner에 대한 Data를 Json파일에서 받아온다.
-   * @property response는 변수지정을 하지만 실제로 사용하지 않기 때문에 에러줄을 없애기 위해 eslint-disable-line no-unused-vars를 사용
+   * Custom Axios를 이용하여 NewsDataList 대한 Data를 Json파일에서 받아온다.
+   * response는 변수지정을 하지만 실제로 사용하지 않기 때문에 에러줄을 없애기 위해 eslint-disable-line no-unused-vars를 사용
+   * 1. customAxios를 이용하여 API.GOOB_NEWS 대한 Data를 받아온다.
+   * 2. 받아온 Data를 setNewsDataList 이용하여 NewsDataList 저장한다.
+   * 3. 에러가 발생했을 경우 alert를 띄운다.
    * */
   const requestNewsDataGet = async () => {
-    const response = await NewsAxios.get() //eslint-disable-line no-unused-vars
+    const response = await customAxios //eslint-disable-line no-unused-vars
+      .get(API.GOOB_NEWS)
       .then(response => {
         setNewsDataList(response.data.result);
       })
