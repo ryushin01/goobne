@@ -5,7 +5,7 @@ import Input from '../../../components/Input/Input';
 import Button from '../../../components/Button/Button';
 import CheckBox from '../../../components/CheckBox/CheckBox';
 import styled from 'styled-components';
-import { createCustomAxios } from '../../../API/API';
+import { customAxios } from '../../../API/API';
 import { API } from '../../../config';
 
 const MemberLogin = () => {
@@ -17,17 +17,28 @@ const MemberLogin = () => {
     id: '',
     password: '',
   });
-  //userLoginInfo 값을 확인하는 콘솔입니다.
-  console.log(userLoginInfo);
 
-  /**아이디 저장 유무를 정하는 useState를 정의합니다.*/
+  /**아이디 저장 유무를 상태를 저장하는 useState를 정의합니다.*/
   const [isRemember, setIsRemember] = useState(false);
-  //아이디저장 체크박스에 체크를 했나 안했나 확인하는 콘솔입니다.
-  console.log(isRemember);
 
-  // #Cookies 이름
+  /**
+   * 1.useCookies구성은?
+   * cookies= 객체형태입니다. cookies={key ,value} 구성됩니다.
+   * setCookie=cookies의 객체값에 접근해 변경하는 세터함수입니다. setCookie(key , 수정할 value) 형태로 필요합니다.
+   * removeCookie내로컬 쿠키에 값을 지우는 세터함수입니다. removeCookie(key) 형태로 사용합니다.
+   * 위 3가지로 useCookies 구성되어있습니다.
+   * 2.내 쿠키에 cookies객체에 접근할 key 값은 rememberUserId 로 정의합니다.
+   */
   const [cookies, setCookie, removeCookie] = useCookies(['rememberUserId']);
 
+  /**
+   * 1.useEffect 실행됩니다.
+   * 2.cookies 객체 rememberUserId키값으로 접근해 쿠키에 값이 있는지 없는지를 확인합니다.
+   * 3.값이 있다면 setUserLoginInfo(스프레드 오퍼레이터(연산자)로 복사하여) id:cookies.rememberUserId 값을 저장합니다.
+   * 4.setIsRemember() 실행해 isRemember값을 true 변경합니다.
+   * 만약
+   * 5.cookies 객체 rememberUserId키값으로 접근해 쿠키에 값이 undefined 종료입니다.
+   */
   useEffect(() => {
     if (cookies.rememberUserId !== undefined) {
       setUserLoginInfo({ ...userLoginInfo, id: cookies.rememberUserId });
@@ -35,44 +46,58 @@ const MemberLogin = () => {
     }
   }, []);
 
-  const LoginAxios = createCustomAxios(API.LOGINPOST);
+  /** */
+  const saveUserLoginInfo = event => {
+    const { name, value } = event.target;
+    setUserLoginInfo({ ...userLoginInfo, [name]: value });
+  };
 
+  /**
+   * 1.userLoginInfo값을 인자로 받습니다.
+   * 2.params 변수에 userLoginInfo값을 정의합니다.
+   * 3.response 변수 axios를 정의합니다.
+   * 4.axios 메서드는 post방식을 사용하고 , API.LOGINPOST,params 줍니다. API.LOGINPOST 앤드포인트주소입니다.
+   * 5.성공시 isRemember값이 true 라면(아이디 저장이 체크가되어있다면) 쿠키에 userLoginInfo.id 값을 저장합니다.(위에 정의된 state값)
+   * 만약에 아이디 저장체크가 안되어있다면 removeCookie() 쿠키값을 삭제합니다.
+   */
   const requestNavListDataGet = async userLoginInfo => {
-    console.log(userLoginInfo);
     const params = userLoginInfo;
-    const response = await LoginAxios.post(params) //eslint-disable-line no-unused-vars
-
-      .then(response => {
-        console.log(response);
+    const response = await customAxios //eslint-disable-line no-unused-vars
+      .post(API.LOGINPOST, params)
+      .then(() => {
+        if (isRemember) {
+          setCookie('rememberUserId', userLoginInfo.id);
+        } else {
+          removeCookie('rememberUserId');
+        }
       })
       .catch(error => {
-        console.log(error);
+        if (error.status === 400) {
+          console.log('아이디 또는 비밀번호가 틀립니다.');
+        } else if (error.status === 401) {
+          console.log('존재하지 않는 유저입니다.');
+        } else if (error.status === 402) {
+          console.log('아이디를 입력하세요.');
+        } else if (error.status === 403) {
+          console.log('비밀번호를 입력하세요.');
+        }
       });
   };
 
-  const btnSubmit = event => {
+  /**
+   * 1.로그인 버튼을 클릭시 submitBtn(event) 함수가 실행됩니다. 인자로는 버튼 이벤트를 받습니다.
+   * 2.event.preventDefault(); 실행합니다. (submit실행시 기본 재리랜더링을 막습니다.)
+   * 3.requestNavListDataGet(userLoginInfo)함수를 실행합니다.
+   *   인자로는 위에 정의된 userLoginInfo//useState값을 인자로 줍니다.
+   */
+  const submitBtn = event => {
     event.preventDefault();
     requestNavListDataGet(userLoginInfo);
-  };
-  // if (isRemember) {
-  //   setCookie('rememberUserId', userLoginInfo.id);
-  // } else {
-  //   removeCookie('rememberUserId');
-  // }
-
-  /**
-   * 1.Input에 onChange 이벤트를 인자로 받습니다.
-   * 2.
-   */
-  const saveUserLoginInfo = event => {
-    const { name, value } = event.target;
-
-    setUserLoginInfo({ ...userLoginInfo, [name]: value });
   };
 
   return (
     <>
-      <LoginWrapForm onSubmit={btnSubmit}>
+      <LoginWrapForm onSubmit={submitBtn}>
         <fieldset>
           <legend>회원로그인</legend>
           <Input
@@ -107,7 +132,7 @@ const MemberLogin = () => {
               color="black"
               size="medium"
               type="submit"
-              onClick={btnSubmit}
+              onClick={submitBtn}
             />
           </LoginBtnContainerDiv>
         </fieldset>

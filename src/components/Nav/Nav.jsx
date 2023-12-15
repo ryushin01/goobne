@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import IconButton from '../IconButton/IconButton';
 import styled from 'styled-components';
-import { createCustomAxios } from '../../API/API';
+import { customAxios } from '../../API/API';
 import { API } from '../../config';
 
 /**
@@ -80,9 +80,9 @@ const Nav = ({ navToggle, setNavToggle }) => {
    * 3.useState훅을 사용하여 NavListData에 데이터를 저장합니다.
    */
 
-  const NavAxios = createCustomAxios(API.NAV);
   const requestNavListDataGet = async () => {
-    const response = await NavAxios.get() //eslint-disable-line no-unused-vars
+    const response = await customAxios //eslint-disable-line no-unused-vars
+      .get(API.NAV)
       .then(response => {
         setNavListData(response.data.result);
       })
