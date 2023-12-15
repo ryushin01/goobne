@@ -8,7 +8,7 @@ import { ReactComponent as BadgePepperIcon } from '../../svg/Badge/BadgePepperIc
 
 const Badge = ({ shape }) => {
   return (
-    <BadgeContainer>
+    <BadgeContainer shape={shape}>
       <BadgeWrap shape={shape}>
         {shape === 'new' && <span>{shape}</span>}
         {shape === 'best' && <span>{shape}</span>}
@@ -50,7 +50,7 @@ const BADGE_LIST = {
 };
 
 const BadgeContainer = styled.section`
-  display: flex;
+  display: ${props => (props.shape ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;
 `;
