@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Autoplay } from 'swiper/modules';
-import { createCustomAxios } from '../../../API/API';
+import { customAxios } from '../../../API/API';
 import { API } from '../../../config';
 import 'swiper/css';
 import 'swiper/css/autoplay';
@@ -21,16 +21,16 @@ const Band = ({ scrollY }) => {
     requestBandDataGet();
   }, []);
 
-  /** createCustomAxios 함수를 불러와 BaseURL을 적용시켜준다. */
-  const BandAxios = createCustomAxios(API.BAND_SWIPER);
-
   /**
-   * Custom Axios를 이용하여 BigBanner에 대한 Data를 Json파일에서 받아온다.
-   *
+   * Custom Axios를 이용하여 BandSwiper 대한 Data를 Json파일에서 받아온다.
    * response는 변수지정을 하지만 실제로 사용하지 않기 때문에 에러줄을 없애기 위해 eslint-disable-line no-unused-vars를 사용
+   * 1. customAxios를 이용하여 API.BAND_SWIPER 대한 Data를 받아온다.
+   * 2. 받아온 Data를 setBandDataList 이용하여 bandDataList에 저장한다.
+   * 3. 에러가 발생했을 경우 alert를 띄운다.
    * */
   const requestBandDataGet = async () => {
-    const response = await BandAxios.get() //eslint-disable-line no-unused-vars
+    const response = await customAxios //eslint-disable-line no-unused-vars
+      .get(API.BAND_SWIPER)
       .then(response => {
         setBandDataList(response.data.result);
       })
