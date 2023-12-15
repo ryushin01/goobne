@@ -165,7 +165,7 @@ const OrderContentWrap = styled.div`
   margin: 0px auto 150px;
 `;
 
-const OrderTitle = styled.h1`
+const OrderTitle = styled.h2`
   width: 100%;
   text-align: center;
   margin-bottom: 20px;
