@@ -7,30 +7,28 @@ const Order = () => {
   return (
     <OrderContainer>
       <OrderContentWrap>
-        <OrderTitle>
-          <span>결제하기</span>
-        </OrderTitle>
+        <OrderTitle>결제하기</OrderTitle>
         <form>
           <DeliveryInfo>
             <DeliveryInfoTitle>배달정보</DeliveryInfoTitle>
-            <ul>
-              <li>
+            <DeliveryItemArea>
+              <AddressInfoLine>
                 <DeliveryAddress>주소</DeliveryAddress>
                 <DeliveryArea>
                   서울&nbsp;관악구&nbsp;관악산&nbsp;0-0&nbsp;(우리집)
                 </DeliveryArea>
-              </li>
-              <li>
+              </AddressInfoLine>
+              <StoreInfoLine>
                 <DeliveryAddress>주문매장</DeliveryAddress>
                 <OrderArea>주소</OrderArea>
                 <span>02-000-000</span>
-              </li>
-              <NameArea>
+              </StoreInfoLine>
+              <NameInfoLine>
                 <Input type="text" label="이름" isDot={true} />
-              </NameArea>
-              <PhoneNumberArea>
+              </NameInfoLine>
+              <PhoneNumberInfoLine>
                 <Input type="text" label="연락처" isDot={true} />
-              </PhoneNumberArea>
+              </PhoneNumberInfoLine>
               <DeliveryRequest>
                 <RequestTitle>가게사장님께 요청사항</RequestTitle>
                 <SelectArea>
@@ -48,11 +46,11 @@ const Order = () => {
                   <RequestTextArea placeholder="매장 요청사항을 입력해주세요" />
                 </SelectArea>
               </RiderArea>
-            </ul>
+            </DeliveryItemArea>
           </DeliveryInfo>
           <PaymentInfo>
             <PaymentMethod>결제방법</PaymentMethod>
-            <ul>
+            <PaymentItemArea>
               <CouponList>
                 <CouponTitle>내&nbsp;쿠폰&nbsp;리스트</CouponTitle>
                 <SelectBox />
@@ -97,7 +95,7 @@ const Order = () => {
                   ※&nbsp;현금영수증 발행은 매장으로 문의 부탁드립니다.
                 </span>
               </CashReceipt>
-            </ul>
+            </PaymentItemArea>
           </PaymentInfo>
           <OrderDetailArea>
             <OrderDetailInfo>주문내역</OrderDetailInfo>
@@ -139,7 +137,7 @@ const Order = () => {
           <FinalPaymentArea>
             <div>
               <Button
-                type="button"
+                type="submit"
                 size="medium"
                 color="black"
                 content="결제하기"
@@ -167,30 +165,18 @@ const OrderContentWrap = styled.div`
   margin: 0px auto 150px;
 `;
 
-const OrderTitle = styled.div`
+const OrderTitle = styled.h1`
   width: 100%;
   text-align: center;
   margin-bottom: 20px;
-
-  & > span {
-    font-size: 33px;
-    font-weight: 800;
-  }
+  font-size: 33px;
+  font-weight: 800;
 `;
 
 const DeliveryInfo = styled.fieldset`
   padding-bottom: 80px;
   margin: 0 auto;
   width: 675px;
-
-  & > ul {
-    padding-top: 25px;
-    border-bottom: 1px solid ${props => props.theme.grayscaleC};
-
-    & > li {
-      margin-bottom: 24px;
-    }
-  }
 `;
 
 const DeliveryInfoTitle = styled.legend`
@@ -201,7 +187,20 @@ const DeliveryInfoTitle = styled.legend`
   border-bottom: 1px solid ${props => props.theme.grayscaleF};
 `;
 
-const NameArea = styled.li`
+const DeliveryItemArea = styled.div`
+  padding-top: 25px;
+  border-bottom: 1px solid ${props => props.theme.grayscaleC};
+`;
+
+const AddressInfoLine = styled.div`
+  margin-bottom: 24px;
+`;
+
+const StoreInfoLine = styled.div`
+  margin-bottom: 24px;
+`;
+const NameInfoLine = styled.div`
+  margin-bottom: 24px;
   & > div {
     & > label {
       width: 43%;
@@ -209,7 +208,8 @@ const NameArea = styled.li`
   }
 `;
 
-const PhoneNumberArea = styled.li`
+const PhoneNumberInfoLine = styled.div`
+  margin-bottom: 24px;
   & > div {
     & > label {
       width: 43%;
@@ -243,8 +243,9 @@ const DeliveryArea = styled.span`
   font-size: 15px;
 `;
 
-const DeliveryRequest = styled.li`
+const DeliveryRequest = styled.div`
   display: flex;
+  margin-bottom: 24px;
 `;
 
 const RequestTitle = styled.span`
@@ -294,8 +295,9 @@ const RequestTextArea = styled.textarea`
   background-color: transparent;
 `;
 
-const RiderArea = styled.li`
+const RiderArea = styled.div`
   display: flex;
+  margin-bottom: 24px;
 `;
 
 const RiderInfo = styled.div`
@@ -338,15 +340,6 @@ const PaymentInfo = styled.fieldset`
   padding-bottom: 80px;
   margin: 0 auto;
   width: 675px;
-
-  & > ul {
-    padding: 25px 0;
-    border-bottom: 1px solid ${props => props.theme.grayscaleC};
-
-    & > li {
-      margin-bottom: 20px;
-    }
-  }
 `;
 
 const PaymentMethod = styled.legend`
@@ -357,8 +350,14 @@ const PaymentMethod = styled.legend`
   border-bottom: 1px solid ${props => props.theme.grayscaleF};
 `;
 
-const CouponList = styled.li`
+const PaymentItemArea = styled.div`
+  padding: 25px 0;
+  border-bottom: 1px solid ${props => props.theme.grayscaleC};
+`;
+
+const CouponList = styled.div`
   display: flex;
+  margin-bottom: 20px;
 `;
 
 const CouponTitle = styled.span`
@@ -383,9 +382,10 @@ const CouponTitle = styled.span`
   }
 `;
 
-const PersonalPoint = styled.li`
+const PersonalPoint = styled.div`
   display: flex;
   flex-direction: row;
+  margin-bottom: 20px;
 `;
 
 const PointTitle = styled.span`
@@ -584,7 +584,7 @@ const PaymentAmountItem = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin: 24px 0;
+  margin: 17px 0;
 
   & > span {
     font-size: 14px;
