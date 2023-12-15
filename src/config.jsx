@@ -1,10 +1,9 @@
-/**  */
-const BASE_URL = '../goobne/data/';
-
+/** EndPoint 를 따로 관리하는 페이지 */
 export const API = {
-  BAND_SWIPER: `${BASE_URL}/MainBandData.json`,
-  BIG_BANNER: `${BASE_URL}/BigBannerData.json`,
-  GOOB_NEWS: `${BASE_URL}/GoobNewsData.json`,
-  GOOBSTAR: `${BASE_URL}/GoobStarData.json`,
-  NAV: `${BASE_URL}/NavListData.json`,
+  BAND_SWIPER: `/MainBandData.json`,
+  BIG_BANNER: `/BigBannerData.json`,
+  GOOB_NEWS: `/GoobNewsData.json`,
+  GOOB_STAR: `/GoobStarData.json`,
+  GOOB_TUBE: `/GoobTubeData.json`,
+  NAV: `/NavListData.json`,
 };
