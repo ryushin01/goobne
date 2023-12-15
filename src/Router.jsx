@@ -5,6 +5,7 @@ import Login from './pages/Login/Login';
 import BaseJoin from './pages/BaseJoin/BaseJoin';
 import Join from './pages/Join/Join';
 import Delivery from './pages/Delivery/Delivery';
+import List from './pages/List/List';
 
 const Router = () => {
   return (
@@ -15,6 +16,7 @@ const Router = () => {
         <Route path="/basejoin" element={<BaseJoin />} />
         <Route path="/join" element={<Join />} />
         <Route path="/delivery" element={<Delivery />} />
+        <Route path="/list" element={<List />} />
       </Routes>
       <Footer />
     </BrowserRouter>

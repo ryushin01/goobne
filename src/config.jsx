@@ -4,5 +4,6 @@ export const API = {
   GOOB_NEWS: `/GoobNewsData.json`,
   GOOBSTAR: `/GoobStarData.json`,
   NAV: `/NavListData.json`,
+  LISTITEM: `/ListItemData.json`,
   LOGINPOST: `/login`,
 };
