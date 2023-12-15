@@ -70,7 +70,7 @@ const Nav = ({ navToggle, setNavToggle }) => {
 
   /**회원가입 페이지로 navigate 해주는 함수입니다. */
   const goJoinPage = () => {
-    navigate('/join');
+    navigate('/basejoin');
     setNavToggle(false);
   };
 
