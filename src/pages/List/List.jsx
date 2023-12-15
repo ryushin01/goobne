@@ -29,38 +29,35 @@ const List = () => {
       <ListContainerSection>
         <h2>메뉴</h2>
 
-        <ListItemContainerDiv>
-          <ListContainerUl>
-            {productList?.map(
-              (
-                {
-                  imgSrc,
-                  price,
-                  title,
-                  badgeHot,
-                  badgeMd,
-                  badgeNew,
-                  badgeBast,
-                },
-                index,
-              ) => {
-                return (
-                  <ListItemLi key={index}>
-                    <ListItem
-                      imgSrc={imgSrc}
-                      price={price}
-                      title={title}
-                      badgeNew={badgeNew}
-                      badgeBast={badgeBast}
-                      badgeMd={badgeMd}
-                      badgeHot={badgeHot}
-                    ></ListItem>
-                  </ListItemLi>
-                );
-              },
-            )}
-          </ListContainerUl>
-        </ListItemContainerDiv>
+        <ButtonWrapDiv>
+          <button>전체</button>
+          <button>치킨</button>
+          <button>피자</button>
+          <button>세트</button>
+        </ButtonWrapDiv>
+
+        <ListContainerUl>
+          {productList?.map(
+            (
+              { imgSrc, price, title, badgeHot, badgeMd, badgeNew, badgeBast },
+              index,
+            ) => {
+              return (
+                <ListItemLi key={index}>
+                  <ListItem
+                    imgSrc={imgSrc}
+                    price={price}
+                    title={title}
+                    badgeNew={badgeNew}
+                    badgeBast={badgeBast}
+                    badgeMd={badgeMd}
+                    badgeHot={badgeHot}
+                  ></ListItem>
+                </ListItemLi>
+              );
+            },
+          )}
+        </ListContainerUl>
       </ListContainerSection>
     </ListWrapMain>
   );
@@ -71,7 +68,7 @@ export default List;
 const ListWrapMain = styled.main`
   width: 100%;
   height: 100%;
-  padding-top: 150px;
+  padding-top: 200px;
   background-color: ${props => props.theme.grayscaleB};
 `;
 
@@ -87,18 +84,28 @@ const ListContainerSection = styled.section`
   }
 `;
 
-const ListItemContainerDiv = styled.div`
-  width: 100%;
-  margin: 0 auto;
-`;
 const ListContainerUl = styled.ul`
   display: grid;
-  width: 100%;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  column-gap: 16px;
+  column-gap: 10px;
   row-gap: 50px;
+  margin-bottom: 200px;
 `;
 const ListItemLi = styled.li`
   display: flex;
   justify-content: center;
+`;
+
+const ButtonWrapDiv = styled.div`
+  display: flex;
+  gap: 10px;
+  margin: 30px 0px;
+  & > button {
+    background-color: black;
+    color: white;
+    padding: 10px 5px;
+    border: none;
+    border-radius: 20px;
+    width: 100px;
+  }
 `;

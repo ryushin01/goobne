@@ -41,7 +41,7 @@ const ListItem = ({
 export default ListItem;
 
 const ListItemDiv = styled.div`
-  width: 250px;
+  width: 300px;
 `;
 const ListInfoWrapDiv = styled.div`
   background-color: transparent;
@@ -50,8 +50,8 @@ const ListInfoWrapDiv = styled.div`
   }
 `;
 const ImgInner = styled.div`
-  width: 250px;
-  height: 250px;
+  width: 300px;
+  height: 300px;
   & > img {
     width: 100%;
     height: 100%;
