@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Input from '../../../components/Input/Input';
 import Button from '../../../components/Button/Button';
 import CheckBox from '../../../components/CheckBox/CheckBox';
@@ -32,17 +32,24 @@ const MemberLogin = () => {
   const [cookies, setCookie, removeCookie] = useCookies(['rememberUserId']);
 
   /**
+   * useNavigate()를 navigate 이름으로 변수로 지정합니다.
+   */
+  const navigate = useNavigate();
+
+  /**
    * 1.useEffect 실행됩니다.
    * 2.cookies 객체 rememberUserId키값으로 접근해 쿠키에 값이 있는지 없는지를 확인합니다.
    * 3.값이 있다면 setUserLoginInfo(스프레드 오퍼레이터(연산자)로 복사하여) id:cookies.rememberUserId 값을 저장합니다.
    * 4.setIsRemember() 실행해 isRemember값을 true 변경합니다.
-   * 만약
-   * 5.cookies 객체 rememberUserId키값으로 접근해 쿠키에 값이 undefined 종료입니다.
+   * 5.메인 페이지로 네비게이트 해줍니다.
+   * 값이 없다면
+   *.1.cookies 객체 rememberUserId키값으로 접근해 쿠키에 값이 undefined 종료입니다.
    */
   useEffect(() => {
     if (cookies.rememberUserId !== undefined) {
       setUserLoginInfo({ ...userLoginInfo, id: cookies.rememberUserId });
       setIsRemember(true);
+      navigate('/main');
     }
   }, []);
 
@@ -56,7 +63,7 @@ const MemberLogin = () => {
    * 1.userLoginInfo값을 인자로 받습니다.
    * 2.params 변수에 userLoginInfo값을 정의합니다.
    * 3.response 변수 axios를 정의합니다.
-   * 4.axios 메서드는 post방식을 사용하고 , API.LOGINPOST,params 줍니다. API.LOGINPOST 앤드포인트주소입니다.
+   * 4.axios 메서드는 post방식을 사용하고 , API.LOGINPOST,params 인자로전달합니다. API.LOGINPOST 앤드포인트주소입니다.
    * 5.성공시 isRemember값이 true 라면(아이디 저장이 체크가되어있다면) 쿠키에 userLoginInfo.id 값을 저장합니다.(위에 정의된 state값)
    * 만약에 아이디 저장체크가 안되어있다면 removeCookie() 쿠키값을 삭제합니다.
    */
@@ -71,15 +78,16 @@ const MemberLogin = () => {
           removeCookie('rememberUserId');
         }
       })
+      //에러 케이스를 정의합니다.
       .catch(error => {
         if (error.status === 400) {
-          console.log('아이디 또는 비밀번호가 틀립니다.');
+          alert('아이디 또는 비밀번호가 틀립니다.');
         } else if (error.status === 401) {
-          console.log('존재하지 않는 유저입니다.');
+          alert('존재하지 않는 유저입니다.');
         } else if (error.status === 402) {
-          console.log('아이디를 입력하세요.');
+          alert('아이디를 입력하세요.');
         } else if (error.status === 403) {
-          console.log('비밀번호를 입력하세요.');
+          alert('비밀번호를 입력하세요.');
         }
       });
   };
