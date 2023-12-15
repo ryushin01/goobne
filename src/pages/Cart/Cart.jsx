@@ -36,7 +36,7 @@ const CartWrap = styled.div`
   margin: 150px auto;
 `;
 
-const CartTitle = styled.span`
+const CartTitle = styled.h1`
   ${FlexCenter};
   margin-top: 180px;
   margin-bottom: 40px;

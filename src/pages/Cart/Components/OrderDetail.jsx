@@ -1,11 +1,15 @@
+import { useState } from 'react';
 import styled from 'styled-components';
+import OrderProduct from './OrderProduct';
 import Button from '../../../components/Button/Button';
 
 const OrderDetail = () => {
+  const [isCartFilled] = useState(false);
+
   return (
     <OrderDetailMain>
       <OrderDetailTitleWrap>
-        <span>주문내역</span>
+        <h2>주문내역</h2>
         <DeleteAllBtnWrap>
           <Button size="small" color="black" content="전체삭제" />
         </DeleteAllBtnWrap>
@@ -16,7 +20,13 @@ const OrderDetail = () => {
           <span>수량</span>
           <span>금액</span>
         </OrderDetailRow>
-        <OrderProduct>장바구니가 비어 있습니다</OrderProduct>
+        <OrderProductRow>
+          {isCartFilled ? (
+            <OrderProduct />
+          ) : (
+            <span>장바구니가 비어 있습니다</span>
+          )}
+        </OrderProductRow>
       </div>
       <ButtonWrap>
         <OrderBtn>
@@ -52,7 +62,7 @@ const OrderDetailTitleWrap = styled.div`
   padding-bottom: 7px;
   border-bottom: 1px solid ${props => props.theme.grayscaleH};
 
-  & > span {
+  & > h2 {
     margin-right: 5px;
     font-size: 19px;
     font-weight: 700;
@@ -72,8 +82,8 @@ const OrderDetailRow = styled.div`
   text-align: center;
 `;
 
-const OrderProduct = styled.div`
-  padding: 20px 10px;
+const OrderProductRow = styled.div`
+  padding: 20px 0;
   border-bottom: 1px solid ${props => props.theme.grayscaleH};
   font-size: 13px;
   text-align: center;

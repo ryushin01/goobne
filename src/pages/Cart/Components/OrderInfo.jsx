@@ -4,19 +4,19 @@ const OrderInfo = () => {
   return (
     <OrderInfoMain>
       <OrderInfoTitleWrap>
-        <span>포장주문</span>
+        <h2>포장주문</h2>
       </OrderInfoTitleWrap>
       <OrderInfoBox>
         <OrderInfoColumn>
-          <OrderInfosubject>주문매장</OrderInfosubject>
+          <OrderInfoSubject>주문매장</OrderInfoSubject>
           <span>삼성중앙점</span>
         </OrderInfoColumn>
         <OrderInfoColumn>
-          <OrderInfosubject>매장번호</OrderInfosubject>
+          <OrderInfoSubject>매장번호</OrderInfoSubject>
           <span>02-000-0000</span>
         </OrderInfoColumn>
         <OrderInfoColumn>
-          <OrderInfosubject>매장 주소</OrderInfosubject>
+          <OrderInfoSubject>매장 주소</OrderInfoSubject>
           <span>서울시 강남구 삼성동</span>
         </OrderInfoColumn>
       </OrderInfoBox>
@@ -35,7 +35,7 @@ const OrderInfoTitleWrap = styled.div`
   padding-bottom: 22px;
   border-bottom: 1px solid ${props => props.theme.grayscaleH};
 
-  & > span {
+  & > h2 {
     margin-right: 5px;
     font-size: 19px;
     font-weight: 700;
@@ -53,6 +53,6 @@ const OrderInfoColumn = styled.div`
   font-size: 13px;
 `;
 
-const OrderInfosubject = styled.span`
+const OrderInfoSubject = styled.span`
   font-weight: 700;
 `;
