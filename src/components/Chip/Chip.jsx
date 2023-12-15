@@ -42,10 +42,5 @@ const ChipLabel = styled.label`
 
   & > input {
     display: none;
-
-    &:checked {
-      background-color: ${props => props.theme.grayscaleA};
-      color: ${props => props.theme.grayscaleH};
-    }
   }
 `;
