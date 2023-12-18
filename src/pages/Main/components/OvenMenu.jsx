@@ -100,11 +100,9 @@ const BandContainer = styled.section`
   height: 100vh;
   padding-top: 150px;
   background-color: ${props => props.theme.grayscaleJ};
-  overflow: hidden;
 
   & > .mySwiper {
     height: 400px;
-    overflow: hidden;
   }
 `;
 
