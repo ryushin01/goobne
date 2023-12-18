@@ -4,10 +4,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import Input from '../../../components/Input/Input';
 import Button from '../../../components/Button/Button';
 import CheckBox from '../../../components/CheckBox/CheckBox';
-import styled from 'styled-components';
 import { testAxios } from '../../../API/API'; //customAxios 테스트종료시 활성화시켜주기
 // testAxios << 테스트용 import 합니다. customAxios << 백엔드 서버용 import 합니다.
 // import { API } from '../../../config'; 테스트를 마치면 활성화 합니다.
+import styled from 'styled-components';
 
 const MemberLogin = () => {
   /**

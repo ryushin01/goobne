@@ -1,19 +1,19 @@
-import Input from '../../../components/Input/Input';
-import Button from '../../../components/Button/Button';
-import CheckBox from '../../../components/CheckBox/CheckBox';
-import styled from 'styled-components';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Button from '../../../components/Button/Button';
+import Input from '../../../components/Input/Input';
+import CheckBox from '../../../components/CheckBox/CheckBox';
 import api from '../../../API';
 import { testAxios } from '../../../API/API'; //customAxios 테스트종료시 활성화시켜주기
 // testAxios 테스트 import 합니다. customAxios import 합니다. 실제 api
 // import { API } from '../../../config'; // 통신 테스트를 마치면 활성화 합니다.
-import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
-/**
- * 1.비회원 로그인에 필요한 정보를 저장하는 useState를 정의합니다.
- * 2.여러개의 값을 저장하기위해 객체형태로 초기값을 정의했습니다.
- */
 const NonMemberLogin = () => {
+  /**
+   * 1.비회원 로그인에 필요한 정보를 저장하는 useState를 정의합니다.
+   * 2.여러개의 값을 저장하기위해 객체형태로 초기값을 정의했습니다.
+   */
   const [nonMemberUserInfo, setNonMemberUserInfo] = useState({
     name: '',
     phoneNum: '',
@@ -27,6 +27,11 @@ const NonMemberLogin = () => {
   const [isAgreementCheck, setIsAgreementCheck] = useState(false);
 
   /**
+   * useNavigate()를 navigate 변수에 담습니다.
+   */
+  const navigate = useNavigate();
+
+  /**
    * 1.onChange 이벤트가 발생할때마다 실행되는 함수입니다.
    * 2.input onChange event를 인자로 받습니다.
    * 3.name , value 구조분해 할당을 합니다.
@@ -38,11 +43,6 @@ const NonMemberLogin = () => {
     const { name, value } = event.target;
     setNonMemberUserInfo({ ...nonMemberUserInfo, [name]: value });
   };
-
-  /**
-   * useNavigate()를 navigate 변수에 담습니다.
-   */
-  const navigate = useNavigate();
 
   /**
    * 인증번호를 불러오는 get test axios입니다.
