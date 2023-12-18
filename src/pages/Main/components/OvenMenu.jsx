@@ -12,7 +12,7 @@ import styled from 'styled-components';
 /**
  * Main 페이지에 사용되는 Swiper 컴포넌트 입니다.
  */
-const OverMenu = ({ scrollY }) => {
+const OvenMenu = ({ scrollY }) => {
   /** BigBanner의 데이터를 받아오기 위한 useState 생성 */
   const [bandDataList, setBandDataList] = useState([]);
 
@@ -89,7 +89,7 @@ const OverMenu = ({ scrollY }) => {
   );
 };
 
-export default OverMenu;
+export default OvenMenu;
 
 const BandContainer = styled.section`
   display: flex;
@@ -100,11 +100,9 @@ const BandContainer = styled.section`
   height: 100vh;
   padding-top: 150px;
   background-color: ${props => props.theme.grayscaleJ};
-  overflow: hidden;
 
   & > .mySwiper {
     height: 400px;
-    overflow: hidden;
   }
 `;
 
