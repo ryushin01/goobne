@@ -4,8 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import Input from '../../../components/Input/Input';
 import Button from '../../../components/Button/Button';
 import CheckBox from '../../../components/CheckBox/CheckBox';
-import { testAxios } from '../../../API/API'; //customAxios 테스트종료시 활성화시켜주기
-// testAxios << 테스트용 import 합니다. customAxios << 백엔드 서버용 import 합니다.
+import { basic_test } from '../../../API/TEST_API';
+// basic_test << 테스트용 api import 합니다.
+// import { customAxios } from '../../../API/API';
 // import { API } from '../../../config'; 테스트를 마치면 활성화 합니다.
 import styled from 'styled-components';
 
@@ -79,7 +80,7 @@ const MemberLogin = () => {
     // const response = await customAxios //eslint-disable-line no-unused-vars
     //   .post(API.LOGINPOST, params) //백엔드 서버 api입니다.
 
-    testAxios(200) //테스트용 api입니다. 인자로 원하는 상태값을 넘겨주면됩니다.
+    basic_test(200) //테스트용 api입니다. 인자로 원하는 상태값을 넘겨주면됩니다.
       .then(() => {
         if (isRemember) {
           setCookie('rememberUserId', userLoginInfo.id);

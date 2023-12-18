@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
 import CheckBox from '../../../components/CheckBox/CheckBox';
-import api from '../../../API';
-import { testAxios } from '../../../API/API'; //customAxios 테스트종료시 활성화시켜주기
-// testAxios 테스트 import 합니다. customAxios import 합니다. 실제 api
+import { cert_test, basic_test } from '../../../API/TEST_API'; //가상 인증번호를 보내줄 테스트 api 입니다.
+// cert_test, basic_test 테스트 import 합니다.
+// import { customAxios } from '../../../API/API';  통신 테스트를 마치면 활성화 합니다.
 // import { API } from '../../../config'; // 통신 테스트를 마치면 활성화 합니다.
 import styled from 'styled-components';
 
@@ -64,8 +64,7 @@ const NonMemberLogin = () => {
       alert('필수 항목 체크하세요.');
     } else {
       //테스트 api 입니다.
-      api
-        .cert_test(200)
+      cert_test(200)
         .then(data => {
           alert('인증번호를 발송했습니다.');
           setServerCertificationNum(data.number);
@@ -90,7 +89,7 @@ const NonMemberLogin = () => {
     // const response = await customAxios //eslint-disable-line no-unused-vars
     //   .post(API.NONMEMBER_LOGIN_POST, params)
 
-    testAxios(
+    basic_test(
       severCertificationNum === Number(nonMemberUserInfo.certificationNum)
         ? 200
         : 400,
@@ -106,7 +105,7 @@ const NonMemberLogin = () => {
 
   /**
    * 1.비회원사용자정보는 제출하는 함수입니다.
-   * 2.약관동의 체크는 필수값이기때문에 Verification한번더 체크합니다.
+   * 2.약관동의 체크는 필수값이기때문에 Verification 한번더 체크합니다.
    * 체크가 안되었다면 경고창을 띄어줍니다.
    * 3.체크가 되었다면 requestNonMemberLoginPost() 실행시켜줍니다.
    */

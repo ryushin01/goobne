@@ -6,4 +6,5 @@ export const API = {
   NAV: `/NavListData.json`,
   LISTITEM: `/ListItemData.json`,
   LOGINPOST: `/login`,
+  JOIN_POST: `/join`,
 };

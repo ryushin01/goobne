@@ -1,16 +1,57 @@
-import styled from 'styled-components';
+import { useState } from 'react';
 import Input from '../../components/Input/Input';
 import SelectBox from '../../components/SelectBox/SelectBox';
 import Button from '../../components/Button/Button';
 import CheckBox from '../../components/CheckBox/CheckBox';
 import Radio from '../../components/Radio/Radio';
+import styled from 'styled-components';
+// import { customAxios } from '../../API/API'; 테스트를 마치면 활성화 합니다.
+// import { API } from '../../../config'; 테스트를 마치면 활성화 합니다.
+import { idDuplicateCheck_test } from '../../API/TEST_API'; //테스트용 api 입니다.
 
 const Join = () => {
+  /**회원가입에 필요한 정보를 저장하는 useState를 정의합니다. */
+  const [userJoinInfo, setUserJoinInfo] = useState({
+    name: '',
+    id: '',
+    duplication: null,
+  });
+  console.log(userJoinInfo);
+
+  const saveUserJoinInfo = event => {
+    const { name, value } = event.target;
+    setUserJoinInfo({ ...userJoinInfo, [name]: value });
+  };
+
+  /**중복체크한 아이디랑 Verification 하기위한  useState 정의합니다.*/
+  const [testCheckId, setTestCheckID] = useState('');
+  console.log(testCheckId);
+
+  const idDuplicateCheck = () => {
+    // const params = userJoinInfo.id;
+    // const response = await customAxios //eslint-disable-line no-unused-vars
+    //   .post(JOIN_POST, params) //백엔드 서버 api입니다.
+
+    //TODO:인풋에 아이디를 입력 하지않았을때 id 값이 없을때 체크를 해야한다.
+
+    idDuplicateCheck_test(200, userJoinInfo.id)
+      .then(response => {
+        console.log(response);
+        setUserJoinInfo({ ...userJoinInfo, duplication: response.status });
+        setTestCheckID(response.checkId);
+      })
+      .catch(error => {
+        if (error.status === 404) {
+          alert('존재하는 아이디입니다.');
+        }
+      });
+  };
+
   // userInfo 1차 데이터 목록 체크
 
-  // name:          //이름
-  // id:           //아이디
-  // duplication:   //중복체크여부 0 1 또는 블리언 = 중복체크를했는지안했는지
+  // name:         // 이름                              ok
+  // id:           // 아이디                             ok
+  // duplication:  // 중복체크여부  1:했다 0:안했다.         ok
   // password:      //비밀번호
   // confirmPassword: //비밀번호 확인
   // email:        // 이메일아이디
@@ -52,7 +93,7 @@ const Join = () => {
                 type="text"
                 direction="column"
                 name="name"
-                // onChange={}
+                onChange={saveUserJoinInfo}
               />
             </InfoNameInnerDiv>
 
@@ -64,7 +105,7 @@ const Join = () => {
                 type="text"
                 direction="column"
                 name="id"
-                // onChange={}
+                onChange={saveUserJoinInfo}
               />
 
               <DoubleCheckBtnInnerDiv>
@@ -73,7 +114,7 @@ const Join = () => {
                   color="black"
                   size="medium"
                   type="button"
-                  // onClick={}
+                  onClick={idDuplicateCheck}
                 />
               </DoubleCheckBtnInnerDiv>
             </IdWrapDiv>
