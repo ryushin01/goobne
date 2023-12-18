@@ -192,8 +192,12 @@ const SlideContainer = styled.div`
     overflow: hidden;
 
     & img {
-      object-fit: contain;
+      object-fit: cover; // 이미지가 잘리지 않고 꽉차게 표시
       border: 2px solid ${props => props.theme.grayscaleH};
+    }
+
+    & a {
+      height: 100%; // a태그의 height를 100%로 설정해야 이미지가 꽉차게 표시
     }
   }
 `;
