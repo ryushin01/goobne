@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import BigBanner from './components/BigBanner';
-import Band from './components/Band';
+// import Band from './components/Band';
 import GoobNews from './components/GoobNews';
 import GoobStar from './components/GoobStar';
 import Goobtube from './components/Goobtube';
@@ -34,7 +34,7 @@ const Main = () => {
   return (
     <MainContainer>
       <BigBanner />
-      <Band scrollY={scrollY} />
+      {/* <Band scrollY={scrollY} /> */}
       <GoobNews />
       <GoobStar />
       <Goobtube />
