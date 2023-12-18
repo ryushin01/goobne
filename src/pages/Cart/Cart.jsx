@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import OrderInfo from './Components/OrderInfo';
 import OrderDetail from './Components/OrderDetail';
+import CartSwiper from './Components/CartSwiper';
 
 const Cart = () => {
   return (
@@ -11,7 +12,10 @@ const Cart = () => {
           <OrderInfo />
           <OrderDetail />
         </CartDetailWrap>
-        <CartSwiperWrap>swiper</CartSwiperWrap>
+        <CartSwiperWrap>
+          <CartSwiperTitle>지금 인기있는 메뉴</CartSwiperTitle>
+          <CartSwiper />
+        </CartSwiperWrap>
       </CartWrap>
     </CartMainContainer>
   );
@@ -51,6 +55,11 @@ const CartDetailWrap = styled.section`
 
 const CartSwiperWrap = styled.div`
   width: 100%;
-  height: 325px;
-  border: 1px solid;
+`;
+
+const CartSwiperTitle = styled.h4`
+  ${FlexCenter};
+  margin-bottom: 40px;
+  font-size: 30px;
+  font-weight: 800;
 `;
