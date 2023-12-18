@@ -12,7 +12,7 @@ import styled from 'styled-components';
 /**
  * Main 페이지에 사용되는 Swiper 컴포넌트 입니다.
  */
-const Band = ({ scrollY }) => {
+const OverMenu = ({ scrollY }) => {
   /** BigBanner의 데이터를 받아오기 위한 useState 생성 */
   const [bandDataList, setBandDataList] = useState([]);
 
@@ -59,7 +59,7 @@ const Band = ({ scrollY }) => {
           stretch: 0, // 슬라이드 사이의 간격
           depth: 100, // 슬라이드와 슬라이드 사이의 거리
           modifier: 1, // 슬라이드 크기
-          slideShadows: true, // 슬라이드 그림자
+          slideShadows: false, // 슬라이드 그림자
         }}
         autoplay={{
           delay: 2500,
@@ -89,7 +89,7 @@ const Band = ({ scrollY }) => {
   );
 };
 
-export default Band;
+export default OverMenu;
 
 const BandContainer = styled.section`
   display: flex;
