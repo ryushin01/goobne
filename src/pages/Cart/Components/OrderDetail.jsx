@@ -9,7 +9,7 @@ const OrderDetail = () => {
   return (
     <OrderDetailMain>
       <OrderDetailTitleWrap>
-        <h2>주문내역</h2>
+        <h3>주문내역</h3>
         <DeleteAllBtnWrap>
           <Button size="small" color="black" content="전체삭제" />
         </DeleteAllBtnWrap>
@@ -62,7 +62,7 @@ const OrderDetailTitleWrap = styled.div`
   padding-bottom: 7px;
   border-bottom: 1px solid ${props => props.theme.grayscaleH};
 
-  & > h2 {
+  & > h3 {
     margin-right: 5px;
     font-size: 19px;
     font-weight: 700;

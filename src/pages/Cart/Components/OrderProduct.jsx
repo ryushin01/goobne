@@ -9,15 +9,15 @@ const OrderProduct = () => {
         </OrderProductImg>
         <span>이청원 근성장용 닭찌 12pcs</span>
       </OrderProductBox>
-      <OrderPriceBox>
+      <OrderCountBox>
         <span>1</span>
-      </OrderPriceBox>
+      </OrderCountBox>
       <OrderPriceBox>
         <span>30,000원</span>
       </OrderPriceBox>
-      <ProductDeleteBtn>
+      <ProductDeleteBtnWrap>
         <img src="./public/images/ProductDeleteButton.png" alt="상품이미지" />
-      </ProductDeleteBtn>
+      </ProductDeleteBtnWrap>
     </OrderProductWrap>
   );
 };
@@ -39,12 +39,16 @@ const OrderProductWrap = styled.div`
 `;
 
 const OrderProductBox = styled.div`
-  ${FlexCenter}
+  ${FlexCenter};
   padding: 0 10px;
 `;
 
+const OrderCountBox = styled.div`
+  ${FlexCenter};
+`;
+
 const OrderPriceBox = styled.div`
-  ${FlexCenter}
+  ${FlexCenter};
   justify-content: center;
   padding: 0 10px;
 `;
@@ -53,7 +57,7 @@ const OrderProductImg = styled.div`
   width: 70px;
   margin-right: 15px;
 `;
-const ProductDeleteBtn = styled.div`
+const ProductDeleteBtnWrap = styled.div`
   width: 28px;
   right: 0;
   position: absolute;

@@ -4,7 +4,7 @@ const OrderInfo = () => {
   return (
     <OrderInfoMain>
       <OrderInfoTitleWrap>
-        <h2>포장주문</h2>
+        <h3>포장주문</h3>
       </OrderInfoTitleWrap>
       <OrderInfoBox>
         <OrderInfoColumn>
@@ -35,7 +35,7 @@ const OrderInfoTitleWrap = styled.div`
   padding-bottom: 22px;
   border-bottom: 1px solid ${props => props.theme.grayscaleH};
 
-  & > h2 {
+  & > h3 {
     margin-right: 5px;
     font-size: 19px;
     font-weight: 700;
