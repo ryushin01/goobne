@@ -1,0 +1,10 @@
+{
+  "result": [
+    { "id": 1, "name": "메뉴", "content": "전체" },
+    { "id": 2, "name": "메뉴", "content": "치킨" },
+    { "id": 3, "name": "메뉴", "content": "피자" },
+    { "id": 4, "name": "메뉴", "content": "사이드" },
+    { "id": 5, "name": "메뉴", "content": "세트" },
+    { "id": 6, "name": "메뉴", "content": "포장전용" }
+  ]
+}

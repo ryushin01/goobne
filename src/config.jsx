@@ -7,4 +7,6 @@ export const API = {
   NAV: `/NavListData.json`,
   LISTITEM: `/ListItemData.json`,
   LOGINPOST: `/login`,
+  MENU_CHIP: `/MenuChipData.json`,
+  POPULAR_CHIP: `/PopularChipData.json`,
 };
