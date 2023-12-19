@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import BigBanner from './components/BigBanner';
-import Band from './components/Band';
-import styled from 'styled-components';
+import OvenMenu from './components/OvenMenu';
 import GoobNews from './components/GoobNews';
 import GoobStar from './components/GoobStar';
+import Goobtube from './components/Goobtube';
+import styled from 'styled-components';
 
 const Main = () => {
   /** Scroll Y값을 저장하기 위한 state */
@@ -33,9 +34,10 @@ const Main = () => {
   return (
     <MainContainer>
       <BigBanner />
-      <Band scrollY={scrollY} />
+      <OvenMenu scrollY={scrollY} />
       <GoobNews />
       <GoobStar />
+      <Goobtube />
     </MainContainer>
   );
 };

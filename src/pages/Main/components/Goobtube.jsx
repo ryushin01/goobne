@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { createCustomAxios } from '../../../API/API';
+import { customAxios } from '../../../API/API';
 import { API } from '../../../config';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
@@ -16,16 +16,16 @@ const Goobtube = () => {
     requestGoobtubeDataGet();
   }, []);
 
-  /** createCustomAxios 함수를 불러와 BaseURL을 적용시켜준다. */
-  const GoobtubeAxios = createCustomAxios(API.GOOBTUBE);
-
   /**
-   * Custom Axios를 이용하여 goobtube에 대한 Data를 Json파일에서 받아온다.
-   *
-   * respones는 변수지정을 하지만 실제로 사용하지 않기 때문에 에러줄을 없애기 위해 eslint-disable-line no-unused-vars를 사용
-   */
+   * Custom Axios를 이용하여 goobutbeDataList 대한 Data를 Json파일에서 받아온다.
+   * response는 변수지정을 하지만 실제로 사용하지 않기 때문에 에러줄을 없애기 위해 eslint-disable-line no-unused-vars를 사용
+   * 1. customAxios를 이용하여 GOOB_TUBE 대한 Data를 받아온다.
+   * 2. 받아온 Data를 setGoobtubeDataList 이용하여 goobutbeDataList 저장한다.
+   * 3. 에러가 발생했을 경우 alert를 띄운다.
+   * */
   const requestGoobtubeDataGet = async () => {
-    const response = await GoobtubeAxios.get() //eslint-disable-line no-unused-vars
+    const response = await customAxios //eslint-disable-line no-unused-vars
+      .get(API.GOOB_TUBE)
       .then(response => {
         setGoobtubeDataList(response.data.result);
       })
@@ -192,8 +192,12 @@ const SlideContainer = styled.div`
     overflow: hidden;
 
     & img {
-      object-fit: contain;
+      object-fit: cover; // 이미지가 잘리지 않고 꽉차게 표시
       border: 2px solid ${props => props.theme.grayscaleH};
+    }
+
+    & a {
+      height: 100%; // a태그의 height를 100%로 설정해야 이미지가 꽉차게 표시
     }
   }
 `;

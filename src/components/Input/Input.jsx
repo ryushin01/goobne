@@ -101,6 +101,12 @@ const DefaultInput = styled.input`
   border-radius: 5px;
   font-size: 16px;
   background-color: transparent;
+
+  &[type='number']::-webkit-inner-spin-button,
+  &[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `;
 
 export default Input;

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Autoplay } from 'swiper/modules';
-import { createCustomAxios } from '../../../API/API';
+import { customAxios } from '../../../API/API';
 import { API } from '../../../config';
 import 'swiper/css';
 import 'swiper/css/autoplay';
@@ -12,7 +12,7 @@ import styled from 'styled-components';
 /**
  * Main 페이지에 사용되는 Swiper 컴포넌트 입니다.
  */
-const Band = ({ scrollY }) => {
+const OvenMenu = ({ scrollY }) => {
   /** BigBanner의 데이터를 받아오기 위한 useState 생성 */
   const [bandDataList, setBandDataList] = useState([]);
 
@@ -21,16 +21,16 @@ const Band = ({ scrollY }) => {
     requestBandDataGet();
   }, []);
 
-  /** createCustomAxios 함수를 불러와 BaseURL을 적용시켜준다. */
-  const BandAxios = createCustomAxios(API.BAND_SWIPER);
-
   /**
-   * Custom Axios를 이용하여 BigBanner에 대한 Data를 Json파일에서 받아온다.
-   *
+   * Custom Axios를 이용하여 BandSwiper 대한 Data를 Json파일에서 받아온다.
    * response는 변수지정을 하지만 실제로 사용하지 않기 때문에 에러줄을 없애기 위해 eslint-disable-line no-unused-vars를 사용
+   * 1. customAxios를 이용하여 API.BAND_SWIPER 대한 Data를 받아온다.
+   * 2. 받아온 Data를 setBandDataList 이용하여 bandDataList에 저장한다.
+   * 3. 에러가 발생했을 경우 alert를 띄운다.
    * */
   const requestBandDataGet = async () => {
-    const response = await BandAxios.get() //eslint-disable-line no-unused-vars
+    const response = await customAxios //eslint-disable-line no-unused-vars
+      .get(API.BAND_SWIPER)
       .then(response => {
         setBandDataList(response.data.result);
       })
@@ -59,7 +59,7 @@ const Band = ({ scrollY }) => {
           stretch: 0, // 슬라이드 사이의 간격
           depth: 100, // 슬라이드와 슬라이드 사이의 거리
           modifier: 1, // 슬라이드 크기
-          slideShadows: true, // 슬라이드 그림자
+          slideShadows: false, // 슬라이드 그림자
         }}
         autoplay={{
           delay: 2500,
@@ -89,7 +89,7 @@ const Band = ({ scrollY }) => {
   );
 };
 
-export default Band;
+export default OvenMenu;
 
 const BandContainer = styled.section`
   display: flex;
@@ -100,11 +100,9 @@ const BandContainer = styled.section`
   height: 100vh;
   padding-top: 150px;
   background-color: ${props => props.theme.grayscaleJ};
-  overflow: hidden;
 
   & > .mySwiper {
     height: 400px;
-    overflow: hidden;
   }
 `;
 

@@ -4,6 +4,7 @@ import NonMemberLogin from './components/NonMemberLogin';
 import Button from '../../components/Button/Button';
 import IconButton from '../../components/IconButton/IconButton';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   /**
@@ -11,6 +12,11 @@ const Login = () => {
    * 초기값은 'member' 회원로그인창을 의미 합니다.
    */
   const [selectedTab, setSelectedTab] = useState('member');
+
+  /**
+   * useNavigate()를 navigate 이름으로 변수로 지정합니다.
+   */
+  const navigate = useNavigate();
 
   /**
    * 1.TabBtnButton 컴포넌트에서 onClick이벤트를 감지합니다.
@@ -22,6 +28,10 @@ const Login = () => {
    *    */
   const handleTabClick = tab => {
     setSelectedTab(tab);
+  };
+
+  const goBasicJoin = () => {
+    navigate('/basejoin');
   };
 
   return (
@@ -58,7 +68,13 @@ const Login = () => {
 
         <JoinMemberContainerDiv>
           <h3>아직 회원이 아니신가요?</h3>
-          <Button color="beige" content="회원가입" size="large" />
+          <Button
+            color="beige"
+            content="회원가입"
+            size="large"
+            type="button"
+            onClick={goBasicJoin}
+          />
         </JoinMemberContainerDiv>
 
         <EasyLoginContainerDiv>

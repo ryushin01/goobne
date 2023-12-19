@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { createCustomAxios } from '../../../API/API';
+import { customAxios } from '../../../API/API';
 import { API } from '../../../config';
 import Button from '../../../components/Button/Button';
 import styled from 'styled-components';
@@ -8,8 +8,6 @@ import styled from 'styled-components';
 const GoobNews = () => {
   /** newsData 데이터를 받아오기 위한 useState 생성 */
   const [newsDataList, setNewsDataList] = useState([]);
-  /** Mouse Hover 시 Image를 Load 하기 위한 useState 생성 */
-  const [imgLoad, setImgLoad] = useState(false);
 
   /** Button에서 페이지 이동을 위한 Navigate 함수 추가 */
   const navigate = useNavigate();
@@ -19,15 +17,16 @@ const GoobNews = () => {
     requestNewsDataGet();
   }, []);
 
-  /** createCustomAxios 함수를 불러와 BaseURL을 적용시켜준다. */
-  const NewsAxios = createCustomAxios(API.GOOB_NEWS);
-
   /**
-   * Custom Axios를 이용하여 BigBanner에 대한 Data를 Json파일에서 받아온다.
-   * @property response는 변수지정을 하지만 실제로 사용하지 않기 때문에 에러줄을 없애기 위해 eslint-disable-line no-unused-vars를 사용
+   * Custom Axios를 이용하여 NewsDataList 대한 Data를 Json파일에서 받아온다.
+   * response는 변수지정을 하지만 실제로 사용하지 않기 때문에 에러줄을 없애기 위해 eslint-disable-line no-unused-vars를 사용
+   * 1. customAxios를 이용하여 API.GOOB_NEWS 대한 Data를 받아온다.
+   * 2. 받아온 Data를 setNewsDataList 이용하여 NewsDataList 저장한다.
+   * 3. 에러가 발생했을 경우 alert를 띄운다.
    * */
   const requestNewsDataGet = async () => {
-    const response = await NewsAxios.get() //eslint-disable-line no-unused-vars
+    const response = await customAxios //eslint-disable-line no-unused-vars
+      .get(API.GOOB_NEWS)
       .then(response => {
         setNewsDataList(response.data.result);
       })
@@ -47,20 +46,12 @@ const GoobNews = () => {
           return (
             <li key={id}>
               <TextWrap>
-                <Link
-                  to={href}
-                  onMouseEnter={() => {
-                    setImgLoad(id);
-                  }}
-                  onMouseLeave={() => {
-                    setImgLoad('');
-                  }}
-                >
+                <Link to={href}>
                   <span>{tag}</span>
                   <span>{title}</span>
                 </Link>
               </TextWrap>
-              <ImgWrap className={imgLoad === id && 'load'}>
+              <ImgWrap className="imgLoad">
                 <img src={src} alt={alt} />
               </ImgWrap>
             </li>
@@ -115,6 +106,14 @@ const MainInnerListWrap = styled.ul`
 
   & > li {
     position: relative;
+
+    &:hover {
+      // li에 hover가 되었을 때 imgLoad 클래스에 대한 css를 적용
+      .imgLoad {
+        opacity: 1;
+        z-index: 1;
+      }
+    }
   }
 `;
 
@@ -138,10 +137,12 @@ const TextWrap = styled.div`
       padding-left: 50px;
       font-size: 30px;
       font-weight: bold;
-      white-space: nowrap;
+      white-space: nowrap; // 너무 긴 글자가 있을 경우 글자가 넘어가지 않고 한줄로 표시
 
       &:last-child {
-        flex: 1;
+        overflow: hidden; // 너무 긴 글자가 있을 경우 넘어가는 글자는 보이지 않도록 설정
+        text-overflow: ellipsis; // 너무 긴 글자가 있을 경우 넘어가는 글자는 ...으로 표시
+        flex: 1; // span의 크기가 고정되어 있을 경우 글자가 넘어가지 않고 ...으로 표시되지 않기 때문에 flex: 1을 이용하여 span의 크기를 유동적으로 설정
       }
     }
   }
@@ -156,18 +157,15 @@ const ImgWrap = styled.div`
   rotate: -15deg;
   border: 2px solid ${props => props.theme.grayscaleH};
   border-radius: 15px;
-  overflow: hidden;
-  opacity: 0;
+  overflow: hidden; // 이미지가 border를 넘어가지 않도록 설정
+  opacity: 0; // 이미지가 로드되기 전까지는 opacity를 0으로 설정하여 이미지가 로드되기 전까지는 보이지 않도록 설정
+  z-index: -1; // 이미지가 로드되기 전까지는 z-index를 -1로 설정하여 이미지가 로드되기 전까지는 클릭이 되지 않도록 설정
   transition: all 0.3s ease-in-out;
-  z-index: 99;
+  cursor: pointer;
 
   & > img {
     height: 100%;
     object-fit: cover;
-  }
-
-  &.load {
-    opacity: 1;
   }
 `;
 

@@ -8,10 +8,10 @@
 
   - <a href="https://github.com/kgy8987" target="_blank">김기영</a>
     - 컴포넌트: Input, Footer, Radio
-    - 페이지: 결제
+    - 페이지: 결제, 이벤트
   - <a href="https://github.com/Jaylogg" target="_blank">박민재</a>
-    - 컴포넌트: Chip, CheckBox, Modal
-    - 페이지: 장바구니
+    - 컴포넌트: Chip, CheckBox, Modal, Pagination
+    - 페이지: 장바구니, 메뉴소개
   - <a href="https://github.com/syon013" target="_blank">박요진</a>
     - 컴포넌트: SelectBox, Swiper, Header, Badge
     - 페이지: 메인, 상세
