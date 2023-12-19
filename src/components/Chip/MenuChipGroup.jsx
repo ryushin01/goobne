@@ -32,8 +32,15 @@ const MenuChipGroup = () => {
   // 업데이트 된 menuChipData가 화면에 렌더링됨
   return (
     <ChipWrap>
-      {menuChipData.map(({ id, name, content }) => (
-        <Chip key={id} id={id} name={name} content={content} color="white" />
+      {menuChipData.map(({ id, name, content, defaultChecked }) => (
+        <Chip
+          key={id}
+          id={id}
+          name={name}
+          content={content}
+          defaultChecked={defaultChecked}
+          color="white"
+        />
       ))}
     </ChipWrap>
   );

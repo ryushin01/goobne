@@ -1,9 +1,9 @@
 {
   "result": [
-    { "id": 1, "name": "메뉴", "content": "전체" },
-    { "id": 2, "name": "메뉴", "content": "치킨" },
-    { "id": 3, "name": "메뉴", "content": "피자" },
-    { "id": 4, "name": "메뉴", "content": "사이드" },
-    { "id": 5, "name": "메뉴", "content": "세트" }
+    { "id": 1, "name": "추천", "content": "전체", "defaultChecked": true },
+    { "id": 2, "name": "추천", "content": "치킨", "defaultChecked": false },
+    { "id": 3, "name": "추천", "content": "피자", "defaultChecked": false },
+    { "id": 4, "name": "추천", "content": "사이드", "defaultChecked": false },
+    { "id": 5, "name": "추천", "content": "세트", "defaultChecked": false }
   ]
 }

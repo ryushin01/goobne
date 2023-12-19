@@ -32,8 +32,15 @@ const PopularChipGroup = () => {
   // 업데이트 된 popularChipData가 화면에 렌더링됨
   return (
     <ChipWrap>
-      {popularChipData.map(({ id, name, content }) => (
-        <Chip key={id} id={id} name={name} content={content} color="beige" />
+      {popularChipData.map(({ id, name, content, defaultChecked }) => (
+        <Chip
+          key={id}
+          id={id}
+          name={name}
+          content={content}
+          defaultChecked={defaultChecked}
+          color="beige"
+        />
       ))}
     </ChipWrap>
   );
