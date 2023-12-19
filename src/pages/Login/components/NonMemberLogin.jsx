@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
 import CheckBox from '../../../components/CheckBox/CheckBox';
-import { cert_test, basic_test } from '../../../API/TEST_API'; //가상 인증번호를 보내줄 테스트 api 입니다.
+import { cert_test, basic_test } from '../../../API/TEST_API'; //테스트 api 입니다.
 // cert_test, basic_test 테스트 import 합니다.
 // import { customAxios } from '../../../API/API';  통신 테스트를 마치면 활성화 합니다.
 // import { API } from '../../../config'; // 통신 테스트를 마치면 활성화 합니다.
@@ -20,7 +20,7 @@ const NonMemberLogin = () => {
     certificationNum: null,
   });
 
-  /**테스트를 하기위해 가상의 인증 번호를 저장하는 useState를 정의합니다. */
+  /**테스트를 하기위해 서버로 보낸 내가입력한 핸드폰번호를 저장하는 useState를 정의합니다. 테스트를 하기위해 */
   const [severCertificationNum, setServerCertificationNum] = useState(null);
 
   /**이용 약관 동의 체크여부를 정의하는 useState 입니다.*/
@@ -93,7 +93,7 @@ const NonMemberLogin = () => {
       severCertificationNum === Number(nonMemberUserInfo.certificationNum)
         ? 200
         : 400,
-    ) //테스트용 api입니다. 인자로 원하는 상태값을 넘겨주면됩니다.
+    )
       .then(() => {
         navigate('/');
       })

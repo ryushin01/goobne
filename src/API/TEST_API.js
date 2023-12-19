@@ -10,8 +10,8 @@
  * Promise 객체는 비동기 작업이 맞이할 미래의 완료 또는 실패와 그 결과 값을 나타냅니다. // 성공에 대한 처리를 합니다.
  * resolve는 성공에 대한 값이고 reject 실패했을때에 대한 값을 반환합니다. // 에러에 대한 처리를 합니다.
  */
-export const basic_test = status =>
-  new Promise((resolve, reject) => {
+export const basic_test = status => {
+  return new Promise((resolve, reject) => {
     if (status === 200) {
       resolve({
         status,
@@ -22,6 +22,7 @@ export const basic_test = status =>
       });
     }
   });
+};
 
 /**
  * 가상의 인증번호를 만드는 테스트 axios입니다.
@@ -58,7 +59,7 @@ export const idDuplicateCheck_test = (status, id) => {
       });
     } else {
       reject({
-        status: 500,
+        status: 404,
       });
     }
   });
