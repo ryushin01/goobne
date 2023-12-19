@@ -5,9 +5,10 @@ import Login from './pages/Login/Login';
 import BaseJoin from './pages/BaseJoin/BaseJoin';
 import Join from './pages/Join/Join';
 import Delivery from './pages/Delivery/Delivery';
+import Cart from './pages/Cart/Cart';
 import List from './pages/List/List';
 import Order from './pages/Order/Order';
-import Cart from './pages/Cart/Cart';
+import Main from './pages/Main/Main';
 
 const Router = () => {
   return (
@@ -21,6 +22,7 @@ const Router = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/list" element={<List />} />
         <Route path="/order" element={<Order />} />
+        <Route path="/" element={<Main />} />
       </Routes>
       <Footer />
     </BrowserRouter>
