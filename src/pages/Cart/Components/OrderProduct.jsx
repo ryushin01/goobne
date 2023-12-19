@@ -1,12 +1,39 @@
+import { useEffect, useState } from 'react';
+import Count from '../../../components/Count/Count';
 import styled from 'styled-components';
+import { API } from '../../../config';
+import { customAxios } from '../../../API/API';
 
 const OrderProduct = () => {
+  const [orderProductData, setOrderProductData] = useState([]);
+
+  // 페이지 진입시 orderProductRequest 함수를 실행시킴
+  useEffect(() => {
+    orderProductRequest();
+  }, []);
+
+  // customAxios를 이용하여 CART_PRODUCT라는 json파일에 대한 데이터를 받아옴
+  // 데이터를 성공적으로 받아오면 setOrderProductData 통해 orderProductData 상태를 업데이트
+  // 에러발생시 경고창을 띄움
+  const orderProductRequest = async () => {
+    const response = await customAxios //eslint-disable-line no-unused-vars
+      .get(API.CART_PRODUCT)
+      .then(response => {
+        setOrderProductData(response.data.result);
+      })
+      .catch(error => {
+        if (error) {
+          alert('데이터를 받아오던 중 에러가 발생했습니다.');
+        }
+      });
+  };
+
   return (
     <OrderProductTable>
       <colgroup>
-        <OrderTableCol width="20%" />
-        <OrderTableCol width="10%" />
-        <OrderTableCol width="10%" />
+        <col width="20%" />
+        <col width="10%" />
+        <col width="10%" />
       </colgroup>
       <thead>
         <OrderTableHead>
@@ -16,7 +43,7 @@ const OrderProduct = () => {
         </OrderTableHead>
       </thead>
       <tbody>
-        {ORDER.map(({ id, src, alt, name }) => (
+        {orderProductData.map(({ id, src, alt, name, price }) => (
           <OrderTableBody key={id}>
             <td>
               <OrderProductWrap>
@@ -27,20 +54,22 @@ const OrderProduct = () => {
               </OrderProductWrap>
             </td>
             <td>
-              <OrderCount>
-                <span>1</span>
-              </OrderCount>
+              <OrderCountWrap>
+                <Count size="small" />
+              </OrderCountWrap>
             </td>
             <td>
-              <OrderPrice>30,000원</OrderPrice>
+              <OrderPrice>{price}</OrderPrice>
+              <ProductDeleteBtnWrap>
+                <img
+                  src="./public/images/ProductDeleteButton.png"
+                  alt="상품이미지"
+                />
+              </ProductDeleteBtnWrap>
             </td>
           </OrderTableBody>
         ))}
       </tbody>
-      {/* 
-      <ProductDeleteBtnWrap>
-        <img src="./public/images/ProductDeleteButton.png" alt="상품이미지" />
-      </ProductDeleteBtnWrap> */}
     </OrderProductTable>
   );
 };
@@ -56,10 +85,10 @@ const OrderProductTable = styled.table`
   width: 100%;
   font-size: 13px;
   border-bottom: 1px solid ${props => props.theme.grayscaleH};
-`;
 
-const OrderTableCol = styled.col`
-  width: ${props => props.width};
+  col {
+    width: ${props => props.width};
+  }
 `;
 
 const OrderTableHead = styled.tr`
@@ -86,10 +115,8 @@ const OrderProductImg = styled.div`
   margin-right: 15px;
 `;
 
-const OrderCount = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+const OrderCountWrap = styled.div`
+  width: 110px;
 `;
 
 const OrderPrice = styled.div`
@@ -98,17 +125,9 @@ const OrderPrice = styled.div`
   justify-content: center;
 `;
 
-// const ProductDeleteBtnWrap = styled.div`
-//   width: 28px;
-//   right: 0;
-//   position: absolute;
-// `;
-
-export const ORDER = [
-  {
-    id: '1',
-    src: './public/images/main_chicken_02.jpg',
-    alt: '이청원 근성장용 닭찌 12pcs',
-    name: '이청원 근성장용 닭찌 12pcs',
-  },
-];
+const ProductDeleteBtnWrap = styled.div`
+  width: 28px;
+  top: 50%;
+  right: 0;
+  position: absolute;
+`;
