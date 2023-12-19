@@ -9,4 +9,6 @@ export const API = {
   LOGINPOST: `/login`,
   CART_SWIPER: `/CartSwiper.json`,
   DELIVERY_SWIPER: `/DeliverySwiper.json`,
+  MENU_CHIP: `/MenuChipData.json`,
+  POPULAR_CHIP: `/PopularChipData.json`,
 };
