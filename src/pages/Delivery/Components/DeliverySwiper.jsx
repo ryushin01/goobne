@@ -1,11 +1,37 @@
+import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import styled from 'styled-components';
+import { customAxios } from '../../../API/API';
+import { API } from '../../../config';
 
 // 주문방법선택 페이지 내의 배너를 위한 컴포넌트
 const DeliverySwiper = () => {
+  //deliverySwiperItem의 값을 받기 위하여 State를 생성합니다.
+  const [deliverySwiperItem, setDeliverySwiperItem] = useState([]);
+
+  //페이지 렌더링시 제일처음 deliverySwiperItem을 보여주기 위하여 생성합니다.
+  useEffect(() => {
+    getDeliverySwiperItemInfoData();
+  }, []);
+
+  const getDeliverySwiperItemInfoData = async () => {
+    const response = await customAxios //eslint-disable-line no-unused-vars
+      .get(API.DELIVERY_SWIPER) //API.DELIVERY_SWIPER 로 GET 요청을 보냅니다.
+      .then(response => {
+        setDeliverySwiperItem(response.data.result);
+      }) //요청이 성공하였을때 setSwiperItem함수가 실행, 데이터를 가져옵니다.
+      .catch(error => {
+        if (error) {
+          alert('리스트 생성에 실패했습니다.'); //요청이 실패시 alert생성.
+        }
+      });
+  };
+  // SwiperItem이 없는 경우, null을 반환합니다.
+  if (!deliverySwiperItem) return null;
+
   return (
     // 구동방식 - 자동재생(2초)
     <Swiper
@@ -14,7 +40,7 @@ const DeliverySwiper = () => {
       slidesPerView={1}
       autoplay={{ delay: 2000 }}
     >
-      {BANNER_IMG.map(({ id, img, alt }) => (
+      {deliverySwiperItem.map(({ id, img, alt }) => (
         <SwiperSlide key={id}>
           <SwiperImgWrap>
             <img src={img} alt={alt} />
@@ -32,21 +58,3 @@ const SwiperImgWrap = styled.div`
 `;
 
 export default DeliverySwiper;
-
-const BANNER_IMG = [
-  {
-    id: 1,
-    img: './public/images/CartSwiper_1.jpg',
-    alt: '주문방법선택 배너1',
-  },
-  {
-    id: 2,
-    img: './public/images/CartSwiper_2.jpg',
-    alt: '주문방법선택 배너2',
-  },
-  {
-    id: 3,
-    img: './public/images/CartSwiper_3.jpg',
-    alt: '주문방법선택 배너3',
-  },
-];

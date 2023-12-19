@@ -8,4 +8,5 @@ export const API = {
   LISTITEM: `/ListItemData.json`,
   LOGINPOST: `/login`,
   CART_SWIPER: `/CartSwiper.json`,
+  DELIVERY_SWIPER: `/DeliverySwiper.json`,
 };
