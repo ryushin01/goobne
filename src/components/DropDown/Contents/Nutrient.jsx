@@ -133,7 +133,7 @@ const NutrientContainer = styled.table`
     font-size: 0;
   }
 
-  & th {
+  th {
     background-color: ${props => props.theme.grayscaleH};
     color: ${props => props.theme.grayscaleA};
     padding: 10px 0;
@@ -147,7 +147,7 @@ const NutrientContainer = styled.table`
     }
   }
 
-  & td {
+  td {
     padding: 20px 0;
     text-align: center;
     border-bottom: 1px solid ${props => props.theme.grayscaleC};
