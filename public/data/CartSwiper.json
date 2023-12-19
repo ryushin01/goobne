@@ -1,0 +1,40 @@
+{
+  "result": [
+    {
+      "id": 1,
+      "img": "./public/images/main_chicken_01.jpg",
+      "alt": "장바구니 배너1",
+      "name": "마라 바사삭"
+    },
+    {
+      "id": 2,
+      "img": "./public/images/main_chicken_02.jpg",
+      "alt": "장바구니 배너2",
+      "name": "미니 치킨"
+    },
+    {
+      "id": 3,
+      "img": "./public/images/main_chicken_03.jpg",
+      "alt": "장바구니 배너3",
+      "name": "마라 곱빼기"
+    },
+    {
+      "id": 4,
+      "img": "./public/images/main_beer.jpg",
+      "alt": "장바구니 배너4",
+      "name": "맥주"
+    },
+    {
+      "id": 5,
+      "img": "./public/images/main_salad.jpg",
+      "alt": "장바구니 배너5",
+      "name": "기영이 사라다"
+    },
+    {
+      "id": 6,
+      "img": "./public/images/main_side_dish.jpg",
+      "alt": "장바구니 배너6",
+      "name": "파스타"
+    }
+  ]
+}
