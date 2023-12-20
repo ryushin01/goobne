@@ -9,6 +9,7 @@ const Input = ({
   label,
   labelForId,
   required,
+  disabled,
   ...props
 }) => {
   return (
@@ -24,6 +25,7 @@ const Input = ({
         name={name}
         value={value}
         id={labelForId}
+        disabled={disabled}
         {...props}
         autoComplete="false"
       />

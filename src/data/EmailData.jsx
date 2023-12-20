@@ -1,1 +1,1 @@
-export const EMAIL_DATA = ['naver.com', 'hanmail.net', 'gmail.com'];
+export const EMAIL_DATA = ['직접입력', 'naver.com', 'hanmail.net', 'gmail.com'];

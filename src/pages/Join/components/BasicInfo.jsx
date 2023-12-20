@@ -34,22 +34,26 @@ const BasicInfo = ({
    * * 서버가 구축이된다면 가상의 인증번호를 저장할필요는 없습니다.테스트를 하기위해서 저장합니다.
    */
   const certificationSubmit = () => {
-    // const params = userJoinInfo.certificationNum;
-    // const response = await customAxios //eslint-disable-line no-unused-vars
-    //   .post(JOIN_POST, params) //백엔드 서버 api입니다.
+    if (userJoinInfo.certificationNum.length < 5) {
+      alert('인증번호는 5자리 또는 6자리입니다.');
+    } else {
+      // const params = userJoinInfo.certificationNum;
+      // const response = await customAxios //eslint-disable-line no-unused-vars
+      //   .post(JOIN_POST, params) //백엔드 서버 api입니다.
 
-    basic_test(
-      severCertificationNum === Number(userJoinInfo.certificationNum)
-        ? 200
-        : 400,
-    )
-      .then(res => {
-        setUserJoinInfo({ ...userJoinInfo, certification: res.status });
-        alert('인증완료');
-      })
-      .catch(error => {
-        if (error.status === 400) alert('인증번호가 틀렸습니다.');
-      });
+      basic_test(
+        severCertificationNum === Number(userJoinInfo.certificationNum)
+          ? 200
+          : 400,
+      )
+        .then(res => {
+          setUserJoinInfo({ ...userJoinInfo, certification: res.status });
+          alert('인증완료');
+        })
+        .catch(error => {
+          if (error.status === 400) alert('인증번호가 틀렸습니다.');
+        });
+    }
   };
 
   return (
@@ -79,7 +83,7 @@ const BasicInfo = ({
         <Input
           label="아이디"
           required="required"
-          placeholder="아이디를 입력해주세요."
+          placeholder="영어+숫자가 7글자 이상 특수문자 제외"
           type="text"
           direction="column"
           name="id"
@@ -100,7 +104,7 @@ const BasicInfo = ({
       <Input
         label="비밀번호"
         required="required"
-        placeholder="비밀번호을 입력해주세요."
+        placeholder="영문/숫자/특수문자포함 11자리이상 입력하세요."
         type="password"
         direction="column"
         name="password"
@@ -111,7 +115,7 @@ const BasicInfo = ({
       <Input
         label="비밀번호 확인"
         required="required"
-        placeholder="비밀번호을 입력해주세요."
+        placeholder="영문/숫자/특수문자포함 11자리이상 입력하세요."
         type="password"
         direction="column"
         name="confirmPassword"
@@ -131,8 +135,18 @@ const BasicInfo = ({
 
       <EmailWrapDiv>
         <span>@</span>
-        <Input name="emailAddress" onChange={saveUserJoinInfo} />
-        <SelectBox data={EMAIL_DATA} value="직접입력" />
+        <Input
+          name="emailAddress"
+          onChange={saveUserJoinInfo}
+          value={userJoinInfo.emailAddress}
+          disabled={userJoinInfo.emailAddress === '직접입력' ? false : true}
+        />
+        <SelectBox
+          data={EMAIL_DATA}
+          value="이메일 주소 선택"
+          name="emailAddress"
+          setUserJoinInfo={setUserJoinInfo}
+        />
       </EmailWrapDiv>
 
       <CheckBox

@@ -62,6 +62,8 @@ const NonMemberLogin = () => {
       alert('핸드폰 번호를 입력하세요.');
     } else if (!isAgreementCheck) {
       alert('필수 항목 체크하세요.');
+    } else if (phoneNum.length <= 10 || phoneNum.length >= 12) {
+      alert('핸드폰번호는 11자리 입니다.');
     } else {
       //테스트 api 입니다.
       cert_test(200)
@@ -85,22 +87,26 @@ const NonMemberLogin = () => {
    * 5.서버가있다면 params값도 같이 넘겨줍니다.
    */
   const requestNonMemberLoginPost = async () => {
-    // const params = nonMemberUserInfo;
-    // const response = await customAxios //eslint-disable-line no-unused-vars
-    //   .post(API.NONMEMBER_LOGIN_POST, params)
+    if (nonMemberUserInfo.certificationNum.length < 5) {
+      alert('인증번호는 5자리 또는 6자리입니다.');
+    } else {
+      // const params = nonMemberUserInfo;
+      // const response = await customAxios //eslint-disable-line no-unused-vars
+      //   .post(API.NONMEMBER_LOGIN_POST, params)
 
-    basic_test(
-      severCertificationNum === Number(nonMemberUserInfo.certificationNum)
-        ? 200
-        : 400,
-    )
-      .then(() => {
-        navigate('/');
-      })
-      //에러 케이스를 정의합니다.
-      .catch(error => {
-        if (error.status === 400) alert('인증번호가 틀렸습니다.');
-      });
+      basic_test(
+        severCertificationNum === Number(nonMemberUserInfo.certificationNum)
+          ? 200
+          : 400,
+      )
+        .then(() => {
+          navigate('/');
+        })
+        //에러 케이스를 정의합니다.
+        .catch(error => {
+          if (error.status === 400) alert('인증번호가 틀렸습니다.');
+        });
+    }
   };
 
   /**

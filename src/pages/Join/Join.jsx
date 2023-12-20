@@ -10,6 +10,7 @@ import PostModal from './components/PostModal';
 import { idDuplicateCheck_test } from '../../API/TEST_API'; //테스트용 api 입니다.
 import { cert_test, basic_test } from '../../API/TEST_API';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const Join = () => {
   /** 회원가입에 필요한 정보를 저장하는 useState를 정의합니다. */
@@ -57,6 +58,11 @@ const Join = () => {
   console.log(testRecommendedId);
 
   /**
+   * useNavigate()를 navigate 변수에 담습니다.
+   */
+  const navigate = useNavigate();
+
+  /**
    * 1.onChange 이벤트가 발생할때마다 실행되는 함수입니다.
    * 2.input onChange event를 인자로 받습니다.
    * 3.name , value 구조분해 할당을 합니다.
@@ -68,6 +74,11 @@ const Join = () => {
     const { name, value } = event.target;
     setUserJoinInfo({ ...userJoinInfo, [name]: value });
   };
+
+  //특수문자 포함했는지 확인하는 정규식
+  const alphanumericRegex = /^[a-zA-Z0-9]+$/;
+  //영어숫자가 같이 조합됫는지 확인하는정규식
+  const alphanumericRegexA = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$/;
 
   /**
    * 1.아이디 중복체크버튼을 클릭시 실행되는 함수입니다.
@@ -82,17 +93,25 @@ const Join = () => {
     // const response = await customAxios //eslint-disable-line no-unused-vars
     //   .post(JOIN_POST, params) //백엔드 서버 api입니다.
 
-    idDuplicateCheck_test(200, userJoinInfo.id)
-      .then(response => {
-        console.log(response);
-        setUserJoinInfo({ ...userJoinInfo, duplicateCheck: response.status });
-        setTestCheckID(response.checkId);
-      })
-      .catch(error => {
-        if (error.status === 404) {
-          alert('중복된 아이디입니다.');
-        }
-      });
+    if (userJoinInfo.id.length < 6) {
+      alert('아이디를 6글자이상으로 입력하세요.');
+    } else if (!alphanumericRegex.test(userJoinInfo.id)) {
+      alert('영어 or 숫자만 가능합니다.');
+    } else if (!alphanumericRegexA.test(userJoinInfo.id)) {
+      alert('영어+숫자가 조합되어야 합니다.');
+    } else {
+      idDuplicateCheck_test(200, userJoinInfo.id)
+        .then(response => {
+          console.log(response);
+          setUserJoinInfo({ ...userJoinInfo, duplicateCheck: response.status });
+          setTestCheckID(response.checkId);
+        })
+        .catch(error => {
+          if (error.status === 404) {
+            alert('중복된 아이디입니다.');
+          }
+        });
+    }
   };
 
   /**
@@ -106,22 +125,27 @@ const Join = () => {
    *  백엔드서버가 구축되어있다면 자식컴포넌트로 이동하는 함수입니다.
    */
   const getCertNumber = () => {
-    // const params = userJoinInfo.phoneNum;
-    // const response = await customAxios //eslint-disable-line no-unused-vars
-    //   .post(JOIN_POST, params) //백엔드 서버 api입니다.
-
     const { phoneNum } = userJoinInfo;
-    //테스트 api 입니다.
-    cert_test(200, phoneNum)
-      .then(data => {
-        alert('인증번호를 발송했습니다.');
-        setServerCertificationNum(data.number);
-        //가상의 인증번호를 보기위해있는 console.log 입니다.
-        console.log(data);
-      })
-      .catch(() => {
-        alert('인증번호 발송에 실패하였습니다.');
-      });
+
+    if (phoneNum.length <= 10 || phoneNum.length >= 12) {
+      alert('핸드폰번호는 11자리 입니다.');
+    } else {
+      // const params = userJoinInfo.phoneNum;
+      // const response = await customAxios //eslint-disable-line no-unused-vars
+      //   .post(JOIN_POST, params) //백엔드 서버 api입니다.
+
+      //테스트 api 입니다.
+      cert_test(200, phoneNum)
+        .then(data => {
+          alert('인증번호를 발송했습니다.');
+          setServerCertificationNum(data.number);
+          //가상의 인증번호를 보기위해있는 console.log 입니다.
+          console.log(data);
+        })
+        .catch(() => {
+          alert('인증번호 발송에 실패하였습니다.');
+        });
+    }
   };
 
   /**
@@ -132,24 +156,41 @@ const Join = () => {
    *  백엔드서버가 구축되어있다면 자식컴포넌트로 이동하는 함수입니다.
    */
   const recommendedIdSubmit = () => {
-    // const params = userJoinInfo.recommendedId;
-    // const response = await customAxios //eslint-disable-line no-unused-vars
-    // .post(JOIN_POST, params) //백엔드 서버 api입니다.
+    if (
+      userJoinInfo.recommendedId.length < 6 ||
+      !alphanumericRegex.test(userJoinInfo.recommendedId) ||
+      !alphanumericRegexA.test(userJoinInfo.recommendedId)
+    ) {
+      alert('추천인이 없습니다.');
+      // 아이디 형식이 맞으면 있다고 가정합니다. 조회는 하지못하기때문에 백엔드서버부재
+    } else {
+      // const params = userJoinInfo.recommendedId;
+      // const response = await customAxios //eslint-disable-line no-unused-vars
+      // .post(JOIN_POST, params) //백엔드 서버 api입니다.
 
-    basic_test(200)
-      .then(res => {
-        setTestRecommendedId(userJoinInfo.recommendedId);
-        setUserJoinInfo({ ...userJoinInfo, recommendedIdCheck: res.status });
-        alert('추천인아이디등록');
-      })
-      .catch(error => {
-        if (error.status === 400) alert('존재하지않는 아이디입니다.');
-      });
+      basic_test(200)
+        .then(res => {
+          setTestRecommendedId(userJoinInfo.recommendedId);
+          setUserJoinInfo({ ...userJoinInfo, recommendedIdCheck: res.status });
+          alert('추천인아이디등록');
+        })
+        .catch(error => {
+          if (error.status === 400) alert('존재하지않는 아이디입니다.');
+        });
+    }
   };
 
   /** 주소검색버튼을 클릭시 주소검색모달창을 토글하는 함수입니다. */
   const AddressFindToggle = () => {
     setIsAddressFind(!isAddressFind);
+  };
+
+  const backPage = () => {
+    navigate(-1);
+  };
+
+  const joinInfoSubmit = () => {
+    navigate(-1);
   };
 
   return (
@@ -191,8 +232,18 @@ const Join = () => {
 
           {/* 제출 버튼 영역 */}
           <FormSelectBtnInner>
-            <Button color="beige" content="이전단계" />
-            <Button color="black" content="가입하기" />
+            <Button
+              color="beige"
+              content="이전단계"
+              type="button"
+              onClick={backPage}
+            />
+            <Button
+              color="black"
+              content="가입하기"
+              type="button"
+              onClick={joinInfoSubmit}
+            />
           </FormSelectBtnInner>
         </FormContainerForm>
       </JoinContainerWrapSection>

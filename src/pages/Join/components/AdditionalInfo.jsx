@@ -72,21 +72,18 @@ const AdditionalInfo = ({ userJoinInfo, setUserJoinInfo }) => {
             value="선택"
             name="year"
             setUserJoinInfo={setUserJoinInfo}
-            userJoinInfo={userJoinInfo}
           />
           <SelectBox
             data={months}
             value="선택"
             name="month"
             setUserJoinInfo={setUserJoinInfo}
-            userJoinInfo={userJoinInfo}
           />
           <SelectBox
             data={days}
             value="선택"
-            name="days"
+            name="day"
             setUserJoinInfo={setUserJoinInfo}
-            userJoinInfo={userJoinInfo}
           />
         </BirthDateSelectBoxInnerDiv>
       </BirthDateWrapDiv>
@@ -163,10 +160,10 @@ const BirthDateSelectBoxInnerDiv = styled.div`
 // Address:                           //주소                                                      ok 선택
 // detailedAddress                    //상세주소                                                   ok 선택
 // gender:                            // 성별                                                     ok 필수
-// emailAddress:                      // 이메일뒤에 주소                                                 필수
-// year: '',                          //생년월일 , 년                                                   선택
-// month: '',                          //생년월일 , 월                                                  선택
-// day: '',                           //생년월일 , 일                                                   선택
+// emailAddress:                      // 이메일뒤에 주소                                             ok  필수
+// year: '',                          //생년월일 , 년                                               ok  선택
+// month: '',                          //생년월일 , 월                                              ok  선택
+// day: '',                           //생년월일 , 일                                               ok  선택
 // recommendedId:                      // 추천아이디                                                  ok 선택
 // recommendedIdCheck:                // 추천아이디체크여부          200:있다 null:없다.                  ok 선택
 // termsOfUseCheck: null,             //이용약관 동의여부            false:안했다. true:했다              ok 필수
