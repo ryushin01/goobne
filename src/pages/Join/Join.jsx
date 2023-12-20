@@ -9,7 +9,7 @@ import PostModal from './components/PostModal';
 // import { customAxios } from '../../API/API'; 테스트를 마치면 활성화 합니다.
 // import { API } from '../../../config'; 테스트를 마치면 활성화 합니다.
 import { idDuplicateCheck_test } from '../../API/TEST_API'; //테스트용 api 입니다.
-import { cert_test, basic_test } from '../../API/TEST_API';
+import { cert_test, basic_test } from '../../API/TEST_API'; //테스트용 api 입니다.
 import styled from 'styled-components';
 
 const Join = () => {

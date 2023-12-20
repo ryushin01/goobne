@@ -11,10 +11,12 @@
  * resolve는 성공에 대한 값이고 reject 실패했을때에 대한 값을 반환합니다. // 에러에 대한 처리를 합니다.
  */
 export const basic_test = status => {
+  const token = 'token:가상의 토큰값을 줍니다.';
   return new Promise((resolve, reject) => {
     if (status === 200) {
       resolve({
         status,
+        token,
       });
     } else {
       reject({

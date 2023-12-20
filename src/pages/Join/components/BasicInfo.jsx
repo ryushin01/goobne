@@ -138,8 +138,14 @@ const BasicInfo = ({
         <Input
           name="emailAddress"
           onChange={saveUserJoinInfo}
-          value={userJoinInfo.emailAddress}
-          disabled={userJoinInfo.emailAddress === '직접입력' ? false : true}
+          value={
+            userJoinInfo.emailAddress === '직접입력'
+              ? ''
+              : userJoinInfo.emailAddress
+          }
+          disabled={
+            EMAIL_DATA.indexOf(userJoinInfo.emailAddress) > 0 ? true : false
+          }
         />
         <SelectBox
           data={EMAIL_DATA}

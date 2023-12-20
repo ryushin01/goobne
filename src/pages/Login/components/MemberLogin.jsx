@@ -102,12 +102,13 @@ const MemberLogin = () => {
       //   .post(API.LOGINPOST, params) //백엔드 서버 api입니다.
 
       basic_test(200) //테스트용 api입니다. 인자로 원하는 상태값을 넘겨주면됩니다.
-        .then(() => {
+        .then(res => {
           if (isRemember) {
             setCookie('rememberUserId', userLoginInfo.id);
           } else {
             removeCookie('rememberUserId');
           }
+          localStorage.setItem('accessToken', res.token);
           navigate('/');
         })
         //에러 케이스를 정의합니다.

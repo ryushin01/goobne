@@ -11,6 +11,8 @@ import { API } from '../../config';
  */
 
 const Nav = ({ navToggle, setNavToggle }) => {
+  const token = localStorage.getItem('accessToken');
+
   /**
    * 1.useEffect 실행됩니다.
    * 2.useEffect 실행되면서 axios get 방식이 실행되면 response받은 데이터를 담아놓을
@@ -91,6 +93,12 @@ const Nav = ({ navToggle, setNavToggle }) => {
       });
   };
 
+  const logOut = () => {
+    localStorage.removeItem('accessToken');
+    setNavToggle(false);
+    navigate('/');
+  };
+
   /**
    * stopPropagation() 란? JavaScript의 Event 인터페이스에서 제공하는 내장 메소드입니다.
    * 그 목적은 캡처 및 버블링 단계 모두에서 현재 이벤트의 추가 전파를 중지하는 것입니다.
@@ -125,15 +133,27 @@ const Nav = ({ navToggle, setNavToggle }) => {
         <CloseBtnContainerDiv>
           <IconButton content="close" size="medium" onClick={navClose} />
         </CloseBtnContainerDiv>
-
-        <LoginJoinBtnContainerDiv>
-          <LoginBtnButton type="button" onClick={goLoginPage}>
-            Login
-          </LoginBtnButton>
-          <JoinBtnButton type="button" onClick={goJoinPage}>
-            Join
-          </JoinBtnButton>
-        </LoginJoinBtnContainerDiv>
+        {token ? (
+          <LogOutWrapDiv>
+            <div>
+              <span>회원님 반갑습니다.</span>
+            </div>
+            <LogOutBtnInnerDiv>
+              <button type="button" onClick={logOut}>
+                Logout
+              </button>
+            </LogOutBtnInnerDiv>
+          </LogOutWrapDiv>
+        ) : (
+          <LoginJoinBtnContainerDiv>
+            <LoginBtnButton type="button" onClick={goLoginPage}>
+              Login
+            </LoginBtnButton>
+            <JoinBtnButton type="button" onClick={goJoinPage}>
+              Join
+            </JoinBtnButton>
+          </LoginJoinBtnContainerDiv>
+        )}
 
         <ImgBannerContainerDiv>
           <img src="../goobne/images/banner.png" alt="르세라핀배너" />
@@ -304,7 +324,7 @@ const NavAccordionButton = styled.button`
     right: 0;
     width: 20px;
     height: 20px;
-    background-image: url('/goobne/src/svg/NavDownArrow.svg');
+    background-image: url('/goobne/src/svg/Nav/NavDownArrow.svg');
     background-repeat: no-repeat;
   }
   &.UpArrow::after {
@@ -315,7 +335,7 @@ const NavAccordionButton = styled.button`
     right: 0;
     width: 20px;
     height: 20px;
-    background-image: url('/goobne/src/svg/NavUpArrow.svg');
+    background-image: url('/goobne/src/svg/Nav/NavUpArrow.svg');
     background-repeat: no-repeat;
   }
 `;
@@ -342,4 +362,30 @@ const NavCallNumBerContainerDl = styled.dl`
   font-size: 20px;
   font-weight: 900;
   padding: 0px 0px 50px 60px;
+`;
+
+// 로그인했을때 스타일 컴포넌트
+const LogOutWrapDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  width: 100%;
+  border-bottom: 3px solid ${props => props.theme.primaryColor};
+  margin: 30px 0px;
+  & > div > span {
+    font-size: 20px;
+    font-weight: 900;
+  }
+`;
+const LogOutBtnInnerDiv = styled.div`
+  & > button {
+    background-color: ${props => props.theme.primaryColor};
+    color: ${props => props.theme.grayscaleA};
+    border: none;
+    border-radius: 20px;
+    padding: 10px 30px;
+    font-size: 20px;
+    cursor: pointer;
+  }
 `;

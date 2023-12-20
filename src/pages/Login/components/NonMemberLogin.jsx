@@ -99,7 +99,8 @@ const NonMemberLogin = () => {
           ? 200
           : 400,
       )
-        .then(() => {
+        .then(res => {
+          localStorage.setItem('accessToken', res.token);
           navigate('/');
         })
         //에러 케이스를 정의합니다.
