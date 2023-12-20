@@ -1,68 +1,117 @@
+import { useEffect, useState } from 'react';
+import { API } from '../../config';
+import { customAxios } from '../../API/API';
 import Badge from '../../../src/components/Badge/Badge';
 import Button from '../../components/Button/Button';
-import SelectBox from '../../components/SelectBox/SelectBox';
+import RadioGroup from './components/RadioGroup';
 import Count from '../../components/Count/Count';
+import DropDown from '../../components/DropDown/DropDown';
 import styled, { css } from 'styled-components';
 
 const Detail = () => {
+  const [DetailData, setDetailData] = useState([]); //eslint-disable-line no-unused-vars
+  const [RadioData, setRadioData] = useState('');
+  const [countValue, setCountValue] = useState(1);
+
+  useEffect(() => {
+    requestDetailDataGet();
+  }, []);
+
+  const requestDetailDataGet = async () => {
+    const response = await customAxios //eslint-disable-line no-unused-vars
+      .get(`${API.DETAIL}`)
+      .then(response => {
+        setDetailData(response.data.result);
+      })
+      .catch(error => {
+        if (error) {
+          alert('에러가 발생했습니다.');
+        }
+      });
+  };
+
+  const handleRadioChange = value => {
+    setRadioData(value);
+  };
+
+  if (!DetailData) return null;
+
   return (
     <DetailContainer>
-      <ContainerInnerWrap>
-        <h2>허리바사삭 곱빼기</h2>
-        <DetailWrap>
-          <DetailInfoWrap>
-            <img
-              src="../goobne/images/main_chicken_01.jpg"
-              alt="고추바사삭 곱빼기"
-            />
-            <DetailInfo>
-              <SelectBox size="small" placeholder="원산지 정보보기" />
-              <SelectBox size="small" placeholder="영양성분 정보보기" />
-              <SelectBox size="small" placeholder="알레르기 정보보기" />
-            </DetailInfo>
-          </DetailInfoWrap>
-          <DetailInnerWrap>
-            <DetailTextWrap>
-              <BadgeWrap>
-                <Badge shape="new" size="large" />
-                <Badge shape="hot" size="large" />
-                <Badge shape="md" size="large" />
-              </BadgeWrap>
-              <h3>허리바사삭 곱빼기</h3>
-              <span>1초에 한 마리씩 팔리는 허리 바사삭의 양이 2배!</span>
-              <span>
-                <strong>27,000</strong>원
-              </span>
-            </DetailTextWrap>
-            <DetailButtonWrap>
-              <Button content="곱빼기" />
-              <Button content="곱빼기 윙" />
-              <Button content="곱빼기 통다리" />
-            </DetailButtonWrap>
-            <CountryOrigin>
-              <h3>원산지</h3>
-              <span>베이컨:돼지고기[외국산(스페인,미국,브라질 등)]</span>
-            </CountryOrigin>
-            <CountWrap>
-              <Count />
-            </CountWrap>
-            <DetailText>
-              <span>
-                • 본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이
-                상이 할 수 있습니다.
-              </span>
-            </DetailText>
-            <TotalAmount>
-              <span>
-                총 상품금액 : <strong>27,000원</strong>
-              </span>
-            </TotalAmount>
-            <OrderBtnWrap>
-              <Button content="온라인주문" size="medium" />
-            </OrderBtnWrap>
-          </DetailInnerWrap>
-        </DetailWrap>
-      </ContainerInnerWrap>
+      {DetailData?.map(item => {
+        const price = item.productDetail.price
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        const totalPrice = item.totalAmount * countValue;
+        const addComma = num => {
+          return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        };
+        return (
+          <>
+            <ContainerInnerWrap key={item.id}>
+              <h2>{item.productDetail.title}</h2>
+              <DetailWrap>
+                <DetailInfoWrap>
+                  <img
+                    src={item.productDetail.image}
+                    alt={item.productDetail.alt}
+                  />
+                  <DetailInfo>
+                    <DropDown
+                      country="true"
+                      countryInfo={item.productDetail.origin.bacon}
+                    />
+                    <DropDown
+                      nutrient="true"
+                      nutrientInfo={item.productDetail.servingSize}
+                    />
+                  </DetailInfo>
+                </DetailInfoWrap>
+                <DetailInnerWrap>
+                  <DetailTextWrap>
+                    <BadgeWrap>
+                      {item.productDetail.badges.map((badge, index) => {
+                        return <Badge key={index} shape={badge} size="large" />;
+                      })}
+                    </BadgeWrap>
+                    <h3>{item.productDetail.title}</h3>
+                    <span>{item.productDetail.description}</span>
+                    <span>
+                      <strong>{price}</strong>원
+                    </span>
+                  </DetailTextWrap>
+
+                  <RadioGroup
+                    data={item.RadioGroup}
+                    onChange={handleRadioChange}
+                    defaultChecked={item.RadioGroup[0].isChecked}
+                    setRadioData={setRadioData}
+                  />
+
+                  <CountryOrigin>
+                    <h3>원산지</h3>
+                    <span>{item.productDetail.origin.bacon}</span>
+                  </CountryOrigin>
+                  <CountWrap>
+                    <Count setCountValue={setCountValue} />
+                  </CountWrap>
+                  <DetailText>
+                    <span>• {item.productDetail.disclaimer}</span>
+                  </DetailText>
+                  <TotalAmount>
+                    <span>
+                      총 상품금액 : <strong>{addComma(totalPrice)}원</strong>
+                    </span>
+                  </TotalAmount>
+                  <OrderBtnWrap>
+                    <Button content="온라인주문" size="medium" />
+                  </OrderBtnWrap>
+                </DetailInnerWrap>
+              </DetailWrap>
+            </ContainerInnerWrap>
+          </>
+        );
+      })}
     </DetailContainer>
   );
 };
@@ -80,6 +129,7 @@ const DetailContainer = styled.main`
   flex-direction: column;
   height: 100vh;
   margin-top: 200px;
+  margin-bottom: 140px;
 `;
 
 const ContainerInnerWrap = styled.section`
@@ -117,7 +167,7 @@ const DetailInfo = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 5px;
-  gap: 10px;
+  gap: 5px;
 `;
 
 const DetailInnerWrap = styled.div`
