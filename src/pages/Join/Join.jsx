@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import BasicInfo from './components/BasicInfo';
 import AdditionalInfo from './components/AdditionalInfo';
@@ -10,7 +11,6 @@ import PostModal from './components/PostModal';
 import { idDuplicateCheck_test } from '../../API/TEST_API'; //테스트용 api 입니다.
 import { cert_test, basic_test } from '../../API/TEST_API';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 
 const Join = () => {
   /** 회원가입에 필요한 정보를 저장하는 useState를 정의합니다. */
@@ -21,7 +21,7 @@ const Join = () => {
     password: '', //비밀번호
     confirmPassword: '', //비밀번호확인
     email: '', //이메일
-    emailAddress: '', //이메일주소
+    emailAddress: null, //이메일주소
     emailReceptionCheck: false, //이메일이벤트 동의여부
     phoneNum: '', //핸드폰번호
     snsReceptionCheck: false, //sns이벤트 동의여부
@@ -32,7 +32,7 @@ const Join = () => {
     detailedAddress: '', //상세주소
     recommendedId: '', //추천인아이디
     recommendedIdCheck: null, //존재여부 체크
-    gender: 'male',
+    gender: 'male', //성별
     year: '', //생년월일 , 년
     month: '', //생년월일 , 월
     day: '', //생년월일 , 일
@@ -42,20 +42,16 @@ const Join = () => {
     eventApp: null, //이벤트 app수신 체크
     eventEmail: null, //이벤트 email수신 체크
   });
-  console.log(userJoinInfo);
 
   /** 주소검색 모달창을 토글하는 useState를 정의합니다. */
   const [isAddressFind, setIsAddressFind] = useState(false);
 
   /**테스트를 하기위해 서버로 보낸 내가입력한 아이디를 저장하는 useState를 정의합니다.*/
   const [testCheckId, setTestCheckID] = useState(null);
-  console.log(testCheckId);
   /**테스트를 하기위해 서버로 보낸 내가입력한 핸드폰번호를 저장하는 useState를 정의합니다. */
   const [severCertificationNum, setServerCertificationNum] = useState(null);
-  console.log(severCertificationNum);
   /**테스트를 하기위해 서버로 보낸 내가입력한 추천인아이디를 저장하는 useState를 정의합니다. */
   const [testRecommendedId, setTestRecommendedId] = useState(null);
-  console.log(testRecommendedId);
 
   /**
    * useNavigate()를 navigate 변수에 담습니다.
@@ -79,6 +75,9 @@ const Join = () => {
   const alphanumericRegex = /^[a-zA-Z0-9]+$/;
   //영어숫자가 같이 조합됫는지 확인하는정규식
   const alphanumericRegexA = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$/;
+  //패스워드 영문 숫자 특수문자 포함 확인하는 정규식입니다.
+  const passwordRegex =
+    /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>])[a-zA-Z0-9!@#$%^&*(),.?":{}|<>]+$/;
 
   /**
    * 1.아이디 중복체크버튼을 클릭시 실행되는 함수입니다.
@@ -93,6 +92,7 @@ const Join = () => {
     // const response = await customAxios //eslint-disable-line no-unused-vars
     //   .post(JOIN_POST, params) //백엔드 서버 api입니다.
 
+    //Verification 아이디는 6글자 이상 , 영어+숫자조합 , 특수문자는 제외됩니다.
     if (userJoinInfo.id.length < 6) {
       alert('아이디를 6글자이상으로 입력하세요.');
     } else if (!alphanumericRegex.test(userJoinInfo.id)) {
@@ -105,6 +105,7 @@ const Join = () => {
           console.log(response);
           setUserJoinInfo({ ...userJoinInfo, duplicateCheck: response.status });
           setTestCheckID(response.checkId);
+          alert('사용가능한 아이디 입니다.');
         })
         .catch(error => {
           if (error.status === 404) {
@@ -127,8 +128,9 @@ const Join = () => {
   const getCertNumber = () => {
     const { phoneNum } = userJoinInfo;
 
-    if (phoneNum.length <= 10 || phoneNum.length >= 12) {
-      alert('핸드폰번호는 11자리 입니다.');
+    //Verification 핸드폰 번호는 10자리 또는 11자리 이어야합니다.
+    if (phoneNum.length <= 9 || phoneNum.length >= 12) {
+      alert('핸드폰번호는 숫자만 10자리 또는 11자리 입니다.');
     } else {
       // const params = userJoinInfo.phoneNum;
       // const response = await customAxios //eslint-disable-line no-unused-vars
@@ -156,8 +158,9 @@ const Join = () => {
    *  백엔드서버가 구축되어있다면 자식컴포넌트로 이동하는 함수입니다.
    */
   const recommendedIdSubmit = () => {
+    //Verification 추천인 아이디값이 없거나 특수문자가 포함되거나 영어+숫자로 포함된 아이디 인지 확인합니다.
     if (
-      userJoinInfo.recommendedId.length < 6 ||
+      !userJoinInfo.recommendedId ||
       !alphanumericRegex.test(userJoinInfo.recommendedId) ||
       !alphanumericRegexA.test(userJoinInfo.recommendedId)
     ) {
@@ -185,12 +188,67 @@ const Join = () => {
     setIsAddressFind(!isAddressFind);
   };
 
+  /**전 단계로 돌아가는 네비게이트는 담은 함수입니다. */
   const backPage = () => {
     navigate(-1);
   };
 
-  const joinInfoSubmit = () => {
-    navigate(-1);
+  /**최종 가입하기 버튼시 제출하기전 Verification에 통과하면 회원가입이 성공하는 함수입니다. */
+  const joinInfoSubmit = event => {
+    event.preventDefault();
+    const {
+      name,
+      id,
+      duplicateCheck,
+      password,
+      confirmPassword,
+      email,
+      emailAddress,
+      phoneNum,
+      certification,
+      year,
+      month,
+      day,
+      termsOfUseCheck,
+      ageCheck,
+      recommendedId,
+      recommendedIdCheck,
+    } = userJoinInfo;
+    if (name.length < 1) {
+      alert('이름에 값을 입력하세요.');
+    } else if (testCheckId !== id) {
+      alert('아이디 중복체크를 해주세요.');
+    } else if (duplicateCheck !== 1) {
+      alert('아이디 중복체크를 해주세요.');
+    } else if (password !== confirmPassword) {
+      alert('비밀번호가 다릅니다.');
+    } else if (!passwordRegex.test(password, confirmPassword)) {
+      alert('비밀번호는 영문/숫자/특수문자가 포함되어야합니다.');
+    } else if (password.length <= 10) {
+      alert('비밀번호는 11자리 이상이어야 합니다.');
+    } else if (email.length < 1) {
+      alert('이메일 아이디를 기입해주세요.');
+    } else if (!emailAddress) {
+      alert('이메일 주소를 선택 해주세요.');
+    } else if (!phoneNum) {
+      alert('핸드폰 번호를 입력해주세요.');
+    } else if (certification !== 200) {
+      alert('휴대폰 인증절차를 진행해주세요.');
+    } else if (!year || !month || !day) {
+      alert('생년월일을 선택해주세요.');
+    } else if (!termsOfUseCheck || termsOfUseCheck === false) {
+      alert('필수 이용약관을 체크하세요.');
+    } else if (!ageCheck || ageCheck === false) {
+      alert('본인 14세이상 체크란을  체크하세요.');
+    } else if (
+      recommendedId &&
+      (recommendedId !== testRecommendedId || recommendedIdCheck !== 200)
+    ) {
+      alert('추천인 아이디 확인을 다시해주세요.');
+    } else {
+      navigate('/');
+      alert('가입성공');
+    }
   };
 
   return (
@@ -198,7 +256,7 @@ const Join = () => {
       <JoinContainerWrapSection>
         <JoinHeading>회원가입</JoinHeading>
 
-        <FormContainerForm>
+        <FormContainerForm onSubmit={joinInfoSubmit}>
           <Legend>회원가입 유저정보</Legend>
 
           {/* 기본정보 컴포넌트 */}
@@ -241,7 +299,7 @@ const Join = () => {
             <Button
               color="black"
               content="가입하기"
-              type="button"
+              type="submit"
               onClick={joinInfoSubmit}
             />
           </FormSelectBtnInner>
@@ -296,8 +354,3 @@ const FormSelectBtnInner = styled.div`
   width: 400px;
   margin: 50px auto;
 `;
-
-//TODO:1.인풋에 아이디를 입력 하지않고 중복체크 버튼을 눌렀을때 값을 입력하라고 해야하고 글자수 제한등 Verification 체크를 해야한다.
-//TODO:2.비밀번호(password)값 비밀번호확인(confirmPassword)값이 같은지 확인해야한다 , 숫자 특수문자 포함 Verification 체크
-//TODO:3.추천아이디에 값이 없다면 버튼이 안되어야한다.
-//TODO:4.모든 Verification 체크

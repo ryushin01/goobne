@@ -143,7 +143,7 @@ const BirthDateSelectBoxInnerDiv = styled.div`
 `;
 /** 부가정보 스타일 하단 끝 */
 
-// userInfo 1차 데이터 목록 체크
+// userJoinInfo 1차 데이터 목록 체크
 
 // name:                              // 이름                                                    ok 필수
 // id:                               // 아이디                                                    ok 필수
