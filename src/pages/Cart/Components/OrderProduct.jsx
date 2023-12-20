@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
-import Count from '../../../components/Count/Count';
-import styled from 'styled-components';
 import { API } from '../../../config';
 import { customAxios } from '../../../API/API';
+import Count from '../../../components/Count/Count';
+import styled from 'styled-components';
 
 const OrderProduct = () => {
+  // orderProductData(상품정보) 받아오기 위한 state
   const [orderProductData, setOrderProductData] = useState([]);
-  const [deliveryFee, setDeliveryFee] = useState(0); // 전체 사용자 수
+  // deliveryFee(배달비)를 받아오기 위한 state
+  const [deliveryFee, setDeliveryFee] = useState(0);
 
   // 페이지 진입시 orderProductRequest 함수를 실행시킴
   useEffect(() => {
@@ -15,6 +17,7 @@ const OrderProduct = () => {
 
   // customAxios를 이용하여 CART_PRODUCT라는 json파일에 대한 데이터를 받아옴
   // 데이터를 성공적으로 받아오면 setOrderProductData 통해 orderProductData 상태를 업데이트
+  // 마찬가지로 setDeliveryFee를 통해 deliveryFee를 띄움
   // 에러발생시 경고창을 띄움
   const orderProductRequest = async () => {
     const response = await customAxios //eslint-disable-line no-unused-vars

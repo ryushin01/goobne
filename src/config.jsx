@@ -12,4 +12,5 @@ export const API = {
   MENU_CHIP: `/MenuChipData.json`,
   POPULAR_CHIP: `/PopularChipData.json`,
   CART_PRODUCT: `/CartProductData.json`,
+  CART_INFO: `/CartInfoData.json`,
 };
