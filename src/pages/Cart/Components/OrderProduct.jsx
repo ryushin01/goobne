@@ -86,11 +86,22 @@ const OrderProduct = () => {
       <tfoot>
         <OrderTableFoot>
           <td colSpan={3}>
-            <span>주문금액 {`${orderAmount.toLocaleString('ko-KR')} 원`}</span>
-            <span>배송비 {`${deliveryFee.toLocaleString('ko-KR')} 원`}</span>
-            <span>
-              결제 예상 금액 {`${totalAmount.toLocaleString('ko-KR')} 원`}
-            </span>
+            <TotalPriceWrap>
+              <span>
+                주문금액&nbsp;{`${orderAmount.toLocaleString('ko-KR')} 원`}
+              </span>
+              -<span>할인금액 0원</span>+
+              <span>
+                배송비&nbsp;{`${deliveryFee.toLocaleString('ko-KR')} 원`}
+              </span>
+              =
+              <span>
+                결제 예상 금액&nbsp;
+                <TotalAmountBox>{`${totalAmount.toLocaleString(
+                  'ko-KR',
+                )} 원`}</TotalAmountBox>
+              </span>
+            </TotalPriceWrap>
           </td>
         </OrderTableFoot>
       </tfoot>
@@ -112,13 +123,19 @@ const OrderProductTable = styled.table`
 `;
 
 const OrderTableHead = styled.tr`
+  border-bottom: 1px solid ${props => props.theme.grayscaleC};
+
   & > th {
     padding: 12px 0;
   }
 `;
 
 const OrderTableBody = styled.tr`
-  border-top: 1px solid ${props => props.theme.grayscaleC};
+  border-bottom: 1px solid ${props => props.theme.grayscaleC};
+
+  &:last-child {
+    border-bottom: 2px solid ${props => props.theme.grayscaleC};
+  }
 
   & > td {
     padding: 20px 10px;
@@ -143,9 +160,28 @@ const OrderCountWrap = styled.div`
 const OrderPriceWrap = styled.div``;
 
 const OrderTableFoot = styled.tr`
-  padding: 40px 0;
-  border: 1px solid;
+  background-color: #f6e6d9;
 `;
+
+const TotalPriceWrap = styled.div`
+  margin: 40px 0;
+  font-size: 17px;
+  font-weight: 700;
+  text-align: center;
+
+  & > span {
+    margin: 0 20px;
+
+    &:last-child {
+      font-size: 20px;
+    }
+  }
+`;
+
+const TotalAmountBox = styled.span`
+  color: ${props => props.theme.primaryColor};
+`;
+
 const ProductDeleteBtnWrap = styled.div`
   width: 28px;
   top: 50%;
