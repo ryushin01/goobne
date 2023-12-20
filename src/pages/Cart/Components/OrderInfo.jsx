@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { customAxios } from '../../../API/API';
 import { API } from '../../../config';
 import styled from 'styled-components';
@@ -16,7 +15,7 @@ const OrderInfo = () => {
   // 데이터를 성공적으로 받아오면 setOrderInfoData 통해 orderInfoData 상태를 업데이트
   // 에러발생시 경고창을 띄움
   const orderInfoRequest = async () => {
-    const response = await customAxios //eslint-disable-line no-unused-vars
+    const request = await customAxios //eslint-disable-line no-unused-vars
       .get(API.CART_INFO)
       .then(response => {
         setOrderInfoData(response.data.result);

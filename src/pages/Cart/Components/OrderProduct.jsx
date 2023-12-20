@@ -20,7 +20,7 @@ const OrderProduct = () => {
   // 마찬가지로 setDeliveryFee를 통해 deliveryFee를 띄움
   // 에러발생시 경고창을 띄움
   const orderProductRequest = async () => {
-    const response = await customAxios //eslint-disable-line no-unused-vars
+    const request = await customAxios //eslint-disable-line no-unused-vars
       .get(API.CART_PRODUCT)
       .then(response => {
         setOrderProductData(response.data.result.products);
