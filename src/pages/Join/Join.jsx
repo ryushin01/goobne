@@ -45,7 +45,6 @@ const Join = () => {
 
   /** 주소검색 모달창을 토글하는 useState를 정의합니다. */
   const [isAddressFind, setIsAddressFind] = useState(false);
-
   /**테스트를 하기위해 서버로 보낸 내가입력한 아이디를 저장하는 useState를 정의합니다.*/
   const [testCheckId, setTestCheckID] = useState(null);
   /**테스트를 하기위해 서버로 보낸 내가입력한 핸드폰번호를 저장하는 useState를 정의합니다. */
@@ -57,6 +56,14 @@ const Join = () => {
    * useNavigate()를 navigate 변수에 담습니다.
    */
   const navigate = useNavigate();
+
+  //특수문자 포함했는지 확인하는 정규식 입니다.
+  const alphanumericRegex = /^[a-zA-Z0-9]+$/;
+  //영어/숫자가 같이 조합되었는지 확인하는 정규식 입니다.
+  const alphanumericRegexA = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$/;
+  //패스워드 영문 숫자 특수문자 포함 확인하는 정규식입니다.
+  const passwordRegex =
+    /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>])[a-zA-Z0-9!@#$%^&*(),.?":{}|<>]+$/;
 
   /**
    * 1.onChange 이벤트가 발생할때마다 실행되는 함수입니다.
@@ -70,14 +77,6 @@ const Join = () => {
     const { name, value } = event.target;
     setUserJoinInfo({ ...userJoinInfo, [name]: value });
   };
-
-  //특수문자 포함했는지 확인하는 정규식
-  const alphanumericRegex = /^[a-zA-Z0-9]+$/;
-  //영어숫자가 같이 조합됫는지 확인하는정규식
-  const alphanumericRegexA = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$/;
-  //패스워드 영문 숫자 특수문자 포함 확인하는 정규식입니다.
-  const passwordRegex =
-    /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>])[a-zA-Z0-9!@#$%^&*(),.?":{}|<>]+$/;
 
   /**
    * 1.아이디 중복체크버튼을 클릭시 실행되는 함수입니다.
