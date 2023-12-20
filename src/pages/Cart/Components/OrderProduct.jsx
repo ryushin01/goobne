@@ -77,7 +77,7 @@ const OrderProduct = () => {
             </td>
             <td>
               <OrderPriceWrap>
-                {`${price.toLocaleString('ko-KR')} 원`}
+                <span>{`${price.toLocaleString('ko-KR')}`}</span> 원
               </OrderPriceWrap>
               <ProductDeleteBtnWrap>
                 <img
@@ -138,6 +138,7 @@ const OrderTableHead = styled.tr`
 
 const OrderTableBody = styled.tr`
   border-bottom: 1px solid ${props => props.theme.grayscaleC};
+  position: relative;
 
   &:last-child {
     border-bottom: 2px solid ${props => props.theme.grayscaleC};
@@ -145,7 +146,7 @@ const OrderTableBody = styled.tr`
 
   & > td {
     padding: 20px 10px;
-    position: relative;
+    vertical-align: middle;
   }
 `;
 
@@ -159,11 +160,17 @@ const OrderProductImg = styled.div`
 `;
 
 const OrderCountWrap = styled.div`
-  ${FlexCenter};
   width: 110px;
+  margin: 0 auto;
 `;
 
-const OrderPriceWrap = styled.div``;
+const OrderPriceWrap = styled.div`
+  text-align: center;
+
+  & > span {
+    font-weight: 700;
+  }
+`;
 
 const OrderTableFoot = styled.tr`
   background-color: #f6e6d9;
@@ -190,7 +197,7 @@ const TotalAmountBox = styled.span`
 
 const ProductDeleteBtnWrap = styled.div`
   width: 28px;
-  top: 50%;
+  top: 40%;
   right: 10px;
   position: absolute;
 `;
