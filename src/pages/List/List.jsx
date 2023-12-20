@@ -6,7 +6,6 @@ import styled from 'styled-components';
 
 const List = () => {
   const [productList, setProductList] = useState('');
-  console.log(productList);
 
   useEffect(() => {
     requestProductListItemDataGet();

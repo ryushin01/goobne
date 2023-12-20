@@ -35,6 +35,11 @@ const Join = () => {
     year: '', //생년월일 , 년
     month: '', //생년월일 , 월
     day: '', //생년월일 , 일
+    termsOfUseCheck: null, //이용약관 동의여부
+    ageCheck: null, // 나이체크 여부
+    eventSms: null, // 이벤트 sns수신 체크
+    eventApp: null, //이벤트 app수신 체크
+    eventEmail: null, //이벤트 email수신 체크
   });
   console.log(userJoinInfo);
 

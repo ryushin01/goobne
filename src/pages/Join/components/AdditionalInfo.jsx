@@ -149,3 +149,8 @@ const BirthDateSelectBoxInnerDiv = styled.div`
 // BirthDate :    //  생년월일                                                      필수
 // recommendedId:  // 추천아이디                                                  ok 선택
 // recommendedIdCheck:  // 추천아이디체크여부  200:있다 null:없다.                    ok 선택
+// termsOfUseCheck: null, //이용약관 동의여부     false:안했다. true:했다             ok 필수
+// ageCheck: null, // 나이체크 여부             false:안했다.  true:했다              ok 필수
+// eventSms: null, // 이벤트 sns수신 체크        false:거부    true:동의              ok 선택
+// eventApp: null, //이벤트 app수신 체크         false:거부    true:동의              ok 선택
+// eventEmail: null, //이벤트 email수신 체크     false:거부    true:동의              ok 선택
