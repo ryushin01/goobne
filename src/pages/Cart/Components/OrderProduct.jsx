@@ -6,6 +6,7 @@ import { customAxios } from '../../../API/API';
 
 const OrderProduct = () => {
   const [orderProductData, setOrderProductData] = useState([]);
+  const [deliveryFee, setDeliveryFee] = useState(0); // 전체 사용자 수
 
   // 페이지 진입시 orderProductRequest 함수를 실행시킴
   useEffect(() => {
@@ -19,7 +20,8 @@ const OrderProduct = () => {
     const response = await customAxios //eslint-disable-line no-unused-vars
       .get(API.CART_PRODUCT)
       .then(response => {
-        setOrderProductData(response.data.result);
+        setOrderProductData(response.data.result.products);
+        setDeliveryFee(response.data.result.deliveryFee);
       })
       .catch(error => {
         if (error) {
@@ -27,6 +29,15 @@ const OrderProduct = () => {
         }
       });
   };
+
+  // 합계를 나타내는 reduce를 사용하여 주문 금액을 합산함
+  const orderAmount = orderProductData.reduce(
+    (total, { price }) => total + price,
+    0,
+  );
+
+  // 배송비를 포함한 총 금액
+  const totalAmount = orderAmount + deliveryFee;
 
   return (
     <OrderProductTable>
@@ -59,7 +70,9 @@ const OrderProduct = () => {
               </OrderCountWrap>
             </td>
             <td>
-              <OrderPrice>{price}</OrderPrice>
+              <OrderPriceWrap>
+                {`${price.toLocaleString('ko-KR')} 원`}
+              </OrderPriceWrap>
               <ProductDeleteBtnWrap>
                 <img
                   src="./public/images/ProductDeleteButton.png"
@@ -70,25 +83,32 @@ const OrderProduct = () => {
           </OrderTableBody>
         ))}
       </tbody>
+      <tfoot>
+        <OrderTableFoot>
+          <td colSpan={3}>
+            <span>주문금액 {`${orderAmount.toLocaleString('ko-KR')} 원`}</span>
+            <span>배송비 {`${deliveryFee.toLocaleString('ko-KR')} 원`}</span>
+            <span>
+              결제 예상 금액 {`${totalAmount.toLocaleString('ko-KR')} 원`}
+            </span>
+          </td>
+        </OrderTableFoot>
+      </tfoot>
     </OrderProductTable>
   );
 };
 
 export default OrderProduct;
 
-// const FlexCenter = `
-//   display: flex;
-//   align-items: center;
-// `;
+const FlexCenter = `
+  display: flex;
+  align-items: center;
+`;
 
 const OrderProductTable = styled.table`
   width: 100%;
   font-size: 13px;
   border-bottom: 1px solid ${props => props.theme.grayscaleH};
-
-  col {
-    width: ${props => props.width};
-  }
 `;
 
 const OrderTableHead = styled.tr`
@@ -102,12 +122,12 @@ const OrderTableBody = styled.tr`
 
   & > td {
     padding: 20px 10px;
+    position: relative;
   }
 `;
 
 const OrderProductWrap = styled.div`
-  display: flex;
-  align-items: center;
+  ${FlexCenter};
 `;
 
 const OrderProductImg = styled.div`
@@ -116,18 +136,19 @@ const OrderProductImg = styled.div`
 `;
 
 const OrderCountWrap = styled.div`
+  ${FlexCenter};
   width: 110px;
 `;
 
-const OrderPrice = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+const OrderPriceWrap = styled.div``;
 
+const OrderTableFoot = styled.tr`
+  padding: 40px 0;
+  border: 1px solid;
+`;
 const ProductDeleteBtnWrap = styled.div`
   width: 28px;
   top: 50%;
-  right: 0;
+  right: 10px;
   position: absolute;
 `;
