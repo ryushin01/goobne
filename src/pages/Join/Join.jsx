@@ -31,6 +31,7 @@ const Join = () => {
     detailedAddress: '', //상세주소
     recommendedId: '', //추천인아이디
     recommendedIdCheck: null, //존재여부 체크
+    gender: 'male',
     year: '', //생년월일 , 년
     month: '', //생년월일 , 월
     day: '', //생년월일 , 일
@@ -239,28 +240,6 @@ const FormSelectBtnInner = styled.div`
   width: 400px;
   margin: 50px auto;
 `;
-
-// userInfo 1차 데이터 목록 체크
-
-// name:                // 이름                                                  ok 필수
-// id:                 // 아이디                                                 ok 필수
-// duplicateCheck:      // 중복체크여부  1:했다 0:안했다.                             ok 필수
-// password:             //비밀번호                                               ok 필수
-// confirmPassword:        //비밀번호 확인                                         ok 필수
-// email:                // 이메일아이디                                           ok 필수
-// emailAddress:         // 이메일뒤에 주소                                            필수
-// emailReceptionCheck     // 이벤트수신여부 false:미수신 true:수신                   ok  선택
-// snsReceptionCheck       // 이벤트수신여부 false:미수신 true:수신                  ok  선택
-// phoneNum:               //핸드폰번호                                          ok 필수
-// certificationNum  // 인증번호입력                                              ok 필수
-// certification:   //인증체크여부         200:했다 null:안했다.                     ok 필수
-// zipCode:       // 우편주소                                                    ok 선택
-// Address:      //주소                                                         ok 선택
-// detailedAddress  //상세주소                                                   ok 선택
-// gender:         // 성별                                                         필수
-// BirthDate :    //  생년월일                                                      필수
-// recommendedId:  // 추천아이디                                                  ok 선택
-// recommendedIdCheck:  // 추천아이디체크여부  200:있다 null:없다.                    ok 선택
 
 //TODO:1.인풋에 아이디를 입력 하지않고 중복체크 버튼을 눌렀을때 값을 입력하라고 해야하고 글자수 제한등 Verification 체크를 해야한다.
 //TODO:2.비밀번호(password)값 비밀번호확인(confirmPassword)값이 같은지 확인해야한다 , 숫자 특수문자 포함 Verification 체크

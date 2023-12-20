@@ -1,6 +1,7 @@
 import Radio from '../../../components/Radio/Radio';
 import SelectBox from '../../../components/SelectBox/SelectBox';
 import { getDays, getMonths, getYears } from '../../../data/BirthData';
+import { RADIO_GROUP_DATA } from '../../../data/RadioGroupData';
 import styled from 'styled-components';
 
 /**
@@ -20,6 +21,17 @@ const AdditionalInfo = ({ userJoinInfo, setUserJoinInfo }) => {
   const months = getMonths();
   const days = getDays();
 
+  const Click = id => {
+    RADIO_GROUP_DATA.map(data => {
+      if (data.id === id) {
+        setUserJoinInfo({ ...userJoinInfo, gender: data.value });
+        return { ...data, defaultChecked: true };
+      } else {
+        return { ...data, defaultChecked: false };
+      }
+    });
+  };
+
   return (
     <AdditionalInfoWrapSection>
       <h3>부가정보</h3>
@@ -29,9 +41,22 @@ const AdditionalInfo = ({ userJoinInfo, setUserJoinInfo }) => {
           <span>성별</span>
           <span className="required">&nbsp;*</span>
         </div>
+
         <GenderRadioInnerDiv>
-          <Radio text="남자" defaultChecked={true} />
-          <Radio text="여자" defaultChecked={true} />
+          {RADIO_GROUP_DATA.map(data => {
+            const { id, text, defaultChecked, name } = data;
+            return (
+              <Radio
+                key={id}
+                text={text}
+                name={name}
+                defaultChecked={defaultChecked}
+                onChange={() => {
+                  Click(id);
+                }}
+              />
+            );
+          })}
         </GenderRadioInnerDiv>
       </GenderSelectWrapDiv>
 
@@ -102,3 +127,25 @@ const BirthDateSelectBoxInnerDiv = styled.div`
   gap: 5px;
 `;
 /** 부가정보 스타일 하단 끝 */
+
+// userInfo 1차 데이터 목록 체크
+
+// name:                // 이름                                                  ok 필수
+// id:                 // 아이디                                                 ok 필수
+// duplicateCheck:      // 중복체크여부  1:했다 0:안했다.                             ok 필수
+// password:             //비밀번호                                               ok 필수
+// confirmPassword:        //비밀번호 확인                                         ok 필수
+// email:                // 이메일아이디                                           ok 필수
+// emailAddress:         // 이메일뒤에 주소                                            필수
+// emailReceptionCheck     // 이벤트수신여부 false:미수신 true:수신                   ok  선택
+// snsReceptionCheck       // 이벤트수신여부 false:미수신 true:수신                  ok  선택
+// phoneNum:               //핸드폰번호                                          ok 필수
+// certificationNum  // 인증번호입력                                              ok 필수
+// certification:   //인증체크여부         200:했다 null:안했다.                     ok 필수
+// zipCode:       // 우편주소                                                    ok 선택
+// Address:      //주소                                                         ok 선택
+// detailedAddress  //상세주소                                                   ok 선택
+// gender:         // 성별                                                      ok 필수
+// BirthDate :    //  생년월일                                                      필수
+// recommendedId:  // 추천아이디                                                  ok 선택
+// recommendedIdCheck:  // 추천아이디체크여부  200:있다 null:없다.                    ok 선택
