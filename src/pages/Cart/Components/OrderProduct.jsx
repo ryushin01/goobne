@@ -33,11 +33,14 @@ const OrderProduct = () => {
       });
   };
 
-  // 합계를 나타내는 reduce를 사용하여 주문 금액을 합산함
-  const orderAmount = orderProductData.reduce(
-    (total, { price }) => total + price,
-    0,
-  );
+  // 여러 값을 하나로 합치는 reduce 함수를 사용
+  // total: { price }들의 누적값으로, {price}가 더해질 때마다 업데이트 됨
+  // { price }: 각 상품의 개별 가격
+  const orderAmount = orderProductData.reduce((total, { price }) => {
+    // 현재까지의 누적된 금액에 각 제품의 개별 가격을 더하여 총 상품금액을 도출함
+    return total + price;
+    // 누적값인 total의 초기값은 0
+  }, 0);
 
   // 배송비를 포함한 총 금액
   const totalAmount = orderAmount + deliveryFee;
