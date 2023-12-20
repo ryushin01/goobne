@@ -67,9 +67,27 @@ const AdditionalInfo = ({ userJoinInfo, setUserJoinInfo }) => {
         </div>
 
         <BirthDateSelectBoxInnerDiv>
-          <SelectBox data={years} value="선택" />
-          <SelectBox data={months} value="선택" />
-          <SelectBox data={days} value="선택" />
+          <SelectBox
+            data={years}
+            value="선택"
+            name="year"
+            setUserJoinInfo={setUserJoinInfo}
+            userJoinInfo={userJoinInfo}
+          />
+          <SelectBox
+            data={months}
+            value="선택"
+            name="month"
+            setUserJoinInfo={setUserJoinInfo}
+            userJoinInfo={userJoinInfo}
+          />
+          <SelectBox
+            data={days}
+            value="선택"
+            name="days"
+            setUserJoinInfo={setUserJoinInfo}
+            userJoinInfo={userJoinInfo}
+          />
         </BirthDateSelectBoxInnerDiv>
       </BirthDateWrapDiv>
     </AdditionalInfoWrapSection>
@@ -130,27 +148,29 @@ const BirthDateSelectBoxInnerDiv = styled.div`
 
 // userInfo 1차 데이터 목록 체크
 
-// name:                // 이름                                                  ok 필수
-// id:                 // 아이디                                                 ok 필수
-// duplicateCheck:      // 중복체크여부  1:했다 0:안했다.                             ok 필수
-// password:             //비밀번호                                               ok 필수
-// confirmPassword:        //비밀번호 확인                                         ok 필수
-// email:                // 이메일아이디                                           ok 필수
-// emailAddress:         // 이메일뒤에 주소                                            필수
-// emailReceptionCheck     // 이벤트수신여부 false:미수신 true:수신                   ok  선택
-// snsReceptionCheck       // 이벤트수신여부 false:미수신 true:수신                  ok  선택
-// phoneNum:               //핸드폰번호                                          ok 필수
-// certificationNum  // 인증번호입력                                              ok 필수
-// certification:   //인증체크여부         200:했다 null:안했다.                     ok 필수
-// zipCode:       // 우편주소                                                    ok 선택
-// Address:      //주소                                                         ok 선택
-// detailedAddress  //상세주소                                                   ok 선택
-// gender:         // 성별                                                      ok 필수
-// BirthDate :    //  생년월일                                                      필수
-// recommendedId:  // 추천아이디                                                  ok 선택
-// recommendedIdCheck:  // 추천아이디체크여부  200:있다 null:없다.                    ok 선택
-// termsOfUseCheck: null, //이용약관 동의여부     false:안했다. true:했다             ok 필수
-// ageCheck: null, // 나이체크 여부             false:안했다.  true:했다              ok 필수
-// eventSms: null, // 이벤트 sns수신 체크        false:거부    true:동의              ok 선택
-// eventApp: null, //이벤트 app수신 체크         false:거부    true:동의              ok 선택
-// eventEmail: null, //이벤트 email수신 체크     false:거부    true:동의              ok 선택
+// name:                              // 이름                                                    ok 필수
+// id:                               // 아이디                                                    ok 필수
+// duplicateCheck:                   // 중복체크여부                1:했다 0:안했다.                  ok 필수
+// password:                            //비밀번호                                                ok 필수
+// confirmPassword:                   //비밀번호 확인                                               ok 필수
+// email:                             // 이메일아이디                                               ok 필수
+// emailReceptionCheck                // 이벤트수신여부           false:미수신 true:수신               ok 선택
+// snsReceptionCheck                  // 이벤트수신여부           false:미수신 true:수신               ok 선택
+// phoneNum:                          //핸드폰번호                                                  ok 필수
+// certificationNum                   // 인증번호입력                                              ok 필수
+// certification:                     //인증체크여부                200:했다 null:안했다.              ok 필수
+// zipCode:                           // 우편주소                                                  ok 선택
+// Address:                           //주소                                                      ok 선택
+// detailedAddress                    //상세주소                                                   ok 선택
+// gender:                            // 성별                                                     ok 필수
+// emailAddress:                      // 이메일뒤에 주소                                                 필수
+// year: '',                          //생년월일 , 년                                                   선택
+// month: '',                          //생년월일 , 월                                                  선택
+// day: '',                           //생년월일 , 일                                                   선택
+// recommendedId:                      // 추천아이디                                                  ok 선택
+// recommendedIdCheck:                // 추천아이디체크여부          200:있다 null:없다.                  ok 선택
+// termsOfUseCheck: null,             //이용약관 동의여부            false:안했다. true:했다              ok 필수
+// ageCheck: null,                    // 나이체크 여부             false:안했다.  true:했다              ok 필수
+// eventSms: null,                    // 이벤트 sns수신 체크        false:거부    true:동의              ok 선택
+// eventApp: null,                    //이벤트 app수신 체크         false:거부    true:동의              ok 선택
+// eventEmail: null,                  //이벤트 email수신 체크       false:거부    true:동의              ok 선택

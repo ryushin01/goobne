@@ -27,7 +27,7 @@ const Join = () => {
     certificationNum: '', //인증번호
     certification: null, //인증번호확인여부
     address: '', //주소
-    zipCode: '',
+    zipCode: '', //우편번호
     detailedAddress: '', //상세주소
     recommendedId: '', //추천인아이디
     recommendedIdCheck: null, //존재여부 체크
@@ -47,13 +47,13 @@ const Join = () => {
   const [isAddressFind, setIsAddressFind] = useState(false);
 
   /**테스트를 하기위해 서버로 보낸 내가입력한 아이디를 저장하는 useState를 정의합니다.*/
-  const [testCheckId, setTestCheckID] = useState('');
+  const [testCheckId, setTestCheckID] = useState(null);
   console.log(testCheckId);
   /**테스트를 하기위해 서버로 보낸 내가입력한 핸드폰번호를 저장하는 useState를 정의합니다. */
   const [severCertificationNum, setServerCertificationNum] = useState(null);
   console.log(severCertificationNum);
   /**테스트를 하기위해 서버로 보낸 내가입력한 추천인아이디를 저장하는 useState를 정의합니다. */
-  const [testRecommendedId, setTestRecommendedId] = useState('');
+  const [testRecommendedId, setTestRecommendedId] = useState(null);
   console.log(testRecommendedId);
 
   /**

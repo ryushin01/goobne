@@ -5,7 +5,7 @@ import styled from 'styled-components';
  * SelectBox Component
  * @param data SelectBox에 들어갈 Data를 props로 받습니다.
  */
-const SelectBox = ({ data, value }) => {
+const SelectBox = ({ data, value, name, setUserJoinInfo, userJoinInfo }) => {
   /** SelectBox를 onClick했을 때 ul부분을 open/close 하기 위한 state입니다. */
   const [open, setOpen] = useState(false);
   /** SelectBox의 선택된 option 값을 저장하기 위한 state입니다. */
@@ -46,6 +46,12 @@ const SelectBox = ({ data, value }) => {
     e.preventDefault();
     setCurrentValue(e.target.textContent);
     setOpen(false);
+    // setUserJoinInfo({
+    //   ...userJoinInfo,
+    //   month: e.target.textContent,
+    //   day: e.target.textContent,
+    //   year: e.target.textContent,
+    // });
   };
 
   return (
@@ -53,6 +59,7 @@ const SelectBox = ({ data, value }) => {
       onClick={handleOpen} // SelectBox를 클릭했을 때 open/close를 위한 함수입니다.
       className={open && 'open'} // open이 true라면 open 클래스를 추가합니다.
       ref={selectBoxRef} // selectBoxRef를 이용하여 외부를 클릭했는지 확인합니다.
+      name={name}
     >
       <span>{currentValue}</span>
       <ul>
