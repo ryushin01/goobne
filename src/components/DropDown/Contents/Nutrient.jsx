@@ -1,6 +1,18 @@
 import styled, { css } from 'styled-components';
 
-const Nutrient = ({ open }) => {
+const Nutrient = ({ open, nutrientInfo }) => {
+  const {
+    amountPerServing,
+    calories,
+    carbohydrates,
+    cholesterol,
+    fat,
+    protein,
+    saturatedFat,
+    sodium,
+    sugars,
+    transFat,
+  } = nutrientInfo;
   return (
     <DropDownOption className={open && 'open'}>
       <CountryOriginTitleWrap>
@@ -16,45 +28,45 @@ const Nutrient = ({ open }) => {
         <thead>
           <tr>
             <th scope="col">1회제공량</th>
-            <th scope="col">143g(2조각)</th>
+            <th scope="col">{amountPerServing}</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>열량(kcal)</td>
-            <td>455</td>
+            <td>{calories}</td>
           </tr>
           <tr>
             <td>나트륨(mg)</td>
-            <td>692</td>
+            <td>{sodium}</td>
           </tr>
           <tr>
             <td>탄수화물(g)</td>
-            <td>35</td>
+            <td>{carbohydrates}</td>
           </tr>
           <tr>
             <td>당류(g)</td>
-            <td>4</td>
+            <td>{sugars}</td>
           </tr>
           <tr>
             <td>지방(g)</td>
-            <td>26</td>
+            <td>{fat}</td>
           </tr>
           <tr>
             <td>트랜스지방(g)</td>
-            <td>0.3</td>
+            <td>{transFat}</td>
           </tr>
           <tr>
             <td>포화지방(g)</td>
-            <td>12</td>
+            <td>{saturatedFat}</td>
           </tr>
           <tr>
             <td>콜레스테롤(mg)</td>
-            <td>33</td>
+            <td>{cholesterol}</td>
           </tr>
           <tr>
             <td>단백질(g)</td>
-            <td>20</td>
+            <td>{protein}</td>
           </tr>
         </tbody>
       </NutrientContainer>
