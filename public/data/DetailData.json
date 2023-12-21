@@ -26,7 +26,7 @@
           "protein": 20
         }
       },
-      "RadioGroup": [
+      "Radio": [
         { "id": 1, "name": "Detail", "label": "한마리", "isChecked": true },
         { "id": 2, "name": "Detail", "label": "순살", "isChecked": false },
         { "id": 3, "name": "Detail", "label": "윙", "isChecked": false },
