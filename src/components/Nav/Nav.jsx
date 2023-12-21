@@ -86,6 +86,7 @@ const Nav = ({ navToggle, setNavToggle }) => {
     const response = await customAxios //eslint-disable-line no-unused-vars
       .get(API.NAV)
       .then(response => {
+        console.log(response);
         setNavListData(response.data.result);
       })
       .catch(error => {

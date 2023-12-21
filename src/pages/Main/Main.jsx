@@ -34,7 +34,7 @@ const Main = () => {
   return (
     <MainContainer>
       <BigBanner />
-      <Band scrollY={scrollY} />
+      <OvenMenu scrollY={scrollY} />
       <GoobNews />
       <GoobStar />
       <Goobtube />
