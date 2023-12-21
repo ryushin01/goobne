@@ -99,9 +99,6 @@ const Detail = () => {
                 <RadioGroup
                   data={currentProductDetailData?.option}
                   onChange={handleRadioChange}
-                  // defaultChecked={
-                  //   currentProductDetailData?.option[0]?.isChecked
-                  // }
                   setRadioData={setRadioData}
                 />
 

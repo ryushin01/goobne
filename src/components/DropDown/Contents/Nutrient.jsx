@@ -145,7 +145,7 @@ const NutrientContainer = styled.table`
     font-size: 0;
   }
 
-  & > thead > tr > th {
+  & thead th {
     background-color: ${props => props.theme.grayscaleH};
     color: ${props => props.theme.grayscaleA};
     padding: 10px 0;
