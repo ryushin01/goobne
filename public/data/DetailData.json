@@ -2,38 +2,210 @@
   "result": [
     {
       "id": 1,
-      "productDetail": {
-        "title": "허리바사삭 곱빼기",
-        "image": "../goobne/images/main_chicken_01.jpg",
-        "alt": "허리바사삭 곱빼기 이미지",
-        "badges": ["new", "hot", "md"],
-        "description": "1초에 한 마리씩 팔리는 허리 바사삭의 양이 2배!",
-        "price": 27000,
-        "origin": {
-          "bacon": "돼지고기[외국산(스페인,미국,브라질 등)]"
+      "totalAmount": 27000,
+      "mainTitle": "허리바사삭 곱빼기",
+      "productDetail": [
+        {
+          "title": "허리바사삭 곱빼기",
+          "image": "../goobne/images/main_chicken_01.jpg",
+          "alt": "허리바사삭 곱빼기 이미지",
+          "badges": ["new", "hot", "md"],
+          "description": "1초에 한 마리씩 팔리는 허리 바사삭의 양이 2배!",
+          "price": 27000,
+          "origin": {
+            "bacon": "돼지고기[외국산(스페인,미국,브라질 등)]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "143g (2조각)",
+            "calories": 455,
+            "sodium": 692,
+            "carbohydrates": 35,
+            "sugars": 4,
+            "fat": 26,
+            "transFat": 0.3,
+            "saturatedFat": 12,
+            "cholesterol": 33,
+            "protein": 20
+          },
+          "option": [
+            { "id": 0, "name": "Detail", "label": "한마리", "isChecked": true },
+            { "id": 1, "name": "Detail", "label": "순살", "isChecked": false },
+            { "id": 2, "name": "Detail", "label": "윙", "isChecked": false },
+            {
+              "id": 3,
+              "name": "Detail",
+              "label": "통다리",
+              "isChecked": false
+            },
+            { "id": 4, "name": "Detail", "label": "콤보", "isChecked": false }
+          ]
         },
-        "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
-        "servingSize": {
-          "amountPerServing": "143g (2조각)",
-          "calories": 455,
-          "sodium": 692,
-          "carbohydrates": 35,
-          "sugars": 4,
-          "fat": 26,
-          "transFat": 0.3,
-          "saturatedFat": 12,
-          "cholesterol": 33,
-          "protein": 20
+        {
+          "title": "허리바사삭 곱빼기 순살",
+          "image": "../goobne/images/main_chicken_02.jpg",
+          "alt": "허리바사삭 곱빼기 순살 이미지",
+          "badges": ["new", "hot", "md"],
+          "description": "1초에 한 마리씩 팔리는 허리 바사삭이 먹기좋은 순살로!?",
+          "price": 30000,
+          "origin": {
+            "bacon": "돼지고기[외국산(스페인,미국,브라질 등)]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "143g (2조각)",
+            "calories": 455,
+            "sodium": 692,
+            "carbohydrates": 35,
+            "sugars": 4,
+            "fat": 26,
+            "transFat": 0.3,
+            "saturatedFat": 12,
+            "cholesterol": 33,
+            "protein": 20
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "Detail",
+              "label": "한마리",
+              "isChecked": false
+            },
+            { "id": 1, "name": "Detail", "label": "순살", "isChecked": true },
+            { "id": 2, "name": "Detail", "label": "윙", "isChecked": false },
+            {
+              "id": 3,
+              "name": "Detail",
+              "label": "통다리",
+              "isChecked": false
+            },
+            { "id": 4, "name": "Detail", "label": "콤보", "isChecked": false }
+          ]
+        },
+        {
+          "title": "허리바사삭 곱빼기 윙",
+          "image": "../goobne/images/main_chicken_03.jpg",
+          "alt": "허리바사삭 곱빼기 윙 이미지",
+          "badges": ["new", "hot", "md"],
+          "description": "허리바사삭의 날개만 모아놨다~ 거기다 양이 2배!",
+          "price": 29000,
+          "origin": {
+            "bacon": "돼지고기[외국산(스페인,미국,브라질 등)]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "143g (2조각)",
+            "calories": 455,
+            "sodium": 692,
+            "carbohydrates": 35,
+            "sugars": 4,
+            "fat": 26,
+            "transFat": 0.3,
+            "saturatedFat": 12,
+            "cholesterol": 33,
+            "protein": 20
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "Detail",
+              "label": "한마리",
+              "isChecked": false
+            },
+            { "id": 1, "name": "Detail", "label": "순살", "isChecked": false },
+            { "id": 2, "name": "Detail", "label": "윙", "isChecked": true },
+            {
+              "id": 3,
+              "name": "Detail",
+              "label": "통다리",
+              "isChecked": false
+            },
+            { "id": 4, "name": "Detail", "label": "콤보", "isChecked": false }
+          ]
+        },
+        {
+          "title": "허리바사삭 곱빼기 통다리",
+          "image": "../goobne/images/main_wast_set.jpg",
+          "alt": "허리바사삭 곱빼기 통다리 이미지",
+          "badges": ["new", "hot", "md"],
+          "description": "1초에 한 마리씩 팔리는 허리 바사삭의 다리만 모아놨다~ 그런데 양까지 2배!",
+          "price": 30000,
+          "origin": {
+            "bacon": "돼지고기[외국산(스페인,미국,브라질 등)]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "143g (2조각)",
+            "calories": 455,
+            "sodium": 692,
+            "carbohydrates": 35,
+            "sugars": 4,
+            "fat": 26,
+            "transFat": 0.3,
+            "saturatedFat": 12,
+            "cholesterol": 33,
+            "protein": 20
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "Detail",
+              "label": "한마리",
+              "isChecked": false
+            },
+            { "id": 1, "name": "Detail", "label": "순살", "isChecked": false },
+            { "id": 2, "name": "Detail", "label": "윙", "isChecked": false },
+            {
+              "id": 3,
+              "name": "Detail",
+              "label": "통다리",
+              "isChecked": true
+            },
+            { "id": 4, "name": "Detail", "label": "콤보", "isChecked": false }
+          ]
+        },
+        {
+          "title": "허리바사삭 곱빼기 콤보",
+          "image": "../goobne/images/main_side_dish.jpg",
+          "alt": "허리바사삭 곱빼기 콤보 이미지",
+          "badges": ["new", "hot", "md"],
+          "description": "1초에 한 마리씩 팔리는 허리 바사삭의 양이 2배! 근데 이걸 콤보로 먹을 수 있다고!?",
+          "price": 33000,
+          "origin": {
+            "bacon": "돼지고기[외국산(스페인,미국,브라질 등)]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "143g (2조각)",
+            "calories": 455,
+            "sodium": 692,
+            "carbohydrates": 35,
+            "sugars": 4,
+            "fat": 26,
+            "transFat": 0.3,
+            "saturatedFat": 12,
+            "cholesterol": 33,
+            "protein": 20
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "Detail",
+              "label": "한마리",
+              "isChecked": false
+            },
+            { "id": 1, "name": "Detail", "label": "순살", "isChecked": false },
+            { "id": 2, "name": "Detail", "label": "윙", "isChecked": false },
+            {
+              "id": 3,
+              "name": "Detail",
+              "label": "통다리",
+              "isChecked": false
+            },
+            { "id": 4, "name": "Detail", "label": "콤보", "isChecked": true }
+          ]
         }
-      },
-      "Radio": [
-        { "id": 1, "name": "Detail", "label": "한마리", "isChecked": true },
-        { "id": 2, "name": "Detail", "label": "순살", "isChecked": false },
-        { "id": 3, "name": "Detail", "label": "윙", "isChecked": false },
-        { "id": 4, "name": "Detail", "label": "통다리", "isChecked": false },
-        { "id": 5, "name": "Detail", "label": "콤보", "isChecked": false }
-      ],
-      "totalAmount": 27000
+      ]
     }
   ]
 }
