@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const CountryOrigin = ({ open }) => {
+const CountryOrigin = ({ open, countryInfo }) => {
   return (
     <DropDownOption className={open && 'open'}>
       <CountryOriginTitleWrap>
@@ -8,10 +8,7 @@ const CountryOrigin = ({ open }) => {
         <span>원산지</span>
       </CountryOriginTitleWrap>
       <CountryOriginContent>
-        <span>
-          페퍼로니: 돼지고기[국내산과
-          외국산(미국,아일랜드,스페인)섞음],쇠고기(호주산)
-        </span>
+        <span>{countryInfo}</span>
       </CountryOriginContent>
     </DropDownOption>
   );

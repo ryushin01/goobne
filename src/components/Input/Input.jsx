@@ -40,6 +40,8 @@ const Input = ({
  *@property {string} value                             - 인풋의 초깃값을 정의합니다.
  *@property {string} position: column,  기본값 = row    - 인풋의 Wrap의 포지션을 해당 조건에따라 적용하는것을 정의합니다.
  *@property {string} isDot                             - 값이 true일 경우 label 태그의 before속성이 적용되며, padding-left 10px과 함께 적용됩니다.
+ *@property {string} isDot                             - 값이 true일 경우 label 태그의 before속성이 적용되며, padding-left 10px과 함께 적용됩니다.
+ *@property {boolean} disabled                         - 인풋의 disabled 정의합니다.
  *@property {function} onChange                        - 인풋의 값이 변경될시 실행할 함수를 정의합니다.
  */
 

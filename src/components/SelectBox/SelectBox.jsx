@@ -16,7 +16,7 @@ const SelectBox = ({ data, value, name, setUserJoinInfo }) => {
   /** SelectBox의 선택된 option 값을 저장하기 위한 state입니다. */
   const [currentValue, setCurrentValue] = useState(value);
   /** SelectBox의 Data를 props로 받은 것을 useState에 저장 */
-  const [selectDate, setSelectData] = useState(data); //eslint-disable-line no-unused-vars
+  const [selectData, setSelectData] = useState(data); //eslint-disable-line no-unused-vars
   /** selectBox의 외부를 선택했을 때 Open된 것을 Close 시키기 위해 useRef 사용 */
   const selectBoxRef = useRef();
 
@@ -29,7 +29,6 @@ const SelectBox = ({ data, value, name, setUserJoinInfo }) => {
   }, []);
 
   /**
-   * SelectBox의 외부를 클릭했을 때 open된 것을 close 시키기 위한 함수입니다.
    * @param selectBoxRef.current SelectBox의 ref를 이용하여 외부를 클릭했는지 확인합니다.
    * @param !selectBoxRef.current.contains(e.target) selectBoxRef.current가 e.target을 포함하고 있지 않다면 setOpen(false)를 실행합니다.
    */
@@ -39,7 +38,7 @@ const SelectBox = ({ data, value, name, setUserJoinInfo }) => {
     }
   };
 
-  if (!selectDate) return null;
+  if (!selectData) return null;
 
   /** SelectBox를 클릭했을 때 open/close를 위한 함수입니다. */
   const handleOpen = () => {
@@ -72,7 +71,7 @@ const SelectBox = ({ data, value, name, setUserJoinInfo }) => {
     >
       <span>{currentValue}</span>
       <ul>
-        {selectDate?.map((item, index) => {
+        {selectData?.map((item, index) => {
           // selectDate의 값이 존재한다면 map을 이용하여 li를 생성합니다.
           return (
             <li key={index} onClick={handleSelectValue}>

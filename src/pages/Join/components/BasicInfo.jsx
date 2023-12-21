@@ -4,7 +4,7 @@ import SelectBox from '../../../components/SelectBox/SelectBox';
 import CheckBox from '../../../components/CheckBox/CheckBox';
 import { EMAIL_DATA } from '../../../data/EmailData';
 import { basic_test } from '../../../API/TEST_API';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 /**
  * BasicInfo props list
@@ -259,6 +259,10 @@ const BasicInfo = ({
 };
 
 export default BasicInfo;
+const FlexGap = css`
+  display: flex;
+  gap: 5px;
+`;
 /** 기본정보 스타일 시작 */
 const BasicInfoSection = styled.section`
   width: 100%;
@@ -294,9 +298,8 @@ const InfoNameInnerDiv = styled.div`
 `;
 
 const IdWrapDiv = styled.div`
-  display: flex;
+  ${FlexGap}
   align-items: flex-end;
-  gap: 5px;
 `;
 
 const DoubleCheckBtnInnerDiv = styled.div`
@@ -304,15 +307,13 @@ const DoubleCheckBtnInnerDiv = styled.div`
 `;
 
 const EmailWrapDiv = styled.div`
-  display: flex;
+  ${FlexGap}
   align-items: center;
-  gap: 5px;
 `;
 
 const PhoneAuthenticationWrapDiv = styled.div`
-  display: flex;
+  ${FlexGap}
   align-items: flex-end;
-  gap: 5px;
   margin: 10px 0px;
 `;
 
@@ -322,9 +323,8 @@ const SandAuthenticationBtnInnerDiv = styled.div`
 
 const CertificationWrap = styled.div`
   width: 100%;
-  display: flex;
+  ${FlexGap}
   align-items: flex-end;
-  gap: 5px;
 `;
 
 const CertificationBtnInner = styled.div`
@@ -333,9 +333,8 @@ const CertificationBtnInner = styled.div`
 
 const AddressSearchWrap = styled.div`
   width: 100%;
-  display: flex;
+  ${FlexGap}
   align-items: flex-end;
-  gap: 5px;
 `;
 
 const AddressSearchBtnInner = styled.div`
