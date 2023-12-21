@@ -30,6 +30,7 @@ const BigBanner = () => {
     const response = await customAxios //eslint-disable-line no-unused-vars
       .get(`${API.BIG_BANNER}`)
       .then(response => {
+        console.log(response);
         setBigBannerList(response.data.result);
       })
       .catch(error => {
