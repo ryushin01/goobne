@@ -5,7 +5,7 @@ import { RADIO_GROUP_DATA } from '../../../data/RadioGroupData';
 import styled from 'styled-components';
 
 /**
- * BasicInfo props list
+ * AdditionalInfo props list
  * @property {Hook} userJoinInfo                             - 유저의 가입정보를 담는 useState 입니다.
  * @property {Hook} setUserJoinInfo                          - 유저의 가입정보 변경하는 세터함수 useState 입니다.
  */
@@ -21,7 +21,12 @@ const AdditionalInfo = ({ userJoinInfo, setUserJoinInfo }) => {
   const months = getMonths();
   const days = getDays();
 
-  const Click = id => {
+  /**
+   * 1.이벤트에 인자로 id 를 받습니다.
+   * 2.데이터에 id와 인자로 들어온 id가 같은것만 세터함수를 활용해 데이터에 value값을 gender 담습니다.
+   * 3.그외는 defaultChecked 값음 false로 만들어 체크상태를 풀어줍니다.
+   */
+  const radioClick = id => {
     RADIO_GROUP_DATA.map(data => {
       if (data.id === id) {
         setUserJoinInfo({ ...userJoinInfo, gender: data.value });
@@ -52,7 +57,7 @@ const AdditionalInfo = ({ userJoinInfo, setUserJoinInfo }) => {
                 name={name}
                 defaultChecked={defaultChecked}
                 onChange={() => {
-                  Click(id);
+                  radioClick(id);
                 }}
               />
             );
@@ -142,32 +147,3 @@ const BirthDateSelectBoxInnerDiv = styled.div`
   gap: 5px;
 `;
 /** 부가정보 스타일 하단 끝 */
-
-// userJoinInfo 1차 데이터 목록 체크
-
-// name:                              // 이름                                                    ok 필수
-// id:                               // 아이디                                                    ok 필수
-// duplicateCheck:                   // 중복체크여부                1:했다 0:안했다.                  ok 필수
-// password:                            //비밀번호                                                ok 필수
-// confirmPassword:                   //비밀번호 확인                                               ok 필수
-// email:                             // 이메일아이디                                               ok 필수
-// emailReceptionCheck                // 이벤트수신여부           false:미수신 true:수신               ok 선택
-// snsReceptionCheck                  // 이벤트수신여부           false:미수신 true:수신               ok 선택
-// phoneNum:                          //핸드폰번호                                                  ok 필수
-// certificationNum                   // 인증번호입력                                              ok 필수
-// certification:                     //인증체크여부                200:했다 null:안했다.              ok 필수
-// zipCode:                           // 우편주소                                                  ok 선택
-// Address:                           //주소                                                      ok 선택
-// detailedAddress                    //상세주소                                                   ok 선택
-// gender:                            // 성별                                                     ok 필수
-// emailAddress:                      // 이메일뒤에 주소                                             ok  필수
-// year: '',                          //생년월일 , 년                                               ok  선택
-// month: '',                          //생년월일 , 월                                              ok  선택
-// day: '',                           //생년월일 , 일                                               ok  선택
-// recommendedId:                      // 추천아이디                                                  ok 선택
-// recommendedIdCheck:                // 추천아이디체크여부          200:있다 null:없다.                  ok 선택
-// termsOfUseCheck: null,             //이용약관 동의여부            false:안했다. true:했다              ok 필수
-// ageCheck: null,                    // 나이체크 여부             false:안했다.  true:했다              ok 필수
-// eventSms: null,                    // 이벤트 sns수신 체크        false:거부    true:동의              ok 선택
-// eventApp: null,                    //이벤트 app수신 체크         false:거부    true:동의              ok 선택
-// eventEmail: null,                  //이벤트 email수신 체크       false:거부    true:동의              ok 선택

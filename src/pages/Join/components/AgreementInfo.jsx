@@ -2,7 +2,14 @@ import { useEffect, useState } from 'react';
 import CheckBox from '../../../components/CheckBox/CheckBox';
 import styled from 'styled-components';
 
+/**
+ * AgreementInfo props list
+ * @property {Hook} userJoinInfo                             - 유저의 가입정보를 담는 useState 입니다.
+ * @property {Hook} setUserJoinInfo                          - 유저의 가입정보 변경하는 세터함수 useState 입니다.
+ */
+
 const AgreementInfo = ({ userJoinInfo, setUserJoinInfo }) => {
+  /**체크박스에 블리언 값들을  객체로 정의합니다. */
   const [agreementCheck, setAgreementCheck] = useState({
     allCheck: false,
     termsOfUseCheck: false,
@@ -13,6 +20,9 @@ const AgreementInfo = ({ userJoinInfo, setUserJoinInfo }) => {
     email: false,
   });
 
+  /**
+   * agreementCheck 값이 변경될때마다 setUserJoinInfo(값을 최신화) useEffect 실행됩니다.
+   */
   useEffect(() => {
     setUserJoinInfo({
       ...userJoinInfo,
@@ -27,16 +37,20 @@ const AgreementInfo = ({ userJoinInfo, setUserJoinInfo }) => {
 
   const handleCheckboxChange = checkboxName => {
     setAgreementCheck(agreementCheck => {
-      // 이전 상태의 복사본을 생성합니다.
+      // 이전 상태의 복사본   agreementCheck 객체값을 스프레드 오퍼레이트(연산자) newCheck 변수에 담습니다.
       const newCheck = { ...agreementCheck };
-      // 체크박스 값을 토글합니다.
+      // 체크박스 값을 토글합니다. 값에 접근은 객체에 Bracket 접근방식으로 접근합니다. // 객체 접근방식은 점표기법 괄호표기법 두가지로 접근가능 합니다.
       newCheck[checkboxName] = !newCheck[checkboxName];
 
       // 'allCheck' 체크박스에 대한 특별한 논리를 처리합니다.
       if (checkboxName === 'allCheck') {
         // 'allCheck'이 체크된 경우, 다른 모든 체크박스를 해당 값으로 업데이트합니다.
+        //  1.Object.keys() 란? 어떠한 값에 담겨있는 모튼 key값을 조회하는 메서드입니다.
+        //  2.newCheck 에 agreementCheck 값 스프레드 오퍼레이트(연산자)로 담겨 있습니다.
+        //  3. forEach() 메서드를 사용하여 객체의 각 key에 대해 반복 작업을 수행합니다.
         Object.keys(newCheck).forEach(key => {
           if (key !== checkboxName) {
+            // 현재 key가 'allCheck'이 아닌 경우, 해당 key의 값을 'allCheck' 값으로 변경합니다.
             newCheck[key] = newCheck[checkboxName];
           }
         });
@@ -56,7 +70,7 @@ const AgreementInfo = ({ userJoinInfo, setUserJoinInfo }) => {
         }
       }
 
-      // 'eventAllCheck' 체크박스에 대한 특별한 논리를 처리합니다.
+      // 'eventAllCheck' 체크박스를 처리합니다.
       if (checkboxName === 'eventAllCheck') {
         // 'eventAllCheck'이 체크된 경우, sms, app, email 체크박스를 해당 값으로 업데이트합니다.
         if (newCheck[checkboxName]) {

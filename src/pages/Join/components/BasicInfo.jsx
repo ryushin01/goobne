@@ -28,13 +28,17 @@ const BasicInfo = ({
 }) => {
   /**
    * 1.인증번호를 확인하는함수입니다.
-   * 2.테스트 보내준 저장한 인증번호와 , 사용자가 인풋에 입력한 인증번호가 일치하는지 확인합니다.
+   * 2.테스트api에서 보내준 저장한 인증번호와 , 사용자가 인풋에 입력한 인증번호가 일치하는지 확인합니다.
    * 3.일치한다면 인증번호성공한 값을 setUserJoinInfo(certification: res.status) 담습니다.
    * 4.알림창을 띄우고 마무리합니다.
    * * 서버가 구축이된다면 가상의 인증번호를 저장할필요는 없습니다.테스트를 하기위해서 저장합니다.
    */
   const certificationSubmit = () => {
-    if (userJoinInfo.certificationNum.length < 5) {
+    //Verification 인증번호 길이를 유효성 검사합니다. 인증번호는 5자리 또는 6자리입니다.
+    if (
+      userJoinInfo.certificationNum.length < 5 ||
+      userJoinInfo.certificationNum.length >= 7
+    ) {
       alert('인증번호는 5자리 또는 6자리입니다.');
     } else {
       // const params = userJoinInfo.certificationNum;
