@@ -2,6 +2,11 @@ import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 /**
+ * SelectBox props list
+ * @property {function} setUserJoinInfo                          - useState 세터함수를 정의합니다.
+ */
+
+/**
  * SelectBox Component
  * @param data SelectBox에 들어갈 Data를 props로 받습니다.
  */
@@ -47,6 +52,11 @@ const SelectBox = ({ data, value, name, setUserJoinInfo }) => {
     setCurrentValue(e.target.textContent);
     setOpen(false);
 
+    /**
+     * 1.basicInfo props받은 세터함수입니다.
+     * 2. userJoinInfo 값을 스프레드 오퍼레이터(연산자)로 복사하여 SelectBox에 발생한 이벤트를  SelectBox name과 일치하는
+     * key에 textContent 값을 setUserLoginInfo() 실행시켜 값을 변경해줍니다.
+     */
     setUserJoinInfo(userJoinInfo => ({
       ...userJoinInfo,
       [name]: e.target.textContent,

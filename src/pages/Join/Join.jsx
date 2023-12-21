@@ -15,32 +15,32 @@ import styled from 'styled-components';
 const Join = () => {
   /** 회원가입에 필요한 정보를 저장하는 useState를 정의합니다. */
   const [userJoinInfo, setUserJoinInfo] = useState({
-    name: '', //이름
-    id: '', //아이디
-    duplicateCheck: null, //중복 체크여부
-    password: '', //비밀번호
-    confirmPassword: '', //비밀번호확인
-    email: '', //이메일
-    emailAddress: null, //이메일주소
-    emailReceptionCheck: false, //이메일이벤트 동의여부
-    phoneNum: '', //핸드폰번호
-    snsReceptionCheck: false, //sns이벤트 동의여부
-    certificationNum: '', //인증번호
-    certification: null, //인증번호확인여부
-    address: '', //주소
-    zipCode: '', //우편번호
-    detailedAddress: '', //상세주소
-    recommendedId: '', //추천인아이디
-    recommendedIdCheck: null, //존재여부 체크
-    gender: 'male', //성별
-    year: '', //생년월일 , 년
-    month: '', //생년월일 , 월
-    day: '', //생년월일 , 일
-    termsOfUseCheck: null, //이용약관 동의여부
-    ageCheck: null, // 나이체크 여부
-    eventSms: null, // 이벤트 sns수신 체크
-    eventApp: null, //이벤트 app수신 체크
-    eventEmail: null, //이벤트 email수신 체크
+    name: '', //이름(필수)
+    id: '', //아이디(필수)
+    duplicateCheck: null, //중복 체크여부(필수)
+    password: '', //비밀번호(필수)
+    confirmPassword: '', //비밀번호확인(필수)
+    email: '', //이메일(필수)
+    emailAddress: null, //이메일주소(필수)
+    emailReceptionCheck: false, //이메일이벤트 동의여부(선택)
+    phoneNum: '', //핸드폰번호(필수)
+    snsReceptionCheck: false, //sns이벤트 동의여부(선택)
+    certificationNum: '', //인증번호(필수)
+    certification: null, //인증번호확인여부(필수)
+    address: '', //주소(선택)
+    zipCode: '', //우편번호(선택)
+    detailedAddress: '', //상세주소(선택)
+    recommendedId: '', //추천인아이디(선택)
+    recommendedIdCheck: null, //존재여부 체크(추천아이디 입력시 필수)
+    gender: 'male', //성별(필수)
+    year: '', //생년월일 , 년(필수)
+    month: '', //생년월일 , 월(필수)
+    day: '', //생년월일 , 일(필수)
+    termsOfUseCheck: null, //이용약관 동의여부(필수)
+    ageCheck: null, // 14세이상 나이체크 여부(필수)
+    eventSms: null, // 이벤트 sns수신 체크(선택)
+    eventApp: null, //이벤트 app수신 체크(선택)
+    eventEmail: null, //이벤트 email수신 체크(선택)
   });
 
   /** 주소검색 모달창을 토글하는 useState를 정의합니다. */
@@ -81,10 +81,11 @@ const Join = () => {
   /**
    * 1.아이디 중복체크버튼을 클릭시 실행되는 함수입니다.
    * 2.테스트 api이기 때문에 인자로 input에 입력된 id값 ,200 을 인자로 줍니다.
-   * 3.response에 담겨있는 checkId setTestCheckID(checkId) 담습니다. //최종 제출때 테스트를하기위함입니다.
-   * 4.setUserJoinInfo(스프레드 오퍼레이트(연산자)를 복사하여 duplicateCheck에 response.status를 저장합니다. // 아이디 중복체크유무를 확인하기위해서입니다.
+   * 3.response에 담겨있는 checkId setTestCheckID(checkId) 담습니다. //최종 제출때 테스트를 하기 위함입니다.
+   * 4.setUserJoinInfo(스프레드 오퍼레이트(연산자)를 복사하여 duplicateCheck에 response.status를 저장합니다. // 아이디 중복체크유무를 확인하기 위해서 입니다.
+   * 5.상태에 따른 로직실행을 진행합니다. 알림창으로 상태를 알려줍니다.
    * * 이 함수는 최종 정보 제출때 test useState 와 UserJoinInfo useState가 맞는지 확인하기위해 부모에서 관리합니다.
-   * 백엔드서버가 구축되어있다면 자식컴포넌트로 이동하는 함수입니다.
+   *   백엔드서버가 구축되어있다면 자식컴포넌트로 이동하는 함수입니다.
    */
   const idDuplicateCheck = () => {
     // const params = userJoinInfo.id;
@@ -120,9 +121,10 @@ const Join = () => {
    * (구조는 API폴더 하위 index.js파일 확인)
    * 2.인자로 200 전달해주면 알림창이 실행됩니다.
    * 3.setServerCertificationNum(인증번호)를 useState에 담습니다. => 실제로는 useState 담을필요가없지만
-   * 서버가 없기때문에 인증번호를 받아 임시로 저장해 체크하기위해 담아놓는것입니다.
-   * * 이 함수는 최종 정보 제출때 test useState 와 UserJoinInfo useState가 맞는지 확인하기위해 부모에서 관리합니다.
-   *  백엔드서버가 구축되어있다면 자식컴포넌트로 이동하는 함수입니다.
+   * 서버가 없기때문에 인증번호를 받아 저장해 테스트 하기위해 담아놓는것입니다.
+   * 4.상태에 따른 로직실행을 진행합니다. 알림창으로 상태를 알려줍니다.
+   * * 이 함수는 최종 정보 제출때 test useState 와 UserJoinInfo useState사용될 값이 맞는지 확인하기위해 부모에서 관리합니다.
+   *   백엔드서버가 구축되어있다면 자식컴포넌트로 이동하는 함수입니다.
    */
   const getCertNumber = () => {
     const { phoneNum } = userJoinInfo;
@@ -152,9 +154,9 @@ const Join = () => {
   /**
    * 1.추천인 아이디를 입력하고 버튼을 클릭했을때 실행되는 함수입니다.
    * 2.200 존재한다고 가정합니다 // 아이디가 존재한다면 setTestRecommendedId(userJoinInfo.recommendedId) 담습니다. // 최종 제출때 테스트를하기위함입니다.
-   * 3.객체값 userJoinInfo  키 recommendedIdCheck 추천인 아이디가 존재하는지 안하는지 값을 담습니다.
-   * * 이 함수는 최종 정보 제출때 test useState 와 UserJoinInfo useState가 맞는지 확인하기위해 부모에서 관리합니다.
-   *  백엔드서버가 구축되어있다면 자식컴포넌트로 이동하는 함수입니다.
+   * 3.userJoinInfo 와 recommendedIdCheck 값을 담습니다. // 제출 로직때 추천인 아이디가 존재하는지 안하는지 테스트하기위해서 입니다.
+   * 이 함수는 최종 정보 제출때 test useState 와 UserJoinInfo(실제제출값) useState가 맞는지 확인하기위해 부모에서 관리합니다.
+   * 백엔드서버가 구축되어있다면 자식컴포넌트로 이동하는 함수입니다.
    */
   const recommendedIdSubmit = () => {
     //Verification 추천인 아이디값이 없거나 특수문자가 포함되거나 영어+숫자로 포함된 아이디 인지 확인합니다.
@@ -164,6 +166,7 @@ const Join = () => {
       !alphanumericRegexA.test(userJoinInfo.recommendedId)
     ) {
       alert('추천인이 없습니다.');
+
       // 아이디 형식이 맞으면 있다고 가정합니다. 조회는 하지못하기때문에 백엔드서버부재
     } else {
       // const params = userJoinInfo.recommendedId;
@@ -187,12 +190,14 @@ const Join = () => {
     setIsAddressFind(!isAddressFind);
   };
 
-  /**전 단계로 돌아가는 네비게이트는 담은 함수입니다. */
+  /**전 단계로 돌아가는 네비게이트를 담은 함수입니다. */
   const backPage = () => {
     navigate(-1);
   };
 
-  /**최종 가입하기 버튼시 제출하기전 Verification에 통과하면 회원가입이 성공하는 함수입니다. */
+  /**최종 가입하기 버튼시 제출하기전 Verification에 통과하면 회원가입이 성공하는 함수입니다.
+   * 서버가 없기때문에 프론트단에서 해결합니다.
+   */
   const joinInfoSubmit = event => {
     event.preventDefault();
     const {
