@@ -124,7 +124,6 @@ const FooterContainer = styled.footer`
 
 const InnerTopSection = styled.section`
   width: 100%;
-  min-width: 1730px;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid ${props => props.theme.transparentA};
@@ -198,7 +197,6 @@ const SnsConnectionArea = styled.div`
 
 const AddressSection = styled.section`
   width: 100%;
-  min-width: 1730px;
   display: flex;
   justify-content: space-between;
   margin-top: 35px;

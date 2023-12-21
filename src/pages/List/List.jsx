@@ -3,6 +3,7 @@ import ListItem from './components/ListItem';
 import { API } from '../../config';
 import { customAxios } from '../../API/API';
 import styled from 'styled-components';
+import MenuChipGroup from '../../components/Chip/MenuChipGroup';
 
 const List = () => {
   const [productList, setProductList] = useState('');
@@ -29,10 +30,7 @@ const List = () => {
         <h2>메뉴</h2>
 
         <ButtonWrapDiv>
-          <button>전체</button>
-          <button>치킨</button>
-          <button>피자</button>
-          <button>세트</button>
+          <MenuChipGroup></MenuChipGroup>
         </ButtonWrapDiv>
 
         <ListContainerUl>
