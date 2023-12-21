@@ -46,7 +46,7 @@ const RecommenderWrapSection = styled.section`
   gap: 5px;
   margin-top: 30px;
 
-  & > h3 {
+  h3 {
     font-size: 20px;
     font-weight: 800;
     border-bottom: 1px solid ${props => props.theme.grayscaleH};

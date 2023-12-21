@@ -15,6 +15,6 @@ export const customAxios = axios.create({
   baseURL: `${BASE_URL}`,
   headers: {
     // access_token: cookies.get('access_token'),
-    Authorization: localStorage.getItem('accessToken'),
+    // Authorization: localStorage.getItem('accessToken'),
   },
 });
