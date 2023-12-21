@@ -7,10 +7,12 @@ export const API = {
   NAV: `/NavListData.json`,
   LISTITEM: `/ListItemData.json`,
   LOGINPOST: `/login`,
+  DETAIL: `/DetailData.json`,
   CART_SWIPER: `/CartSwiper.json`,
   DELIVERY_SWIPER: `/DeliverySwiper.json`,
   MENU_CHIP: `/MenuChipData.json`,
   POPULAR_CHIP: `/PopularChipData.json`,
   CART_PRODUCT: `/CartProductData.json`,
   CART_INFO: `/CartInfoData.json`,
+  JOIN_POST: `/join`,
 };

@@ -1,6 +1,6 @@
-import styled from 'styled-components';
 import Badge from '../../../components/Badge/Badge';
 import IconButton from '../../../components/IconButton/IconButton';
+import styled from 'styled-components';
 
 const ListItem = ({
   imgSrc,

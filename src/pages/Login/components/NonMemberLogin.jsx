@@ -1,30 +1,35 @@
-import Input from '../../../components/Input/Input';
-import Button from '../../../components/Button/Button';
-import CheckBox from '../../../components/CheckBox/CheckBox';
-import styled from 'styled-components';
 import { useState } from 'react';
-import api from '../../../API';
-import { testAxios } from '../../../API/API'; //customAxios 테스트종료시 활성화시켜주기
-// testAxios 테스트 import 합니다. customAxios import 합니다. 실제 api
-// import { API } from '../../../config'; // 통신 테스트를 마치면 활성화 합니다.
 import { useNavigate } from 'react-router-dom';
+import Button from '../../../components/Button/Button';
+import Input from '../../../components/Input/Input';
+import CheckBox from '../../../components/CheckBox/CheckBox';
+import { cert_test, basic_test } from '../../../API/TEST_API'; //테스트 api 입니다.
+// cert_test, basic_test 테스트 import 합니다.
+// import { customAxios } from '../../../API/API';  통신 테스트를 마치면 활성화 합니다.
+// import { API } from '../../../config'; // 통신 테스트를 마치면 활성화 합니다.
+import styled from 'styled-components';
 
-/**
- * 1.비회원 로그인에 필요한 정보를 저장하는 useState를 정의합니다.
- * 2.여러개의 값을 저장하기위해 객체형태로 초기값을 정의했습니다.
- */
 const NonMemberLogin = () => {
+  /**
+   * 1.비회원 로그인에 필요한 정보를 저장하는 useState를 정의합니다.
+   * 2.여러개의 값을 저장하기위해 객체형태로 초기값을 정의했습니다.
+   */
   const [nonMemberUserInfo, setNonMemberUserInfo] = useState({
     name: '',
     phoneNum: '',
     certificationNum: null,
   });
 
-  /**테스트를 하기위해 가상의 인증 번호를 저장하는 useState를 정의합니다. */
+  /**테스트를 하기위해 서버로 보낸 내가입력한 핸드폰번호를 저장하는 useState를 정의합니다. 테스트를 하기위해 */
   const [severCertificationNum, setServerCertificationNum] = useState(null);
 
   /**이용 약관 동의 체크여부를 정의하는 useState 입니다.*/
   const [isAgreementCheck, setIsAgreementCheck] = useState(false);
+
+  /**
+   * useNavigate()를 navigate 변수에 담습니다.
+   */
+  const navigate = useNavigate();
 
   /**
    * 1.onChange 이벤트가 발생할때마다 실행되는 함수입니다.
@@ -38,11 +43,6 @@ const NonMemberLogin = () => {
     const { name, value } = event.target;
     setNonMemberUserInfo({ ...nonMemberUserInfo, [name]: value });
   };
-
-  /**
-   * useNavigate()를 navigate 변수에 담습니다.
-   */
-  const navigate = useNavigate();
 
   /**
    * 인증번호를 불러오는 get test axios입니다.
@@ -62,10 +62,11 @@ const NonMemberLogin = () => {
       alert('핸드폰 번호를 입력하세요.');
     } else if (!isAgreementCheck) {
       alert('필수 항목 체크하세요.');
+    } else if (phoneNum.length <= 10 || phoneNum.length >= 12) {
+      alert('핸드폰번호는 11자리 입니다.');
     } else {
       //테스트 api 입니다.
-      api
-        .cert_test(200)
+      cert_test(200)
         .then(data => {
           alert('인증번호를 발송했습니다.');
           setServerCertificationNum(data.number);
@@ -86,27 +87,32 @@ const NonMemberLogin = () => {
    * 5.서버가있다면 params값도 같이 넘겨줍니다.
    */
   const requestNonMemberLoginPost = async () => {
-    // const params = nonMemberUserInfo;
-    // const response = await customAxios //eslint-disable-line no-unused-vars
-    //   .post(API.NONMEMBER_LOGIN_POST, params)
+    if (nonMemberUserInfo.certificationNum.length < 5) {
+      alert('인증번호는 5자리 또는 6자리입니다.');
+    } else {
+      // const params = nonMemberUserInfo;
+      // const response = await customAxios //eslint-disable-line no-unused-vars
+      //   .post(API.NONMEMBER_LOGIN_POST, params)
 
-    testAxios(
-      severCertificationNum === Number(nonMemberUserInfo.certificationNum)
-        ? 200
-        : 400,
-    ) //테스트용 api입니다. 인자로 원하는 상태값을 넘겨주면됩니다.
-      .then(() => {
-        navigate('/');
-      })
-      //에러 케이스를 정의합니다.
-      .catch(error => {
-        if (error.status === 400) alert('인증번호가 틀렸습니다.');
-      });
+      basic_test(
+        severCertificationNum === Number(nonMemberUserInfo.certificationNum)
+          ? 200
+          : 400,
+      )
+        .then(res => {
+          localStorage.setItem('accessToken', res.token);
+          navigate('/');
+        })
+        //에러 케이스를 정의합니다.
+        .catch(error => {
+          if (error.status === 400) alert('인증번호가 틀렸습니다.');
+        });
+    }
   };
 
   /**
    * 1.비회원사용자정보는 제출하는 함수입니다.
-   * 2.약관동의 체크는 필수값이기때문에 Verification한번더 체크합니다.
+   * 2.약관동의 체크는 필수값이기때문에 Verification 한번더 체크합니다.
    * 체크가 안되었다면 경고창을 띄어줍니다.
    * 3.체크가 되었다면 requestNonMemberLoginPost() 실행시켜줍니다.
    */

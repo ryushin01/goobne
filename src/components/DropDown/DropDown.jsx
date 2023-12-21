@@ -7,7 +7,7 @@ import Nutrient from './Contents/nutrient';
  * DropDown Component
  * @param data DropDownBox에 들어갈 Data를 props로 받습니다.
  */
-const DropDown = ({ data, country, nutrient }) => {
+const DropDown = ({ data, country, nutrient, countryInfo, nutrientInfo }) => {
   /** Button을 onClick했을 때 ul부분을 open/close 하기 위한 state입니다. */
   const [open, setOpen] = useState(false);
   /** Button의 Data를 props로 받은 것을 useState에 저장 */
@@ -48,8 +48,12 @@ const DropDown = ({ data, country, nutrient }) => {
         {country === 'true' && <span>원산지 정보보기</span>}
         {nutrient === 'true' && <span>영양정보 정보보기</span>}
       </DropDownButton>
-      {country === 'true' && <ConutryOrigin open={open} />}
-      {nutrient === 'true' && <Nutrient open={open} />}
+      {country === 'true' && (
+        <ConutryOrigin open={open} countryInfo={countryInfo} />
+      )}
+      {nutrient === 'true' && (
+        <Nutrient open={open} nutrientInfo={nutrientInfo} />
+      )}
     </>
   );
 };
