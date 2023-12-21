@@ -46,72 +46,71 @@ const OrderProduct = () => {
   const totalAmount = orderAmount + deliveryFee;
 
   return (
-    <OrderProductTable>
-      <colgroup>
-        <col width="20%" />
-        <col width="10%" />
-        <col width="10%" />
-      </colgroup>
-      <thead>
-        <OrderTableHead>
-          <th>메뉴</th>
-          <th>수량</th>
-          <th>금액</th>
-        </OrderTableHead>
-      </thead>
-      <tbody>
-        {orderProductData.map(({ id, src, alt, name, price }) => (
-          <OrderTableBody key={id}>
-            <td>
-              <OrderProductWrap>
-                <OrderProductImg>
-                  <img src={src} alt={alt} />
-                </OrderProductImg>
-                <span>{name}</span>
-              </OrderProductWrap>
-            </td>
-            <td>
-              <OrderCountWrap>
-                <Count size="small" />
-              </OrderCountWrap>
-            </td>
-            <td>
-              <OrderPriceWrap>
-                <span>{`${price.toLocaleString('ko-KR')}`}</span> 원
-              </OrderPriceWrap>
-              <ProductDeleteBtnWrap>
-                <img
-                  src="./public/images/ProductDeleteButton.png"
-                  alt="상품이미지"
-                />
-              </ProductDeleteBtnWrap>
-            </td>
-          </OrderTableBody>
-        ))}
-      </tbody>
-      <tfoot>
-        <OrderTableFoot>
-          <td colSpan={3}>
-            <TotalPriceWrap>
-              <span>
-                주문금액&nbsp;{`${orderAmount.toLocaleString('ko-KR')} 원`}
-              </span>
-              -<span>할인금액 0원</span>+
-              <span>
-                배송비&nbsp;{`${deliveryFee.toLocaleString('ko-KR')} 원`}
-              </span>
-              =
-              <span>
-                결제 예상 금액&nbsp;
-                <TotalAmountBox>{`${totalAmount.toLocaleString(
-                  'ko-KR',
-                )} 원`}</TotalAmountBox>
-              </span>
-            </TotalPriceWrap>
-          </td>
-        </OrderTableFoot>
-      </tfoot>
-    </OrderProductTable>
+    <>
+      {orderProductData.length > 0 ? (
+        <>
+          <tbody>
+            {orderProductData.map(({ id, src, alt, name, price, count }) => (
+              <OrderTableBody key={id}>
+                <td colSpan={2}>
+                  <OrderProductWrap>
+                    <OrderProductImg>
+                      <img src={src} alt={alt} />
+                    </OrderProductImg>
+                    <span>{name}</span>
+                  </OrderProductWrap>
+                </td>
+                <td>
+                  <OrderCountWrap>
+                    <Count size="small" count={count} />
+                  </OrderCountWrap>
+                </td>
+                <td colSpan={2}>
+                  <OrderPriceWrap>
+                    <span>{`${(price * count).toLocaleString('ko-KR')}`}</span>{' '}
+                    원
+                  </OrderPriceWrap>
+                  <ProductDeleteBtnWrap>
+                    <img
+                      src="./public/images/ProductDeleteButton.png"
+                      alt="상품이미지"
+                    />
+                  </ProductDeleteBtnWrap>
+                </td>
+              </OrderTableBody>
+            ))}
+          </tbody>
+          <tfoot>
+            <OrderTableFoot>
+              <td colSpan={5}>
+                <TotalPriceWrap>
+                  <span>
+                    주문금액&nbsp;{`${orderAmount.toLocaleString('ko-KR')} 원`}
+                  </span>
+                  -<span>할인금액 0원</span>+
+                  <span>
+                    배송비&nbsp;{`${deliveryFee.toLocaleString('ko-KR')} 원`}
+                  </span>
+                  =
+                  <span>
+                    결제 예상 금액&nbsp;
+                    <TotalAmountBox>{`${totalAmount.toLocaleString(
+                      'ko-KR',
+                    )} 원`}</TotalAmountBox>
+                  </span>
+                </TotalPriceWrap>
+              </td>
+            </OrderTableFoot>
+          </tfoot>
+        </>
+      ) : (
+        <tbody>
+          <CartEmptyBox>
+            <td colSpan={5}>장바구니가 비어 있습니다.</td>
+          </CartEmptyBox>
+        </tbody>
+      )}
+    </>
   );
 };
 
@@ -120,20 +119,6 @@ export default OrderProduct;
 const FlexCenter = `
   display: flex;
   align-items: center;
-`;
-
-const OrderProductTable = styled.table`
-  width: 100%;
-  font-size: 13px;
-  border-bottom: 1px solid ${props => props.theme.grayscaleH};
-`;
-
-const OrderTableHead = styled.tr`
-  border-bottom: 1px solid ${props => props.theme.grayscaleC};
-
-  & > th {
-    padding: 12px 0;
-  }
 `;
 
 const OrderTableBody = styled.tr`
@@ -200,4 +185,12 @@ const ProductDeleteBtnWrap = styled.div`
   top: 40%;
   right: 10px;
   position: absolute;
+`;
+
+const CartEmptyBox = styled.tr`
+  text-align: center;
+
+  & > td {
+    padding: 20px 10px;
+  }
 `;

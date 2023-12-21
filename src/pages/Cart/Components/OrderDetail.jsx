@@ -11,7 +11,23 @@ const OrderDetail = () => {
           <Button size="small" color="black" content="전체삭제" />
         </DeleteAllBtnWrap>
       </OrderDetailTitleWrap>
-      <OrderProduct />
+      <OrderProductTable>
+        <colgroup>
+          <col width="10%" />
+          <col width="40%" />
+          <col width="25%" />
+          <col width="20%" />
+          <col width="5%" />
+        </colgroup>
+        <thead>
+          <OrderTableHead>
+            <th colSpan={2}>메뉴</th>
+            <th>수량</th>
+            <th colSpan={2}>금액</th>
+          </OrderTableHead>
+        </thead>
+        <OrderProduct />
+      </OrderProductTable>
       <ButtonWrap>
         <OrderBtn>
           <Button size="small" color="beige" content="+ 메뉴 추가하기" />
@@ -55,6 +71,24 @@ const OrderDetailTitleWrap = styled.div`
 
 const DeleteAllBtnWrap = styled.div`
   width: 110px;
+`;
+
+const OrderProductTable = styled.table`
+  display: table;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  font-size: 13px;
+  border-bottom: 1px solid ${props => props.theme.grayscaleH};
+`;
+
+const OrderTableHead = styled.tr`
+  border-bottom: 1px solid ${props => props.theme.grayscaleC};
+
+  & > th {
+    padding: 12px 0;
+  }
 `;
 
 const ButtonWrap = styled.div`
