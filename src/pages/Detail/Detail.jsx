@@ -9,9 +9,9 @@ import DropDown from '../../components/DropDown/DropDown';
 import styled, { css } from 'styled-components';
 
 const Detail = () => {
-  const [DetailData, setDetailData] = useState([]); //eslint-disable-line no-unused-vars
-  const [RadioData, setRadioData] = useState('');
-  const [countValue, setCountValue] = useState(1);
+  const [detailData, setDetailData] = useState([]); //eslint-disable-line no-unused-vars
+  const [radioData, setRadioData] = useState('');
+  const [count, setCount] = useState(1);
 
   useEffect(() => {
     requestDetailDataGet();
@@ -34,69 +34,64 @@ const Detail = () => {
     setRadioData(value);
   };
 
-  if (!DetailData) return null;
+  if (!detailData) return null;
 
   return (
     <DetailContainer>
-      {DetailData?.map(item => {
-        const price = item.productDetail.price
-          .toString()
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-        const totalPrice = item.totalAmount * countValue;
+      {detailData?.map(({ id, productDetail, Radio, totalAmount }) => {
+        const price = productDetail.price.toLocaleString();
+        const totalPrice = totalAmount * count;
         const addComma = num => {
-          return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+          return num.toLocaleString();
         };
         return (
           <>
-            <ContainerInnerWrap key={item.id}>
-              <h2>{item.productDetail.title}</h2>
+            <ContainerInnerWrap key={id}>
+              <h2>{productDetail.title}</h2>
               <DetailWrap>
                 <DetailInfoWrap>
-                  <img
-                    src={item.productDetail.image}
-                    alt={item.productDetail.alt}
-                  />
+                  <img src={productDetail.image} alt={productDetail.alt} />
                   <DetailInfo>
                     <DropDown
                       country="true"
-                      countryInfo={item.productDetail.origin.bacon}
+                      countryInfo={productDetail.origin.bacon}
                     />
                     <DropDown
                       nutrient="true"
-                      nutrientInfo={item.productDetail.servingSize}
+                      nutrientInfo={productDetail.servingSize}
                     />
                   </DetailInfo>
                 </DetailInfoWrap>
                 <DetailInnerWrap>
                   <DetailTextWrap>
                     <BadgeWrap>
-                      {item.productDetail.badges.map((badge, index) => {
+                      {productDetail.badges.map((badge, index) => {
                         return <Badge key={index} shape={badge} size="large" />;
                       })}
                     </BadgeWrap>
-                    <h3>{item.productDetail.title}</h3>
-                    <span>{item.productDetail.description}</span>
+                    <h3>{productDetail.title}</h3>
+                    <span>{productDetail.description}</span>
                     <span>
                       <strong>{price}</strong>원
                     </span>
                   </DetailTextWrap>
 
                   <RadioGroup
-                    data={item.RadioGroup}
+                    data={Radio}
                     onChange={handleRadioChange}
-                    defaultChecked={item.RadioGroup[0].isChecked}
+                    defaultChecked={Radio[0].isChecked}
                     setRadioData={setRadioData}
                   />
 
                   <CountryOrigin>
                     <h3>원산지</h3>
-                    <span>{item.productDetail.origin.bacon}</span>
+                    <span>{productDetail.origin.bacon}</span>
                   </CountryOrigin>
                   <CountWrap>
-                    <Count setCountValue={setCountValue} />
+                    <Count count={count} setCount={setCount} />
                   </CountWrap>
                   <DetailText>
-                    <span>• {item.productDetail.disclaimer}</span>
+                    <span>• {productDetail.disclaimer}</span>
                   </DetailText>
                   <TotalAmount>
                     <span>
@@ -209,15 +204,6 @@ const DetailTextWrap = styled.div`
       font-family: 'Rubik', sans-serif;
     }
   }
-`;
-
-const DetailButtonWrap = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  gap: 10px;
-  padding-top: 30px;
-  margin-bottom: 15px;
 `;
 
 const CountryOrigin = styled.div`
