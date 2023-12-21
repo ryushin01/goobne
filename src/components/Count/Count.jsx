@@ -1,13 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 
-const Count = ({ size, setCountValue }) => {
-  /** Count 값을 저장하기 위해 useState를 선언해줍니다. */
-  const [count, setCount] = useState(1);
-
+const Count = ({ size, count, setCount }) => {
   /** Detail Page에 count값을 전달해주기 위해 useEffect를 사용합니다. */
   useEffect(() => {
-    setCountValue(count);
+    setCount(count);
   }, [count]);
 
   /** Count를 + 하기 위해 사용하는 함수 입니다. */
