@@ -4,9 +4,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import Input from '../../../components/Input/Input';
 import Button from '../../../components/Button/Button';
 import CheckBox from '../../../components/CheckBox/CheckBox';
+import { basic_test } from '../../../API/TEST_API';
+// basic_test << 테스트용 api import 합니다.
+// import { customAxios } from '../../../API/API';
+// import { API } from '../../../config'; 테스트를 마치면 활성화 합니다.
 import styled from 'styled-components';
-import { customAxios } from '../../../API/API';
-import { API } from '../../../config';
 
 const MemberLogin = () => {
   /**
@@ -32,7 +34,7 @@ const MemberLogin = () => {
   const [cookies, setCookie, removeCookie] = useCookies(['rememberUserId']);
 
   /**
-   * useNavigate()를 navigate 이름으로 변수로 지정합니다.
+   * useNavigate()를 navigate 변수에 담습니다.
    */
   const navigate = useNavigate();
 
@@ -49,58 +51,87 @@ const MemberLogin = () => {
     if (cookies.rememberUserId !== undefined) {
       setUserLoginInfo({ ...userLoginInfo, id: cookies.rememberUserId });
       setIsRemember(true);
-      navigate('/main');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  /** */
+  /**
+   * 1.onChange 이벤트가 발생할때마다 실행되는 함수입니다.
+   * 2.input onChange event를 인자로 받습니다.
+   * 3.name , value 구조분해 할당을 합니다.
+   * 4.setUserLoginInfo( userLoginInfo 값을 스프레드 오퍼레이터(연산자)로 복사하여)
+   * 이벤트에 발생한 input name과 일치하는 키에 input에서 발생한 이벤트에 value 값을
+   * setUserLoginInfo() 실행시켜 값을 변경해줍니다.
+   */
   const saveUserLoginInfo = event => {
     const { name, value } = event.target;
     setUserLoginInfo({ ...userLoginInfo, [name]: value });
   };
 
+  //특수문자 포함했는지 확인하는 정규식
+  const alphanumericRegex = /^[a-zA-Z0-9]+$/;
+  //영어숫자가 같이 조합됫는지 확인하는정규식
+  const alphanumericRegexA = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$/;
+  //패스워드 영문 숫자 특수문자 포함 확인하는 정규식입니다.
+  const passwordRegex =
+    /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>])[a-zA-Z0-9!@#$%^&*(),.?":{}|<>]+$/;
+
   /**
-   * 1.userLoginInfo값을 인자로 받습니다.
-   * 2.params 변수에 userLoginInfo값을 정의합니다.
-   * 3.response 변수 axios를 정의합니다.
-   * 4.axios 메서드는 post방식을 사용하고 , API.LOGINPOST,params 인자로전달합니다. API.LOGINPOST 앤드포인트주소입니다.
-   * 5.성공시 isRemember값이 true 라면(아이디 저장이 체크가되어있다면) 쿠키에 userLoginInfo.id 값을 저장합니다.(위에 정의된 state값)
+   * 1.params 변수에 userLoginInfo값을 정의합니다.
+   * 2.response 변수 axios를 정의합니다.
+   * 3.axios 메서드는 post방식을 사용하고 , API.LOGINPOST,params 인자로전달합니다. API.LOGINPOST 앤드포인트주소입니다.
+   * 4.성공시 isRemember값이 true 라면(아이디 저장이 체크가되어있다면) 쿠키에 userLoginInfo.id 값을 저장합니다.(위에 정의된 state값)
    * 만약에 아이디 저장체크가 안되어있다면 removeCookie() 쿠키값을 삭제합니다.
+   * 5.그외는 에러처리입니다.
+   * Verification // 아이디는 영문/숫자조합 6글자 이상이고 비밀번호는 특수문자포함 10자리 이상으로 했습니다.
    */
-  const requestNavListDataGet = async userLoginInfo => {
-    const params = userLoginInfo;
-    const response = await customAxios //eslint-disable-line no-unused-vars
-      .post(API.LOGINPOST, params)
-      .then(() => {
-        if (isRemember) {
-          setCookie('rememberUserId', userLoginInfo.id);
-        } else {
-          removeCookie('rememberUserId');
-        }
-      })
-      //에러 케이스를 정의합니다.
-      .catch(error => {
-        if (error.status === 400) {
-          alert('아이디 또는 비밀번호가 틀립니다.');
-        } else if (error.status === 401) {
-          alert('존재하지 않는 유저입니다.');
-        } else if (error.status === 402) {
-          alert('아이디를 입력하세요.');
-        } else if (error.status === 403) {
-          alert('비밀번호를 입력하세요.');
-        }
-      });
+  const requestLoginPost = async () => {
+    if (
+      !passwordRegex.test(userLoginInfo.password) ||
+      userLoginInfo.password.length <= 10 ||
+      userLoginInfo.id.length < 6 ||
+      !alphanumericRegex.test(userLoginInfo.id) ||
+      !alphanumericRegexA.test(userLoginInfo.id)
+    ) {
+      alert('아이디 또는 비밀번호가 틀립니다.');
+    } else {
+      // const params = userLoginInfo;
+      // const response = await customAxios //eslint-disable-line no-unused-vars
+      //   .post(API.LOGINPOST, params) //백엔드 서버 api입니다.
+
+      basic_test(200) //테스트용 api입니다. 인자로 원하는 상태값을 넘겨주면됩니다.
+        .then(res => {
+          if (isRemember) {
+            setCookie('rememberUserId', userLoginInfo.id);
+          } else {
+            removeCookie('rememberUserId');
+          }
+          localStorage.setItem('accessToken', res.token);
+          navigate('/');
+        })
+        //에러 케이스를 정의합니다.
+        .catch(error => {
+          if (error.status === 400) {
+            alert('아이디 또는 비밀번호가 틀립니다.');
+          } else if (error.status === 401) {
+            alert('존재하지 않는 유저입니다.');
+          } else if (error.status === 402) {
+            alert('아이디를 입력하세요.');
+          } else if (error.status === 403) {
+            alert('비밀번호를 입력하세요.');
+          }
+        });
+    }
   };
 
   /**
    * 1.로그인 버튼을 클릭시 submitBtn(event) 함수가 실행됩니다. 인자로는 버튼 이벤트를 받습니다.
-   * 2.event.preventDefault(); 실행합니다. (submit실행시 기본 재리랜더링을 막습니다.)
-   * 3.requestNavListDataGet(userLoginInfo)함수를 실행합니다.
-   *   인자로는 위에 정의된 userLoginInfo//useState값을 인자로 줍니다.
+   * 2.event.preventDefault(); 실행합니다. (submit실행시 기본 리랜더링을 막습니다.)
+   * 3.requestLoginPost()함수를 실행합니다.
    */
   const submitBtn = event => {
     event.preventDefault();
-    requestNavListDataGet(userLoginInfo);
+    requestLoginPost();
   };
 
   return (

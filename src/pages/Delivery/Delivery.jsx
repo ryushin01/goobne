@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import Button from '../../components/Button/Button';
 import OrderMethod from './Components/OrderMethod';
+import DeliverySwiper from './Components/DeliverySwiper';
 
 const Delivery = () => {
   return (
     <DeliveryMain>
       <DeliveryWrap>
-        <SwiperBox>swiper</SwiperBox>
+        <DeliverySwiper />
         <MethodWrap>
           <MethodTitle>주문방법선택</MethodTitle>
           <DeliveryMethod>
@@ -53,12 +54,6 @@ const DeliveryWrap = styled.section`
   width: 100%;
   max-width: 1200px;
   margin: 120px auto;
-`;
-
-const SwiperBox = styled.div`
-  width: 100%;
-  height: 156px;
-  border: 1px solid;
 `;
 
 const MethodWrap = styled.div`
