@@ -12,7 +12,7 @@ const CustomRadio = ({
 }) => {
   /** 상태가 변화된 Radio 버튼의 target.value를 저장하는 함수 입니다. */
   const handleRadioChange = e => {
-    onChange(e.target.value);
+    onChange(e.target.id);
   };
 
   return (

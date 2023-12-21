@@ -6,7 +6,7 @@ import styled from 'styled-components';
 const RadioGroup = ({ data, onChange, setRadioData }) => {
   /** useEffect를 이용해 처음 랜더링 될 때 RadioData를 첫번 째 데이터로 넣어줍니다. */
   useEffect(() => {
-    setRadioData(data[0].label);
+    setRadioData(data[0].id);
   }, []);
   return (
     <RadioGroupContainer>
