@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Input from '../../components/Input/Input';
 import SelectBox from '../../components/SelectBox/SelectBox';
 import Button from '../../components/Button/Button';
+import PaymentMethodList from './components/PaymentMethodList';
 
 const Order = () => {
   return (
@@ -81,12 +82,32 @@ const Order = () => {
               <PaymentList>
                 <span>결제방법</span>
                 <PaymentButtonList>
-                  <button type="button">신용카드</button>
-                  <button type="button">네이버페이</button>
-                  <button type="button">카카오페이</button>
-                  <button type="button">페이코</button>
-                  <button type="button">후불&nbsp;카드</button>
-                  <button type="button">후불&nbsp;현금</button>
+                  <PaymentMethodList type="radio" name="pay" text="현금카드" />
+                  <PaymentMethodList
+                    type="radio"
+                    name="pay"
+                    text="네이버페이"
+                  />
+                  <PaymentMethodList
+                    type="radio"
+                    name="pay"
+                    text="네이버페이"
+                  />
+                  <PaymentMethodList
+                    type="radio"
+                    name="pay"
+                    text="네이버페이"
+                  />
+                  <PaymentMethodList
+                    type="radio"
+                    name="pay"
+                    text="네이버페이"
+                  />
+                  <PaymentMethodList
+                    type="radio"
+                    name="pay"
+                    text="네이버페이"
+                  />
                 </PaymentButtonList>
               </PaymentList>
               <CashReceipt>
