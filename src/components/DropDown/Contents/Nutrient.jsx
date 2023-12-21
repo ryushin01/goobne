@@ -1,6 +1,18 @@
 import styled, { css } from 'styled-components';
 
-const Nutrient = ({ open }) => {
+const Nutrient = ({ open, nutrientInfo }) => {
+  const {
+    amountPerServing,
+    calories,
+    carbohydrates,
+    cholesterol,
+    fat,
+    protein,
+    saturatedFat,
+    sodium,
+    sugars,
+    transFat,
+  } = nutrientInfo;
   return (
     <DropDownOption className={open && 'open'}>
       <CountryOriginTitleWrap>
@@ -16,45 +28,45 @@ const Nutrient = ({ open }) => {
         <thead>
           <tr>
             <th scope="col">1회제공량</th>
-            <th scope="col">143g(2조각)</th>
+            <th scope="col">{amountPerServing}</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>열량(kcal)</td>
-            <td>455</td>
+            <th>열량(kcal)</th>
+            <td>{calories}</td>
           </tr>
           <tr>
-            <td>나트륨(mg)</td>
-            <td>692</td>
+            <th>나트륨(mg)</th>
+            <td>{sodium}</td>
           </tr>
           <tr>
-            <td>탄수화물(g)</td>
-            <td>35</td>
+            <th>탄수화물(g)</th>
+            <td>{carbohydrates}</td>
           </tr>
           <tr>
-            <td>당류(g)</td>
-            <td>4</td>
+            <th>당류(g)</th>
+            <td>{sugars}</td>
           </tr>
           <tr>
-            <td>지방(g)</td>
-            <td>26</td>
+            <th>지방(g)</th>
+            <td>{fat}</td>
           </tr>
           <tr>
-            <td>트랜스지방(g)</td>
-            <td>0.3</td>
+            <th>트랜스지방(g)</th>
+            <td>{transFat}</td>
           </tr>
           <tr>
-            <td>포화지방(g)</td>
-            <td>12</td>
+            <th>포화지방(g)</th>
+            <td>{saturatedFat}</td>
           </tr>
           <tr>
-            <td>콜레스테롤(mg)</td>
-            <td>33</td>
+            <th>콜레스테롤(mg)</th>
+            <td>{cholesterol}</td>
           </tr>
           <tr>
-            <td>단백질(g)</td>
-            <td>20</td>
+            <th>단백질(g)</th>
+            <td>{protein}</td>
           </tr>
         </tbody>
       </NutrientContainer>
@@ -133,7 +145,7 @@ const NutrientContainer = styled.table`
     font-size: 0;
   }
 
-  th {
+  & thead th {
     background-color: ${props => props.theme.grayscaleH};
     color: ${props => props.theme.grayscaleA};
     padding: 10px 0;
@@ -145,6 +157,12 @@ const NutrientContainer = styled.table`
     &:last-child {
       border-radius: 0 8px 0 0;
     }
+  }
+
+  th {
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 1px solid ${props => props.theme.grayscaleC};
   }
 
   td {

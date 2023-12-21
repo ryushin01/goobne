@@ -7,6 +7,7 @@ export const API = {
   NAV: `/NavListData.json`,
   LISTITEM: `/ListItemData.json`,
   LOGINPOST: `/login`,
+  DETAIL: `/DetailData.json`,
   CART_SWIPER: `/CartSwiper.json`,
   DELIVERY_SWIPER: `/DeliverySwiper.json`,
   MENU_CHIP: `/MenuChipData.json`,
