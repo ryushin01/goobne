@@ -33,39 +33,39 @@ const Nutrient = ({ open, nutrientInfo }) => {
         </thead>
         <tbody>
           <tr>
-            <td>열량(kcal)</td>
+            <th>열량(kcal)</th>
             <td>{calories}</td>
           </tr>
           <tr>
-            <td>나트륨(mg)</td>
+            <th>나트륨(mg)</th>
             <td>{sodium}</td>
           </tr>
           <tr>
-            <td>탄수화물(g)</td>
+            <th>탄수화물(g)</th>
             <td>{carbohydrates}</td>
           </tr>
           <tr>
-            <td>당류(g)</td>
+            <th>당류(g)</th>
             <td>{sugars}</td>
           </tr>
           <tr>
-            <td>지방(g)</td>
+            <th>지방(g)</th>
             <td>{fat}</td>
           </tr>
           <tr>
-            <td>트랜스지방(g)</td>
+            <th>트랜스지방(g)</th>
             <td>{transFat}</td>
           </tr>
           <tr>
-            <td>포화지방(g)</td>
+            <th>포화지방(g)</th>
             <td>{saturatedFat}</td>
           </tr>
           <tr>
-            <td>콜레스테롤(mg)</td>
+            <th>콜레스테롤(mg)</th>
             <td>{cholesterol}</td>
           </tr>
           <tr>
-            <td>단백질(g)</td>
+            <th>단백질(g)</th>
             <td>{protein}</td>
           </tr>
         </tbody>
@@ -145,7 +145,7 @@ const NutrientContainer = styled.table`
     font-size: 0;
   }
 
-  th {
+  & > thead > tr > th {
     background-color: ${props => props.theme.grayscaleH};
     color: ${props => props.theme.grayscaleA};
     padding: 10px 0;
@@ -157,6 +157,12 @@ const NutrientContainer = styled.table`
     &:last-child {
       border-radius: 0 8px 0 0;
     }
+  }
+
+  th {
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 1px solid ${props => props.theme.grayscaleC};
   }
 
   td {
