@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ListItem from './components/ListItem';
 import { API } from '../../config';
 import { customAxios } from '../../API/API';
@@ -6,6 +7,7 @@ import styled from 'styled-components';
 
 const List = () => {
   const [productList, setProductList] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     requestProductListItemDataGet();
@@ -38,12 +40,22 @@ const List = () => {
         <ListContainerUl>
           {productList?.map(
             (
-              { imgSrc, price, title, badgeHot, badgeMd, badgeNew, badgeBast },
+              {
+                id,
+                imgSrc,
+                price,
+                title,
+                badgeHot,
+                badgeMd,
+                badgeNew,
+                badgeBast,
+              },
               index,
             ) => {
               return (
                 <ListItemLi key={index}>
                   <ListItem
+                    id={id}
                     imgSrc={imgSrc}
                     price={price}
                     title={title}
@@ -51,6 +63,9 @@ const List = () => {
                     badgeBast={badgeBast}
                     badgeMd={badgeMd}
                     badgeHot={badgeHot}
+                    onClick={() => {
+                      navigate(`/detail/${id}`);
+                    }}
                   ></ListItem>
                 </ListItemLi>
               );

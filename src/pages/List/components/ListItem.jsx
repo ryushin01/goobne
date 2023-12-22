@@ -3,6 +3,7 @@ import IconButton from '../../../components/IconButton/IconButton';
 import styled from 'styled-components';
 
 const ListItem = ({
+  id,
   imgSrc,
   price,
   title,
@@ -16,7 +17,7 @@ const ListItem = ({
   return (
     <ListItemDiv {...props}>
       <ImgInner>
-        <img src={imgSrc} alt="메뉴사진" />
+        <img src={imgSrc} alt="메뉴사진" id={id} onClick={onClick} />
       </ImgInner>
 
       <ListInfoWrapDiv>

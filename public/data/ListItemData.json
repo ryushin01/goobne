@@ -1,50 +1,52 @@
 {
   "result": [
     {
+      "id": 0,
       "imgSrc": "../goobne/images/main_chicken_01.jpg",
-      "title": "오리지널",
-      "price": "6500",
-      "badgeNew": "new",
-      "badgeBast": "best",
-      "badgeMd": "md",
-      "badgeHot": "hot"
+      "title": "치킨",
+      "category": "chicken",
+      "price": 19500,
+      "badge": ["new", "hot", "md"]
     },
     {
-      "imgSrc": "../goobne/images/main_chicken_01.jpg",
-      "title": "오리지널",
-      "price": "6500",
-      "badgeNew": "new",
-      "badgeBast": "best"
+      "id": 1,
+      "imgSrc": "../goobne/images/main_banner_02.jpg",
+      "title": "샐러드",
+      "category": "side",
+      "price": 6500,
+      "badge": ["new", "hot", "md"]
     },
     {
-      "imgSrc": "../goobne/images/main_chicken_01.jpg",
-      "title": "오리지널",
-      "price": "6500",
-      "badgeBast": "best",
-      "badgeMd": "md"
+      "id": 2,
+      "imgSrc": "../goobne/images/main-pizza.jpg",
+      "title": "피자",
+      "category": "pizza",
+      "price": 15500,
+      "badge": ["new", "hot", "md"]
     },
     {
-      "imgSrc": "../goobne/images/main_chicken_01.jpg",
-      "title": "오리지널",
-      "price": "6500",
-      "badgeNew": "new",
-      "badgeBast": "best",
-      "badgeMd": "md",
-      "badgeHot": "hot"
+      "id": 3,
+      "imgSrc": "../goobne/images/main_salad.jpg",
+      "title": "샐러드2",
+      "category": "side",
+      "price": 7900,
+      "badge": ["new", "hot", "md"]
     },
     {
-      "imgSrc": "../goobne/images/main_chicken_01.jpg",
-      "title": "오리지널",
-      "price": "6500",
-      "badgeNew": "new",
-      "badgeBast": "best",
-      "badgeMd": "md"
+      "id": 4,
+      "imgSrc": "../goobne/images/main_banner_01.jpg",
+      "title": "닭강정",
+      "category": "chicken",
+      "price": 13000,
+      "badge": ["new", "hot", "md"]
     },
     {
-      "imgSrc": "../goobne/images/main_chicken_01.jpg",
-      "title": "오리지널",
-      "price": "6500",
-      "badgeBast": "best"
+      "id": 5,
+      "imgSrc": "../goobne/images/main_beer.jpg",
+      "title": "맥주",
+      "category": "beer",
+      "price": 4000,
+      "badge": ["new", "hot", "md"]
     }
   ]
 }
