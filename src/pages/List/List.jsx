@@ -111,6 +111,7 @@ const ListContainerUl = styled.ul`
   column-gap: 10px;
   row-gap: 50px;
   margin-bottom: 200px;
+
   @media (max-width: 1300px) {
     grid-template-columns: 1fr 1fr; /* 각 아이템이 한 열에 하나씩 쌓이도록 설정 */
   }
@@ -123,7 +124,6 @@ const ListItemLi = styled.li`
   &:first-child {
     grid-column: span 2;
     grid-row: span 2;
-    /* display: none; */
     .emphasisContainer {
       width: 100%;
     }

@@ -7,6 +7,11 @@ const ListItem = ({ id, imgSrc, price, title, onClick, badge, ...props }) => {
   /**로컬스토리에서 accessToken을 token 변수에 담습니다. */
   const token = localStorage.getItem('accessToken');
 
+  /**
+   * useNavigate()를 navigate 이름으로 변수로 지정합니다.
+   */
+  const navigate = useNavigate();
+
   /**토큰이 없다면 로그인페이로 토큰이 있다면 딜리버리 페이지로 이동하는 함수입니다. */
   const cartIconClick = id => {
     if (!token) {
@@ -17,10 +22,6 @@ const ListItem = ({ id, imgSrc, price, title, onClick, badge, ...props }) => {
     }
   };
 
-  /**
-   * useNavigate()를 navigate 이름으로 변수로 지정합니다.
-   */
-  const navigate = useNavigate();
   return (
     <ListItemDiv className="emphasisContainer" {...props}>
       <ImgInnerBtnButton
@@ -29,11 +30,11 @@ const ListItem = ({ id, imgSrc, price, title, onClick, badge, ...props }) => {
           onClick(id);
         }}
       >
-        <img src={imgSrc} alt="메뉴사진" />
+        <img src={imgSrc} alt={title} />
       </ImgInnerBtnButton>
 
       <ListInfoWrapDiv>
-        <BadgeWrapDiv className="test">
+        <BadgeWrapDiv>
           {badge?.map((badge, index) => {
             return (
               <Badge
@@ -64,7 +65,7 @@ const ListItem = ({ id, imgSrc, price, title, onClick, badge, ...props }) => {
               onClick(id);
             }}
           >
-            {price.toLocaleString('ko-KR')}원
+            {price.toLocaleString()}원
           </PriceButton>
           <IconButton
             content="cart"
