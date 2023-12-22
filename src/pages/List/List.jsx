@@ -1,20 +1,15 @@
 import { useEffect, useState } from 'react';
 import ListItem from './components/ListItem';
-import { API } from '../../config';
+import MenuChipGroup from '../../components/Chip/MenuChipGroup';
 import { customAxios } from '../../API/API';
 import styled from 'styled-components';
-import MenuChipGroup from '../../components/Chip/MenuChipGroup';
 
 const List = () => {
   const [productList, setProductList] = useState('');
 
-  useEffect(() => {
-    requestProductListItemDataGet();
-  }, []);
-
-  const requestProductListItemDataGet = async () => {
-    const response = await customAxios //eslint-disable-line no-unused-vars
-      .get(API.LISTITEM)
+  const chipSelect = category => {
+    customAxios //eslint-disable-line no-unused-vars
+      .get(`/ListItem${category}.json`)
       .then(response => {
         setProductList(response.data.result);
       })
@@ -22,6 +17,15 @@ const List = () => {
         console.log(error);
       });
   };
+
+  const cartClick = id => {
+    console.log(id);
+  };
+
+  useEffect(() => {
+    chipSelect('All');
+  }, []);
+
   if (!productList) return null;
 
   return (
@@ -30,30 +34,24 @@ const List = () => {
         <h2>메뉴</h2>
 
         <ButtonWrapDiv>
-          <MenuChipGroup></MenuChipGroup>
+          <MenuChipGroup chipSelect={chipSelect}></MenuChipGroup>
         </ButtonWrapDiv>
 
         <ListContainerUl>
-          {productList?.map(
-            (
-              { imgSrc, price, title, badgeHot, badgeMd, badgeNew, badgeBast },
-              index,
-            ) => {
-              return (
-                <ListItemLi key={index}>
-                  <ListItem
-                    imgSrc={imgSrc}
-                    price={price}
-                    title={title}
-                    badgeNew={badgeNew}
-                    badgeBast={badgeBast}
-                    badgeMd={badgeMd}
-                    badgeHot={badgeHot}
-                  ></ListItem>
-                </ListItemLi>
-              );
-            },
-          )}
+          {productList?.map(({ id, imgSrc, price, title, badge }, index) => {
+            return (
+              <ListItemLi key={index}>
+                <ListItem
+                  id={id}
+                  imgSrc={imgSrc}
+                  price={price}
+                  title={title}
+                  badge={badge}
+                  onClick={cartClick}
+                ></ListItem>
+              </ListItemLi>
+            );
+          })}
         </ListContainerUl>
       </ListContainerSection>
     </ListWrapMain>

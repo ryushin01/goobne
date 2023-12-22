@@ -2,17 +2,7 @@ import Badge from '../../../components/Badge/Badge';
 import IconButton from '../../../components/IconButton/IconButton';
 import styled from 'styled-components';
 
-const ListItem = ({
-  imgSrc,
-  price,
-  title,
-  onClick,
-  badgeNew,
-  badgeBast,
-  badgeMd,
-  badgeHot,
-  ...props
-}) => {
+const ListItem = ({ id, imgSrc, price, title, onClick, badge, ...props }) => {
   return (
     <ListItemDiv {...props}>
       <ImgInner>
@@ -21,17 +11,22 @@ const ListItem = ({
 
       <ListInfoWrapDiv>
         <BadgeWrapDiv>
-          <Badge shape={badgeNew} />
-          <Badge shape={badgeBast} />
-          <Badge shape={badgeMd} />
-          <Badge shape={badgeHot} />
+          {badge?.map((badge, index) => {
+            return <Badge key={index} shape={badge} size="small" />;
+          })}
         </BadgeWrapDiv>
 
         <h3>{title}</h3>
 
         <PriceCartInner>
-          <span>{price}원</span>
-          <IconButton content="cart" onClick={onClick} />
+          <span>{price.toLocaleString('ko-KR')}원</span>
+
+          <IconButton
+            content="cart"
+            onClick={() => {
+              onClick(id);
+            }}
+          />
         </PriceCartInner>
       </ListInfoWrapDiv>
     </ListItemDiv>
@@ -47,11 +42,13 @@ const ListInfoWrapDiv = styled.div`
   background-color: transparent;
   & > h3 {
     font-weight: 900;
+    cursor: pointer;
   }
 `;
 const ImgInner = styled.div`
   width: 300px;
   height: 300px;
+  cursor: pointer;
   & > img {
     width: 100%;
     height: 100%;
@@ -71,5 +68,6 @@ const PriceCartInner = styled.div`
   padding: 10px 0px;
   & > span {
     font-weight: 900;
+    cursor: pointer;
   }
 `;

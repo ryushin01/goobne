@@ -5,7 +5,7 @@ export const API = {
   GOOB_STAR: `/GoobStarData.json`,
   GOOB_TUBE: `/GoobTubeData.json`,
   NAV: `/NavListData.json`,
-  LISTITEM: `/ListItemData.json`,
+  LISTITEM: `/ListItemAllData.json`,
   LOGINPOST: `/login`,
   DETAIL: `/DetailData.json`,
   CART_SWIPER: `/CartSwiper.json`,
