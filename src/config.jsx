@@ -12,5 +12,7 @@ export const API = {
   DELIVERY_SWIPER: `/DeliverySwiper.json`,
   MENU_CHIP: `/MenuChipData.json`,
   POPULAR_CHIP: `/PopularChipData.json`,
+  CART_PRODUCT: `/CartProductData.json`,
+  CART_INFO: `/CartInfoData.json`,
   JOIN_POST: `/join`,
 };

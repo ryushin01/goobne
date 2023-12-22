@@ -1,0 +1,39 @@
+{
+  "result": {
+    "deliveryFee": 3000,
+    "products": [
+      {
+        "id": 1,
+        "src": "./public/images/main_chicken_01.jpg",
+        "alt": "장바구니 배너1",
+        "name": "이청원 근성장용 닭찌 8pcs",
+        "price": 12000,
+        "count": 1
+      },
+      {
+        "id": 2,
+        "src": "./public/images/main_chicken_03.jpg",
+        "alt": "장바구니 배너3",
+        "name": "요진이는 못먹는 마라치킨 세트",
+        "price": 28000,
+        "count": 1
+      },
+      {
+        "id": 3,
+        "src": "./public/images/main_beer.jpg",
+        "alt": "장바구니 배너4",
+        "name": "치킨엔 맥주",
+        "price": 5000,
+        "count": 2
+      },
+      {
+        "id": 4,
+        "src": "./public/images/main_salad.jpg",
+        "alt": "장바구니 배너5",
+        "name": "기영이 사라다",
+        "price": 10000,
+        "count": 1
+      }
+    ]
+  }
+}

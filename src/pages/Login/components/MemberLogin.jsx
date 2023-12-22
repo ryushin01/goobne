@@ -108,6 +108,7 @@ const MemberLogin = () => {
           }
           localStorage.setItem('accessToken', res.token);
           navigate('/');
+          window.location.reload();
         })
         //에러 케이스를 정의합니다.
         .catch(error => {
