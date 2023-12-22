@@ -1,20 +1,24 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import IconButton from '../IconButton/IconButton';
-import styled from 'styled-components';
 import { customAxios } from '../../API/API';
 import { API } from '../../config';
+import styled from 'styled-components';
 
 /**
  * Nav props list
- * @property {function} setNavToggle                             - 버튼 클릭 시 실행할 함수를 위해 미리 정의합니다.
+ * @property {function} setNavToggle                             - useState 세터함수를 정의합니다.
+ * @property {Hook} NavToggle                                    - useState 값을 정의합니다.
  */
 
 const Nav = ({ navToggle, setNavToggle }) => {
+  /** 로컬스토리지에 토큰값을 token 변수에 담습니다. */
+  const token = localStorage.getItem('accessToken');
+
   /**
    * 1.useEffect 실행됩니다.
-   * 2.useEffect 실행되면서 axios get 방식이 실행되면 response받은 데이터를 담아놓을
-   * useState입니다.
+   * 2.useEffect 실행되면서 axios get 메서드가 실행되면 response받은 데이터를 담아놓을
+   * useState를 정의합니다.
    */
   const [navListData, setNavListData] = useState('');
 
@@ -24,7 +28,7 @@ const Nav = ({ navToggle, setNavToggle }) => {
   const navigate = useNavigate();
 
   /**
-   * 화면을 랜더링 하기전  requestNavListDataGet 실행 시킵니다.
+   * 화면을 랜더링 전 최초  requestNavListDataGet 실행 됩니다.
    */
   useEffect(() => {
     requestNavListDataGet();
@@ -34,8 +38,10 @@ const Nav = ({ navToggle, setNavToggle }) => {
    * NavList에서 클릭된 콘텐츠의 open 상태를 토글합니다.
    * 1. 클릭이 된 함수의 id,path 를 받아옵니다.
    * 2. NavList의 data를 받아와서 map을 이용하여 클릭된 콘텐츠의 id,path 와 클릭된 id,path 가 같은 것을 찾습니다.
-   * 3. 아이디가 서로 같으면 navList를 스프레드 오퍼레이터(연산자)로 복사하여 open을 토글후 고유한 id에 지정 되어있는 path 값을
+   * 3. 아이디가 서로 같고 path가 있다면  navList를 스프레드 오퍼레이터(연산자)로 복사하여 open을 토글후 고유한 id에 지정 되어있는 path 값을
    *    네비게이트 해준후 setNavToggle 실행되면서 nav컴포넌트가 close 됩니다.
+   * 4.path 없다면 open값을 true로 변경해줍니다. 클릭된id와 데이터에 저장된 id가 같은것만 open값을 true로 변경해줍니다.
+   * 5.depth 안에있는 데이터가 화면에 보여질수있습니다.
    */
   const toggle = ({ id, path }) => {
     setNavListData(navListData =>
@@ -56,19 +62,26 @@ const Nav = ({ navToggle, setNavToggle }) => {
   };
 
   /**
-  부모에서 props로 받은 setNavToggle 사용하여 NavToggle 값을 false 변경하여 Navcomponent를 close하는 함수입니다.
+   * 1.setNavToggle 세터함수는 Navcomponent를 토글하는 useState 세터함수입니다.
+   * 2.부모에서 props로 받은 setNavToggle 사용하여 NavToggle 값을 false 변경하여 Navcomponent를 close하는 함수입니다.
    */
   const navClose = () => {
     setNavToggle(false);
   };
 
-  /**로그인 페이지로 navigate 해주는 함수입니다. */
+  /**
+   * 1.setNavToggle 세터함수는 Navcomponent를 토글하는 useState 세터함수입니다.
+   * 2.로그인 페이지로 navigate 해주는 함수입니다.
+   */
   const goLoginPage = () => {
     navigate('/login');
     setNavToggle(false);
   };
 
-  /**회원가입 페이지로 navigate 해주는 함수입니다. */
+  /**
+   * 1.setNavToggle 세터함수는 Navcomponent를 토글하는 useState 세터함수입니다.
+   * 2.회원가입 페이지로 navigate 해주는 함수입니다.
+   */
   const goJoinPage = () => {
     navigate('/basejoin');
     setNavToggle(false);
@@ -79,7 +92,6 @@ const Nav = ({ navToggle, setNavToggle }) => {
    * 2.axios를 get메서드로 필요한 NavListData를 요청합니다.
    * 3.useState훅을 사용하여 NavListData에 데이터를 저장합니다.
    */
-
   const requestNavListDataGet = async () => {
     const response = await customAxios //eslint-disable-line no-unused-vars
       .get(API.NAV)
@@ -89,6 +101,18 @@ const Nav = ({ navToggle, setNavToggle }) => {
       .catch(error => {
         console.log(error);
       });
+  };
+
+  /**
+   * 1.로그아웃 버튼 클릭시 실행되는 함수입니다.
+   * 2.로컬스토리지에 accessToken 값을 삭제합니다.
+   * 3.네브컴포넌트를 토글합니다.
+   * 4.메인페이지로 네비게이트를 해줍니다.
+   */
+  const logOut = () => {
+    localStorage.removeItem('accessToken');
+    setNavToggle(false);
+    navigate('/');
   };
 
   /**
@@ -125,15 +149,27 @@ const Nav = ({ navToggle, setNavToggle }) => {
         <CloseBtnContainerDiv>
           <IconButton content="close" size="medium" onClick={navClose} />
         </CloseBtnContainerDiv>
-
-        <LoginJoinBtnContainerDiv>
-          <LoginBtnButton type="button" onClick={goLoginPage}>
-            Login
-          </LoginBtnButton>
-          <JoinBtnButton type="button" onClick={goJoinPage}>
-            Join
-          </JoinBtnButton>
-        </LoginJoinBtnContainerDiv>
+        {token ? (
+          <LogOutWrapDiv>
+            <div>
+              <span>회원님 반갑습니다.</span>
+            </div>
+            <LogOutBtnInnerDiv>
+              <button type="button" onClick={logOut}>
+                Logout
+              </button>
+            </LogOutBtnInnerDiv>
+          </LogOutWrapDiv>
+        ) : (
+          <LoginJoinBtnContainerDiv>
+            <LoginBtnButton type="button" onClick={goLoginPage}>
+              Login
+            </LoginBtnButton>
+            <JoinBtnButton type="button" onClick={goJoinPage}>
+              Join
+            </JoinBtnButton>
+          </LoginJoinBtnContainerDiv>
+        )}
 
         <ImgBannerContainerDiv>
           <img src="../goobne/images/banner.png" alt="르세라핀배너" />
@@ -154,6 +190,7 @@ const Nav = ({ navToggle, setNavToggle }) => {
                     {label}
                   </NavAccordionButton>
 
+                  {/* open 값이 있다면 보여지는 UI입니다. */}
                   {open && (
                     <ChildAccordionContainerUl>
                       {depth?.map((data, index) => {
@@ -304,7 +341,7 @@ const NavAccordionButton = styled.button`
     right: 0;
     width: 20px;
     height: 20px;
-    background-image: url('/goobne/src/svg/NavDownArrow.svg');
+    background-image: url('/goobne/src/svg/Nav/NavDownArrow.svg');
     background-repeat: no-repeat;
   }
   &.UpArrow::after {
@@ -315,7 +352,7 @@ const NavAccordionButton = styled.button`
     right: 0;
     width: 20px;
     height: 20px;
-    background-image: url('/goobne/src/svg/NavUpArrow.svg');
+    background-image: url('/goobne/src/svg/Nav/NavUpArrow.svg');
     background-repeat: no-repeat;
   }
 `;
@@ -342,4 +379,30 @@ const NavCallNumBerContainerDl = styled.dl`
   font-size: 20px;
   font-weight: 900;
   padding: 0px 0px 50px 60px;
+`;
+
+// 로그인했을때 스타일 컴포넌트
+const LogOutWrapDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  width: 100%;
+  border-bottom: 3px solid ${props => props.theme.primaryColor};
+  margin: 30px 0px;
+  & > div > span {
+    font-size: 20px;
+    font-weight: 900;
+  }
+`;
+const LogOutBtnInnerDiv = styled.div`
+  & > button {
+    background-color: ${props => props.theme.primaryColor};
+    color: ${props => props.theme.grayscaleA};
+    border: none;
+    border-radius: 20px;
+    padding: 10px 30px;
+    font-size: 20px;
+    cursor: pointer;
+  }
 `;

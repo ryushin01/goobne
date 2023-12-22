@@ -4,10 +4,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import Input from '../../../components/Input/Input';
 import Button from '../../../components/Button/Button';
 import CheckBox from '../../../components/CheckBox/CheckBox';
-import styled from 'styled-components';
-import { testAxios } from '../../../API/API'; //customAxios 테스트종료시 활성화시켜주기
-// testAxios << 테스트용 import 합니다. customAxios << 백엔드 서버용 import 합니다.
+import { basic_test } from '../../../API/TEST_API';
+// basic_test << 테스트용 api import 합니다.
+// import { customAxios } from '../../../API/API';
 // import { API } from '../../../config'; 테스트를 마치면 활성화 합니다.
+import styled from 'styled-components';
 
 const MemberLogin = () => {
   /**
@@ -51,6 +52,7 @@ const MemberLogin = () => {
       setUserLoginInfo({ ...userLoginInfo, id: cookies.rememberUserId });
       setIsRemember(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   /**
@@ -66,6 +68,14 @@ const MemberLogin = () => {
     setUserLoginInfo({ ...userLoginInfo, [name]: value });
   };
 
+  //특수문자 포함했는지 확인하는 정규식
+  const alphanumericRegex = /^[a-zA-Z0-9]+$/;
+  //영어숫자가 같이 조합됫는지 확인하는정규식
+  const alphanumericRegexA = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$/;
+  //패스워드 영문 숫자 특수문자 포함 확인하는 정규식입니다.
+  const passwordRegex =
+    /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>])[a-zA-Z0-9!@#$%^&*(),.?":{}|<>]+$/;
+
   /**
    * 1.params 변수에 userLoginInfo값을 정의합니다.
    * 2.response 변수 axios를 정의합니다.
@@ -73,33 +83,45 @@ const MemberLogin = () => {
    * 4.성공시 isRemember값이 true 라면(아이디 저장이 체크가되어있다면) 쿠키에 userLoginInfo.id 값을 저장합니다.(위에 정의된 state값)
    * 만약에 아이디 저장체크가 안되어있다면 removeCookie() 쿠키값을 삭제합니다.
    * 5.그외는 에러처리입니다.
+   * Verification // 아이디는 영문/숫자조합 6글자 이상이고 비밀번호는 특수문자포함 10자리 이상으로 했습니다.
    */
   const requestLoginPost = async () => {
-    // const params = userLoginInfo;
-    // const response = await customAxios //eslint-disable-line no-unused-vars
-    //   .post(API.LOGINPOST, params) //백엔드 서버 api입니다.
+    if (
+      !passwordRegex.test(userLoginInfo.password) ||
+      userLoginInfo.password.length <= 10 ||
+      userLoginInfo.id.length < 6 ||
+      !alphanumericRegex.test(userLoginInfo.id) ||
+      !alphanumericRegexA.test(userLoginInfo.id)
+    ) {
+      alert('아이디 또는 비밀번호가 틀립니다.');
+    } else {
+      // const params = userLoginInfo;
+      // const response = await customAxios //eslint-disable-line no-unused-vars
+      //   .post(API.LOGINPOST, params) //백엔드 서버 api입니다.
 
-    testAxios(200) //테스트용 api입니다. 인자로 원하는 상태값을 넘겨주면됩니다.
-      .then(() => {
-        if (isRemember) {
-          setCookie('rememberUserId', userLoginInfo.id);
-        } else {
-          removeCookie('rememberUserId');
-        }
-        navigate('/');
-      })
-      //에러 케이스를 정의합니다.
-      .catch(error => {
-        if (error.status === 400) {
-          alert('아이디 또는 비밀번호가 틀립니다.');
-        } else if (error.status === 401) {
-          alert('존재하지 않는 유저입니다.');
-        } else if (error.status === 402) {
-          alert('아이디를 입력하세요.');
-        } else if (error.status === 403) {
-          alert('비밀번호를 입력하세요.');
-        }
-      });
+      basic_test(200) //테스트용 api입니다. 인자로 원하는 상태값을 넘겨주면됩니다.
+        .then(res => {
+          if (isRemember) {
+            setCookie('rememberUserId', userLoginInfo.id);
+          } else {
+            removeCookie('rememberUserId');
+          }
+          localStorage.setItem('accessToken', res.token);
+          navigate('/');
+        })
+        //에러 케이스를 정의합니다.
+        .catch(error => {
+          if (error.status === 400) {
+            alert('아이디 또는 비밀번호가 틀립니다.');
+          } else if (error.status === 401) {
+            alert('존재하지 않는 유저입니다.');
+          } else if (error.status === 402) {
+            alert('아이디를 입력하세요.');
+          } else if (error.status === 403) {
+            alert('비밀번호를 입력하세요.');
+          }
+        });
+    }
   };
 
   /**

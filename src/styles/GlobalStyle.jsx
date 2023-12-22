@@ -41,6 +41,7 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    overflow-x: hidden;
   }
   
   /** Footer를 최하단에 고정시키기 위한 속성 */

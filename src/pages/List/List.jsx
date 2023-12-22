@@ -1,12 +1,11 @@
-import styled from 'styled-components';
+import { useEffect, useState } from 'react';
 import ListItem from './components/ListItem';
 import { API } from '../../config';
 import { customAxios } from '../../API/API';
-import { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 const List = () => {
   const [productList, setProductList] = useState('');
-  console.log(productList);
 
   useEffect(() => {
     requestProductListItemDataGet();

@@ -9,7 +9,7 @@ import styled from 'styled-components';
  * @property {string} weight       - 라벨의 font-weight
  */
 
-const CheckBox = ({ onChange, checked, label, id, ...props }) => {
+const CheckBox = ({ onChange, checked, label, id, name, ...props }) => {
   return (
     <CheckboxWrap>
       <CheckboxInput
@@ -17,6 +17,7 @@ const CheckBox = ({ onChange, checked, label, id, ...props }) => {
         onChange={onChange}
         checked={checked}
         id={id}
+        name={name}
       />
       <CheckboxLabel {...props}>{label}</CheckboxLabel>
     </CheckboxWrap>

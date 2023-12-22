@@ -1,4 +1,4 @@
-const RADIO_GROUP_DATA = [
+export const RADIO_GROUP_DATA = [
   { id: 1, name: 'gender', value: 'male', text: '남자', defaultChecked: true },
   {
     id: 2,
@@ -8,5 +8,3 @@ const RADIO_GROUP_DATA = [
     defaultChecked: false,
   },
 ];
-
-export default RADIO_GROUP_DATA;

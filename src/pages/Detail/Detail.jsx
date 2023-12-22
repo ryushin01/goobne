@@ -1,68 +1,130 @@
+import { useEffect, useState } from 'react';
+import { API } from '../../config';
+import { customAxios } from '../../API/API';
 import Badge from '../../../src/components/Badge/Badge';
 import Button from '../../components/Button/Button';
-import SelectBox from '../../components/SelectBox/SelectBox';
+import RadioGroup from './components/RadioGroup';
 import Count from '../../components/Count/Count';
+import DropDown from '../../components/DropDown/DropDown';
 import styled, { css } from 'styled-components';
 
 const Detail = () => {
+  /** detail Page에 대한 Data를 저장하는 useState 입니다. */
+  const [detailData, setDetailData] = useState([]);
+  /** radio 버튼 선택 id를 저장합니다. 초기값은 0번 입니다. */
+  const [radioData, setRadioData] = useState(0);
+  /** 상품 수량을 저장하는 useState 입니다. 초기값은 1개 입니다. */
+  const [count, setCount] = useState(1);
+
+  /** useEffect를 이용해 처음 랜더링 될 때 detailData를 가져오는 함수를 실행합니다. */
+  useEffect(() => {
+    requestDetailDataGet();
+  }, []);
+
+  /**
+   * detailData를 가져오는 함수 입니다.
+   * customAxios를 이용해 API.DETAIL에 요청을 보내고, 응답을 받아 detailData에 저장합니다.
+   * 에러가 발생할 경우 alert를 띄웁니다.
+   */
+  const requestDetailDataGet = async () => {
+    const response = await customAxios //eslint-disable-line no-unused-vars
+      .get(`${API.DETAIL}`)
+      .then(response => {
+        setDetailData(response.data.result);
+      })
+      .catch(error => {
+        if (error) {
+          alert('에러가 발생했습니다.');
+        }
+      });
+  };
+
+  /** Radio 버튼이 onChange 될 때마다 e.target의 value값을 가져와 RadioData에 저장합니다. */
+  const handleRadioChange = value => {
+    setRadioData(value);
+  };
+
+  /** detailData가 없을 경우 null을 반환합니다. */
+  if (!detailData) return null;
+
   return (
     <DetailContainer>
-      <ContainerInnerWrap>
-        <h2>허리바사삭 곱빼기</h2>
-        <DetailWrap>
-          <DetailInfoWrap>
-            <img
-              src="../goobne/images/main_chicken_01.jpg"
-              alt="고추바사삭 곱빼기"
-            />
-            <DetailInfo>
-              <SelectBox size="small" placeholder="원산지 정보보기" />
-              <SelectBox size="small" placeholder="영양성분 정보보기" />
-              <SelectBox size="small" placeholder="알레르기 정보보기" />
-            </DetailInfo>
-          </DetailInfoWrap>
-          <DetailInnerWrap>
-            <DetailTextWrap>
-              <BadgeWrap>
-                <Badge shape="new" size="large" />
-                <Badge shape="hot" size="large" />
-                <Badge shape="md" size="large" />
-              </BadgeWrap>
-              <h3>허리바사삭 곱빼기</h3>
-              <span>1초에 한 마리씩 팔리는 허리 바사삭의 양이 2배!</span>
-              <span>
-                <strong>27,000</strong>원
-              </span>
-            </DetailTextWrap>
-            <DetailButtonWrap>
-              <Button content="곱빼기" />
-              <Button content="곱빼기 윙" />
-              <Button content="곱빼기 통다리" />
-            </DetailButtonWrap>
-            <CountryOrigin>
-              <h3>원산지</h3>
-              <span>베이컨:돼지고기[외국산(스페인,미국,브라질 등)]</span>
-            </CountryOrigin>
-            <CountWrap>
-              <Count />
-            </CountWrap>
-            <DetailText>
-              <span>
-                • 본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이
-                상이 할 수 있습니다.
-              </span>
-            </DetailText>
-            <TotalAmount>
-              <span>
-                총 상품금액 : <strong>27,000원</strong>
-              </span>
-            </TotalAmount>
-            <OrderBtnWrap>
-              <Button content="온라인주문" size="medium" />
-            </OrderBtnWrap>
-          </DetailInnerWrap>
-        </DetailWrap>
-      </ContainerInnerWrap>
+      {detailData?.map(({ id, mainTitle, productDetail }) => {
+        /** radioData의 index로 productDetail의 객체 데이터를 선택합니다. */
+        const currentProductDetailData = productDetail?.[radioData];
+        /** 상품 가격에 콤마를 추가한 변수 입니다. */
+        const GoodsPrice = currentProductDetailData.price.toLocaleString();
+        /** 상품 수량에 따른 총 상품 금액을 계산한 변수 입니다. */
+        const totalPrice = currentProductDetailData.price * count;
+        /** 상품 가격에 콤마를 추가하는 함수 입니다. */
+        const addComma = num => {
+          return num.toLocaleString();
+        };
+
+        if (!currentProductDetailData) return null;
+        return (
+          <ContainerInnerWrap key={id}>
+            <h2>{mainTitle}</h2>
+            <DetailWrap>
+              <DetailInfoWrap>
+                <img
+                  src={currentProductDetailData?.image}
+                  alt={currentProductDetailData?.alt}
+                />
+                <DetailInfo>
+                  <DropDown
+                    country="true"
+                    countryInfo={currentProductDetailData?.origin?.bacon}
+                  />
+                  <DropDown
+                    nutrient="true"
+                    nutrientInfo={currentProductDetailData?.servingSize}
+                  />
+                </DetailInfo>
+              </DetailInfoWrap>
+              <DetailInnerWrap>
+                <DetailTextWrap>
+                  <BadgeWrap>
+                    {currentProductDetailData?.badges?.map((badge, index) => (
+                      <Badge key={index} shape={badge} size="large" />
+                    ))}
+                  </BadgeWrap>
+                  <h3>{currentProductDetailData?.title}</h3>
+                  <span>{currentProductDetailData?.description}</span>
+                  <span>
+                    <strong>{GoodsPrice}</strong>원
+                  </span>
+                </DetailTextWrap>
+
+                <RadioGroup
+                  data={currentProductDetailData?.option}
+                  onChange={handleRadioChange}
+                  setRadioData={setRadioData}
+                />
+
+                <CountryOrigin>
+                  <h3>원산지</h3>
+                  <span>{currentProductDetailData?.origin?.bacon}</span>
+                </CountryOrigin>
+                <CountWrap>
+                  <Count count={count} setCount={setCount} />
+                </CountWrap>
+                <DetailText>
+                  <span>• {currentProductDetailData?.disclaimer}</span>
+                </DetailText>
+                <TotalAmount>
+                  <span>
+                    총 상품금액 : <strong>{addComma(totalPrice)}원</strong>
+                  </span>
+                </TotalAmount>
+                <OrderBtnWrap>
+                  <Button content="온라인주문" size="medium" />
+                </OrderBtnWrap>
+              </DetailInnerWrap>
+            </DetailWrap>
+          </ContainerInnerWrap>
+        );
+      })}
     </DetailContainer>
   );
 };
@@ -80,6 +142,7 @@ const DetailContainer = styled.main`
   flex-direction: column;
   height: 100vh;
   margin-top: 200px;
+  margin-bottom: 140px;
 `;
 
 const ContainerInnerWrap = styled.section`
@@ -117,7 +180,7 @@ const DetailInfo = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 5px;
-  gap: 10px;
+  gap: 5px;
 `;
 
 const DetailInnerWrap = styled.div`
@@ -159,15 +222,6 @@ const DetailTextWrap = styled.div`
       font-family: 'Rubik', sans-serif;
     }
   }
-`;
-
-const DetailButtonWrap = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  gap: 10px;
-  padding-top: 30px;
-  margin-bottom: 15px;
 `;
 
 const CountryOrigin = styled.div`
