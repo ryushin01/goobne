@@ -2,7 +2,6 @@
   "result": [
     {
       "id": 1,
-      "totalAmount": 27000,
       "mainTitle": "허리바사삭 곱빼기",
       "productDetail": [
         {
@@ -29,16 +28,21 @@
             "protein": 20
           },
           "option": [
-            { "id": 0, "name": "Detail", "label": "한마리", "isChecked": true },
-            { "id": 1, "name": "Detail", "label": "순살", "isChecked": false },
-            { "id": 2, "name": "Detail", "label": "윙", "isChecked": false },
+            {
+              "id": 0,
+              "name": "chicken",
+              "label": "한마리",
+              "isChecked": true
+            },
+            { "id": 1, "name": "chicken", "label": "순살", "isChecked": false },
+            { "id": 2, "name": "chicken", "label": "윙", "isChecked": false },
             {
               "id": 3,
-              "name": "Detail",
+              "name": "chicken",
               "label": "통다리",
               "isChecked": false
             },
-            { "id": 4, "name": "Detail", "label": "콤보", "isChecked": false }
+            { "id": 4, "name": "chicken", "label": "콤보", "isChecked": false }
           ]
         },
         {
@@ -67,19 +71,19 @@
           "option": [
             {
               "id": 0,
-              "name": "Detail",
+              "name": "chicken",
               "label": "한마리",
               "isChecked": false
             },
-            { "id": 1, "name": "Detail", "label": "순살", "isChecked": true },
-            { "id": 2, "name": "Detail", "label": "윙", "isChecked": false },
+            { "id": 1, "name": "chicken", "label": "순살", "isChecked": true },
+            { "id": 2, "name": "chicken", "label": "윙", "isChecked": false },
             {
               "id": 3,
-              "name": "Detail",
+              "name": "chicken",
               "label": "통다리",
               "isChecked": false
             },
-            { "id": 4, "name": "Detail", "label": "콤보", "isChecked": false }
+            { "id": 4, "name": "chicken", "label": "콤보", "isChecked": false }
           ]
         },
         {
@@ -108,19 +112,19 @@
           "option": [
             {
               "id": 0,
-              "name": "Detail",
+              "name": "chicken",
               "label": "한마리",
               "isChecked": false
             },
-            { "id": 1, "name": "Detail", "label": "순살", "isChecked": false },
-            { "id": 2, "name": "Detail", "label": "윙", "isChecked": true },
+            { "id": 1, "name": "chicken", "label": "순살", "isChecked": false },
+            { "id": 2, "name": "chicken", "label": "윙", "isChecked": true },
             {
               "id": 3,
-              "name": "Detail",
+              "name": "chicken",
               "label": "통다리",
               "isChecked": false
             },
-            { "id": 4, "name": "Detail", "label": "콤보", "isChecked": false }
+            { "id": 4, "name": "chicken", "label": "콤보", "isChecked": false }
           ]
         },
         {
@@ -149,19 +153,19 @@
           "option": [
             {
               "id": 0,
-              "name": "Detail",
+              "name": "chicken",
               "label": "한마리",
               "isChecked": false
             },
-            { "id": 1, "name": "Detail", "label": "순살", "isChecked": false },
-            { "id": 2, "name": "Detail", "label": "윙", "isChecked": false },
+            { "id": 1, "name": "chicken", "label": "순살", "isChecked": false },
+            { "id": 2, "name": "chicken", "label": "윙", "isChecked": false },
             {
               "id": 3,
-              "name": "Detail",
+              "name": "chicken",
               "label": "통다리",
               "isChecked": true
             },
-            { "id": 4, "name": "Detail", "label": "콤보", "isChecked": false }
+            { "id": 4, "name": "chicken", "label": "콤보", "isChecked": false }
           ]
         },
         {
@@ -190,19 +194,57 @@
           "option": [
             {
               "id": 0,
-              "name": "Detail",
+              "name": "chicken",
               "label": "한마리",
               "isChecked": false
             },
-            { "id": 1, "name": "Detail", "label": "순살", "isChecked": false },
-            { "id": 2, "name": "Detail", "label": "윙", "isChecked": false },
+            { "id": 1, "name": "chicken", "label": "순살", "isChecked": false },
+            { "id": 2, "name": "chicken", "label": "윙", "isChecked": false },
             {
               "id": 3,
-              "name": "Detail",
+              "name": "chicken",
               "label": "통다리",
               "isChecked": false
             },
-            { "id": 4, "name": "Detail", "label": "콤보", "isChecked": true }
+            { "id": 4, "name": "chicken", "label": "콤보", "isChecked": true }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "mainTitle": "바질파스타",
+      "productDetail": [
+        {
+          "title": "바질파스타",
+          "image": "../goobne/images/main_side_dish.jpg",
+          "alt": "허리바사삭 곱빼기 이미지",
+          "badges": ["new", "md"],
+          "description": "바질을 넣어 더욱 향긋하게 하여 풍미가 가득한 파스타",
+          "price": 7000,
+          "origin": {
+            "bacon": "냉동우육: 쇠고기(호주산)"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "",
+            "calories": 557,
+            "sodium": 1569,
+            "carbohydrates": 67,
+            "sugars": 14,
+            "fat": 21,
+            "transFat": 0.5,
+            "saturatedFat": 8,
+            "cholesterol": 28,
+            "protein": 23
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "pastar",
+              "label": "바질파스타",
+              "isChecked": true
+            }
           ]
         }
       ]
