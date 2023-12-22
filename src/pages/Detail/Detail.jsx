@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { API } from '../../config';
 import { customAxios } from '../../API/API';
+import axios from 'axios';
 import Badge from '../../../src/components/Badge/Badge';
 import Button from '../../components/Button/Button';
 import RadioGroup from './components/RadioGroup';
@@ -16,10 +18,13 @@ const Detail = () => {
   /** 상품 수량을 저장하는 useState 입니다. 초기값은 1개 입니다. */
   const [count, setCount] = useState(1);
 
+  const params = useParams();
+  const userId = params.id;
+
   /** useEffect를 이용해 처음 랜더링 될 때 detailData를 가져오는 함수를 실행합니다. */
   useEffect(() => {
     requestDetailDataGet();
-  }, []);
+  }, [userId]);
 
   /**
    * detailData를 가져오는 함수 입니다.
