@@ -1,0 +1,12 @@
+{
+  "result": [
+    {
+      "id": 6,
+      "imgSrc": "../goobne/images/main_beer.jpg",
+      "title": "맥주",
+      "category": "beer",
+      "price": 4000,
+      "badge": ["new", "hot", "md"]
+    }
+  ]
+}

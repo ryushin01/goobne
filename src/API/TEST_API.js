@@ -82,6 +82,12 @@ export const cert_test = status => {
   });
 };
 
+/**
+ * 가상의 아이디 중복인증을 하는 테스트 axios 입니다.
+ * 1.인자로는 상태와 페이지에서 입력한 아이디 값을 받습니다.
+ * 2.유저가 입력한 id는 checkId 담아서 보내줍니다. status값은 1을 반환해줍니다. 1은 인증을했다는 의미합니다.
+ * 3.checkId는 서버에 저장한 아이디라고 가정 하고 프론트단에서 사용할것입니다.
+ */
 export const idDuplicateCheck_test = (status, id) => {
   const checkId = id;
   return new Promise((resolve, reject) => {

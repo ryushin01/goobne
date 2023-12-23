@@ -1,11 +1,8 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import OrderProduct from './OrderProduct';
 import Button from '../../../components/Button/Button';
 
 const OrderDetail = () => {
-  const [isCartFilled] = useState(false);
-
   return (
     <OrderDetailMain>
       <OrderDetailTitleWrap>
@@ -14,20 +11,23 @@ const OrderDetail = () => {
           <Button size="small" color="black" content="전체삭제" />
         </DeleteAllBtnWrap>
       </OrderDetailTitleWrap>
-      <div>
-        <OrderDetailRow>
-          <span>메뉴</span>
-          <span>수량</span>
-          <span>금액</span>
-        </OrderDetailRow>
-        <OrderProductRow>
-          {isCartFilled ? (
-            <OrderProduct />
-          ) : (
-            <span>장바구니가 비어 있습니다</span>
-          )}
-        </OrderProductRow>
-      </div>
+      <OrderProductTable>
+        <colgroup>
+          <col width="10%" />
+          <col width="40%" />
+          <col width="25%" />
+          <col width="20%" />
+          <col width="5%" />
+        </colgroup>
+        <thead>
+          <OrderTableHead>
+            <th colSpan={2}>메뉴</th>
+            <th>수량</th>
+            <th colSpan={2}>금액</th>
+          </OrderTableHead>
+        </thead>
+        <OrderProduct />
+      </OrderProductTable>
       <ButtonWrap>
         <OrderBtn>
           <Button size="small" color="beige" content="+ 메뉴 추가하기" />
@@ -73,21 +73,24 @@ const DeleteAllBtnWrap = styled.div`
   width: 110px;
 `;
 
-const OrderDetailRow = styled.div`
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  padding: 12px 0;
-  border-bottom: 1px solid ${props => props.theme.grayscaleC};
+const OrderProductTable = styled.table`
+  display: table;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
   font-size: 13px;
-  text-align: center;
+  border-bottom: 1px solid ${props => props.theme.grayscaleH};
 `;
 
-const OrderProductRow = styled.div`
-  padding: 20px 0;
-  border-bottom: 1px solid ${props => props.theme.grayscaleH};
-  font-size: 13px;
-  text-align: center;
+const OrderTableHead = styled.tr`
+  border-bottom: 1px solid ${props => props.theme.grayscaleC};
+
+  & > th {
+    padding: 12px 0;
+  }
 `;
+
 const ButtonWrap = styled.div`
   ${FlexBetween};
   margin-top: 30px;
