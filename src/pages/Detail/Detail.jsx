@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { API } from '../../config';
-import { customAxios } from '../../API/API';
-import axios from 'axios';
+import { _requestDetailDataGet } from '../../API/TEST_API';
 import Badge from '../../../src/components/Badge/Badge';
 import Button from '../../components/Button/Button';
 import RadioGroup from './components/RadioGroup';
@@ -17,31 +15,28 @@ const Detail = () => {
   const [radioData, setRadioData] = useState(0);
   /** 상품 수량을 저장하는 useState 입니다. 초기값은 1개 입니다. */
   const [count, setCount] = useState(1);
-
+  /** params를 이용하여 detail에 대한 path parameter를 가져옵니다. */
   const params = useParams();
-  const userId = params.id;
+  /** params의 id를 Number로 변환하여 userId에 저장합니다. */
+  const userId = Number(params.id);
 
   /** useEffect를 이용해 처음 랜더링 될 때 detailData를 가져오는 함수를 실행합니다. */
   useEffect(() => {
-    requestDetailDataGet();
+    /** TEST_API를 이용하여 userId에 따른 데이터를 detailData로 불러옵니다. */
+    _requestDetailDataGet(userId).then(response => {
+      return setDetailData(response.data);
+    });
   }, [userId]);
 
-  /**
-   * detailData를 가져오는 함수 입니다.
-   * customAxios를 이용해 API.DETAIL에 요청을 보내고, 응답을 받아 detailData에 저장합니다.
-   * 에러가 발생할 경우 alert를 띄웁니다.
-   */
-  const requestDetailDataGet = async () => {
-    const response = await customAxios //eslint-disable-line no-unused-vars
-      .get(`${API.DETAIL}`)
-      .then(response => {
-        setDetailData(response.data.result);
-      })
-      .catch(error => {
-        if (error) {
-          alert('에러가 발생했습니다.');
-        }
-      });
+  /** radioData의 index로 productDetail의 객체 데이터를 선택합니다. */
+  const currentProductDetailData = detailData?.productDetail?.[radioData];
+  /** 상품 가격에 콤마를 추가한 변수 입니다. */
+  const GoodsPrice = currentProductDetailData?.price?.toLocaleString();
+  /** 상품 수량에 따른 총 상품 금액을 계산한 변수 입니다. */
+  const totalPrice = currentProductDetailData?.price * count;
+  /** 상품 가격에 콤마를 추가하는 함수 입니다. */
+  const addComma = num => {
+    return num.toLocaleString();
   };
 
   /** Radio 버튼이 onChange 될 때마다 e.target의 value값을 가져와 RadioData에 저장합니다. */
@@ -54,82 +49,67 @@ const Detail = () => {
 
   return (
     <DetailContainer>
-      {detailData?.map(({ id, mainTitle, productDetail }) => {
-        /** radioData의 index로 productDetail의 객체 데이터를 선택합니다. */
-        const currentProductDetailData = productDetail?.[radioData];
-        /** 상품 가격에 콤마를 추가한 변수 입니다. */
-        const GoodsPrice = currentProductDetailData.price.toLocaleString();
-        /** 상품 수량에 따른 총 상품 금액을 계산한 변수 입니다. */
-        const totalPrice = currentProductDetailData.price * count;
-        /** 상품 가격에 콤마를 추가하는 함수 입니다. */
-        const addComma = num => {
-          return num.toLocaleString();
-        };
+      <ContainerInnerWrap key={detailData.id}>
+        <h2>{detailData.mainTitle}</h2>
+        <DetailWrap>
+          <DetailInfoWrap>
+            <img
+              src={currentProductDetailData?.image}
+              alt={currentProductDetailData?.alt}
+            />
+            <DetailInfo>
+              <DropDown
+                country="true"
+                countryInfo={currentProductDetailData?.origin?.bacon}
+              />
+              <DropDown
+                nutrient="true"
+                nutrientInfo={currentProductDetailData?.servingSize}
+              />
+            </DetailInfo>
+          </DetailInfoWrap>
+          <DetailInnerWrap>
+            <DetailTextWrap>
+              <BadgeWrap>
+                {currentProductDetailData?.badges?.map((badge, index) => (
+                  <Badge key={index} shape={badge} size="large" />
+                ))}
+              </BadgeWrap>
+              <h3>{currentProductDetailData?.title}</h3>
+              <span>{currentProductDetailData?.description}</span>
+              <span>
+                <strong>{GoodsPrice}</strong>원
+              </span>
+            </DetailTextWrap>
 
-        if (!currentProductDetailData) return null;
-        return (
-          <ContainerInnerWrap key={id}>
-            <h2>{mainTitle}</h2>
-            <DetailWrap>
-              <DetailInfoWrap>
-                <img
-                  src={currentProductDetailData?.image}
-                  alt={currentProductDetailData?.alt}
-                />
-                <DetailInfo>
-                  <DropDown
-                    country="true"
-                    countryInfo={currentProductDetailData?.origin?.bacon}
-                  />
-                  <DropDown
-                    nutrient="true"
-                    nutrientInfo={currentProductDetailData?.servingSize}
-                  />
-                </DetailInfo>
-              </DetailInfoWrap>
-              <DetailInnerWrap>
-                <DetailTextWrap>
-                  <BadgeWrap>
-                    {currentProductDetailData?.badges?.map((badge, index) => (
-                      <Badge key={index} shape={badge} size="large" />
-                    ))}
-                  </BadgeWrap>
-                  <h3>{currentProductDetailData?.title}</h3>
-                  <span>{currentProductDetailData?.description}</span>
-                  <span>
-                    <strong>{GoodsPrice}</strong>원
-                  </span>
-                </DetailTextWrap>
+            <RadioGroup
+              data={currentProductDetailData?.option}
+              onChange={handleRadioChange}
+              setRadioData={setRadioData}
+              defaultChecked={currentProductDetailData?.option?.isChecked}
+            />
 
-                <RadioGroup
-                  data={currentProductDetailData?.option}
-                  onChange={handleRadioChange}
-                  setRadioData={setRadioData}
-                />
-
-                <CountryOrigin>
-                  <h3>원산지</h3>
-                  <span>{currentProductDetailData?.origin?.bacon}</span>
-                </CountryOrigin>
-                <CountWrap>
-                  <Count count={count} setCount={setCount} />
-                </CountWrap>
-                <DetailText>
-                  <span>• {currentProductDetailData?.disclaimer}</span>
-                </DetailText>
-                <TotalAmount>
-                  <span>
-                    총 상품금액 : <strong>{addComma(totalPrice)}원</strong>
-                  </span>
-                </TotalAmount>
-                <OrderBtnWrap>
-                  <Button content="온라인주문" size="medium" />
-                </OrderBtnWrap>
-              </DetailInnerWrap>
-            </DetailWrap>
-          </ContainerInnerWrap>
-        );
-      })}
+            <CountryOrigin>
+              <h3>원산지</h3>
+              <span>{currentProductDetailData?.origin?.bacon}</span>
+            </CountryOrigin>
+            <CountWrap>
+              <Count count={count} setCount={setCount} />
+            </CountWrap>
+            <DetailText>
+              <span>• {currentProductDetailData?.disclaimer}</span>
+            </DetailText>
+            <TotalAmount>
+              <span>
+                총 상품금액 : <strong>{addComma(totalPrice)}원</strong>
+              </span>
+            </TotalAmount>
+            <OrderBtnWrap>
+              <Button content="온라인주문" size="medium" />
+            </OrderBtnWrap>
+          </DetailInnerWrap>
+        </DetailWrap>
+      </ContainerInnerWrap>
     </DetailContainer>
   );
 };
