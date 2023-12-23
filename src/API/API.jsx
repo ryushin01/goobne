@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Custom axios를 만들기 위해 함수 생성
-const BASE_URL = '../goobne/data/';
+const BASE_URL = '/goobne/data/';
 
 /**
  * Data를 받아오기 위한 Custom Axios
