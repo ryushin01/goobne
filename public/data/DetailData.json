@@ -1,12 +1,12 @@
 {
   "result": [
     {
-      "id": 1,
+      "id": 0,
       "mainTitle": "허리바사삭 곱빼기",
       "productDetail": [
         {
           "title": "허리바사삭 곱빼기",
-          "image": "../goobne/images/main_chicken_01.jpg",
+          "image": "/goobne/images/main_chicken_01.jpg",
           "alt": "허리바사삭 곱빼기 이미지",
           "badges": ["new", "hot", "md"],
           "description": "1초에 한 마리씩 팔리는 허리 바사삭의 양이 2배!",
@@ -47,7 +47,7 @@
         },
         {
           "title": "허리바사삭 곱빼기 순살",
-          "image": "../goobne/images/main_chicken_02.jpg",
+          "image": "/goobne/images/main_chicken_02.jpg",
           "alt": "허리바사삭 곱빼기 순살 이미지",
           "badges": ["new", "hot", "md"],
           "description": "1초에 한 마리씩 팔리는 허리 바사삭이 먹기좋은 순살로!?",
@@ -88,7 +88,7 @@
         },
         {
           "title": "허리바사삭 곱빼기 윙",
-          "image": "../goobne/images/main_chicken_03.jpg",
+          "image": "/goobne/images/main_chicken_03.jpg",
           "alt": "허리바사삭 곱빼기 윙 이미지",
           "badges": ["new", "hot", "md"],
           "description": "허리바사삭의 날개만 모아놨다~ 거기다 양이 2배!",
@@ -129,7 +129,7 @@
         },
         {
           "title": "허리바사삭 곱빼기 통다리",
-          "image": "../goobne/images/main_wast_set.jpg",
+          "image": "/goobne/images/main_wast_set.jpg",
           "alt": "허리바사삭 곱빼기 통다리 이미지",
           "badges": ["new", "hot", "md"],
           "description": "1초에 한 마리씩 팔리는 허리 바사삭의 다리만 모아놨다~ 그런데 양까지 2배!",
@@ -170,7 +170,7 @@
         },
         {
           "title": "허리바사삭 곱빼기 콤보",
-          "image": "../goobne/images/main_side_dish.jpg",
+          "image": "/goobne/images/main_side_dish.jpg",
           "alt": "허리바사삭 곱빼기 콤보 이미지",
           "badges": ["new", "hot", "md"],
           "description": "1초에 한 마리씩 팔리는 허리 바사삭의 양이 2배! 근데 이걸 콤보로 먹을 수 있다고!?",
@@ -212,12 +212,12 @@
       ]
     },
     {
-      "id": 2,
+      "id": 1,
       "mainTitle": "바질파스타",
       "productDetail": [
         {
           "title": "바질파스타",
-          "image": "../goobne/images/main_side_dish.jpg",
+          "image": "/goobne/images/main_side_dish.jpg",
           "alt": "허리바사삭 곱빼기 이미지",
           "badges": ["new", "md"],
           "description": "바질을 넣어 더욱 향긋하게 하여 풍미가 가득한 파스타",
