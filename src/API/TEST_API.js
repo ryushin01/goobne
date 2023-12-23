@@ -1,5 +1,36 @@
 /**
  * 테스트용 api 입니다.
+ * 1. DetailData.json 파일을 불러와 response 에 담습니다.
+ * 2. response 를 json 형태로 변환하여 data 에 담습니다.
+ * 3. data 를 반환합니다.
+ */
+const DetailData = (async () => {
+  const response = await fetch('/goobne/data/DetailData.json');
+  const data = await response.json();
+  return data;
+})();
+
+/**
+ * 테스트용 api 입니다.
+ * @param {string} id useParams 로 받아온 id 값을 인자로 받습니다.
+ * 1. 위에서 불러온 DetailData.json 파일을 detail 변수에 담습니다.
+ * 2. detail 변수에 담긴 result 배열에서 id 값이 일치하는 것만 필터링하여 details 변수에 담습니다.
+ * new Promise((resolve, reject) => {}) => resolve 는 성공에 대한 값이고 reject 실패했을때에 대한 값을 반환합니다.
+ * 3. details[0] 을 반환합니다.
+ * @returns
+ */
+export const _requestDetailDataGet = async id => {
+  const detail = await DetailData;
+  const details = detail.result.filter(item => item.id === Number(id));
+  return new Promise((resolve, reject) => {
+    resolve({
+      data: details[0],
+    });
+  });
+};
+
+/**
+ * 테스트용 api 입니다.
  * 1.인자로 status 값을 받습니다.
  * 2.status 인자값이 200 이라면  resolve 를 반환합니다.
  * 3.그외의 값은 reject 로 반환합니다. 예시 => 400 401 402

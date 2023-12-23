@@ -14,7 +14,6 @@ const CustomRadio = ({
   const handleRadioChange = e => {
     onChange(e.target.id);
   };
-
   return (
     <RadioContainer>
       <input

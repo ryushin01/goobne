@@ -4,10 +4,14 @@ import styled from 'styled-components';
 
 /** 라디오 버튼의 그룹입니다. 여러개의 라디오 버튼을 만들어야할 때 사용합니다. */
 const RadioGroup = ({ data, onChange, setRadioData }) => {
-  /** useEffect를 이용해 처음 랜더링 될 때 RadioData를 첫번 째 데이터로 넣어줍니다. */
+  /** useEffect를 이용해 처음 랜더링 될 때 data가 있을 경우 RadioData의 첫번 째 배열 id를 데이터로 넣어줍니다. */
   useEffect(() => {
-    setRadioData(data[0].id);
+    data && setRadioData(data[0]?.id);
   }, []);
+
+  /** data가 없을 경우 null을 반환합니다. */
+  if (!data) return null;
+
   return (
     <RadioGroupContainer>
       {data?.map(({ id, label, isChecked, name, disabled }) => {
