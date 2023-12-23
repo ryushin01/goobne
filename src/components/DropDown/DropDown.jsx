@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import ConutryOrigin from './Contents/ConutryOrigin';
-import Nutrient from './Contents/nutrient';
+import Nutrient from './Contents/Nutrient';
 
 /**
  * DropDown Component
@@ -38,6 +38,8 @@ const DropDown = ({ data, country, nutrient, countryInfo, nutrientInfo }) => {
       setOpen(false);
     }
   };
+
+  if (!countryInfo && !nutrientInfo) return null;
 
   return (
     <>

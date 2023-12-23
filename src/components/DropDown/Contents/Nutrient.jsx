@@ -13,6 +13,9 @@ const Nutrient = ({ open, nutrientInfo }) => {
     sugars,
     transFat,
   } = nutrientInfo;
+
+  if (!nutrientInfo) return null;
+
   return (
     <DropDownOption className={open && 'open'}>
       <CountryOriginTitleWrap>
