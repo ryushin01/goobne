@@ -1,14 +1,41 @@
-import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import OrderProduct from './OrderProduct';
 import Button from '../../../components/Button/Button';
+import styled from 'styled-components';
 
 const OrderDetail = () => {
+  /** redux의 dispatch를 사용하기 위한 변수 입니다. */
+  const dispatch = useDispatch();
+  /** Navigate를 사용하기 위한 변수 입니다. */
+  const navigate = useNavigate();
+
+  const cartData = useSelector(state => {
+    return state.cart;
+  });
+
+  /** 장바구니에 담긴 데이터를 전체 삭제하는 기능입니다.
+   * 1. dispatch를 이용하여 type을 'DELETE_ALL_CART'로 보내줍니다.
+   * 2. reducer에서 type이 'DELETE_ALL_CART'일 경우 state를 빈 배열로 초기화 합니다.
+   * 3. 장바구니에 담긴 모든 데이터가 삭제됩니다.
+   */
+  const CartDataAllDelete = () => {
+    dispatch({
+      type: 'DELETE_ALL_CART',
+    });
+  };
+
   return (
     <OrderDetailMain>
       <OrderDetailTitleWrap>
         <h3>주문내역</h3>
         <DeleteAllBtnWrap>
-          <Button size="small" color="black" content="전체삭제" />
+          <Button
+            size="small"
+            color="black"
+            content="전체삭제"
+            onClick={CartDataAllDelete}
+          />
         </DeleteAllBtnWrap>
       </OrderDetailTitleWrap>
       <OrderProductTable>
@@ -30,14 +57,28 @@ const OrderDetail = () => {
       </OrderProductTable>
       <ButtonWrap>
         <OrderBtn>
-          <Button size="small" color="beige" content="+ 메뉴 추가하기" />
+          <Button
+            size="small"
+            color="beige"
+            content="+ 메뉴 추가하기"
+            onClick={() => {
+              navigate('/list');
+            }}
+          />
         </OrderBtn>
         <OrderBtnRight>
           <OrderBtn>
             <Button size="small" color="beige" content="쿠폰함" />
           </OrderBtn>
           <OrderBtn>
-            <Button size="small" color="black" content="주문하기" />
+            <Button
+              size="small"
+              color="black"
+              content="주문하기"
+              onClick={() => {
+                navigate('/order', { state: cartData });
+              }}
+            />
           </OrderBtn>
         </OrderBtnRight>
       </ButtonWrap>
