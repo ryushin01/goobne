@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { ReactComponent as Cursor } from '../../svg/Header/HeaderCursorIcon.svg';
 import { ReactComponent as MenuSearch } from '../../svg/Header/HeaderMenuSearchIcon.svg';
 import { ReactComponent as Store } from '../../svg/Header/HeaderStoreIcon.svg';
@@ -15,7 +16,24 @@ const Header = () => {
   /** Nav자식컴포넌트에 부여해서 사용할 useState 입니다.*/
   const [navToggle, setNavToggle] = useState(false);
 
+  /** Login/Logout 여부를 저장하는 변수 입니다. */
   const isLogin = !!localStorage.getItem('accessToken');
+
+  /** 장바구니에 담긴 데이터를 useSelector를 이용하여 state에 담아줍니다. */
+  const cartQuantity = useSelector(state => {
+    return state.cart;
+  });
+
+  /** useSelector에서 꺼낸 데이터를 이용하여 장바구니에 담긴 아이템의 총 수량을 표시 하기 위한 변수입니다.
+   * 1. cartQuantity의 데이터를 reduce를 이용하여 count를 더해줍니다.
+   * 2. reduce의 초기값은 0입니다.
+   * 3. cartQuantity의 데이터를 순회하면서 count를 더해줍니다.
+   * 4. 더한 값을 acc에 담아줍니다.
+   * 5. acc를 return 합니다.
+   */
+  const cartQuantityCount = cartQuantity.reduce((acc, cur) => {
+    return acc + cur.count;
+  }, 0);
 
   /**
    * useEffect를 이용하여 scroll에 대한 값을 scrollY 값이 변경될 때마다 업데이트 (의존성 배열에 scrollY를 넣어줌)
@@ -120,7 +138,12 @@ const Header = () => {
                 </li>
                 <li>
                   <Link to="/cart">
-                    <Cart />
+                    <CartWrap>
+                      <Cart />
+                      <div>
+                        <span>{cartQuantityCount}</span>
+                      </div>
+                    </CartWrap>
                   </Link>
                 </li>
               </ul>
@@ -277,6 +300,31 @@ const SubMenuWrap = styled.ul`
         font-size: 19px;
         padding: 0 10px;
       }
+    }
+  }
+`;
+
+const CartWrap = styled.div`
+  ${FlexCenter};
+  position: relative;
+
+  & > div {
+    ${FlexCenter};
+    position: absolute;
+    top: 10px;
+    right: -10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: ${props => props.theme.primaryColor};
+    z-index: 1;
+
+    & > span {
+      ${FlexCenter};
+      font-size: 12px;
+      font-weight: 200;
+      font-family: 'NanumSquareRoundR', sans-serif;
+      color: ${props => props.theme.grayscaleA};
     }
   }
 `;
