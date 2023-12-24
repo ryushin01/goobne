@@ -37,7 +37,6 @@ const List = () => {
    * 3.아이디를 적용한 url로 네비게이트 해줍니다.
    */
   const listItemClick = id => {
-    console.log(id);
     navigate(`/detail/${id}`);
   };
 
