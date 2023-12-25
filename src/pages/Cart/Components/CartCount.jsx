@@ -1,42 +1,54 @@
 import { useDispatch } from 'react-redux';
 import styled, { css } from 'styled-components';
+import { decrementQuantity, incrementQuantity } from '../../../Redux/Redux';
 
 /** 리덕스를 이용하여 장바구니에 담긴 상품의 수량을 증가시키거나 감소시키는 컴포넌트 입니다. */
 const CartCount = ({ id, radioData, size, count }) => {
   /** redux의 dispatch를 사용하기 위한 변수 입니다. */
   const dispatch = useDispatch();
 
-  /** 장바구니에 담긴 상품의 수량을 증가시키는 함수입니다. */
+  /** 장바구니에 담긴 상품의 수량을 증가시키는 함수입니다.
+   *
+   * dispatch를 이용하여 action.type이 INCREMENT_QUANTITY인 action을 reducer에 전달합니다.
+   * 1. dispatch를 이용하여 action을 reducer에 전달합니다.
+   * 2. action의 type은 INCREMENT_QUANTITY 입니다.
+   * 3. action의 payload는 Props로 받은 id, radioData, count 입니다.
+   */
   const handleCartCountPlus = () => {
-    /** dispatch를 이용하여 action.type이 INCREMENT_QUANTITY인 action을 reducer에 전달합니다.
-     * 1. dispatch를 이용하여 action을 reducer에 전달합니다.
-     * 2. action의 type은 INCREMENT_QUANTITY 입니다.
-     * 3. action의 payload는 Props로 받은 id, radioData, count 입니다.
-     */
-    dispatch({
-      type: 'INCREMENT_QUANTITY',
-      payload: {
-        id: id,
-        radioData: radioData,
-        count: count,
-      },
-    });
+    /** Redux Toolkit을 사용하지 않았을 때의 dispatch 입니다.  */
+    // dispatch({
+    //   type: 'INCREMENT_QUANTITY',
+    //   payload: {
+    //     id: id,
+    //     radioData: radioData,
+    //     count: count,
+    //   },
+    // });
+
+    /** Redux Toolkit을 사용했을 때의 dispatch 입니다.  */
+    dispatch(incrementQuantity({ id, radioData, count }));
   };
 
-  /** dispatch를 이용하여 action.type이 DECREMENT_QUANTITY인 action을 reducer에 전달합니다.
+  /** 장바구니에 담긴 상품의 수량을 감소시키는 함수입니다.
+   *
+   * dispatch를 이용하여 action.type이 DECREMENT_QUANTITY인 action을 reducer에 전달합니다.
    * 1. dispatch를 이용하여 action을 reducer에 전달합니다.
    * 2. action의 type은 INCREMENT_QUANTITY 입니다.
    * 3. action의 payload는 Props로 받은 id, radioData, count 입니다.
    */
   const handleCartCountMinus = () => {
-    dispatch({
-      type: 'DECREMENT_QUANTITY',
-      payload: {
-        id: id,
-        radioData: radioData,
-        count: count,
-      },
-    });
+    /** Redux Toolkit을 사용하지 않았을 때의 dispatch 입니다.  */
+    // dispatch({
+    //   type: 'DECREMENT_QUANTITY',
+    //   payload: {
+    //     id: id,
+    //     radioData: radioData,
+    //     count: count,
+    //   },
+    // });
+
+    /** Redux Toolkit을 사용했을 때의 dispatch 입니다.  */
+    dispatch(decrementQuantity({ id, radioData, count }));
   };
 
   return (

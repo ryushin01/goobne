@@ -1,14 +1,13 @@
-import { useEffect, useState } from 'react';
-import { API } from '../../../config';
-import { customAxios } from '../../../API/API';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CartCount from './CartCount';
 import styled from 'styled-components';
+import { deleteCart } from '../../../Redux/Redux';
 
 const OrderProduct = () => {
-  // deliveryFee(배달비)를 받아오기 위한 state 초기값 3,000원으로 고정
+  /** deliveryFee(배달비)를 받아오기 위한 state 초기값 3,000원으로 고정 */
   const [deliveryFee, setDeliveryFee] = useState(3000);
-
+  /** redux의 dispatch를 사용하기 위한 변수 입니다. */
   const dispatch = useDispatch();
 
   /** Redux에 저장한 장바구니 데이터를 useSelector를 이용하여 state에 담아줍니다. */
@@ -16,14 +15,19 @@ const OrderProduct = () => {
     return state.cart;
   });
 
+  /** 장바구니에 담긴 데이터를 개별 삭제하는 기능입니다. */
   const CartDataDelete = (id, radioData) => {
-    dispatch({
-      type: 'DELETE_CART',
-      payload: {
-        id: id,
-        radioData: radioData,
-      },
-    });
+    /** Redux Toolkit을 사용하지 않았을 때의 dispatch 입니다.  */
+    // dispatch({
+    //   type: 'DELETE_CART',
+    //   payload: {
+    //     id: id,
+    //     radioData: radioData,
+    //   },
+    // });
+
+    /** Redux Toolkit을 사용했을 때의 dispatch 입니다.  */
+    dispatch(deleteCart({ id, radioData }));
   };
 
   /**

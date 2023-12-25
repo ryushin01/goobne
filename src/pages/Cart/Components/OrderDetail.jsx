@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { deleteAllCart } from '../../../Redux/Redux';
 import OrderProduct from './OrderProduct';
 import Button from '../../../components/Button/Button';
 import styled from 'styled-components';
@@ -10,7 +11,9 @@ const OrderDetail = () => {
   /** Navigate를 사용하기 위한 변수 입니다. */
   const navigate = useNavigate();
 
+  /** order 페이지에 데이터를 넘겨주기 위해 useSelector를 이요해 state 값을 cartData 변수에 저장합니다. */
   const cartData = useSelector(state => {
+    /** state에서 cart라는 name을 가지고 있는 데이터를 반환합니다. */
     return state.cart;
   });
 
@@ -20,9 +23,13 @@ const OrderDetail = () => {
    * 3. 장바구니에 담긴 모든 데이터가 삭제됩니다.
    */
   const CartDataAllDelete = () => {
-    dispatch({
-      type: 'DELETE_ALL_CART',
-    });
+    /** Redux Toolkit을 사용하지 않았을 때의 dispatch 입니다.  */
+    // dispatch({
+    //   type: 'DELETE_ALL_CART',
+    // });
+
+    /** Redux Toolkit을 사용했을 때의 dispatch 입니다.  */
+    dispatch(deleteAllCart());
   };
 
   return (

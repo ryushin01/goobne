@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { _requestDetailDataGet } from '../../API/TEST_API';
 import { useDispatch } from 'react-redux';
+import { addCart } from '../../Redux/Redux';
 import Badge from '../../../src/components/Badge/Badge';
 import Button from '../../components/Button/Button';
 import RadioGroup from './components/RadioGroup';
@@ -49,10 +50,27 @@ const Detail = () => {
     setRadioData(value);
   };
 
+  /** 장바구니에 데이터를 넣기 위한 함수 입니다.
+   * 1. dispatch를 이용하여 payload data를 addCart로 보내줍니다.
+   */
   const putInCartData = () => {
-    dispatch({
-      type: 'ADD_CART',
-      payload: {
+    /** Redux Toolkit을 사용하지 않았을 때의 dispatch 입니다.  */
+    // dispatch({
+    //   type: 'ADD_CART',
+    //   payload: {
+    //     id: detailData?.id,
+    //     radioData: Number(radioData),
+    //     name: currentProductDetailData.title,
+    //     price: currentProductDetailData.price,
+    //     count: count,
+    //     src: currentProductDetailData.image,
+    //     alt: currentProductDetailData.alt,
+    //   },
+    // });
+
+    /** Redux Toolkit을 사용했을 때의 dispatch 입니다.  */
+    dispatch(
+      addCart({
         id: detailData?.id,
         radioData: Number(radioData),
         name: currentProductDetailData.title,
@@ -60,8 +78,8 @@ const Detail = () => {
         count: count,
         src: currentProductDetailData.image,
         alt: currentProductDetailData.alt,
-      },
-    });
+      }),
+    );
   };
 
   /** detailData가 없을 경우 null을 반환합니다. */
