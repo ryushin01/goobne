@@ -10,7 +10,7 @@ import styled from 'styled-components';
  * SelectBox Component
  * @param data SelectBox에 들어갈 Data를 props로 받습니다.
  */
-const SelectBox = ({ data, value, name, setUserJoinInfo }) => {
+const SelectBox = ({ data, value, name, setUserJoinInfo, onChange }) => {
   /** SelectBox를 onClick했을 때 ul부분을 open/close 하기 위한 state입니다. */
   const [open, setOpen] = useState(false);
   /** SelectBox의 선택된 option 값을 저장하기 위한 state입니다. */
@@ -56,12 +56,15 @@ const SelectBox = ({ data, value, name, setUserJoinInfo }) => {
      * 2. userJoinInfo 값을 스프레드 오퍼레이터(연산자)로 복사하여 SelectBox에 발생한 이벤트를  SelectBox name과 일치하는
      * key에 textContent 값을 setUserLoginInfo() 실행시켜 값을 변경해줍니다.
      */
-    setUserJoinInfo(userJoinInfo => ({
-      ...userJoinInfo,
-      [name]: e.target.textContent,
-    }));
-  };
+    // setUserJoinInfo(userJoinInfo => ({
+    //   ...userJoinInfo,
+    //   [name]: e.target.textContent,
+    // }));
 
+    if (onChange) {
+      onChange(e.target.textContent);
+    }
+  };
   return (
     <SelectBoxContainer
       onClick={handleOpen} // SelectBox를 클릭했을 때 open/close를 위한 함수입니다.

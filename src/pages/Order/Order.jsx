@@ -1,9 +1,106 @@
+import { useState, useEffect } from 'react';
+import { customAxios } from '../../API/API';
+import { API } from '../../config';
+import { ORDER_SELECT_BOX_DATA } from '../../data/OrderSelectBoxData';
+import { ORDER_RIDER_SELECT_BOX_DATA } from '../../data/OrderRiderSelectBoxData';
+import { COUPON_DATA } from '../../data/CouponData';
 import styled from 'styled-components';
 import Input from '../../components/Input/Input';
 import SelectBox from '../../components/SelectBox/SelectBox';
 import Button from '../../components/Button/Button';
+import PaymentMethodListGroup from './components/PaymentMethodListGroup';
+import { ReactComponent as Credit } from '../../svg/PaymentList/CreditCard.svg';
 
 const Order = () => {
+  /** orderInfo의 해당하는 값을 받아오기 위하여 State를 생성합니다. */
+  const [orderInfo, setOrderInfo] = useState([]);
+  /** 라디오인풋이 onChange가 될때 값을 저장하기 위한 State를 생성합니다. */
+  const [paymentOnChange, setPaymentOnChange] = useState('');
+  /** 셀렉트박스에 값이 변경될때마다, state에 값을 저장하기위하여 생성합니다. */
+  const [requestSelectData, setRequestSelectData] = useState({
+    ceo: '',
+    rider: '',
+  });
+  /** orderTextArea의 값이 변경될때마다, state에 값을 저장하기 위하여 생성합니다.*/
+  const [orderTextAreaValue, setOrderTextAreaValue] = useState('');
+  /** riderTextArea의 값이 변경될때마다, state에 값을 저장하기 위하여 생성합니다.*/
+  const [riderTextAreaValue, setRiderTextAreaValue] = useState('');
+
+  /** 첫 페이지 렌더링시 orderInfo을 보여주기 위하여 생성합니다. */
+  useEffect(() => {
+    getOrderInfoData();
+  }, []);
+
+  /** orderInfo를 가져오는 비동기 함수를 정의합니다. */
+  const getOrderInfoData = async () => {
+    const response = await customAxios //eslint-disable-line no-unused-vars
+      .get(API.ORDER_INFO)
+      /** API.ORDER_INFO(custom API) 로 GET 요청을 보냅니다. */
+      .then(response => {
+        setOrderInfo(response.data.result);
+      }) /** 요청이 성공하였을때 setOrderInfo함수가 실행, 데이터를 가져옵니다 */
+      .catch(error => {
+        if (error) {
+          alert(
+            '주문자정보 가져오기를 실패했습니다.',
+          ); /** 요청이 실패시 alert생성. */
+        }
+      });
+  };
+
+  /**
+   * useState로 선언한 객체형태의 값들의 데이터를 키:벨류 형태로 넣어주기 위하여 생성된 함수입니다.
+   * @param {*} value - 셀렉트 박스에서 선택된 벨류 값을 인자로 받아옵니다.
+   * @param {*} name - e.target이 된 셀렉트박스를 구분하기 위해 인자로 받아옵니다.
+   * 1. 셀렉트 박스의 변경된 값들을 저장하기 위한 setter 함수를 선언합니다.
+   * 2. 원본은 보존하기 위해서 스프레드 오퍼레이터를 이용하여 원본 값을 복사해줍니다.
+   * 3. 이벤트에 발생한 input name과 일치하는 키에 input에서 발생한 이벤트에 value 값을 변경해줍니다.
+   */
+  const saveRequestInfo = (value, name) => {
+    setRequestSelectData({
+      ...requestSelectData,
+      [name]: value,
+    });
+    console.log(requestSelectData);
+  };
+
+  /** orderInfo이 없는 경우, null을 반환합니다.*/
+  if (!orderInfo) return null;
+
+  /** deliveryFee라는 변수에 배달금액을 할당합니다. */
+  const deliveryFee = 3000;
+
+  /** totalPrice변수에 초기 총액을 0로 할당한다. */
+  let totalPrice = 0;
+
+  /** orderInfo 데이터를 map함수를 돌려 해당 값을 받아오고 기존할당한 totalPrice 에 합산하여 재할당한다. */
+  orderInfo.map(({ price, count }) => {
+    totalPrice = totalPrice + price * count;
+  });
+
+  /** totalAmount변수를 선언하고 상위 선언한 deliveryFee(배달료), totalPrice(제품들의 총합산금액)을 더하여준다. */
+  const totalAmount = deliveryFee + totalPrice;
+
+  /**
+   * 라디오 컴포넌트에서 onChange된 값의 e.target.value를 미리 받고 있기 때문에,
+   * 부모에서 선택된 라디오버튼의 value 값을 인자로 받아서 setPaymentOnChange에 값을 저장시켜줍니다.
+   * */
+  const handleChangePayment = value => {
+    setPaymentOnChange(value);
+    // console.log('Selected Payment:', value);
+  };
+
+  /** orderTextArea의 값이 변경될 때 호출되며, 입력되는 값을 state에 업데이트하는 함수입니다.  */
+  const handleChangeOrderRequest = e => {
+    setOrderTextAreaValue(e.target.value);
+    // console.log('Textarea Value:', e.target.value);
+  };
+  /** ridderTextArea의 값이 변경될 때 호출되며, 입력되는 값을 state에 업데이트하는 함수입니다.  */
+  const handleChangeRiderRequest = e => {
+    setRiderTextAreaValue(e.target.value);
+    // console.log('Textarea Value:', e.target.value);
+  };
+
   return (
     <OrderContainer>
       <OrderContentWrap>
@@ -32,8 +129,19 @@ const Order = () => {
               <DeliveryRequest>
                 <RequestTitle>가게사장님께 요청사항</RequestTitle>
                 <SelectArea>
-                  <SelectBox />
-                  <RequestTextArea placeholder="매장 요청사항을 입력해주세요" />
+                  <SelectBox
+                    data={ORDER_SELECT_BOX_DATA}
+                    value="직접입력"
+                    onChange={value => saveRequestInfo(value, 'ceo')}
+                    name="ceo"
+                  />
+                  {requestSelectData.ceo === '직접입력' && (
+                    <RequestTextArea
+                      value={orderTextAreaValue}
+                      placeholder="매장 요청사항을 입력해주세요"
+                      onChange={handleChangeOrderRequest}
+                    />
+                  )}
                 </SelectArea>
               </DeliveryRequest>
               <RiderArea>
@@ -42,8 +150,19 @@ const Order = () => {
                   <span>라이더님께</span>
                 </RiderInfo>
                 <SelectArea>
-                  <SelectBox />
-                  <RequestTextArea placeholder="매장 요청사항을 입력해주세요" />
+                  <SelectBox
+                    data={ORDER_RIDER_SELECT_BOX_DATA}
+                    value="안전하게 와주세요"
+                    onChange={value => saveRequestInfo(value, 'rider')}
+                    name="rider"
+                  />
+                  {requestSelectData.rider === '직접입력' && (
+                    <RequestTextArea
+                      value={riderTextAreaValue}
+                      placeholder="매장 요청사항을 입력해주세요"
+                      onChange={handleChangeRiderRequest}
+                    />
+                  )}
                 </SelectArea>
               </RiderArea>
             </DeliveryItemArea>
@@ -53,7 +172,7 @@ const Order = () => {
             <PaymentItemArea>
               <CouponList>
                 <CouponTitle>내&nbsp;쿠폰&nbsp;리스트</CouponTitle>
-                <SelectBox />
+                <SelectBox data={COUPON_DATA} value="쿠폰을 선택하여주세요." />
               </CouponList>
               <PersonalPoint>
                 <PointTitle>e-금액권</PointTitle>
@@ -81,12 +200,7 @@ const Order = () => {
               <PaymentList>
                 <span>결제방법</span>
                 <PaymentButtonList>
-                  <button type="button">신용카드</button>
-                  <button type="button">네이버페이</button>
-                  <button type="button">카카오페이</button>
-                  <button type="button">페이코</button>
-                  <button type="button">후불&nbsp;카드</button>
-                  <button type="button">후불&nbsp;현금</button>
+                  <PaymentMethodListGroup onChange={handleChangePayment} />
                 </PaymentButtonList>
               </PaymentList>
               <CashReceipt>
@@ -99,25 +213,29 @@ const Order = () => {
           </PaymentInfo>
           <OrderDetailArea>
             <OrderDetailInfo>주문내역</OrderDetailInfo>
-            <ProductDetailArea>
-              <ProductDetailInner>
-                <DetailItemName>고추바사삭 곱빼기(곱빼기)</DetailItemName>
-                <span>&nbsp;X&nbsp;</span>
-                <span>1</span>
-              </ProductDetailInner>
-              <span>27,000원</span>
-            </ProductDetailArea>
+            {orderInfo.map(({ id, title, count, price }) => {
+              return (
+                <ProductDetailArea key={id}>
+                  <ProductDetailInner>
+                    <DetailItemName>{title}</DetailItemName>
+                    <span>&nbsp;X&nbsp;</span>
+                    <span>{count}</span>
+                  </ProductDetailInner>
+                  <span>{price?.toLocaleString('ko-KR')}원</span>
+                </ProductDetailArea>
+              );
+            })}
           </OrderDetailArea>
           <PaymentAmountArea>
             <PaymentAmountSection>최종결제금액</PaymentAmountSection>
             <PaymentAmountInfo>
               <PaymentAmountItem>
                 <PaymentAmountLeftArea>주문금액</PaymentAmountLeftArea>
-                <span>27,000원</span>
+                <span>{totalPrice.toLocaleString('ko-KR')}원</span>
               </PaymentAmountItem>
               <PaymentAmountItem>
                 <PaymentAmountLeftArea>배달비</PaymentAmountLeftArea>
-                <span>3,000원</span>
+                <span>{deliveryFee.toLocaleString('ko-KR')}원</span>
               </PaymentAmountItem>
               <PaymentAmountItem>
                 <PaymentAmountLeftArea>
@@ -127,7 +245,7 @@ const Order = () => {
               </PaymentAmountItem>
               <PaymentAmountItemBottom>
                 <span>총&nbsp;결제금액</span>
-                <span>30,000원</span>
+                <span>{totalAmount.toLocaleString('ko-KR')}원</span>
               </PaymentAmountItemBottom>
             </PaymentAmountInfo>
             <StoreStreetInfo>
@@ -530,7 +648,7 @@ const ProductDetailArea = styled.div`
 
 const ProductDetailInner = styled.div`
   text-align: center;
-  margin: 24px 0;
+  margin: 10px 0;
 
   & span {
     font-size: 14px;

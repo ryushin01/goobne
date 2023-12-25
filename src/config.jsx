@@ -15,4 +15,5 @@ export const API = {
   CART_PRODUCT: `/CartProductData.json`,
   CART_INFO: `/CartInfoData.json`,
   JOIN_POST: `/join`,
+  ORDER_INFO: '/OrderData.json',
 };
