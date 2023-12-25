@@ -42,7 +42,7 @@ const PaymentMethod = ({
 const RadioContainer = styled.div`
   width: 100%;
   height: 70px;
-  border: 1px solid #000;
+  border: 1px solid ${props => props.theme.grayscaleH};
   cursor: pointer;
   position: relative;
 `;
@@ -53,21 +53,26 @@ const PaymentRadio = styled.input`
   height: 100%;
   appearance: none;
   cursor: pointer;
-  color: #fff;
+  color: ${props => props.theme.grayscaleA};
 
   &:checked {
     width: 100%;
     height: 100%;
-    background-color: #000;
+    background-color: ${props => props.theme.grayscaleH};
   }
 
   &:checked + label {
-    background-color: #000;
+    background-color: ${props => props.theme.grayscaleH};
     color: white;
     text-align: center;
     width: 100%;
     height: 25px;
     cursor: pointer;
+
+    & img {
+      filter: invert(98%) sepia(61%) saturate(6693%) hue-rotate(183deg)
+        brightness(123%) contrast(98%);
+    }
   }
 `;
 
@@ -87,9 +92,6 @@ const LabelImage = styled.img`
   left: 18px;
   width: 30px;
   height: 30px;
-  &:checked > svg {
-    fill: '#fff';
-  }
 `;
 
 export default PaymentMethod;

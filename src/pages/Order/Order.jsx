@@ -9,6 +9,7 @@ import Input from '../../components/Input/Input';
 import SelectBox from '../../components/SelectBox/SelectBox';
 import Button from '../../components/Button/Button';
 import PaymentMethodListGroup from './components/PaymentMethodListGroup';
+import { ReactComponent as Credit } from '../../svg/PaymentList/CreditCard.svg';
 
 const Order = () => {
   /** orderInfo의 해당하는 값을 받아오기 위하여 State를 생성합니다. */

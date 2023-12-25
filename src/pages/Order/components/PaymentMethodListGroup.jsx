@@ -5,7 +5,7 @@ import PAYMENT_METHOD_LIST_DATA from '../../../data/PaymentMethodListData';
 const PaymentMethodListGroup = ({ onChange, checked }) => {
   return (
     <RadioGroupArea>
-      {PAYMENT_METHOD_LIST_DATA.map(({ id, name, value, text, src, alt }) => {
+      {PAYMENT_METHOD_LIST_DATA.map(({ id, name, value, text, src }) => {
         return (
           <PaymentMethodList
             key={id}
@@ -14,7 +14,7 @@ const PaymentMethodListGroup = ({ onChange, checked }) => {
             value={value}
             text={text}
             src={src}
-            alt={alt}
+            alt={text}
             onChange={onChange}
             checked={checked}
           />
