@@ -1,12 +1,6 @@
-import { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 
 const Count = ({ size, count, setCount }) => {
-  /** Detail Page에 count값을 전달해주기 위해 useEffect를 사용합니다. */
-  useEffect(() => {
-    setCount(count);
-  }, [count]);
-
   /** Count를 + 하기 위해 사용하는 함수 입니다. */
   const handlePlusCount = () => {
     setCount(count + 1);
@@ -39,10 +33,12 @@ export default Count;
 const COUNT_SIZE = {
   small: {
     padding: '0',
+    fontSize: '12px',
   },
 
   medium: {
     padding: '5px 0',
+    fontSize: '16px',
   },
 };
 

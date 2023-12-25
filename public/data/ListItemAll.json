@@ -1,7 +1,7 @@
 {
   "result": [
     {
-      "id": 1,
+      "id": 0,
       "imgSrc": "../goobne/images/main_chicken_01.jpg",
       "title": "치킨",
       "category": "chicken",
@@ -9,7 +9,7 @@
       "badge": ["new", "hot", "md"]
     },
     {
-      "id": 2,
+      "id": 1,
       "imgSrc": "../goobne/images/main_banner_02.jpg",
       "title": "샐러드",
       "category": "side",
@@ -17,7 +17,7 @@
       "badge": ["new", "hot", "md"]
     },
     {
-      "id": 3,
+      "id": 2,
       "imgSrc": "../goobne/images/main-pizza.jpg",
       "title": "피자",
       "category": "pizza",
@@ -25,7 +25,7 @@
       "badge": ["new", "hot", "md"]
     },
     {
-      "id": 4,
+      "id": 3,
       "imgSrc": "../goobne/images/main_salad.jpg",
       "title": "샐러드2",
       "category": "side",
@@ -33,7 +33,7 @@
       "badge": ["new", "hot", "md"]
     },
     {
-      "id": 5,
+      "id": 4,
       "imgSrc": "../goobne/images/main_banner_01.jpg",
       "title": "닭강정",
       "category": "chicken",
@@ -41,7 +41,7 @@
       "badge": ["new", "hot", "md"]
     },
     {
-      "id": 6,
+      "id": 5,
       "imgSrc": "../goobne/images/main_beer.jpg",
       "title": "맥주",
       "category": "beer",

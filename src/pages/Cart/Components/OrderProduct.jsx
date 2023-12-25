@@ -1,68 +1,72 @@
-import { useEffect, useState } from 'react';
-import { API } from '../../../config';
-import { customAxios } from '../../../API/API';
-import Count from '../../../components/Count/Count';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import CartCount from './CartCount';
 import styled from 'styled-components';
+import { deleteCart } from '../../../Redux/Redux';
 
 const OrderProduct = () => {
-  // orderProductData(상품정보) 받아오기 위한 state
-  const [orderProductData, setOrderProductData] = useState([]);
-  // deliveryFee(배달비)를 받아오기 위한 state
-  const [deliveryFee, setDeliveryFee] = useState(0);
+  /** deliveryFee(배달비)를 받아오기 위한 state 초기값 3,000원으로 고정 */
+  const [deliveryFee, setDeliveryFee] = useState(3000);
+  /** redux의 dispatch를 사용하기 위한 변수 입니다. */
+  const dispatch = useDispatch();
 
-  // 페이지 진입시 orderProductRequest 함수를 실행시킴
-  useEffect(() => {
-    orderProductRequest();
-  }, []);
+  /** Redux에 저장한 장바구니 데이터를 useSelector를 이용하여 state에 담아줍니다. */
+  const state = useSelector(state => {
+    return state.cart;
+  });
 
-  // customAxios를 이용하여 CART_PRODUCT라는 json파일에 대한 데이터를 받아옴
-  // 데이터를 성공적으로 받아오면 setOrderProductData 통해 orderProductData 상태를 업데이트
-  // 마찬가지로 setDeliveryFee를 통해 deliveryFee를 띄움
-  // 에러발생시 경고창을 띄움
-  const orderProductRequest = async () => {
-    const request = await customAxios //eslint-disable-line no-unused-vars
-      .get(API.CART_PRODUCT)
-      .then(response => {
-        setOrderProductData(response.data.result.products);
-        setDeliveryFee(response.data.result.deliveryFee);
-      })
-      .catch(error => {
-        if (error) {
-          alert('데이터를 받아오던 중 에러가 발생했습니다.');
-        }
-      });
+  /** 장바구니에 담긴 데이터를 개별 삭제하는 기능입니다. */
+  const CartDataDelete = (id, radioData) => {
+    /** Redux Toolkit을 사용하지 않았을 때의 dispatch 입니다.  */
+    // dispatch({
+    //   type: 'DELETE_CART',
+    //   payload: {
+    //     id: id,
+    //     radioData: radioData,
+    //   },
+    // });
+
+    /** Redux Toolkit을 사용했을 때의 dispatch 입니다.  */
+    dispatch(deleteCart({ id, radioData }));
   };
 
-  // 여러 값을 하나로 합치는 reduce 함수를 사용
-  // total: { price }들의 누적값으로, {price}가 더해질 때마다 업데이트 됨
-  // { price }: 각 상품의 개별 가격
-  const orderAmount = orderProductData.reduce((total, { price }) => {
-    // 현재까지의 누적된 금액에 각 제품의 개별 가격을 더하여 총 상품금액을 도출함
-    return total + price;
-    // 누적값인 total의 초기값은 0
+  /**
+   * 여러 값을 하나로 합치는 reduce 함수를 사용
+   * acc: cur의 누적값으로, cur.price * cur.count가 더해질 때마다 업데이트 됨
+   *
+   * cur: 각 상품의 개별 가격*/
+  const orderAmount = state.reduce((acc, cur) => {
+    /** 현재까지의 누적된 금액에 각 제품의 개별 가격을 더하여 총 상품금액을 리턴합니다. */
+    return acc + cur.price * cur.count;
+    /** 누적값인 total의 초기값은 0 */
   }, 0);
 
-  // 배송비를 포함한 총 금액
+  /** 배송비를 포함한 총 금액 */
   const totalAmount = orderAmount + deliveryFee;
 
   return (
     <>
-      {orderProductData.length > 0 ? (
+      {state.length > 0 ? (
         <>
           <tbody>
-            {orderProductData.map(({ id, src, alt, name, price, count }) => (
-              <OrderTableBody key={id}>
+            {state.map(({ id, src, alt, name, price, count, radioData }) => (
+              <OrderTableBody key={name}>
                 <td colSpan={2}>
                   <OrderProductWrap>
                     <OrderProductImg>
                       <img src={src} alt={alt} />
                     </OrderProductImg>
-                    <span>{name}</span>
+                    <h4>{name}</h4>
                   </OrderProductWrap>
                 </td>
                 <td>
                   <OrderCountWrap>
-                    <Count size="small" count={count} />
+                    <CartCount
+                      size="small"
+                      count={count}
+                      id={id}
+                      radioData={radioData}
+                    />
                   </OrderCountWrap>
                 </td>
                 <td colSpan={2}>
@@ -71,10 +75,12 @@ const OrderProduct = () => {
                     원
                   </OrderPriceWrap>
                   <ProductDeleteBtnWrap>
-                    <img
-                      src="./public/images/ProductDeleteButton.png"
-                      alt="상품이미지"
-                    />
+                    <button onClick={() => CartDataDelete(id, radioData)}>
+                      <img
+                        src="./public/images/ProductDeleteButton.png"
+                        alt="상품이미지"
+                      />
+                    </button>
                   </ProductDeleteBtnWrap>
                 </td>
               </OrderTableBody>
@@ -132,6 +138,15 @@ const OrderTableBody = styled.tr`
   & > td {
     padding: 20px 10px;
     vertical-align: middle;
+
+    & h4 {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    & span {
+      font-size: 14px;
+    }
   }
 `;
 
@@ -185,6 +200,11 @@ const ProductDeleteBtnWrap = styled.div`
   top: 40%;
   right: 10px;
   position: absolute;
+
+  & > button {
+    border: none;
+    cursor: pointer;
+  }
 `;
 
 const CartEmptyBox = styled.tr`

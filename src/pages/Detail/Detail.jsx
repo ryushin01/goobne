@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { _requestDetailDataGet } from '../../API/TEST_API';
+import { useDispatch } from 'react-redux';
+import { addCart } from '../../Redux/Redux';
 import Badge from '../../../src/components/Badge/Badge';
 import Button from '../../components/Button/Button';
 import RadioGroup from './components/RadioGroup';
@@ -19,6 +21,10 @@ const Detail = () => {
   const params = useParams();
   /** params의 id를 Number로 변환하여 userId에 저장합니다. */
   const userId = Number(params.id);
+  /** redux의 dispatch를 사용하기 위한 변수 입니다. */
+  const dispatch = useDispatch();
+  /** react-router-dom의 navigate를 사용하기 위한 변수 입니다. */
+  const navigate = useNavigate();
 
   /** useEffect를 이용해 처음 랜더링 될 때 detailData를 가져오는 함수를 실행합니다. */
   useEffect(() => {
@@ -42,6 +48,38 @@ const Detail = () => {
   /** Radio 버튼이 onChange 될 때마다 e.target의 value값을 가져와 RadioData에 저장합니다. */
   const handleRadioChange = value => {
     setRadioData(value);
+  };
+
+  /** 장바구니에 데이터를 넣기 위한 함수 입니다.
+   * 1. dispatch를 이용하여 payload data를 addCart로 보내줍니다.
+   */
+  const putInCartData = () => {
+    /** Redux Toolkit을 사용하지 않았을 때의 dispatch 입니다.  */
+    // dispatch({
+    //   type: 'ADD_CART',
+    //   payload: {
+    //     id: detailData?.id,
+    //     radioData: Number(radioData),
+    //     name: currentProductDetailData.title,
+    //     price: currentProductDetailData.price,
+    //     count: count,
+    //     src: currentProductDetailData.image,
+    //     alt: currentProductDetailData.alt,
+    //   },
+    // });
+
+    /** Redux Toolkit을 사용했을 때의 dispatch 입니다.  */
+    dispatch(
+      addCart({
+        id: detailData?.id,
+        radioData: Number(radioData),
+        name: currentProductDetailData.title,
+        price: currentProductDetailData.price,
+        count: count,
+        src: currentProductDetailData.image,
+        alt: currentProductDetailData.alt,
+      }),
+    );
   };
 
   /** detailData가 없을 경우 null을 반환합니다. */
@@ -105,7 +143,14 @@ const Detail = () => {
               </span>
             </TotalAmount>
             <OrderBtnWrap>
-              <Button content="온라인주문" size="medium" />
+              <Button
+                content="온라인주문"
+                size="medium"
+                onClick={() => {
+                  putInCartData();
+                  navigate('/cart');
+                }}
+              />
             </OrderBtnWrap>
           </DetailInnerWrap>
         </DetailWrap>
