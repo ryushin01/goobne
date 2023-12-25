@@ -1,0 +1,21 @@
+{
+  "result": [
+    {
+      "id": 1,
+      "imgSrc": "../goobne/images/main_chicken_01.jpg",
+      "title": "치킨",
+      "category": "chicken",
+      "price": 19500,
+      "badge": ["new", "hot", "md"]
+    },
+
+    {
+      "id": 5,
+      "imgSrc": "../goobne/images/main_banner_01.jpg",
+      "title": "닭강정",
+      "category": "chicken",
+      "price": 13000,
+      "badge": ["new", "hot", "md"]
+    }
+  ]
+}

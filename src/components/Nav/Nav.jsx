@@ -258,6 +258,16 @@ const NavContainerDiv = styled.div`
     padding: 20px;
     width: 500px;
   }
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: ${props => props.theme.grayscaleG};
+    border-radius: 12px;
+  }
 `;
 
 const CloseBtnContainerDiv = styled.div`

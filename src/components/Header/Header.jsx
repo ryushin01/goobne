@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { ReactComponent as Cursor } from '../../svg/Header/HeaderCursorIcon.svg';
 import { ReactComponent as MenuSearch } from '../../svg/Header/HeaderMenuSearchIcon.svg';
 import { ReactComponent as Store } from '../../svg/Header/HeaderStoreIcon.svg';
-import IconButton from '../IconButton/IconButton';
-import styled from 'styled-components';
+import { ReactComponent as Cart } from '../../svg/Header/HeaderCartIcon.svg';
 import Nav from '../Nav/Nav';
+import IconButton from '../IconButton/IconButton';
+import styled, { css } from 'styled-components';
 
 const Header = () => {
   /** Scroll Y값을 저장하기 위한 state */
@@ -13,6 +15,25 @@ const Header = () => {
 
   /** Nav자식컴포넌트에 부여해서 사용할 useState 입니다.*/
   const [navToggle, setNavToggle] = useState(false);
+
+  /** Login/Logout 여부를 저장하는 변수 입니다. */
+  const isLogin = !!localStorage.getItem('accessToken');
+
+  /** 장바구니에 담긴 데이터를 useSelector를 이용하여 state에 담아줍니다. */
+  const cartQuantity = useSelector(state => {
+    return state.cart;
+  });
+
+  /** useSelector에서 꺼낸 데이터를 이용하여 장바구니에 담긴 아이템의 총 수량을 표시 하기 위한 변수입니다.
+   * 1. cartQuantity의 데이터를 reduce를 이용하여 count를 더해줍니다.
+   * 2. reduce의 초기값은 0입니다.
+   * 3. cartQuantity의 데이터를 순회하면서 count를 더해줍니다.
+   * 4. 더한 값을 acc에 담아줍니다.
+   * 5. acc를 return 합니다.
+   */
+  const cartQuantityCount = cartQuantity.reduce((acc, cur) => {
+    return acc + cur.count;
+  }, 0);
 
   /**
    * useEffect를 이용하여 scroll에 대한 값을 scrollY 값이 변경될 때마다 업데이트 (의존성 배열에 scrollY를 넣어줌)
@@ -48,7 +69,7 @@ const Header = () => {
         <HeaderLogo>
           <Link to="/">
             <h1>
-              <img src="../goobne/images/logo.png" alt="로고 이미지" />
+              <img src="/goobne/images/logo.png" alt="로고 이미지" />
             </h1>
           </Link>
         </HeaderLogo>
@@ -62,12 +83,16 @@ const Header = () => {
               <Link to="">주문하기</Link>
               <SubMenuWrap>
                 <li>
-                  <MenuSearch />
-                  <span>메뉴보기</span>
+                  <Link to="/list">
+                    <MenuSearch />
+                    <span>메뉴보기</span>
+                  </Link>
                 </li>
                 <li>
-                  <Store />
-                  <span>매장선택</span>
+                  <Link to="/">
+                    <Store />
+                    <span>매장선택</span>
+                  </Link>
                 </li>
               </SubMenuWrap>
             </li>
@@ -87,14 +112,42 @@ const Header = () => {
         </MenuWrap>
         <SignWrap>
           <div>
-            <ul>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
-                <Link to="/basejoin">Join</Link>
-              </li>
-            </ul>
+            {!isLogin ? (
+              <ul>
+                <li>
+                  <Link to="/login">Login</Link>
+                </li>
+                <li>
+                  <Link to="/basejoin">Join</Link>
+                </li>
+              </ul>
+            ) : (
+              <ul>
+                <li>
+                  <button
+                    onClick={() => {
+                      localStorage.removeItem('accessToken');
+                      window.location.reload();
+                    }}
+                  >
+                    Logout
+                  </button>
+                </li>
+                <li>
+                  <Link to="/">My Page</Link>
+                </li>
+                <li>
+                  <Link to="/cart">
+                    <CartWrap>
+                      <Cart />
+                      <div>
+                        <span>{cartQuantityCount}</span>
+                      </div>
+                    </CartWrap>
+                  </Link>
+                </li>
+              </ul>
+            )}
           </div>
           <div>
             <IconButton content="list" onClick={navShow} />
@@ -107,6 +160,12 @@ const Header = () => {
 };
 
 export default Header;
+
+const FlexCenter = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 /* Background-color를 scrollY 값이 200 이상일 경우 theme 색상을 적용하고, 미만일 경우에는 transparent 색상을 적용시킨다. */
 const HeaderContainer = styled.header`
@@ -197,10 +256,7 @@ const SignWrap = styled.div`
   display: flex;
 
   & > div {
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
+    ${FlexCenter};
 
     & > ul {
       display: flex;
@@ -215,6 +271,12 @@ const SignWrap = styled.div`
       }
     }
   }
+
+  & button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
 `;
 
 const SubMenuWrap = styled.ul`
@@ -228,14 +290,41 @@ const SubMenuWrap = styled.ul`
   padding: 15px 15px;
 
   & > li {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    ${FlexCenter};
     padding: 0 5px;
 
+    & > a {
+      ${FlexCenter};
+
+      & > span {
+        font-size: 19px;
+        padding: 0 10px;
+      }
+    }
+  }
+`;
+
+const CartWrap = styled.div`
+  ${FlexCenter};
+  position: relative;
+
+  & > div {
+    ${FlexCenter};
+    position: absolute;
+    top: 10px;
+    right: -10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: ${props => props.theme.primaryColor};
+    z-index: 1;
+
     & > span {
-      font-size: 19px;
-      padding: 0 10px;
+      ${FlexCenter};
+      font-size: 12px;
+      font-weight: 200;
+      font-family: 'NanumSquareRoundR', sans-serif;
+      color: ${props => props.theme.grayscaleA};
     }
   }
 `;

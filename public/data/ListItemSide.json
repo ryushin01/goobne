@@ -1,0 +1,21 @@
+{
+  "result": [
+    {
+      "id": 2,
+      "imgSrc": "../goobne/images/main_banner_02.jpg",
+      "title": "샐러드",
+      "category": "side",
+      "price": 6500,
+      "badge": ["new", "hot", "md"]
+    },
+
+    {
+      "id": 4,
+      "imgSrc": "../goobne/images/main_salad.jpg",
+      "title": "샐러드2",
+      "category": "side",
+      "price": 7900,
+      "badge": ["new", "hot", "md"]
+    }
+  ]
+}

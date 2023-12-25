@@ -18,7 +18,7 @@ const CartSwiper = () => {
 
   //SwiperItem을 가져오는 비동기 함수를 정의합니다.
   const getSwiperItemInfoData = async () => {
-    const response = await customAxios //eslint-disable-line no-unused-vars
+    const request = await customAxios //eslint-disable-line no-unused-vars
       .get(API.CART_SWIPER) //API.CART_SWIPER 로 GET 요청을 보냅니다.
       .then(response => {
         setSwiperItem(response.data.result);
