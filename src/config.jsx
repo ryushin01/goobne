@@ -13,4 +13,5 @@ export const API = {
   MENU_CHIP: `/MenuChipData.json`,
   POPULAR_CHIP: `/PopularChipData.json`,
   JOIN_POST: `/join`,
+  ORDER_INFO: '/OrderData.json',
 };

@@ -10,6 +10,7 @@ import List from './pages/List/List';
 import Order from './pages/Order/Order';
 import Main from './pages/Main/Main';
 import ScrollToTop from './components/ScrollTop/ScrollTop';
+import Detail from './pages/Detail/Detail';
 
 const Router = () => {
   return (
@@ -25,6 +26,7 @@ const Router = () => {
         <Route path="/list" element={<List />} />
         <Route path="/order" element={<Order />} />
         <Route path="/" element={<Main />} />
+        <Route path="/detail" element={<Detail />} />
       </Routes>
       <Footer />
     </BrowserRouter>

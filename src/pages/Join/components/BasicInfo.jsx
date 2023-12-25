@@ -60,6 +60,21 @@ const BasicInfo = ({
     }
   };
 
+  /**
+   * useState로 선언한 객체형태의 값들의 데이터를 키:벨류 형태로 넣어주기 위하여 생성된 함수입니다.
+   * @param {*} value - 셀렉트 박스에서 선택된 벨류 값을 인자로 받아옵니다.
+   * @param {*} name - e.target이 된 셀렉트박스를 구분하기 위해 인자로 받아옵니다.
+   * 1. 셀렉트 박스의 변경된 값들을 저장하기 위한 setter 함수를 선언합니다.
+   * 2. 원본은 보존하기 위해서 스프레드 오퍼레이터를 이용하여 원본 값을 복사해줍니다.
+   * 3. 이벤트에 발생한 input name과 일치하는 키에 input에서 발생한 이벤트에 value 값을 변경해줍니다.
+   */
+  const saveRequestUserInfo = (value, name) => {
+    setUserJoinInfo({
+      ...userJoinInfo,
+      [name]: value,
+    });
+  };
+
   return (
     <BasicInfoSection>
       <InfoGuideInnerDiv>
@@ -155,7 +170,7 @@ const BasicInfo = ({
           data={EMAIL_DATA}
           value="이메일 주소 선택"
           name="emailAddress"
-          setUserJoinInfo={setUserJoinInfo}
+          onChange={value => saveRequestUserInfo(value, 'emailAddress')}
         />
       </EmailWrapDiv>
 

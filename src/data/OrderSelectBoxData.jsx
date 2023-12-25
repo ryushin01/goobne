@@ -1,20 +1,6 @@
-const ORDER_SELECT_BOX_DATA = [
-  {
-    index: 0,
-    item: '직접입력',
-  },
-  {
-    index: 1,
-    item: '일회용품&nbsp;안&nbsp;주셔도&nbsp;돼요',
-  },
-  {
-    index: 2,
-    item: '무,&nbsp;피클&nbsp;안&nbsp;주셔도&nbsp;돼요',
-  },
-  {
-    index: 3,
-    item: '일회용품과&nbsp;무,&nbsp;피클&nbsp;다&nbsp;안주셔도&nbsp;돼요',
-  },
+export const ORDER_SELECT_BOX_DATA = [
+  '직접입력',
+  '일회용품 안 주셔도 돼요',
+  '무, 피클 안 주셔도 돼요',
+  '일회용품과 무, 피클 다 안주셔도 돼요',
 ];
-
-export default ORDER_SELECT_BOX_DATA;
