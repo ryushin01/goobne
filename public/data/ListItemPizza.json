@@ -1,0 +1,12 @@
+{
+  "result": [
+    {
+      "id": 3,
+      "imgSrc": "../goobne/images/main-pizza.jpg",
+      "title": "피자",
+      "category": "pizza",
+      "price": 15500,
+      "badge": ["new", "hot", "md"]
+    }
+  ]
+}

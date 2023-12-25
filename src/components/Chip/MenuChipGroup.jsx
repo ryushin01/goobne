@@ -4,7 +4,7 @@ import { API } from '../../config.jsx';
 import Chip from './Component/Chip.jsx';
 import styled from 'styled-components';
 
-const MenuChipGroup = () => {
+const MenuChipGroup = ({ chipSelect }) => {
   // menuChipData를 받아오기 위한 state
   const [menuChipData, setMenuChipData] = useState([]);
 
@@ -32,13 +32,16 @@ const MenuChipGroup = () => {
   // 업데이트 된 menuChipData가 화면에 렌더링됨
   return (
     <ChipWrap>
-      {menuChipData.map(({ id, name, content, defaultChecked }) => (
+      {menuChipData.map(({ id, name, content, defaultChecked, category }) => (
         <Chip
           key={id}
           id={id}
           name={name}
           content={content}
           defaultChecked={defaultChecked}
+          onChange={() => {
+            chipSelect(category);
+          }}
           color="white"
         />
       ))}

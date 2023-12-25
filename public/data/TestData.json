@@ -1,0 +1,123 @@
+[
+  {
+    "type": "all",
+    "list": [
+      {
+        "id": 1,
+        "imgSrc": "../goobne/images/main_chicken_01.jpg",
+        "title": "치킨",
+        "category": "chicken",
+        "price": 19500,
+        "badge": ["new", "hot", "md"]
+      },
+      {
+        "id": 2,
+        "imgSrc": "../goobne/images/main_banner_02.jpg",
+        "title": "샐러드",
+        "category": "side",
+        "price": 6500,
+        "badge": ["new", "hot", "md"]
+      },
+      {
+        "id": 3,
+        "imgSrc": "../goobne/images/main-pizza.jpg",
+        "title": "피자",
+        "category": "pizza",
+        "price": 15500,
+        "badge": ["new", "hot", "md"]
+      },
+      {
+        "id": 4,
+        "imgSrc": "../goobne/images/main_salad.jpg",
+        "title": "샐러드2",
+        "category": "side",
+        "price": 7900,
+        "badge": ["new", "hot", "md"]
+      },
+      {
+        "id": 5,
+        "imgSrc": "../goobne/images/main_banner_01.jpg",
+        "title": "닭강정",
+        "category": "chicken",
+        "price": 13000,
+        "badge": ["new", "hot", "md"]
+      },
+      {
+        "id": 6,
+        "imgSrc": "../goobne/images/main_beer.jpg",
+        "title": "맥주",
+        "category": "beer",
+        "price": 4000,
+        "badge": ["new", "hot", "md"]
+      }
+    ]
+  },
+  {
+    "type": "chicken",
+    "list": [
+      {
+        "id": 5,
+        "imgSrc": "../goobne/images/main_banner_01.jpg",
+        "title": "닭강정",
+        "category": "chicken",
+        "price": 13000,
+        "badge": ["new", "hot", "md"]
+      },
+      {
+        "id": 1,
+        "imgSrc": "../goobne/images/main_chicken_01.jpg",
+        "title": "치킨",
+        "category": "chicken",
+        "price": 19500,
+        "badge": ["new", "hot", "md"]
+      }
+    ]
+  },
+  {
+    "type": "pizza",
+    "list": [
+      {
+        "id": 3,
+        "imgSrc": "../goobne/images/main-pizza.jpg",
+        "title": "피자",
+        "category": "pizza",
+        "price": 15500,
+        "badge": ["new", "hot", "md"]
+      }
+    ]
+  },
+  {
+    "type": "side",
+    "list": [
+      {
+        "id": 2,
+        "imgSrc": "../goobne/images/main_banner_02.jpg",
+        "title": "샐러드",
+        "category": "side",
+        "price": 6500,
+        "badge": ["new", "hot", "md"]
+      },
+      {
+        "id": 4,
+        "imgSrc": "../goobne/images/main_salad.jpg",
+        "title": "샐러드2",
+        "category": "side",
+        "price": 7900,
+        "badge": ["new", "hot", "md"]
+      }
+    ]
+  },
+  {
+    "type": "beer",
+    "list": [
+      {
+        "id": 6,
+        "imgSrc": "../goobne/images/main_beer.jpg",
+        "title": "맥주",
+        "category": "beer",
+        "price": 4000,
+        "badge": ["new", "hot", "md"]
+      }
+    ]
+  }
+]
