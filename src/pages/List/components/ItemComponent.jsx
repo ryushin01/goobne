@@ -40,7 +40,7 @@ const ListItem = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // 버튼을 클릭시 defaultModal이 실행되어 modal이 열림
-  const defaultModal = () => {
+  const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
 
@@ -58,7 +58,7 @@ const ListItem = ({
     if (!token) {
       navigate('/login');
     } else {
-      defaultModal();
+      toggleModal();
       setCartItemId(id);
     }
   };
