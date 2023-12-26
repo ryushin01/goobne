@@ -90,7 +90,7 @@ const Join = () => {
   const idDuplicateCheck = () => {
     // const params = userJoinInfo.id;
     // customAxios
-    //   .post(JOIN_POST, params) //백엔드 서버 api입니다.
+    // .post(JOIN_POST, params) //백엔드 서버 api입니다.
 
     //Verification 아이디는 6글자 이상 , 영어+숫자조합 , 특수문자는 제외됩니다.
     if (userJoinInfo.id.length < 6) {

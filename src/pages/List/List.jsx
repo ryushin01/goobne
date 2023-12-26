@@ -30,9 +30,8 @@ const List = () => {
    * 1.chip버튼이 클릭되면 이벤트인자로 chip에 category를 인자로 받습니다.
    * 2.axios get메서드가 카테고리에 맞는 json목데이터를 불러옵니다.
    * 3.response 데이터를 productList useState를 담습니다.
-   * 아래 useEffect 확인하세요.
+   * 위 useEffect 확인하세요.
    * 여기를 확인하세요.
-   * 1.then하고같이쓰는게 아닌 둘중 하나만쓰는것이다. async,await
    */
   const chipSelect = async category => {
     try {
