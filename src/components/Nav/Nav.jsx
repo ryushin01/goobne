@@ -110,7 +110,7 @@ const Nav = ({ navToggle, setNavToggle }) => {
    * 4.메인페이지로 네비게이트를 해줍니다.
    */
   const logOut = () => {
-    localStorage.removeItem('accessToken');
+    localStorage.clear();
     setNavToggle(false);
     navigate('/');
   };

@@ -6,6 +6,8 @@ import Button from '../Button/Button';
 const MainModalContent = ({ ModalClose }) => {
   /** Modal에서 버튼 누를 시 페이지 이동을 위한 navigate */
   const navigate = useNavigate();
+  /** Login/Logout 여부를 저장하는 변수 입니다. */
+  const isLogin = !!localStorage.getItem('accessToken');
   return (
     <ModalContainer>
       <ModalInnerWrap>
@@ -26,14 +28,27 @@ const MainModalContent = ({ ModalClose }) => {
                 ModalClose();
               }}
             />
-            <Button
-              size="small"
-              color="primary"
-              content="주문하러가기"
-              onClick={() => {
-                navigate('/list');
-              }}
-            />
+            {isLogin ? (
+              <Button
+                size="small"
+                color="primary"
+                content={'주문하러가기'}
+                onClick={() => {
+                  ModalClose();
+                  navigate('/list');
+                }}
+              />
+            ) : (
+              <Button
+                size="small"
+                color="primary"
+                content={'로그인'}
+                onClick={() => {
+                  ModalClose();
+                  navigate('/login');
+                }}
+              />
+            )}
           </ButtonWrap>
         </div>
       </ModalInnerWrap>

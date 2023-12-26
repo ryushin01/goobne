@@ -5,6 +5,7 @@ import Input from '../../../components/Input/Input';
 import Button from '../../../components/Button/Button';
 import CheckBox from '../../../components/CheckBox/CheckBox';
 import { basic_test } from '../../../API/TEST_API';
+import { USER_INFO_DATA } from '../../../data/UserInfoData';
 // basic_test << 테스트용 api import 합니다.
 // import { customAxios } from '../../../API/API';
 // import { API } from '../../../config'; 테스트를 마치면 활성화 합니다.
@@ -19,6 +20,8 @@ const MemberLogin = () => {
     id: '',
     password: '',
   });
+  /** 상수데이터로 만든 userData를 userInfo State에 저장하고, 로그인 성공 시 해당 데이터를 localStorage에 담아줍니다. */
+  const [userInfo, setUserInfo] = useState(USER_INFO_DATA);
 
   /**아이디 저장 유무를 상태를 저장하는 useState를 정의합니다.*/
   const [isRemember, setIsRemember] = useState(false);
@@ -107,6 +110,7 @@ const MemberLogin = () => {
             removeCookie('rememberUserId');
           }
           localStorage.setItem('accessToken', res.token);
+          localStorage.setItem('userInfo', JSON.stringify(userInfo));
           navigate('/');
           window.location.reload();
         })
