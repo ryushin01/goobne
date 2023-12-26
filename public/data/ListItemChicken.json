@@ -1,21 +1,26 @@
 {
   "result": [
     {
-      "id": 1,
-      "imgSrc": "../goobne/images/main_chicken_01.jpg",
-      "title": "치킨",
+      "id": 0,
+      "image": "/goobne/images/main_chicken_01.jpg",
+      "alt": "허리바사삭 곱빼기 이미지",
+      "mainTitle": "허리바사삭 곱빼기",
       "category": "chicken",
-      "price": 19500,
-      "badge": ["new", "hot", "md"]
+      "price": 27000,
+      "badge": ["new", "hot", "md"],
+      "count": 1,
+      "radioData": 0
     },
-
     {
-      "id": 5,
-      "imgSrc": "../goobne/images/main_banner_01.jpg",
-      "title": "닭강정",
+      "id": 4,
+      "image": "../goobne/images/main_banner_01.jpg",
+      "alt": "닭강정 이미지",
+      "mainTitle": "닭강정",
       "category": "chicken",
       "price": 13000,
-      "badge": ["new", "hot", "md"]
+      "badge": ["new", "hot", "md"],
+      "count": 1,
+      "radioData": 0
     }
   ]
 }

@@ -110,7 +110,7 @@ const Nav = ({ navToggle, setNavToggle }) => {
    * 4.메인페이지로 네비게이트를 해줍니다.
    */
   const logOut = () => {
-    localStorage.removeItem('accessToken');
+    localStorage.clear();
     setNavToggle(false);
     navigate('/');
   };
@@ -242,7 +242,7 @@ const NavContainerDiv = styled.div`
   background-color: ${props => props.theme.grayscaleB};
   height: 100vh;
   z-index: 100;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   transition: all 0.2s ease-in-out;
 
