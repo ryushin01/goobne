@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { ReactComponent as Cursor } from '../../svg/Header/HeaderCursorIcon.svg';
 import { ReactComponent as MenuSearch } from '../../svg/Header/HeaderMenuSearchIcon.svg';
@@ -18,6 +18,12 @@ const Header = () => {
 
   /** Login/Logout 여부를 저장하는 변수 입니다. */
   const isLogin = !!localStorage.getItem('accessToken');
+  /** '가까운 매장보기' 를 pathName에 따라 삼항연산자를 걸 수 있도록 location 변수로 선언
+   * 1. useLocation을 이용하여 현재 페이지의 pathName을 가져옵니다.
+   * 2. pathName이 '/' 일 경우 '가까운 매장보기'를 표시합니다.
+   * 3. pathName이 '/' 이외의 경우 '가까운 매장보기'를 표시하지 않습니다.
+   */
+  const location = useLocation();
 
   /** 장바구니에 담긴 데이터를 useSelector를 이용하여 state에 담아줍니다. */
   const cartQuantity = useSelector(state => {
@@ -74,13 +80,19 @@ const Header = () => {
           </Link>
         </HeaderLogo>
         <AddressWrap>
-          <Cursor />
-          <Link to="">가까운 매장 보기</Link>
+          {location.pathname === '/' ? (
+            <>
+              <Cursor />
+              <Link to="">가까운 매장 보기</Link>
+            </>
+          ) : (
+            ''
+          )}
         </AddressWrap>
         <MenuWrap>
           <ul>
             <li>
-              <Link to="">주문하기</Link>
+              <Link to="#">주문하기</Link>
               <SubMenuWrap>
                 <li>
                   <Link to="/list">
