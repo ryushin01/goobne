@@ -1,53 +1,46 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Input from '../../components/Input/Input';
+import SelectBox from '../../components/SelectBox/SelectBox';
+import Button from '../../components/Button/Button';
+import PaymentMethodListGroup from './components/PaymentMethodListGroup';
 import { customAxios } from '../../API/API';
 import { API } from '../../config';
 import { ORDER_SELECT_BOX_DATA } from '../../data/OrderSelectBoxData';
 import { ORDER_RIDER_SELECT_BOX_DATA } from '../../data/OrderRiderSelectBoxData';
 import { COUPON_DATA } from '../../data/CouponData';
+import { basic_test } from '../../API/TEST_API';
 import styled from 'styled-components';
-import Input from '../../components/Input/Input';
-import SelectBox from '../../components/SelectBox/SelectBox';
-import Button from '../../components/Button/Button';
-import PaymentMethodListGroup from './components/PaymentMethodListGroup';
 
 const Order = () => {
-  /** orderInfo의 해당하는 값을 받아오기 위하여 State를 생성합니다. */
-  const [orderInfo, setOrderInfo] = useState([]);
-  /** 라디오인풋이 onChange가 될때 값을 저장하기 위한 State를 생성합니다. */
-  const [paymentOnChange, setPaymentOnChange] = useState('');
-  /** 셀렉트박스에 값이 변경될때마다, state에 값을 저장하기위하여 생성합니다. */
-  const [requestSelectData, setRequestSelectData] = useState({
-    ceo: '',
+  /** 결제 페이지에 필요한 모든 정보를 담는 useState를 정의합니다. */
+  const [userOrderInfo, setUserOrderInfo] = useState({
+    name: '',
+    phoneNum: '',
     rider: '',
-  });
-  /** orderTextArea의 값이 변경될때마다, state에 값을 저장하기 위하여 생성합니다.*/
-  const [orderTextAreaValue, setOrderTextAreaValue] = useState('');
-  /** riderTextArea의 값이 변경될때마다, state에 값을 저장하기 위하여 생성합니다.*/
-  const [riderTextAreaValue, setRiderTextAreaValue] = useState('');
-
-  const [orderRequestData, setOrderRequestData] = useState({
-    orderInfo: orderInfo,
-    paymentMethod: paymentOnChange,
-    requestSelectData: requestSelectData,
-    orderTextAreaValue: orderTextAreaValue,
-    riderTextAreaValue: riderTextAreaValue,
+    riderDirectRequest: '',
+    ceo: '',
+    ceoDirectRequest: '',
+    paymentOnChange: null,
+    orderList: [],
   });
 
+  /** useNavigate훅을 navigate 변수에 담습니다. */
   const navigate = useNavigate();
 
   /** 첫 페이지 렌더링시 orderInfo을 보여주기 위하여 생성합니다. */
   useEffect(() => {
     getOrderInfoData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  /** orderInfo를 가져오는 비동기 함수를 정의합니다. */
+  /** 사용자가 주문한 내역을 불러오는 axios 정의합니다. */
   const getOrderInfoData = async () => {
     const response = await customAxios //eslint-disable-line no-unused-vars
       .get(API.ORDER_INFO)
       /** API.ORDER_INFO(custom API) 로 GET 요청을 보냅니다. */
       .then(response => {
-        setOrderInfo(response.data.result);
+        setUserOrderInfo({ ...userOrderInfo, orderList: response.data.result });
       }) /** 요청이 성공하였을때 setOrderInfo함수가 실행, 데이터를 가져옵니다 */
       .catch(error => {
         if (error) {
@@ -59,23 +52,20 @@ const Order = () => {
   };
 
   /**
-   * useState로 선언한 객체형태의 값들의 데이터를 키:벨류 형태로 넣어주기 위하여 생성된 함수입니다.
-   * @param {*} value - 셀렉트 박스에서 선택된 벨류 값을 인자로 받아옵니다.
-   * @param {*} name - e.target이 된 셀렉트박스를 구분하기 위해 인자로 받아옵니다.
-   * 1. 셀렉트 박스의 변경된 값들을 저장하기 위한 setter 함수를 선언합니다.
-   * 2. 원본은 보존하기 위해서 스프레드 오퍼레이터를 이용하여 원본 값을 복사해줍니다.
-   * 3. 이벤트에 발생한 input name과 일치하는 키에 input에서 발생한 이벤트에 value 값을 변경해줍니다.
+   * 1.요청사항을 업데이트하는 셀렉트박스 함수입니다.
+   * 2.인자로는 value와 셀렉트박스 name을 인자로받습니다.
+   * 3.userOrderInfo를 스트레트 오퍼레이트(연산자)값을 복사해옵니다.
+   * 4.셀렉트박스 name일치하는 userOrderInfo 키값에 value값을
    */
-  const saveRequestInfo = (value, name) => {
-    setRequestSelectData({
-      ...requestSelectData,
+  const selectBoxOrderOption = (value, name) => {
+    setUserOrderInfo({
+      ...userOrderInfo,
       [name]: value,
     });
-    console.log(requestSelectData);
   };
 
   /** orderInfo이 없는 경우, null을 반환합니다.*/
-  if (!orderInfo) return null;
+  if (!userOrderInfo.orderList) return null;
 
   /** deliveryFee라는 변수에 배달금액을 할당합니다. */
   const deliveryFee = 3000;
@@ -83,114 +73,127 @@ const Order = () => {
   /** totalPrice변수에 초기 총액을 0로 할당한다. */
   let totalPrice = 0;
 
-  /** orderInfo 데이터를 map함수를 돌려 해당 값을 받아오고 기존할당한 totalPrice 에 합산하여 재할당한다. */
-  orderInfo.map(({ price, count }) => {
-    totalPrice = totalPrice + price * count;
-  });
-
   /** totalAmount변수를 선언하고 상위 선언한 deliveryFee(배달료), totalPrice(제품들의 총합산금액)을 더하여준다. */
   const totalAmount = deliveryFee + totalPrice;
 
+  /** orderInfo 데이터를 map함수를 돌려 해당 값을 받아오고 기존할당한 totalPrice 에 합산하여 재할당한다. */
+  userOrderInfo.orderList.map(({ price, count }) => {
+    totalPrice = totalPrice + price * count;
+  });
+
   /**
-   * 라디오 컴포넌트에서 onChange된 값의 e.target.value를 미리 받고 있기 때문에,
-   * 부모에서 선택된 라디오버튼의 value 값을 인자로 받아서 setPaymentOnChange에 값을 저장시켜줍니다.
+   * 1.결제 라디오버튼이 변경될때마다 변경되는 함수입니다.
+   * 2.value 인자로받습니다
+   * 3.userOrderInfo를 스트레트 오퍼레이트(연산자)값을 복사해옵니다.
+   * 4.paymentOnChange에 value 업데이트 해줍니다.
    * */
   const handleChangePayment = value => {
-    setPaymentOnChange(value);
+    setUserOrderInfo({ ...userOrderInfo, paymentOnChange: value });
   };
 
-  /** orderTextArea의 값이 변경될 때 호출되며, 입력되는 값을 state에 업데이트하는 함수입니다.  */
-  const handleChangeOrderRequest = e => {
-    setOrderTextAreaValue(e.target.value);
-  };
-  /** ridderTextArea의 값이 변경될 때 호출되며, 입력되는 값을 state에 업데이트하는 함수입니다.  */
-  const handleChangeRiderRequest = e => {
-    setRiderTextAreaValue(e.target.value);
+  /**
+   *
+   */
+  const saveDirectRequest = event => {
+    const { name, value } = event.target;
+    setUserOrderInfo({ ...userOrderInfo, [name]: value });
   };
 
   const handleSubmitOrderDataPost = e => {
     e.preventDefault();
-
-    setOrderRequestData({
-      ...orderRequestData,
-      orderInfo: orderInfo,
-      paymentMethod: paymentOnChange,
-      requestSelectData: requestSelectData,
-      orderTextAreaValue: orderTextAreaValue,
-      riderTextAreaValue: riderTextAreaValue,
-    });
-    navigate('/');
-    console.log(orderRequestData);
+    basic_test(200) //테스트용 api입니다. 인자로 원하는 상태값을 넘겨주면됩니다.
+      .then(() => {
+        console.log(userOrderInfo);
+        navigate('/');
+      })
+      //에러 케이스를 정의합니다.
+      .catch(error => {
+        console.log(error);
+        if (error.status === 401) {
+          alert('배달요청 사항을 입력안했습니다.');
+        }
+      });
   };
 
   return (
     <OrderContainer>
       <OrderContentWrap>
         <OrderTitle>결제하기</OrderTitle>
+
         <form>
           <DeliveryInfo>
             <DeliveryInfoTitle>배달정보</DeliveryInfoTitle>
             <DeliveryItemArea>
               <AddressInfoLine>
                 <DeliveryAddress>주소</DeliveryAddress>
+
                 <DeliveryArea>
                   서울&nbsp;관악구&nbsp;관악산&nbsp;0-0&nbsp;(우리집)
                 </DeliveryArea>
               </AddressInfoLine>
+
               <StoreInfoLine>
                 <DeliveryAddress>주문매장</DeliveryAddress>
                 <OrderArea>주소</OrderArea>
                 <span>02-000-000</span>
               </StoreInfoLine>
+
               <NameInfoLine>
                 <Input type="text" label="이름" isDot={true} />
               </NameInfoLine>
+
               <PhoneNumberInfoLine>
                 <Input type="text" label="연락처" isDot={true} />
               </PhoneNumberInfoLine>
+
               <DeliveryRequest>
                 <RequestTitle>가게사장님께 요청사항</RequestTitle>
                 <SelectArea>
                   <SelectBox
                     data={ORDER_SELECT_BOX_DATA}
                     value="직접입력"
-                    onChange={value => saveRequestInfo(value, 'ceo')}
+                    onChange={value => selectBoxOrderOption(value, 'ceo')}
                     name="ceo"
                   />
-                  {requestSelectData.ceo === '직접입력' && (
+
+                  {userOrderInfo.ceo === '직접입력' && (
                     <RequestTextArea
-                      value={orderTextAreaValue}
                       placeholder="매장 요청사항을 입력해주세요"
-                      onChange={handleChangeOrderRequest}
+                      name="ceoDirectRequest"
+                      onChange={saveDirectRequest}
                     />
                   )}
                 </SelectArea>
               </DeliveryRequest>
+
               <RiderArea>
                 <RiderInfo>
                   <RiderTopArea>배달</RiderTopArea>
                   <span>라이더님께</span>
                 </RiderInfo>
+
                 <SelectArea>
                   <SelectBox
                     data={ORDER_RIDER_SELECT_BOX_DATA}
                     value="안전하게 와주세요"
-                    onChange={value => saveRequestInfo(value, 'rider')}
+                    onChange={value => selectBoxOrderOption(value, 'rider')}
                     name="rider"
                   />
-                  {requestSelectData.rider === '직접입력' && (
+                  {userOrderInfo.rider === '직접입력' && (
                     <RequestTextArea
-                      value={riderTextAreaValue}
                       placeholder="매장 요청사항을 입력해주세요"
-                      onChange={handleChangeRiderRequest}
+                      onChange={saveDirectRequest}
+                      name="riderDirectRequest"
                     />
                   )}
                 </SelectArea>
               </RiderArea>
             </DeliveryItemArea>
           </DeliveryInfo>
+
           <PaymentInfo>
             <PaymentMethod>결제방법</PaymentMethod>
+
             <PaymentItemArea>
               <CouponList>
                 <CouponTitle>내&nbsp;쿠폰&nbsp;리스트</CouponTitle>
@@ -219,23 +222,28 @@ const Order = () => {
                   </PointInformation>
                 </PointRight>
               </PersonalPoint>
-              <PaymentList>
+
+              {/* 결제 선택방법 라디오버튼 영역입니다 */}
+              <PaymentListInnerDiv>
                 <span>결제방법</span>
                 <PaymentButtonList>
                   <PaymentMethodListGroup onChange={handleChangePayment} />
                 </PaymentButtonList>
-              </PaymentList>
+              </PaymentListInnerDiv>
+
               <CashReceipt>
                 <span>※&nbsp;할인 제품의 경우 금액권 적용이 불가합니다.</span>
                 <span>
                   ※&nbsp;현금영수증 발행은 매장으로 문의 부탁드립니다.
                 </span>
               </CashReceipt>
+              {/* 결제 선택방법 라디오버튼 앤드라인 입니다 */}
             </PaymentItemArea>
           </PaymentInfo>
+          {/* 주문내역 영역입니다. */}
           <OrderDetailArea>
             <OrderDetailInfo>주문내역</OrderDetailInfo>
-            {orderInfo.map(({ id, title, count, price }) => {
+            {userOrderInfo.orderList.map(({ id, title, count, price }) => {
               return (
                 <ProductDetailArea key={id}>
                   <ProductDetailInner>
@@ -248,6 +256,7 @@ const Order = () => {
               );
             })}
           </OrderDetailArea>
+          {/* 주문내역 영역입니다. */}
           <PaymentAmountArea>
             <PaymentAmountSection>최종결제금액</PaymentAmountSection>
             <PaymentAmountInfo>
@@ -286,6 +295,7 @@ const Order = () => {
             </div>
           </FinalPaymentArea>
         </form>
+        {/* 주문내역 끝나는 지점입니다. */}
       </OrderContentWrap>
     </OrderContainer>
   );
@@ -586,7 +596,7 @@ const PointInformation = styled.div`
   }
 `;
 
-const PaymentList = styled.div`
+const PaymentListInnerDiv = styled.div`
   display: flex;
 
   & > span {
