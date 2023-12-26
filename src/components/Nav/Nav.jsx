@@ -242,7 +242,7 @@ const NavContainerDiv = styled.div`
   background-color: ${props => props.theme.grayscaleB};
   height: 100vh;
   z-index: 100;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   transition: all 0.2s ease-in-out;
 
