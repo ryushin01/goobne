@@ -53,7 +53,6 @@ const OvenMenu = ({ scrollY }) => {
         effect={'coverflow'}
         slidesPerView={'4'}
         spaceBetween={100}
-        loop
         coverflowEffect={{
           rotate: 20, // 슬라이드 회전 각도
           stretch: 0, // 슬라이드 사이의 간격
