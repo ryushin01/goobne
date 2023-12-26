@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
+import { ReactComponent as ModalClose } from '../../svg/Modal/ModalClose.svg';
 import styled from 'styled-components';
-import { ReactComponent as ModalClose } from '../../svg/ModalClose.svg';
 
 /**
  * Modal props list
@@ -30,6 +30,15 @@ const Modal = ({ title, content, isCloseBtn, ...props }) => {
       window.removeEventListener('keydown', esc);
     };
   }, []);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = 'auto';
+      };
+    }
+  });
 
   // 모달 닫기시 실행되는 함수
   const closeModal = () => {
@@ -111,9 +120,10 @@ const ModalWrap = styled.div`
   z-index: 20;
 `;
 
-const ModalButton = styled.div`
+const ModalButton = styled.button`
   display: flex;
   justify-content: flex-end;
+  border: none;
 `;
 
 const ModalBox = styled.div`
