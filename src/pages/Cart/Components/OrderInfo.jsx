@@ -1,11 +1,7 @@
 import { useEffect, useState } from 'react';
-import { customAxios } from '../../../API/API';
-import { API } from '../../../config';
-import { USER_INFO_DATA } from '../../../data/UserInfoData';
 import styled from 'styled-components';
 
 const OrderInfo = () => {
-  const [orderInfoData, setOrderInfoData] = useState([]);
   /** 필요한 userData를 저장할 State입니다. */
   const [userInfoData, setUserInfoData] = useState({
     storeAddress: '',
@@ -30,7 +26,7 @@ const OrderInfo = () => {
         storePhone: userInfo.storePhone,
         store: userInfo.store,
       });
-    }
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
