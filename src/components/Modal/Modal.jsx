@@ -31,6 +31,15 @@ const Modal = ({ title, content, isCloseBtn, ...props }) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = 'auto';
+      };
+    }
+  });
+
   // 모달 닫기시 실행되는 함수
   const closeModal = () => {
     setIsModalOpen(false);
@@ -111,9 +120,11 @@ const ModalWrap = styled.div`
   z-index: 20;
 `;
 
-const ModalButton = styled.div`
+const ModalButton = styled.button`
   display: flex;
   justify-content: flex-end;
+  border: none;
+  background-color: transparent;
 `;
 
 const ModalBox = styled.div`

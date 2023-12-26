@@ -66,7 +66,7 @@ const OrderDetail = () => {
         <OrderBtn>
           <Button
             size="small"
-            color="beige"
+            color="primary"
             content="+ 메뉴 추가하기"
             onClick={() => {
               navigate('/list');
