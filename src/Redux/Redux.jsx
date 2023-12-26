@@ -29,7 +29,7 @@ const cartSlice = createSlice({
         state.push(action.payload);
       } else {
         /** findIndexDataByRadioData가 -1이 아니면 state에 담긴 데이터 중 id와 radioData가 일치하는 데이터가 있기 때문에 해당 데이터의 count를 증가시킵니다. */
-        state[findIndexDataByRadioData].count += 1;
+        state[findIndexDataByRadioData].count += action.payload.count;
       }
     },
     deleteCart(state, action) {
@@ -70,7 +70,7 @@ const cartSlice = createSlice({
 });
 
 /** cartSlice에서 사용할 reducer를 export합니다.
- * Redux Toolkut을 사용하기 위해서는 해당 슬라이스의 actions를 export해야 합니다. (actions는 해당 슬라이스에서 사용할 reducer를 의미합니다.)
+ * Redux Toolkit을 사용하기 위해서는 해당 슬라이스의 actions를 export해야 합니다. (actions는 해당 슬라이스에서 사용할 reducer를 의미합니다.)
  */
 export const {
   addCart,
