@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Button from '../../../components/Button/Button';
+import CustomRadio from './CustomRadio';
 
 const OrderMethod = () => {
   return (
@@ -9,7 +10,13 @@ const OrderMethod = () => {
         <li>포장주문</li>
       </OrderSelectionList>
       <OrderListWrap>
-        <AddressConfimation>등록된 주소가 없습니다.</AddressConfimation>
+        <AddressConfimation>
+          <CustomRadio
+            name="dd"
+            text="서울특별시 강남구 테헤란로 427 위워크타워 1층"
+            defaultChecked={true}
+          />
+        </AddressConfimation>
       </OrderListWrap>
       <OrderBottom>
         <ButtonWrap>
@@ -40,9 +47,14 @@ const OrderSelectionList = styled.ul`
     padding: 12px 16px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    color: ${props => props.theme.grayscaleD};
+    color: ${props => props.theme.grayscaleH};
     font-size: 14px;
     cursor: pointer;
+
+    &:first-child {
+      background-color: ${props => props.theme.grayscaleH};
+      color: ${props => props.theme.grayscaleA};
+    }
   }
 `;
 
@@ -52,7 +64,7 @@ const OrderListWrap = styled.div`
 `;
 
 const AddressConfimation = styled.div`
-  text-align: center;
+  text-align: left;
   font-size: 14px;
   padding: 15px 0;
 `;

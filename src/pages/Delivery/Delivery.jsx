@@ -1,9 +1,12 @@
-import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import OrderMethod from './Components/OrderMethod';
 import DeliverySwiper from './Components/DeliverySwiper';
+import styled from 'styled-components';
 
+/** 배달주소 선택할 수 있는 페이지 입니다. (선택은 불가능) */
 const Delivery = () => {
+  const navigate = useNavigate();
   return (
     <DeliveryMain>
       <DeliveryWrap>
@@ -23,7 +26,13 @@ const Delivery = () => {
             </DeliveryBottomLeft>
             <DeliveryBottomRight>
               <div>해당 배달 주소로 주문을 진행하시겠습니까?</div>
-              <Button size="medium" content="선택" />
+              <Button
+                size="medium"
+                content="선택"
+                onClick={() => {
+                  navigate('/cart');
+                }}
+              />
             </DeliveryBottomRight>
           </DeliveryMethodBottom>
         </MethodWrap>
