@@ -57,7 +57,7 @@ const Order = () => {
     }));
   }, [cartState]);
 
-  /**로컬스토리지에 담겨있는 userInfo를 getItem(가져오기)해서 localUserInfo변수에 할당한다.*/
+  /**로컬스토리지에 담겨있는 userInfo를 getItem(가져오기)해서 localUserInfo변수에 할당합니다.*/
   const localUserInfo = localStorage.getItem('userInfo');
   /** */
   useEffect(() => {
@@ -69,6 +69,8 @@ const Order = () => {
         storeAddress: userInfo.storeAddress,
         storePhone: userInfo.storePhone,
         store: userInfo.store,
+        name: userInfo.userName,
+        userPhoneNumber: userInfo.userPhoneNumber,
       });
     } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -159,7 +161,12 @@ const Order = () => {
               </StoreInfoLine>
 
               <NameInfoLine>
-                <Input type="text" label="이름" isDot={true} />
+                <Input
+                  type="text"
+                  label="이름"
+                  isDot={true}
+                  value={userOrderInfo.userName}
+                />
               </NameInfoLine>
 
               <PhoneNumberInfoLine>
