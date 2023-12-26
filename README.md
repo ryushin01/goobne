@@ -10,11 +10,11 @@
     - 컴포넌트: Input, Footer, Radio
     - 페이지: 결제, 이벤트
   - <a href="https://github.com/Jaylogg" target="_blank">박민재</a>
-    - 컴포넌트: Chip, CheckBox, Modal, Pagination
-    - 페이지: 장바구니, 메뉴소개
+    - 컴포넌트: Chip, CheckBox, Modal
+    - 페이지: 장바구니 UI
   - <a href="https://github.com/syon013" target="_blank">박요진</a>
-    - 컴포넌트: SelectBox, Swiper, Header, Badge
-    - 페이지: 메인, 상세
+    - 컴포넌트: SelectBox, Swiper, Header, Badge, Count, DropDown
+    - 페이지: 메인, 상세, 장바구니 기능
   - <a href="https://github.com/leechengwon" target="_blank">이청원</a>
     - 컴포넌트: Nav, IconButton, Button, Tab
     - 페이지: 로그인, 회원가입, 목록

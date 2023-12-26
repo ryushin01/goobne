@@ -21,7 +21,7 @@ const MemberLogin = () => {
     password: '',
   });
   /** 상수데이터로 만든 userData를 userInfo State에 저장하고, 로그인 성공 시 해당 데이터를 localStorage에 담아줍니다. */
-  const [userInfo, setUserInfo] = useState(USER_INFO_DATA);
+  const [userInfo, setUserInfo] = useState(USER_INFO_DATA); //eslint-disable-line no-unused-vars
 
   /**아이디 저장 유무를 상태를 저장하는 useState를 정의합니다.*/
   const [isRemember, setIsRemember] = useState(false);
