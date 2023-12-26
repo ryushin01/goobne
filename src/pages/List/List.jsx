@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ItemComponent from './components/ItemComponent';
 import MenuChipGroup from '../../components/Chip/MenuChipGroup';
+import Loading from '../../components/Loading/loading';
 import { customAxios } from '../../API/API';
 import styled from 'styled-components';
 
@@ -9,10 +10,20 @@ const List = () => {
   /** 프로덕트 리스트를 데이터를 담을 useState를 정의합니다. */
   const [productListData, setProductListData] = useState('');
 
+  const [loading, setLoading] = useState(true); //eslint-disable-line no-unused-vars
+
   /**
    * useNavigate()를 navigate 변수에 담습니다.
    */
   const navigate = useNavigate();
+
+  /**
+   * 1.useEffect 실행됩니다.
+   * 2.productList값이 바뀔때마다 chipSelect 세터함수를 실행합니다.
+   */
+  useEffect(() => {
+    chipSelect('All');
+  }, []);
 
   /**
    * 1.chip버튼이 클릭되면 이벤트인자로 chip에 category를 인자로 받습니다.
@@ -20,11 +31,12 @@ const List = () => {
    * 3.response 데이터를 productList useState를 담습니다.
    * 아래 useEffect 확인하세요.
    */
-  const chipSelect = category => {
-    customAxios
+  const chipSelect = async category => {
+    const response = await customAxios //eslint-disable-line no-unused-vars
       .get(`/ListItem${category}.json`)
       .then(response => {
         setProductListData(response.data.result);
+        setLoading(false);
       })
       .catch(error => {
         console.log(error);
@@ -40,15 +52,7 @@ const List = () => {
     navigate(`/detail/${id}`);
   };
 
-  /**
-   * 1.useEffect 최초실행됩니다.
-   * 2.productList값이 바뀔때마다 chipSelect 세터함수를 실행합니다.
-   */
-  useEffect(() => {
-    chipSelect('All');
-  }, []);
-
-  if (!productListData) return null;
+  if (!productListData) return <Loading />;
 
   return (
     <ListWrapMain>

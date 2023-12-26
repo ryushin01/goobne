@@ -32,6 +32,7 @@ const Main = () => {
   /** 페이지 첫 랜더링 시 Modal 오픈되도록 useEffect 추가 */
   useEffect(() => {
     handlerModal();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   /**
