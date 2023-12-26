@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Badge from '../../../components/Badge/Badge';
 import IconButton from '../../../components/IconButton/IconButton';
@@ -5,17 +6,17 @@ import styled from 'styled-components';
 import Portal from '../../../components/Modal/Portal';
 import Modal from '../../../components/Modal/Modal';
 import DetailSelectModal from '../../../components/Modal/DetailSelectModal';
-import { useState } from 'react';
 
 /**
- * DetailSelectModal props list
+ * ListItem props list
  * @property {number} id                             - 아이템 고유의 아이디를 정의합니다.
  * @property {number} price                          - 아이템 가격데이터 정의합니다.
  * @property {string} image                          - 아이템 이미지url 데이터를 정의합니다.
  * @property {string} alt                            - 아이템 alt 데이터를 정의합니다.
  * @property {string} mainTitle                      - 아이템 제목을 정의합니다.
  * @property {function} onClick                      - 버튼 클릭 시 실행할 함수를 위해 미리 정의합니다.
- * @property {arr} badge                             - 뱃지 배열 데이터를 정의합니다.
+ * @property {arr}    badge                             - 뱃지 배열 데이터를 정의합니다.
+ * @property {object} productListData                - 프로덕트 리스트 페이지 객체 데이터를 정의합니다.
  */
 
 const ListItem = ({

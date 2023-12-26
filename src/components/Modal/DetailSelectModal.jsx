@@ -7,34 +7,44 @@ import { addCart } from '../../Redux/Redux';
 /**
  * DetailSelectModal props list
  * @property {number} cartItemId                     - 카트 버튼 클릭시 아이템에 고유의 아이디를 받습니다.
+ * @property {object} productListData                - 프로덕트 리스트 페이지 객체 데이터를 정의합니다.
  */
 
 const DetailSelectModal = ({ cartItemId, productListData }) => {
-  /**
-   * useNavigate()를 navigate 변수에 담습니다.
-   */
+  /** useNavigate를 navigate 변수에 담습니다.*/
   const navigate = useNavigate();
 
+  /** useDispatch를 dispatch 변수에 담습니다.*/
   const dispatch = useDispatch();
 
+  /** detail페이지로 네비게이트 해주는 함수입니다. cartItemId 값에 맞는 동적 라우팅 해줍니다.*/
   const navigateDetail = () => {
     navigate(`/detail/${cartItemId}`);
   };
-  const navigateDelivery = id => {
+
+  /**
+   * 1.아이템에 고유의 아이디를 인자로 받습니다.
+   * 2.filter()메서드를 사용합니다. 전체 프로덕트 데이터와 유저가 클릭한 아이템 id와 같은것을 productItem 변수에 담아 return 합니다.
+   * 3.productItem 담긴 인덱스[0] 값을 dispatch 해줍니다. (전역상태관리)
+   * 4.카트 페이지로 네비게이트 해줍니다.
+   */
+  const navigateDelivery = cartItemId => {
     const productItem = productListData.filter(item => {
-      return item.id === id;
+      return item.id === cartItemId;
     });
+
     dispatch(
       addCart({
-        id: productItem?.id,
-        radioData: Number(productItem.radioData),
-        name: productItem.title,
-        price: productItem.price,
-        count: productItem.count,
-        src: productItem.image,
-        alt: productItem.alt,
+        id: productItem[0]?.id,
+        radioData: Number(productItem[0].radioData),
+        name: productItem[0].mainTitle,
+        price: productItem[0].price,
+        count: productItem[0].count,
+        src: productItem[0].image,
+        alt: productItem[0].alt,
       }),
     );
+
     navigate('/cart');
   };
 
