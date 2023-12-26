@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { customAxios } from '../../API/API';
 import { API } from '../../config';
 import { ORDER_SELECT_BOX_DATA } from '../../data/OrderSelectBoxData';
@@ -9,7 +10,6 @@ import Input from '../../components/Input/Input';
 import SelectBox from '../../components/SelectBox/SelectBox';
 import Button from '../../components/Button/Button';
 import PaymentMethodListGroup from './components/PaymentMethodListGroup';
-import { ReactComponent as Credit } from '../../svg/PaymentList/CreditCard.svg';
 
 const Order = () => {
   /** orderInfo의 해당하는 값을 받아오기 위하여 State를 생성합니다. */
@@ -25,6 +25,16 @@ const Order = () => {
   const [orderTextAreaValue, setOrderTextAreaValue] = useState('');
   /** riderTextArea의 값이 변경될때마다, state에 값을 저장하기 위하여 생성합니다.*/
   const [riderTextAreaValue, setRiderTextAreaValue] = useState('');
+
+  const [orderRequestData, setOrderRequestData] = useState({
+    orderInfo: orderInfo,
+    paymentMethod: paymentOnChange,
+    requestSelectData: requestSelectData,
+    orderTextAreaValue: orderTextAreaValue,
+    riderTextAreaValue: riderTextAreaValue,
+  });
+
+  const navigate = useNavigate();
 
   /** 첫 페이지 렌더링시 orderInfo을 보여주기 위하여 생성합니다. */
   useEffect(() => {
@@ -87,18 +97,30 @@ const Order = () => {
    * */
   const handleChangePayment = value => {
     setPaymentOnChange(value);
-    // console.log('Selected Payment:', value);
   };
 
   /** orderTextArea의 값이 변경될 때 호출되며, 입력되는 값을 state에 업데이트하는 함수입니다.  */
   const handleChangeOrderRequest = e => {
     setOrderTextAreaValue(e.target.value);
-    // console.log('Textarea Value:', e.target.value);
   };
   /** ridderTextArea의 값이 변경될 때 호출되며, 입력되는 값을 state에 업데이트하는 함수입니다.  */
   const handleChangeRiderRequest = e => {
     setRiderTextAreaValue(e.target.value);
-    // console.log('Textarea Value:', e.target.value);
+  };
+
+  const handleSubmitOrderDataPost = e => {
+    e.preventDefault();
+
+    setOrderRequestData({
+      ...orderRequestData,
+      orderInfo: orderInfo,
+      paymentMethod: paymentOnChange,
+      requestSelectData: requestSelectData,
+      orderTextAreaValue: orderTextAreaValue,
+      riderTextAreaValue: riderTextAreaValue,
+    });
+    navigate('/');
+    console.log(orderRequestData);
   };
 
   return (
@@ -259,6 +281,7 @@ const Order = () => {
                 size="medium"
                 color="black"
                 content="결제하기"
+                onClick={handleSubmitOrderDataPost}
               />
             </div>
           </FinalPaymentArea>
