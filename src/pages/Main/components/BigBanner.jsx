@@ -45,7 +45,6 @@ const BigBanner = () => {
         modules={[Pagination]}
         spaceBetween={0}
         slidesPerView={1}
-        loop={true}
         pagination={{
           clickable: true,
         }}

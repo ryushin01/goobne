@@ -148,7 +148,7 @@ const Detail = () => {
                 size="medium"
                 onClick={() => {
                   putInCartData();
-                  navigate('/cart');
+                  navigate('/delivery');
                 }}
               />
             </OrderBtnWrap>
