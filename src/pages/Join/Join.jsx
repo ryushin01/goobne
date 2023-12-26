@@ -89,7 +89,7 @@ const Join = () => {
    */
   const idDuplicateCheck = () => {
     // const params = userJoinInfo.id;
-    // const response = await customAxios //eslint-disable-line no-unused-vars
+    // const response = customAxios //eslint-disable-line no-unused-vars
     //   .post(JOIN_POST, params) //백엔드 서버 api입니다.
 
     //Verification 아이디는 6글자 이상 , 영어+숫자조합 , 특수문자는 제외됩니다.
@@ -134,7 +134,7 @@ const Join = () => {
       alert('핸드폰번호는 숫자만 10자리 또는 11자리 입니다.');
     } else {
       // const params = userJoinInfo.phoneNum;
-      // const response = await customAxios //eslint-disable-line no-unused-vars
+      // const response =  customAxios //eslint-disable-line no-unused-vars
       //   .post(JOIN_POST, params) //백엔드 서버 api입니다.
 
       //테스트 api 입니다.
@@ -170,7 +170,7 @@ const Join = () => {
       // 아이디 형식이 맞으면 있다고 가정합니다. 조회는 하지못하기때문에 백엔드서버부재
     } else {
       // const params = userJoinInfo.recommendedId;
-      // const response = await customAxios //eslint-disable-line no-unused-vars
+      // const response =  customAxios //eslint-disable-line no-unused-vars
       // .post(JOIN_POST, params) //백엔드 서버 api입니다.
 
       basic_test(200)

@@ -8,9 +8,9 @@ import styled from 'styled-components';
 
 const List = () => {
   /** 프로덕트 리스트를 데이터를 담을 useState를 정의합니다. */
-  const [productListData, setProductListData] = useState('');
+  const [productListData, setProductListData] = useState([]);
 
-  const [loading, setLoading] = useState(true); //eslint-disable-line no-unused-vars
+  const [loading, setLoading] = useState(true);
 
   /**
    * useNavigate()를 navigate 변수에 담습니다.
@@ -22,6 +22,7 @@ const List = () => {
    * 2.productList값이 바뀔때마다 chipSelect 세터함수를 실행합니다.
    */
   useEffect(() => {
+    setLoading(true);
     chipSelect('All');
   }, []);
 
@@ -30,17 +31,17 @@ const List = () => {
    * 2.axios get메서드가 카테고리에 맞는 json목데이터를 불러옵니다.
    * 3.response 데이터를 productList useState를 담습니다.
    * 아래 useEffect 확인하세요.
+   * 여기를 확인하세요.
+   * 1.then하고같이쓰는게 아닌 둘중 하나만쓰는것이다. async,await
    */
   const chipSelect = async category => {
-    const response = await customAxios //eslint-disable-line no-unused-vars
-      .get(`/ListItem${category}.json`)
-      .then(response => {
-        setProductListData(response.data.result);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    try {
+      const response = await customAxios.get(`/ListItem${category}.json`);
+      setProductListData(response.data.result);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   /**
@@ -52,39 +53,40 @@ const List = () => {
     navigate(`/detail/${id}`);
   };
 
-  if (!productListData) return <Loading />;
-
   return (
-    <ListWrapMain>
-      <ListContainerSection>
-        <h2>메뉴</h2>
+    <>
+      {loading && <Loading />}
+      <ListWrapMain>
+        <ListContainerSection>
+          <h2>메뉴</h2>
 
-        <ButtonWrapDiv>
-          <MenuChipGroup chipSelect={chipSelect}></MenuChipGroup>
-        </ButtonWrapDiv>
+          <ButtonWrapDiv>
+            <MenuChipGroup chipSelect={chipSelect}></MenuChipGroup>
+          </ButtonWrapDiv>
 
-        <ListContainerUl>
-          {productListData?.map(
-            ({ id, image, price, mainTitle, badge, alt }, index) => {
-              return (
-                <ListItemLi key={index}>
-                  <ItemComponent
-                    id={id}
-                    image={image}
-                    alt={alt}
-                    price={price}
-                    mainTitle={mainTitle}
-                    badge={badge}
-                    onClick={listItemClick}
-                    productListData={productListData}
-                  />
-                </ListItemLi>
-              );
-            },
-          )}
-        </ListContainerUl>
-      </ListContainerSection>
-    </ListWrapMain>
+          <ListContainerUl>
+            {productListData?.map(
+              ({ id, image, price, mainTitle, badge, alt }, index) => {
+                return (
+                  <ListItemLi key={index}>
+                    <ItemComponent
+                      id={id}
+                      image={image}
+                      alt={alt}
+                      price={price}
+                      mainTitle={mainTitle}
+                      badge={badge}
+                      onClick={listItemClick}
+                      productListData={productListData}
+                    />
+                  </ListItemLi>
+                );
+              },
+            )}
+          </ListContainerUl>
+        </ListContainerSection>
+      </ListWrapMain>
+    </>
   );
 };
 
