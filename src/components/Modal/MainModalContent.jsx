@@ -10,7 +10,10 @@ const MainModalContent = ({ ModalClose }) => {
     <ModalContainer>
       <ModalInnerWrap>
         <div>
-          <img src="/goobne/images/MainModalGif.gif" alt="굽네치킨 메인 모달" />
+          <img
+            src="/goobne/images/MainModalGif.gif"
+            alt="치킨이 춤추고 있는 GIF 이미지"
+          />
         </div>
         <div>
           <span>오늘 야식은 치킨이닭!</span>
@@ -43,7 +46,7 @@ export default MainModalContent;
 const ModalContainer = styled.div`
   width: 100%;
   height: 100%;
-  background-color: #fff;
+  background-color: ${props => props.theme.grayscaleA};
   position: relative;
   z-index: 100;
 `;
@@ -53,7 +56,7 @@ const ModalInnerWrap = styled.div`
   flex-direction: column;
   width: 100%;
 
-  & span {
+  span {
     display: flex;
     justify-content: center;
     align-items: center;

@@ -51,13 +51,13 @@ const DefaultRadio = styled.input`
   border-radius: 50%;
   cursor: pointer;
 
-  //checked 시 가운데 원형을 나타내기위한 속성
-  &:checked + span:after {
+  //checked 시 가운데 원형을 나타내기위한 속성 (가상 엘리먼트 선택자는 콜론 2개 사용)
+  &:checked + span::after {
     content: '';
     position: absolute;
     top: 6px;
     left: 5px;
-    background: #212121;
+    background: ${props => props.theme.grayscaleF};
     width: 8px;
     height: 8px;
     background-size: contain;

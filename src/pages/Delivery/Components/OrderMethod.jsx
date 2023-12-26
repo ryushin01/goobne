@@ -12,7 +12,7 @@ const OrderMethod = () => {
       <OrderListWrap>
         <AddressConfimation>
           <CustomRadio
-            name="dd"
+            name="address"
             text="서울특별시 강남구 테헤란로 427 위워크타워 1층"
             defaultChecked={true}
           />
@@ -72,7 +72,7 @@ const AddressConfimation = styled.div`
 const OrderBottom = styled.div`
   ${FlexBetween};
   padding: 33px;
-  background-color: #f5ece4;
+  background-color: ${props => props.theme.grayscaleK};
   font-size: 14px;
 
   & > span {

@@ -124,6 +124,7 @@ const ModalButton = styled.button`
   display: flex;
   justify-content: flex-end;
   border: none;
+  background-color: transparent;
 `;
 
 const ModalBox = styled.div`

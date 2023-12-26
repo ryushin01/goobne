@@ -25,7 +25,7 @@ const Delivery = () => {
               <li>(전자상거래 등에서의 소비자보호에 관한 법률 5년)</li>
             </DeliveryBottomLeft>
             <DeliveryBottomRight>
-              <div>해당 배달 주소로 주문을 진행하시겠습니까?</div>
+              <span>해당 배달 주소로 주문을 진행하시겠습니까?</span>
               <Button
                 size="medium"
                 content="선택"
