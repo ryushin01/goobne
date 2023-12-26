@@ -26,6 +26,7 @@ const ListItem = ({
   onClick,
   badge,
   alt,
+  productListData,
   ...props
 }) => {
   /**로컬스토리에서 accessToken을 token 변수에 담습니다. */
@@ -119,7 +120,12 @@ const ListItem = ({
                 size="small"
                 title="메뉴에 대한 옵션을 선택하시겟습니까?"
                 isCloseBtn={true}
-                content={<DetailSelectModal cartItemId={cartItemId} />}
+                content={
+                  <DetailSelectModal
+                    cartItemId={cartItemId}
+                    productListData={productListData}
+                  />
+                }
               />
             )}
           </Portal>

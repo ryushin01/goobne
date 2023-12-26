@@ -72,6 +72,7 @@ const List = () => {
                     mainTitle={mainTitle}
                     badge={badge}
                     onClick={listItemClick}
+                    productListData={productListData}
                   />
                 </ListItemLi>
               );
