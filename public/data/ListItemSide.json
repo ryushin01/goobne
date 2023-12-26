@@ -1,21 +1,26 @@
 {
   "result": [
     {
-      "id": 2,
-      "imgSrc": "../goobne/images/main_banner_02.jpg",
-      "title": "샐러드",
+      "id": 1,
+      "image": "../goobne/images/main_banner_02.jpg",
+      "alt": "샐러드 이미지",
+      "mainTitle": "샐러드",
       "category": "side",
       "price": 6500,
-      "badge": ["new", "hot", "md"]
+      "badge": ["new", "md"],
+      "count": 1,
+      "radioData": 0
     },
-
     {
-      "id": 4,
-      "imgSrc": "../goobne/images/main_salad.jpg",
-      "title": "샐러드2",
+      "id": 3,
+      "image": "../goobne/images/main_salad.jpg",
+      "alt": "샐러드2 이미지",
+      "mainTitle": "샐러드2",
       "category": "side",
       "price": 7900,
-      "badge": ["new", "hot", "md"]
+      "badge": ["new", "md"],
+      "count": 1,
+      "radioData": 0
     }
   ]
 }

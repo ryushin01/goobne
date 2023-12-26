@@ -1,12 +1,15 @@
 {
   "result": [
     {
-      "id": 6,
-      "imgSrc": "../goobne/images/main_beer.jpg",
-      "title": "맥주",
+      "id": 5,
+      "image": "../goobne/images/main_beer.jpg",
+      "alt": "맥주이미지",
+      "mainTitle": "맥주",
       "category": "beer",
       "price": 4000,
-      "badge": ["new", "hot", "md"]
+      "badge": ["new", "md"],
+      "count": 1,
+      "radioData": 0
     }
   ]
 }

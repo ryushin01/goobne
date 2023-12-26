@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ItemComponent from './components/ItemComponent';
 import MenuChipGroup from '../../components/Chip/MenuChipGroup';
 import { customAxios } from '../../API/API';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 
 const List = () => {
   /** 프로덕트 리스트를 데이터를 담을 useState를 정의합니다. */
@@ -61,17 +61,18 @@ const List = () => {
 
         <ListContainerUl>
           {productListData?.map(
-            ({ id, imgSrc, price, title, badge }, index) => {
+            ({ id, image, price, mainTitle, badge, alt }, index) => {
               return (
                 <ListItemLi key={index}>
                   <ItemComponent
                     id={id}
-                    imgSrc={imgSrc}
+                    image={image}
+                    alt={alt}
                     price={price}
-                    title={title}
+                    mainTitle={mainTitle}
                     badge={badge}
                     onClick={listItemClick}
-                  ></ItemComponent>
+                  />
                 </ListItemLi>
               );
             },
