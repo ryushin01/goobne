@@ -86,12 +86,12 @@ const NonMemberLogin = () => {
    * 4.값에 따라 다음 코드를 실행합니다.
    * 5.서버가있다면 params값도 같이 넘겨줍니다.
    */
-  const requestNonMemberLoginPost = async () => {
+  const requestNonMemberLoginPost = () => {
     if (nonMemberUserInfo.certificationNum.length < 5) {
       alert('인증번호는 5자리 또는 6자리입니다.');
     } else {
       // const params = nonMemberUserInfo;
-      // const response = customAxios
+      //  customAxios
       //   .post(API.NONMEMBER_LOGIN_POST, params)
 
       basic_test(

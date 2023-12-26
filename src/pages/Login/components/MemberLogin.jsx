@@ -85,7 +85,7 @@ const MemberLogin = () => {
    * 5.그외는 에러처리입니다.
    * Verification // 아이디는 영문/숫자조합 6글자 이상이고 비밀번호는 특수문자포함 10자리 이상으로 했습니다.
    */
-  const requestLoginPost = async () => {
+  const requestLoginPost = () => {
     if (
       !passwordRegex.test(userLoginInfo.password) ||
       userLoginInfo.password.length <= 10 ||
@@ -96,7 +96,7 @@ const MemberLogin = () => {
       alert('아이디 또는 비밀번호가 틀립니다.');
     } else {
       // const params = userLoginInfo;
-      // const response =  customAxios
+      //  customAxios
       //   .post(API.LOGINPOST, params) //백엔드 서버 api입니다.
 
       basic_test(200) //테스트용 api입니다. 인자로 원하는 상태값을 넘겨주면됩니다.
