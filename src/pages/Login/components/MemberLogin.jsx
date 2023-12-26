@@ -96,7 +96,7 @@ const MemberLogin = () => {
       alert('아이디 또는 비밀번호가 틀립니다.');
     } else {
       // const params = userLoginInfo;
-      // const response =  customAxios //eslint-disable-line no-unused-vars
+      // const response =  customAxios
       //   .post(API.LOGINPOST, params) //백엔드 서버 api입니다.
 
       basic_test(200) //테스트용 api입니다. 인자로 원하는 상태값을 넘겨주면됩니다.

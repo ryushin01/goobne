@@ -91,7 +91,7 @@ const NonMemberLogin = () => {
       alert('인증번호는 5자리 또는 6자리입니다.');
     } else {
       // const params = nonMemberUserInfo;
-      // const response = customAxios //eslint-disable-line no-unused-vars
+      // const response = customAxios
       //   .post(API.NONMEMBER_LOGIN_POST, params)
 
       basic_test(

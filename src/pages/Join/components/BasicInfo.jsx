@@ -42,7 +42,7 @@ const BasicInfo = ({
       alert('인증번호는 5자리 또는 6자리입니다.');
     } else {
       // const params = userJoinInfo.certificationNum;
-      // const response = customAxios //eslint-disable-line no-unused-vars
+      // const response = customAxios
       //   .post(JOIN_POST, params) //백엔드 서버 api입니다.
 
       basic_test(
