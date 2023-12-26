@@ -1,31 +1,37 @@
 import { useEffect, useState } from 'react';
 import { customAxios } from '../../../API/API';
 import { API } from '../../../config';
+import { USER_INFO_DATA } from '../../../data/UserInfoData';
 import styled from 'styled-components';
 
 const OrderInfo = () => {
   const [orderInfoData, setOrderInfoData] = useState([]);
+  /** 필요한 userData를 저장할 State입니다. */
+  const [userInfoData, setUserInfoData] = useState({
+    storeAddress: '',
+    storePhone: '',
+    store: '',
+  });
 
-  // 페이지 진입시 orderProductRequest 함수를 실행시킴
+  /** useEffect를 이용하여 userInfo key에 대한 값이 있다면, localStorage의 데이터를 가져옵니다.
+   * 1. localStorage에 userInfo key에 대한 값이 있다면, userInfoData에 값을 저장합니다.
+   * 2. 값이 있다면 userInfo 변수에 JSON.parse()를 이용하여 객체로 변환하여 저장합니다.
+   * 3. userInfoData에 변환한 객체를 담아줍니다.
+   */
   useEffect(() => {
-    orderInfoRequest();
-  }, []);
+    const localUserInfo = localStorage.getItem('userInfo');
 
-  // customAxios를 이용하여 CART_INFO라는 json파일에 대한 데이터를 받아옴
-  // 데이터를 성공적으로 받아오면 setOrderInfoData 통해 orderInfoData 상태를 업데이트
-  // 에러발생시 경고창을 띄움
-  const orderInfoRequest = async () => {
-    const request = await customAxios //eslint-disable-line no-unused-vars
-      .get(API.CART_INFO)
-      .then(response => {
-        setOrderInfoData(response.data.result);
-      })
-      .catch(error => {
-        if (error) {
-          alert('데이터를 받아오던 중 에러가 발생했습니다.');
-        }
+    if (localUserInfo) {
+      const userInfo = JSON.parse(localUserInfo);
+
+      setUserInfoData({
+        ...userInfoData,
+        storeAddress: userInfo.storeAddress,
+        storePhone: userInfo.storePhone,
+        store: userInfo.store,
       });
-  };
+    }
+  }, []);
 
   return (
     <OrderInfoMain>
@@ -35,15 +41,15 @@ const OrderInfo = () => {
       <OrderInfoBox>
         <OrderInfoColumn>
           <OrderInfoSubject>주문매장</OrderInfoSubject>
-          <span>{orderInfoData.store}</span>
+          <span>{userInfoData.store}</span>
         </OrderInfoColumn>
         <OrderInfoColumn>
           <OrderInfoSubject>매장번호</OrderInfoSubject>
-          <span>{orderInfoData.telNum}</span>
+          <span>{userInfoData.storePhone}</span>
         </OrderInfoColumn>
         <OrderInfoColumn>
           <OrderInfoSubject>매장 주소</OrderInfoSubject>
-          <span>{orderInfoData.address}</span>
+          <span>{userInfoData.storeAddress}</span>
         </OrderInfoColumn>
       </OrderInfoBox>
     </OrderInfoMain>
