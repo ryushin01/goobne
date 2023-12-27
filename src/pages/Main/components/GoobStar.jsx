@@ -24,16 +24,12 @@ const GoobStar = () => {
    * 3. 에러가 발생했을 경우 alert를 띄운다.
    * */
   const requestGoobStarDataGet = async () => {
-    const response = await customAxios //eslint-disable-line no-unused-vars
-      .get(API.GOOB_STAR)
-      .then(response => {
-        setGoobStarDataList(response.data.result);
-      })
-      .catch(error => {
-        if (error) {
-          alert('에러가 발생했습니다.');
-        }
-      });
+    try {
+      const request = await customAxios.get(API.GOOB_STAR);
+      setGoobStarDataList(request.data.result);
+    } catch (error) {
+      alert('에러가 발생했습니다.');
+    }
   };
 
   if (!goobStarDataList) return null;

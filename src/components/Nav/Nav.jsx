@@ -93,14 +93,12 @@ const Nav = ({ navToggle, setNavToggle }) => {
    * 3.useState훅을 사용하여 NavListData에 데이터를 저장합니다.
    */
   const requestNavListDataGet = async () => {
-    const response = await customAxios //eslint-disable-line no-unused-vars
-      .get(API.NAV)
-      .then(response => {
-        setNavListData(response.data.result);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    try {
+      const request = await customAxios.get(API.NAV);
+      setNavListData(request.data.result);
+    } catch (error) {
+      alert('에러 발생');
+    }
   };
 
   /**

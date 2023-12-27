@@ -25,16 +25,12 @@ const GoobNews = () => {
    * 3. 에러가 발생했을 경우 alert를 띄운다.
    * */
   const requestNewsDataGet = async () => {
-    const response = await customAxios //eslint-disable-line no-unused-vars
-      .get(API.GOOB_NEWS)
-      .then(response => {
-        setNewsDataList(response.data.result);
-      })
-      .catch(error => {
-        if (error) {
-          alert('에러가 발생했습니다.');
-        }
-      });
+    try {
+      const request = await customAxios.get(API.GOOB_NEWS);
+      setNewsDataList(request.data.result);
+    } catch (error) {
+      alert('에러가 발생했습니다.');
+    }
   };
 
   if (!newsDataList) return null;

@@ -27,16 +27,12 @@ const BigBanner = () => {
    * 3. 에러가 발생했을 경우 alert를 띄운다.
    * */
   const requestBigBannerDataGet = async () => {
-    const response = await customAxios //eslint-disable-line no-unused-vars
-      .get(`${API.BIG_BANNER}`)
-      .then(response => {
-        setBigBannerList(response.data.result);
-      })
-      .catch(error => {
-        if (error) {
-          alert('에러가 발생했습니다.');
-        }
-      });
+    try {
+      const request = await customAxios.get(`${API.BIG_BANNER}`);
+      setBigBannerList(request.data.result);
+    } catch (error) {
+      alert('에러가 발생했습니다.');
+    }
   };
 
   return (

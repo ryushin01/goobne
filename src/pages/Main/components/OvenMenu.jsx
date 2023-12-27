@@ -29,16 +29,12 @@ const OvenMenu = ({ scrollY }) => {
    * 3. 에러가 발생했을 경우 alert를 띄운다.
    * */
   const requestBandDataGet = async () => {
-    const response = await customAxios //eslint-disable-line no-unused-vars
-      .get(API.BAND_SWIPER)
-      .then(response => {
-        setBandDataList(response.data.result);
-      })
-      .catch(error => {
-        if (error) {
-          alert('에러가 발생했습니다.');
-        }
-      });
+    try {
+      const request = await customAxios.get(API.BAND_SWIPER);
+      setBandDataList(request.data.result);
+    } catch (error) {
+      alert('에러가 발생했습니다.');
+    }
   };
 
   if (!bandDataList) return null;
