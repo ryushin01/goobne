@@ -29,7 +29,6 @@ const Order = () => {
     price: '',
     count: '',
   });
-  console.log(userOrderInfo);
 
   /** useNavigate훅을 navigate 변수에 담습니다. */
   const navigate = useNavigate();
@@ -40,7 +39,9 @@ const Order = () => {
   const cartState = useSelector(state => {
     return state.cart;
   });
-  console.log(cartState);
+
+  /**로컬스토리지에 담겨있는 userInfo를 getItem(가져오기)해서 localUserInfo변수에 할당합니다.*/
+  const localUserInfo = localStorage.getItem('userInfo');
 
   /**
    * 1. setUserOrderInfo 함수를 호출, userOrderInfo 상태를 업데이트합니다.
@@ -48,12 +49,6 @@ const Order = () => {
    * 3. 받아온 각 속성(name, price, count)을 cartState의 첫 번째 요소의 속성으로 업데이트합니다.
    * 4. 코드가 실행된후 cartState가 변경될 때마다 useEffect가 실행되어 userOrderInfo 상태가 업데이트됩니다.
    */
-
-  console.log(cartState[0].name);
-
-  /**로컬스토리지에 담겨있는 userInfo를 getItem(가져오기)해서 localUserInfo변수에 할당합니다.*/
-  const localUserInfo = localStorage.getItem('userInfo');
-  /** */
   useEffect(() => {
     if (localUserInfo) {
       const userInfo = JSON.parse(localUserInfo);
