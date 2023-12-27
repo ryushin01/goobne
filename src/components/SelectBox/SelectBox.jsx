@@ -38,8 +38,6 @@ const SelectBox = ({ data, value, name, onChange }) => {
     }
   };
 
-  if (!selectData) return null;
-
   /** SelectBox를 클릭했을 때 open/close를 위한 함수입니다. */
   const handleOpen = () => {
     setOpen(!open);
@@ -64,14 +62,15 @@ const SelectBox = ({ data, value, name, onChange }) => {
     >
       <span>{currentValue}</span>
       <ul>
-        {selectData?.map((item, index) => {
-          // selectDate의 값이 존재한다면 map을 이용하여 li를 생성합니다.
-          return (
-            <li key={index} onClick={handleSelectValue}>
-              {item}
-            </li>
-          );
-        })}
+        {selectData &&
+          selectData?.map((item, index) => {
+            // selectDate의 값이 존재한다면 map을 이용하여 li를 생성합니다.
+            return (
+              <li key={index} onClick={handleSelectValue}>
+                {item}
+              </li>
+            );
+          })}
       </ul>
     </SelectBoxContainer>
   );

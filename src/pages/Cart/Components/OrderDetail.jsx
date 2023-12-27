@@ -17,7 +17,6 @@ const OrderDetail = () => {
     return state.cart;
   });
 
-  console.log(cartData);
   /** 장바구니에 담긴 데이터를 전체 삭제하는 기능입니다.
    * 1. dispatch를 이용하여 type을 'DELETE_ALL_CART'로 보내줍니다.
    * 2. reducer에서 type이 'DELETE_ALL_CART'일 경우 state를 빈 배열로 초기화 합니다.

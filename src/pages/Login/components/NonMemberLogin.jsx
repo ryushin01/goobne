@@ -23,6 +23,8 @@ const NonMemberLogin = () => {
   /**테스트를 하기위해 서버로 보낸 내가입력한 핸드폰번호를 저장하는 useState를 정의합니다. 테스트를 하기위해 */
   const [severCertificationNum, setServerCertificationNum] = useState(null);
 
+  const [ServerPhoneNum, setServerPhoneNum] = useState(null);
+
   /**이용 약관 동의 체크여부를 정의하는 useState 입니다.*/
   const [isAgreementCheck, setIsAgreementCheck] = useState(false);
 
@@ -70,6 +72,7 @@ const NonMemberLogin = () => {
         .then(data => {
           alert('인증번호를 발송했습니다.');
           setServerCertificationNum(data.number);
+          setServerPhoneNum(phoneNum);
           //가상의 인증번호를 보기위해있는 console.log 입니다.
           console.log(data);
         })
@@ -86,12 +89,12 @@ const NonMemberLogin = () => {
    * 4.값에 따라 다음 코드를 실행합니다.
    * 5.서버가있다면 params값도 같이 넘겨줍니다.
    */
-  const requestNonMemberLoginPost = async () => {
+  const requestNonMemberLoginPost = () => {
     if (nonMemberUserInfo.certificationNum.length < 5) {
       alert('인증번호는 5자리 또는 6자리입니다.');
     } else {
       // const params = nonMemberUserInfo;
-      // const response = await customAxios //eslint-disable-line no-unused-vars
+      //  customAxios
       //   .post(API.NONMEMBER_LOGIN_POST, params)
 
       basic_test(
@@ -119,10 +122,14 @@ const NonMemberLogin = () => {
    */
   const submitBtn = event => {
     event.preventDefault();
-    /**
-     * 백엔드가 서버가 없어서 도중에 핸드폰번호를 변경하면 실행을 막는것은 한계가 있었습니다.
-     */
-    if (!isAgreementCheck) {
+    if (!ServerPhoneNum === nonMemberUserInfo.phoneNum) {
+      alert('인증번호를 받은 휴대폰번호가 다릅니다.');
+    } else if (
+      !nonMemberUserInfo.phoneNum.length ||
+      !nonMemberUserInfo.name.length
+    ) {
+      alert('필수항목 값을 입력해주세요.');
+    } else if (!isAgreementCheck) {
       alert('필수 항목 체크하세요.');
     } else {
       requestNonMemberLoginPost();

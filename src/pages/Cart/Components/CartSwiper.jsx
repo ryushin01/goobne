@@ -18,19 +18,13 @@ const CartSwiper = () => {
 
   //SwiperItem을 가져오는 비동기 함수를 정의합니다.
   const getSwiperItemInfoData = async () => {
-    const request = await customAxios //eslint-disable-line no-unused-vars
-      .get(API.CART_SWIPER) //API.CART_SWIPER 로 GET 요청을 보냅니다.
-      .then(response => {
-        setSwiperItem(response.data.result);
-      }) //요청이 성공하였을때 setSwiperItem함수가 실행, 데이터를 가져옵니다.
-      .catch(error => {
-        if (error) {
-          alert('리스트 생성에 실패했습니다.'); //요청이 실패시 alert생성.
-        }
-      });
+    try {
+      const request = await customAxios.get(API.CART_SWIPER); //API.CART_SWIPER 로 GET 요청을 보냅니다.
+      setSwiperItem(request.data.result);
+    } catch (error) {
+      alert('리스트 생성에 실패했습니다.'); //요청이 실패시 alert생성.
+    }
   };
-  // SwiperItem이 없는 경우, null을 반환합니다.
-  if (!swiperItem) return null;
 
   return (
     <CartSwiperContainer>

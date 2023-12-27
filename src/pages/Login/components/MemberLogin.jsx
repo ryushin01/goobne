@@ -21,7 +21,7 @@ const MemberLogin = () => {
     password: '',
   });
   /** 상수데이터로 만든 userData를 userInfo State에 저장하고, 로그인 성공 시 해당 데이터를 localStorage에 담아줍니다. */
-  const [userInfo, setUserInfo] = useState(USER_INFO_DATA);
+  const [userInfo, setUserInfo] = useState(USER_INFO_DATA); //eslint-disable-line no-unused-vars
 
   /**아이디 저장 유무를 상태를 저장하는 useState를 정의합니다.*/
   const [isRemember, setIsRemember] = useState(false);
@@ -88,8 +88,10 @@ const MemberLogin = () => {
    * 5.그외는 에러처리입니다.
    * Verification // 아이디는 영문/숫자조합 6글자 이상이고 비밀번호는 특수문자포함 10자리 이상으로 했습니다.
    */
-  const requestLoginPost = async () => {
-    if (
+  const requestLoginPost = () => {
+    if (!userLoginInfo.password.length && !userLoginInfo.id.length) {
+      alert('값을 입력해주세요.');
+    } else if (
       !passwordRegex.test(userLoginInfo.password) ||
       userLoginInfo.password.length <= 10 ||
       userLoginInfo.id.length < 6 ||
@@ -99,7 +101,7 @@ const MemberLogin = () => {
       alert('아이디 또는 비밀번호가 틀립니다.');
     } else {
       // const params = userLoginInfo;
-      // const response = await customAxios //eslint-disable-line no-unused-vars
+      //  customAxios
       //   .post(API.LOGINPOST, params) //백엔드 서버 api입니다.
 
       basic_test(200) //테스트용 api입니다. 인자로 원하는 상태값을 넘겨주면됩니다.

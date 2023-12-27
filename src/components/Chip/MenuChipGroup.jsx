@@ -17,16 +17,12 @@ const MenuChipGroup = ({ chipSelect }) => {
   // 데이터를 성공적으로 받아오면 setMenuChipData를 통해 menuChipData의 상태를 업데이트
   // 에러발생시 경고창을 띄움
   const requestMenuChipList = async () => {
-    const response = await customAxios //eslint-disable-line no-unused-vars
-      .get(API.MENU_CHIP)
-      .then(response => {
-        setMenuChipData(response.data.result);
-      })
-      .catch(error => {
-        if (error) {
-          alert('에러 발생');
-        }
-      });
+    try {
+      const request = await customAxios.get(API.MENU_CHIP);
+      setMenuChipData(request.data.result);
+    } catch (error) {
+      alert('에러 발생');
+    }
   };
 
   // 업데이트 된 menuChipData가 화면에 렌더링됨
