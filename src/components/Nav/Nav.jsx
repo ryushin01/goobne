@@ -20,7 +20,7 @@ const Nav = ({ navToggle, setNavToggle }) => {
    * 2.useEffect 실행되면서 axios get 메서드가 실행되면 response받은 데이터를 담아놓을
    * useState를 정의합니다.
    */
-  const [navListData, setNavListData] = useState('');
+  const [navListData, setNavListData] = useState([]);
 
   /**
    * useNavigate()를 navigate 이름으로 변수로 지정합니다.
@@ -28,7 +28,7 @@ const Nav = ({ navToggle, setNavToggle }) => {
   const navigate = useNavigate();
 
   /**
-   * 화면을 랜더링 전 최초  requestNavListDataGet 실행 됩니다.
+  requestNavListDataGet 실행 됩니다.
    */
   useEffect(() => {
     requestNavListDataGet();
@@ -125,13 +125,6 @@ const Nav = ({ navToggle, setNavToggle }) => {
     event.stopPropagation();
     setNavToggle(false);
   };
-
-  /**
-   * early return
-   * useState에 navListData 데이터가 비어있다면 아래로직을 실행하지않고
-   * return 종료 합니다. navListData 가있다면 아래로직을 랜더링합니다.
-   */
-  if (!navListData) return null;
 
   return (
     <NavContainerBgDiv
