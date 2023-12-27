@@ -117,22 +117,30 @@ const AgreementInfo = ({ userJoinInfo, setUserJoinInfo }) => {
         <ul>
           <AgreementItemLi>
             <AgreementContentSpan>구부네 치킨 이용약관</AgreementContentSpan>
-            <AgreementContentButton>내용보기{'>'}</AgreementContentButton>
+            <AgreementContentButton type="button">
+              내용보기{'>'}
+            </AgreementContentButton>
           </AgreementItemLi>
 
           <AgreementItemLi>
             <AgreementContentSpan>개인정보 수집/이용</AgreementContentSpan>
-            <AgreementContentButton>내용보기{'>'}</AgreementContentButton>
+            <AgreementContentButton type="button">
+              내용보기{'>'}
+            </AgreementContentButton>
           </AgreementItemLi>
 
           <AgreementItemLi>
             <AgreementContentSpan>개인정보취급 위탁안내</AgreementContentSpan>
-            <AgreementContentButton>내용보기{'>'}</AgreementContentButton>
+            <AgreementContentButton type="button">
+              내용보기{'>'}
+            </AgreementContentButton>
           </AgreementItemLi>
 
           <AgreementItemLi>
             <AgreementContentSpan>개인정보 제3자동의</AgreementContentSpan>
-            <AgreementContentButton>내용보기{'>'}</AgreementContentButton>
+            <AgreementContentButton type="button">
+              내용보기{'>'}
+            </AgreementContentButton>
           </AgreementItemLi>
         </ul>
       </PrivacyWrapDiv>

@@ -89,7 +89,9 @@ const MemberLogin = () => {
    * Verification // 아이디는 영문/숫자조합 6글자 이상이고 비밀번호는 특수문자포함 10자리 이상으로 했습니다.
    */
   const requestLoginPost = () => {
-    if (
+    if (!userLoginInfo.password.length && !userLoginInfo.id.length) {
+      alert('값을 입력해주세요.');
+    } else if (
       !passwordRegex.test(userLoginInfo.password) ||
       userLoginInfo.password.length <= 10 ||
       userLoginInfo.id.length < 6 ||
