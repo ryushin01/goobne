@@ -105,18 +105,16 @@ const Header = () => {
             </h1>
           </Link>
         </HeaderLogo>
-        <AddressWrap>
-          {location.pathname === '/' ? (
+        {location.pathname === '/' && (
+          <AddressWrap>
             <>
               <Cursor />
               <Link to="">
                 {isLogin ? userInfoStore.store : '가까운 매장 보기'}
               </Link>
             </>
-          ) : (
-            ''
-          )}
-        </AddressWrap>
+          </AddressWrap>
+        )}
         <MenuWrap>
           <ul>
             <li>
