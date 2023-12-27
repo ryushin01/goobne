@@ -33,19 +33,15 @@ const Order = () => {
 
   /** orderInfo를 가져오는 비동기 함수를 정의합니다. */
   const getOrderInfoData = async () => {
-    const response = await customAxios //eslint-disable-line no-unused-vars
-      .get(API.ORDER_INFO)
+    try {
+      const request = await customAxios.get(API.ORDER_INFO);
+      setOrderInfo(request.data.result);
+    } catch (error) {
       /** API.ORDER_INFO(custom API) 로 GET 요청을 보냅니다. */
-      .then(response => {
-        setOrderInfo(response.data.result);
-      }) /** 요청이 성공하였을때 setOrderInfo함수가 실행, 데이터를 가져옵니다 */
-      .catch(error => {
-        if (error) {
-          alert(
-            '주문자정보 가져오기를 실패했습니다.',
-          ); /** 요청이 실패시 alert생성. */
-        }
-      });
+      alert(
+        '주문자정보 가져오기를 실패했습니다.',
+      ); /** 요청이 실패시 alert생성. */
+    }
   };
 
   /**
