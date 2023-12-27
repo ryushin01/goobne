@@ -67,7 +67,7 @@ const InputLabel = styled.label`
   width: 200px;
   font-size: 14px;
   font-weight: 700;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   //props isDot true일때 padding-left 10px값을 적용합니다.
   padding-left: ${props => (props.isDot === true && '10px') || '0px'};
   position: relative;
