@@ -122,7 +122,7 @@ const NonMemberLogin = () => {
    */
   const submitBtn = event => {
     event.preventDefault();
-    if (!ServerPhoneNum === nonMemberUserInfo.phoneNum) {
+    if (ServerPhoneNum !== nonMemberUserInfo.phoneNum) {
       alert('인증번호를 받은 휴대폰번호가 다릅니다.');
     } else if (
       !nonMemberUserInfo.phoneNum.length ||
