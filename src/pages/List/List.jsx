@@ -65,23 +65,29 @@ const List = () => {
           </ButtonWrapDiv>
 
           <ListContainerUl>
-            {productListData?.map(
-              ({ id, image, price, mainTitle, badge, alt }, index) => {
-                return (
-                  <ListItemLi key={index}>
-                    <ItemComponent
-                      id={id}
-                      image={image}
-                      alt={alt}
-                      price={price}
-                      mainTitle={mainTitle}
-                      badge={badge}
-                      onClick={listItemClick}
-                      productListData={productListData}
-                    />
-                  </ListItemLi>
-                );
-              },
+            {productListData ? (
+              productListData?.map(
+                ({ id, image, price, mainTitle, badge, alt }, index) => {
+                  return (
+                    <ListItemLi key={index}>
+                      <ItemComponent
+                        id={id}
+                        image={image}
+                        alt={alt}
+                        price={price}
+                        mainTitle={mainTitle}
+                        badge={badge}
+                        onClick={listItemClick}
+                        productListData={productListData}
+                      />
+                    </ListItemLi>
+                  );
+                },
+              )
+            ) : (
+              <NotDataImgInnerWrap>
+                <img src="../goobne/images/notData.png" />
+              </NotDataImgInnerWrap>
             )}
           </ListContainerUl>
         </ListContainerSection>
@@ -112,6 +118,7 @@ const ListContainerSection = styled.section`
 `;
 
 const ListContainerUl = styled.ul`
+  position: relative;
   display: grid;
   justify-content: center;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -173,5 +180,16 @@ const ButtonWrapDiv = styled.div`
     border: none;
     border-radius: 20px;
     width: 100px;
+  }
+`;
+const NotDataImgInnerWrap = styled.div`
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 300px;
+  height: 300px;
+  & > img {
+    object-fit: cover;
   }
 `;
