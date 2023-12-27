@@ -159,6 +159,6 @@ const BirthDateWrapDiv = styled.div`
 `;
 const BirthDateSelectBoxInnerDiv = styled.div`
   display: flex;
-  gap: 5px;
+  gap: 10px;
 `;
 /** 부가정보 스타일 하단 끝 */
