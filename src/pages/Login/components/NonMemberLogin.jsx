@@ -231,7 +231,6 @@ const NonLoginWrapForm = styled.form`
   & > fieldset {
     display: flex;
     flex-direction: column;
-    gap: 10px;
   }
   & > fieldset > legend {
     font-size: 0;
@@ -244,6 +243,7 @@ const PhoneAuthenticationDiv = styled.div`
   display: flex;
   align-items: flex-end;
   width: 100%;
+  margin: 15px 0px;
 `;
 const BtnInner = styled.div`
   width: 200px;
