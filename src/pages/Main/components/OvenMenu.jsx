@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Autoplay } from 'swiper/modules';
+import Loading from '../../../components/Loading/loading';
 import { customAxios } from '../../../API/API';
 import { API } from '../../../config';
 import 'swiper/css';
@@ -16,8 +17,12 @@ const OvenMenu = ({ scrollY }) => {
   /** BigBanner의 데이터를 받아오기 위한 useState 생성 */
   const [bandDataList, setBandDataList] = useState([]);
 
+  /**로딩페이지를 토글할 useState를 정의합니다. */
+  const [loading, setLoading] = useState(true);
+
   /** 화면이 처음 로딩될 때 배너에 대한 정보를 받아오기 위한 useEffect */
   useEffect(() => {
+    setLoading(true);
     requestBandDataGet();
   }, []);
 
@@ -29,63 +34,62 @@ const OvenMenu = ({ scrollY }) => {
    * 3. 에러가 발생했을 경우 alert를 띄운다.
    * */
   const requestBandDataGet = async () => {
-    const response = await customAxios //eslint-disable-line no-unused-vars
-      .get(API.BAND_SWIPER)
-      .then(response => {
-        setBandDataList(response.data.result);
-      })
-      .catch(error => {
-        if (error) {
-          alert('에러가 발생했습니다.');
-        }
-      });
+    try {
+      const request = await customAxios.get(API.BAND_SWIPER);
+      setBandDataList(request.data.result);
+      setLoading(false);
+    } catch (error) {
+      alert('에러가 발생했습니다.');
+    }
   };
 
-  if (!bandDataList) return null;
-
   return (
-    <BandContainer>
-      <TitleWrap className={scrollY >= window.innerHeight / 3 && 'pageOffset'}>
-        <h2>Oven Menu</h2>
-      </TitleWrap>
-      <Swiper
-        modules={[EffectCoverflow, Autoplay]}
-        effect={'coverflow'}
-        slidesPerView={'4'}
-        spaceBetween={100}
-        loop
-        coverflowEffect={{
-          rotate: 20, // 슬라이드 회전 각도
-          stretch: 0, // 슬라이드 사이의 간격
-          depth: 100, // 슬라이드와 슬라이드 사이의 거리
-          modifier: 1, // 슬라이드 크기
-          slideShadows: false, // 슬라이드 그림자
-        }}
-        autoplay={{
-          delay: 2500,
-          pauseOnMouseEnter: true,
-          disableOnInteraction: false,
-        }}
-        className="mySwiper"
-      >
-        {bandDataList.map(({ id, href, src, alt, tag }) => {
-          return (
-            <SwiperSlide key={id}>
-              <SlideInnerWrap>
-                <ImageWrap>
-                  <Link to={href}>
-                    <img src={src} alt={alt} />
-                  </Link>
-                </ImageWrap>
-                <TextWrap>
-                  <span>{tag}</span>
-                </TextWrap>
-              </SlideInnerWrap>
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
-    </BandContainer>
+    <>
+      {loading && <Loading />}
+      <BandContainer>
+        <TitleWrap
+          className={scrollY >= window.innerHeight / 3 && 'pageOffset'}
+        >
+          <h2>Oven Menu</h2>
+        </TitleWrap>
+        <Swiper
+          modules={[EffectCoverflow, Autoplay]}
+          effect={'coverflow'}
+          slidesPerView={'4'}
+          spaceBetween={100}
+          coverflowEffect={{
+            rotate: 20, // 슬라이드 회전 각도
+            stretch: 0, // 슬라이드 사이의 간격
+            depth: 100, // 슬라이드와 슬라이드 사이의 거리
+            modifier: 1, // 슬라이드 크기
+            slideShadows: false, // 슬라이드 그림자
+          }}
+          autoplay={{
+            delay: 2500,
+            pauseOnMouseEnter: true,
+            disableOnInteraction: false,
+          }}
+          className="mySwiper"
+        >
+          {bandDataList.map(({ id, href, src, alt, tag }) => {
+            return (
+              <SwiperSlide key={id}>
+                <SlideInnerWrap>
+                  <ImageWrap>
+                    <Link to={href}>
+                      <img src={src} alt={alt} />
+                    </Link>
+                  </ImageWrap>
+                  <TextWrap>
+                    <span>{tag}</span>
+                  </TextWrap>
+                </SlideInnerWrap>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </BandContainer>
+    </>
   );
 };
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import Loading from '../../../components/Loading/loading';
 import { customAxios } from '../../../API/API';
 import { API } from '../../../config';
 import { Autoplay } from 'swiper/modules';
@@ -11,8 +12,12 @@ const Goobtube = () => {
   /** goobtube의 Data를 받아와 저장하기 위해 useState 생성 */
   const [goobutbeDataList, setGoobtubeDataList] = useState([]);
 
+  /**로딩페이지를 토글할 useState를 정의합니다. */
+  const [loading, setLoading] = useState(true);
+
   /** 화면이 처음 로딩될 때 goobtube에 대한 정보를 받아오기 위한 useEffect */
   useEffect(() => {
+    setLoading(true);
     requestGoobtubeDataGet();
   }, []);
 
@@ -24,98 +29,102 @@ const Goobtube = () => {
    * 3. 에러가 발생했을 경우 alert를 띄운다.
    * */
   const requestGoobtubeDataGet = async () => {
-    const response = await customAxios //eslint-disable-line no-unused-vars
-      .get(API.GOOB_TUBE)
-      .then(response => {
-        setGoobtubeDataList(response.data.result);
-      })
-      .catch(error => {
-        if (error) {
-          alert('에러가 발생했습니다.');
-        }
-      });
+    try {
+      const request = await customAxios.get(API.GOOB_TUBE);
+      setGoobtubeDataList(request.data.result);
+      setLoading(false);
+    } catch (error) {
+      alert('에러가 발생했습니다.');
+    }
   };
-  /** goobtubeDataList에 데이터가 없다면 null Return */
-  if (!goobutbeDataList) return null;
 
   return (
-    <MainGoobtubeContainer>
-      <h2>Goobtube</h2>
-      <TextContainer>
-        <TextSlide>
-          <ul>
-            <li>
-              <span>😠 RELAX YOUR BACK</span>
-            </li>
-            <li>
-              <span>🤬 RELAX YOUR BACK</span>
-            </li>
-            <li>
-              <span>😠 RELAX YOUR BACK</span>
-            </li>
-            <li>
-              <span>🤬 RELAX YOUR BACK</span>
-            </li>
-            <li>
-              <span>😠 RELAX YOUR BACK</span>
-            </li>
-            <li>
-              <span>🤬 RELAX YOUR BACK</span>
-            </li>
-            <li>
-              <span>😠 RELAX YOUR BACK</span>
-            </li>
-            <li>
-              <span>🤬 RELAX YOUR BACK</span>
-            </li>
-            <li>
-              <span>😠 RELAX YOUR BACK</span>
-            </li>
-            <li>
-              <span>🤬 RELAX YOUR BACK</span>
-            </li>
-            <li>
-              <span>😠 RELAX YOUR BACK</span>
-            </li>
-            <li>
-              <span>🤬 RELAX YOUR BACK</span>
-            </li>
-          </ul>
-        </TextSlide>
-      </TextContainer>
-      <SlideContainer>
-        <Swiper
-          spaceBetween={50}
-          slidesPerView={3}
-          autoplay={{
-            delay: 3500,
-            disableOnInteraction: false,
-          }}
-          modules={[Autoplay]}
-          className="mySwiper"
-        >
-          {goobutbeDataList.map(({ id, href, src, alt }) => {
-            return (
-              <SwiperSlide key={id}>
-                <Link to={href}>
-                  <img src={src} alt={alt} />
-                </Link>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-      </SlideContainer>
-      <PartnersContainer>
-        <PartnersInnerWrap>
-          <Link to="#">
-            <img src="../goobne/images/PartnersLogo1.png" alt="PartnersLogo" />
-          </Link>
-          <Link to="#">
-            <img src="../goobne/images/PartnersLogo2.png" alt="PartnersLogo" />
-          </Link>
-        </PartnersInnerWrap>
-      </PartnersContainer>
-    </MainGoobtubeContainer>
+    <>
+      {loading && <Loading />}
+      <MainGoobtubeContainer>
+        <h2>Goobtube</h2>
+        <TextContainer>
+          <TextSlide>
+            <ul>
+              <li>
+                <span>😠 RELAX YOUR BACK</span>
+              </li>
+              <li>
+                <span>🤬 RELAX YOUR BACK</span>
+              </li>
+              <li>
+                <span>😠 RELAX YOUR BACK</span>
+              </li>
+              <li>
+                <span>🤬 RELAX YOUR BACK</span>
+              </li>
+              <li>
+                <span>😠 RELAX YOUR BACK</span>
+              </li>
+              <li>
+                <span>🤬 RELAX YOUR BACK</span>
+              </li>
+              <li>
+                <span>😠 RELAX YOUR BACK</span>
+              </li>
+              <li>
+                <span>🤬 RELAX YOUR BACK</span>
+              </li>
+              <li>
+                <span>😠 RELAX YOUR BACK</span>
+              </li>
+              <li>
+                <span>🤬 RELAX YOUR BACK</span>
+              </li>
+              <li>
+                <span>😠 RELAX YOUR BACK</span>
+              </li>
+              <li>
+                <span>🤬 RELAX YOUR BACK</span>
+              </li>
+            </ul>
+          </TextSlide>
+        </TextContainer>
+        <SlideContainer>
+          <Swiper
+            spaceBetween={50}
+            slidesPerView={3}
+            autoplay={{
+              delay: 3500,
+              disableOnInteraction: false,
+            }}
+            modules={[Autoplay]}
+            className="mySwiper"
+          >
+            {goobutbeDataList?.map(({ id, href, src, alt }) => {
+              return (
+                <SwiperSlide key={id}>
+                  <Link to={href}>
+                    <img src={src} alt={alt} />
+                  </Link>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </SlideContainer>
+        <PartnersContainer>
+          <PartnersInnerWrap>
+            <Link to="#">
+              <img
+                src="../goobne/images/PartnersLogo1.png"
+                alt="PartnersLogo"
+              />
+            </Link>
+            <Link to="#">
+              <img
+                src="../goobne/images/PartnersLogo2.png"
+                alt="PartnersLogo"
+              />
+            </Link>
+          </PartnersInnerWrap>
+        </PartnersContainer>
+      </MainGoobtubeContainer>
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { ReactComponent as Cursor } from '../../svg/Header/HeaderCursorIcon.svg';
 import { ReactComponent as MenuSearch } from '../../svg/Header/HeaderMenuSearchIcon.svg';
@@ -16,8 +16,22 @@ const Header = () => {
   /** Nav자식컴포넌트에 부여해서 사용할 useState 입니다.*/
   const [navToggle, setNavToggle] = useState(false);
 
+  /** 유저의 데이터를 가져오기 위한 State, header에서는 store에 대한 정보만 필요함. */
+  const [userInfoStore, setUserInfoStore] = useState({
+    store: null,
+  });
+
   /** Login/Logout 여부를 저장하는 변수 입니다. */
   const isLogin = !!localStorage.getItem('accessToken');
+  /** '가까운 매장보기' 를 pathName에 따라 삼항연산자를 걸 수 있도록 location 변수로 선언
+   * 1. useLocation을 이용하여 현재 페이지의 pathName을 가져옵니다.
+   * 2. pathName이 '/' 일 경우 '가까운 매장보기'를 표시합니다.
+   * 3. pathName이 '/' 이외의 경우 '가까운 매장보기'를 표시하지 않습니다.
+   */
+
+  const location = useLocation();
+  /** 페이지 이동을 위한 변수  */
+  const navigate = useNavigate();
 
   /** 장바구니에 담긴 데이터를 useSelector를 이용하여 state에 담아줍니다. */
   const cartQuantity = useSelector(state => {
@@ -50,6 +64,24 @@ const Header = () => {
     };
   }, [scrollY]);
 
+  /** 로그인 시 localStorage에 저장해놓은 사용자 정보를 가져오기 위한 useEffect
+   * 1. localStorage에 저장해놓은 사용자 정보를 가져옵니다. (localStorage.getItem)
+   * 2. JSON.parse를 이용하여 JSON형태의 문자열을 객체로 변환합니다.
+   * 3. 변환한 객체의 store값을 userInfoStore에 담아줍니다.
+   */
+  useEffect(() => {
+    const localUserInfo = localStorage.getItem('userInfo');
+
+    if (localUserInfo) {
+      const userInformation = JSON.parse(localUserInfo);
+
+      setUserInfoStore(userInfoStore => ({
+        ...userInfoStore,
+        store: userInformation.store,
+      }));
+    }
+  }, []);
+
   /**
    * 스크롤 이벤트가 발생할 때마다 scrollY값을 업데이트
    */
@@ -74,13 +106,21 @@ const Header = () => {
           </Link>
         </HeaderLogo>
         <AddressWrap>
-          <Cursor />
-          <Link to="">가까운 매장 보기</Link>
+          {location.pathname === '/' ? (
+            <>
+              <Cursor />
+              <Link to="">
+                {isLogin ? userInfoStore.store : '가까운 매장 보기'}
+              </Link>
+            </>
+          ) : (
+            ''
+          )}
         </AddressWrap>
         <MenuWrap>
           <ul>
             <li>
-              <Link to="">주문하기</Link>
+              <Link to="#">주문하기</Link>
               <SubMenuWrap>
                 <li>
                   <Link to="/list">
@@ -126,7 +166,8 @@ const Header = () => {
                 <li>
                   <button
                     onClick={() => {
-                      localStorage.removeItem('accessToken');
+                      localStorage.clear();
+                      navigate('/');
                       window.location.reload();
                     }}
                   >

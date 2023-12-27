@@ -22,7 +22,7 @@ const DetailData = (async () => {
 export const _requestDetailDataGet = async id => {
   const detail = await DetailData;
   const details = detail.result.filter(item => item.id === Number(id));
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     resolve({
       data: details[0],
     });

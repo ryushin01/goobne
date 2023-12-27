@@ -71,6 +71,10 @@ const GlobalStyle = createGlobalStyle`
   input, textarea {
     font-family : "NanumSquareRoundR", "Rubik", sans-serif; 
   }
+
+  button {
+    cursor : pointer;
+  }
 `;
 
 export default GlobalStyle;

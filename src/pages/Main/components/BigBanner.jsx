@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
+import Loading from '../../../components/Loading/loading';
 import { customAxios } from '../../../API/API';
 import { API } from '../../../config';
 
@@ -14,8 +15,12 @@ const BigBanner = () => {
   /** BigBanner의 데이터를 받아오기 위한 useState 생성 */
   const [bigBannerList, setBigBannerList] = useState([]);
 
+  /**로딩페이지를 토글할 useState를 정의합니다. */
+  const [loading, setLoading] = useState(true);
+
   /** 화면이 처음 로딩될 때 배너에 대한 정보를 받아오기 위한 useEffect */
   useEffect(() => {
+    setLoading(true);
     requestBigBannerDataGet();
   }, []);
 
@@ -27,48 +32,47 @@ const BigBanner = () => {
    * 3. 에러가 발생했을 경우 alert를 띄운다.
    * */
   const requestBigBannerDataGet = async () => {
-    const response = await customAxios //eslint-disable-line no-unused-vars
-      .get(`${API.BIG_BANNER}`)
-      .then(response => {
-        setBigBannerList(response.data.result);
-      })
-      .catch(error => {
-        if (error) {
-          alert('에러가 발생했습니다.');
-        }
-      });
+    try {
+      const request = await customAxios.get(`${API.BIG_BANNER}`);
+      setBigBannerList(request.data.result);
+      setLoading(false);
+    } catch (error) {
+      alert('에러가 발생했습니다.');
+    }
   };
 
   return (
-    <BigBannerContainer>
-      <Swiper
-        modules={[Pagination]}
-        spaceBetween={0}
-        slidesPerView={1}
-        loop={true}
-        pagination={{
-          clickable: true,
-        }}
-        className="swiperContainer"
-      >
-        {bigBannerList.map(item => {
-          const { id, href, src, alt, title, subTitle } = item;
-          return (
-            <SwiperSlide key={id}>
-              <Link to={href}>
-                <img src={src} alt={alt} />
-              </Link>
-              <TextWrap>
-                <TextInnerWrap>
-                  <span>{title}</span>
-                  <span>{subTitle}</span>
-                </TextInnerWrap>
-              </TextWrap>
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
-    </BigBannerContainer>
+    <>
+      {loading && <Loading />}
+      <BigBannerContainer>
+        <Swiper
+          modules={[Pagination]}
+          spaceBetween={0}
+          slidesPerView={1}
+          pagination={{
+            clickable: true,
+          }}
+          className="swiperContainer"
+        >
+          {bigBannerList.map(item => {
+            const { id, href, src, alt, title, subTitle } = item;
+            return (
+              <SwiperSlide key={id}>
+                <Link to={href}>
+                  <img src={src} alt={alt} />
+                </Link>
+                <TextWrap>
+                  <TextInnerWrap>
+                    <span>{title}</span>
+                    <span>{subTitle}</span>
+                  </TextInnerWrap>
+                </TextWrap>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </BigBannerContainer>
+    </>
   );
 };
 

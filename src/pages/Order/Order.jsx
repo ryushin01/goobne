@@ -36,19 +36,15 @@ const Order = () => {
 
   /** 사용자가 주문한 내역을 불러오는 axios 정의합니다. */
   const getOrderInfoData = async () => {
-    const response = await customAxios //eslint-disable-line no-unused-vars
-      .get(API.ORDER_INFO)
+    try {
+      const request = await customAxios.get(API.ORDER_INFO);
+      setOrderInfo(request.data.result);
+    } catch (error) {
       /** API.ORDER_INFO(custom API) 로 GET 요청을 보냅니다. */
-      .then(response => {
-        setUserOrderInfo({ ...userOrderInfo, orderList: response.data.result });
-      }) /** 요청이 성공하였을때 setOrderInfo함수가 실행, 데이터를 가져옵니다 */
-      .catch(error => {
-        if (error) {
-          alert(
-            '주문자정보 가져오기를 실패했습니다.',
-          ); /** 요청이 실패시 alert생성. */
-        }
-      });
+      alert(
+        '주문자정보 가져오기를 실패했습니다.',
+      ); /** 요청이 실패시 alert생성. */
+    }
   };
 
   /**
@@ -63,9 +59,6 @@ const Order = () => {
       [name]: value,
     });
   };
-
-  /** orderInfo이 없는 경우, null을 반환합니다.*/
-  if (!userOrderInfo.orderList) return null;
 
   /** deliveryFee라는 변수에 배달금액을 할당합니다. */
   const deliveryFee = 3000;

@@ -1,12 +1,15 @@
 {
   "result": [
     {
-      "id": 3,
-      "imgSrc": "../goobne/images/main-pizza.jpg",
-      "title": "피자",
+      "id": 2,
+      "image": "../goobne/images/main-pizza.jpg",
+      "alt": "피자 이미지",
+      "mainTitle": "피자",
       "category": "pizza",
       "price": 15500,
-      "badge": ["new", "hot", "md"]
+      "badge": ["new", "hot", "md"],
+      "count": 1,
+      "radioData": 0
     }
   ]
 }
