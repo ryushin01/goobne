@@ -17,8 +17,10 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100vh;
+  width: 100%;
   height: 100vh; /* 화면 전체 높이 */
+  z-index: 100;
+  background-color: white;
   h1 {
     font-size: 40px;
   }

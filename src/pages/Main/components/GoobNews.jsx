@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { customAxios } from '../../../API/API';
 import { API } from '../../../config';
+import Loading from '../../../components/Loading/loading';
 import Button from '../../../components/Button/Button';
 import styled from 'styled-components';
 
@@ -9,11 +10,15 @@ const GoobNews = () => {
   /** newsData 데이터를 받아오기 위한 useState 생성 */
   const [newsDataList, setNewsDataList] = useState([]);
 
+  /**로딩페이지를 토글할 useState를 정의합니다. */
+  const [loading, setLoading] = useState(true);
+
   /** Button에서 페이지 이동을 위한 Navigate 함수 추가 */
   const navigate = useNavigate();
 
   /** 화면이 처음 로딩될 때 배너에 대한 정보를 받아오기 위한 useEffect */
   useEffect(() => {
+    setLoading(true);
     requestNewsDataGet();
   }, []);
 
@@ -28,44 +33,48 @@ const GoobNews = () => {
     try {
       const request = await customAxios.get(API.GOOB_NEWS);
       setNewsDataList(request.data.result);
+      setLoading(false);
     } catch (error) {
       alert('에러가 발생했습니다.');
     }
   };
 
-  if (!newsDataList) return null;
+  // if (!newsDataList) return null;
   return (
-    <MainContainer>
-      <h2>Goobnews</h2>
-      <MainInnerListWrap>
-        {newsDataList.map(({ id, href, tag, title, src, alt }) => {
-          return (
-            <li key={id}>
-              <TextWrap>
-                <Link to={href}>
-                  <span>{tag}</span>
-                  <span>{title}</span>
-                </Link>
-              </TextWrap>
-              <ImgWrap className="imgLoad">
-                <img src={src} alt={alt} />
-              </ImgWrap>
-            </li>
-          );
-        })}
-      </MainInnerListWrap>
-      <ButtonWrap>
-        <Button
-          type="button"
-          content="더보기 >"
-          color="beige"
-          size="large"
-          onClick={() => {
-            navigate('/goobne');
-          }}
-        />
-      </ButtonWrap>
-    </MainContainer>
+    <>
+      {loading && <Loading />}
+      <MainContainer>
+        <h2>Goobnews</h2>
+        <MainInnerListWrap>
+          {newsDataList.map(({ id, href, tag, title, src, alt }) => {
+            return (
+              <li key={id}>
+                <TextWrap>
+                  <Link to={href}>
+                    <span>{tag}</span>
+                    <span>{title}</span>
+                  </Link>
+                </TextWrap>
+                <ImgWrap className="imgLoad">
+                  <img src={src} alt={alt} />
+                </ImgWrap>
+              </li>
+            );
+          })}
+        </MainInnerListWrap>
+        <ButtonWrap>
+          <Button
+            type="button"
+            content="더보기 >"
+            color="beige"
+            size="large"
+            onClick={() => {
+              navigate('/goobne');
+            }}
+          />
+        </ButtonWrap>
+      </MainContainer>
+    </>
   );
 };
 

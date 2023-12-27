@@ -10,6 +10,7 @@ const List = () => {
   /** 프로덕트 리스트를 데이터를 담을 useState를 정의합니다. */
   const [productListData, setProductListData] = useState([]);
 
+  /**로딩페이지를 토글할 useState를 정의합니다. */
   const [loading, setLoading] = useState(true);
 
   /**

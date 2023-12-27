@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import Loading from '../../../components/Loading/loading';
 import { customAxios } from '../../../API/API';
 import { API } from '../../../config';
 import { ReactComponent as GoobstarIcon } from '../../../svg/Main/MainInstar.svg';
@@ -11,8 +12,12 @@ const GoobStar = () => {
   /** GoobStar의 데이터를 받아오기 위한 useState 생성 */
   const [goobStarDataList, setGoobStarDataList] = useState([]);
 
+  /**로딩페이지를 토글할 useState를 정의합니다. */
+  const [loading, setLoading] = useState(true);
+
   /** 화면이 처음 로딩될 때 GoobStar에 대한 정보를 받아오기 위한 useEffect */
   useEffect(() => {
+    setLoading(true);
     requestGoobStarDataGet();
   }, []);
 
@@ -27,36 +32,40 @@ const GoobStar = () => {
     try {
       const request = await customAxios.get(API.GOOB_STAR);
       setGoobStarDataList(request.data.result);
+      setLoading(false);
     } catch (error) {
       alert('에러가 발생했습니다.');
     }
   };
 
-  if (!goobStarDataList) return null;
+  // if (!goobStarDataList) return null;
 
   return (
-    <GoobStarMainContainer>
-      <GoobStarInnerWrap>
-        <SwiperContainer>
-          <TitleWrap>
-            <h2>
-              <GoobstarIcon /> The Goobstar
-            </h2>
-          </TitleWrap>
-          <Swiper spaceBetween={50} slidesPerView={7} className="mySwiper">
-            {goobStarDataList.map(({ id, href, src, alt }) => {
-              return (
-                <SwiperSlide key={id}>
-                  <Link to={href}>
-                    <img src={src} alt={alt} />
-                  </Link>
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
-        </SwiperContainer>
-      </GoobStarInnerWrap>
-    </GoobStarMainContainer>
+    <>
+      {loading && <Loading />}
+      <GoobStarMainContainer>
+        <GoobStarInnerWrap>
+          <SwiperContainer>
+            <TitleWrap>
+              <h2>
+                <GoobstarIcon /> The Goobstar
+              </h2>
+            </TitleWrap>
+            <Swiper spaceBetween={50} slidesPerView={7} className="mySwiper">
+              {goobStarDataList.map(({ id, href, src, alt }) => {
+                return (
+                  <SwiperSlide key={id}>
+                    <Link to={href}>
+                      <img src={src} alt={alt} />
+                    </Link>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+          </SwiperContainer>
+        </GoobStarInnerWrap>
+      </GoobStarMainContainer>
+    </>
   );
 };
 
