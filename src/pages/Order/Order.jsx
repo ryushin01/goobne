@@ -33,13 +33,14 @@ const Order = () => {
 
   /** useNavigate훅을 navigate 변수에 담습니다. */
   const navigate = useNavigate();
-
+  /** useDispatch훅을 dispatch 변수에 담습니다. */
   const dispatch = useDispatch();
 
   /** useSelector훅을 이용하여 state 값을 cartData 변수에 저장합니다.   */
   const cartState = useSelector(state => {
     return state.cart;
   });
+  console.log(cartState);
 
   /**
    * 1. setUserOrderInfo 함수를 호출, userOrderInfo 상태를 업데이트합니다.
@@ -47,15 +48,8 @@ const Order = () => {
    * 3. 받아온 각 속성(name, price, count)을 cartState의 첫 번째 요소의 속성으로 업데이트합니다.
    * 4. 코드가 실행된후 cartState가 변경될 때마다 useEffect가 실행되어 userOrderInfo 상태가 업데이트됩니다.
    */
-  /** useEffect를 실행하여 받아온 userOrderInfo을 보여주기 위하여 생성합니다. */
-  useEffect(() => {
-    setUserOrderInfo(userOrderInfo => ({
-      ...userOrderInfo,
-      name: cartState[0].name,
-      price: cartState[0].price,
-      count: cartState[0].count,
-    }));
-  }, [cartState]);
+
+  console.log(cartState[0].name);
 
   /**로컬스토리지에 담겨있는 userInfo를 getItem(가져오기)해서 localUserInfo변수에 할당합니다.*/
   const localUserInfo = localStorage.getItem('userInfo');
@@ -69,11 +63,14 @@ const Order = () => {
         storeAddress: userInfo.storeAddress,
         storePhone: userInfo.storePhone,
         store: userInfo.store,
-        name: userInfo.userName,
-        userPhoneNumber: userInfo.userPhoneNumber,
+        userName: userInfo.name,
+        userPhoneNumber: userInfo.userPhone,
+        name: cartState[0].name,
+        price: cartState[0].price,
+        count: cartState[0].count,
       });
     } // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [cartState]);
 
   /**
    * 1.요청사항을 업데이트하는 셀렉트박스 함수입니다.
@@ -113,7 +110,10 @@ const Order = () => {
   };
 
   /**
-   *
+   * 1. 셀렉트박스의 직접입력 선택시 나타나는 textArea의 값이 변경될때마다 업데이트하는 함수를 정의합니다.
+   * 2. setUserOrderInfo 함수를 호출하여 userOrderInfo 상태를 업데이트합니다.
+   * 3. userOrderInfo를 스트레트 오퍼레이트(연산자)값을 복사해옵니다.
+   * 4. 새롭게 입력되는 값을 name 속성에 해당하는 키에 할당하여 업데이트합니다.
    */
   const saveDirectRequest = event => {
     const { name, value } = event.target;
@@ -124,15 +124,13 @@ const Order = () => {
     e.preventDefault();
     basic_test(200) //테스트용 api입니다. 인자로 원하는 상태값을 넘겨주면됩니다.
       .then(() => {
-        console.log(userOrderInfo);
         alert('주문이 완료되었습니다.');
         dispatch(deleteAllCart());
-        // window.location.reload();
         navigate('/');
+        window.location.reload();
       })
       //에러 케이스를 정의합니다.
       .catch(error => {
-        console.log(error);
         if (error.status === 401) {
           alert('배달요청 사항을 입력안했습니다.');
         }
@@ -170,7 +168,12 @@ const Order = () => {
               </NameInfoLine>
 
               <PhoneNumberInfoLine>
-                <Input type="text" label="연락처" isDot={true} />
+                <Input
+                  type="text"
+                  label="연락처"
+                  isDot={true}
+                  value={userOrderInfo.userPhoneNumber}
+                />
               </PhoneNumberInfoLine>
 
               <DeliveryRequest>
