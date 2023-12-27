@@ -2,59 +2,38 @@
   "result": [
     {
       "id": 1,
-      "href": "/",
+      "href": "/list",
       "src": "../goobne/images/main_chicken_01.jpg",
       "alt": "SmallBand 이미지 1",
-      "tag": "BEST CHICKEN"
+      "tag": "ALL"
     },
     {
       "id": 2,
-      "href": "/new",
+      "href": "/list",
       "src": "../goobne/images/main_chicken_02.jpg",
       "alt": "SmallBand 이미지 2",
       "tag": "CHICKEN"
     },
     {
       "id": 3,
-      "href": "/new",
+      "href": "/list",
       "src": "../goobne/images/main_chicken_03.jpg",
       "alt": "SmallBand 이미지 3",
-      "tag": "BEST SET"
-    },
-    {
-      "id": 4,
-      "href": "/new",
-      "src": "../goobne/images/main-pizza.jpg",
-      "alt": "SmallBand 이미지 4",
       "tag": "PIZZA"
     },
     {
-      "id": 5,
-      "href": "/new",
-      "src": "../goobne/images/main_wast_set.jpg",
-      "alt": "SmallBand 이미지 5",
-      "tag": "WAST SET"
-    },
-    {
-      "id": 6,
-      "href": "/new",
-      "src": "../goobne/images/main_salad.jpg",
-      "alt": "SmallBand 이미지 6",
-      "tag": "SALAD"
-    },
-    {
-      "id": 7,
-      "href": "/new",
-      "src": "../goobne/images/main_side_dish.jpg",
-      "alt": "SmallBand 이미지 7",
+      "id": 4,
+      "href": "/list",
+      "src": "../goobne/images/main-pizza.jpg",
+      "alt": "SmallBand 이미지 4",
       "tag": "SIDE DISH"
     },
     {
-      "id": 8,
-      "href": "/new",
-      "src": "../goobne/images/main_beer.jpg",
-      "alt": "SmallBand 이미지 8",
-      "tag": "BEER"
+      "id": 5,
+      "href": "/list",
+      "src": "../goobne/images/main_wast_set.jpg",
+      "alt": "SmallBand 이미지 5",
+      "tag": "Packaging"
     }
   ]
 }
