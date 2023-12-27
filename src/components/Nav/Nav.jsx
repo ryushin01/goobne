@@ -22,6 +22,9 @@ const Nav = ({ navToggle, setNavToggle }) => {
    */
   const [navListData, setNavListData] = useState([]);
 
+  /** 유저 정보를 담는 useState 정의합니다. */
+  const [userInfoData, setUserInfoData] = useState({});
+
   /**
    * useNavigate()를 navigate 이름으로 변수로 지정합니다.
    */
@@ -32,6 +35,24 @@ const Nav = ({ navToggle, setNavToggle }) => {
    */
   useEffect(() => {
     requestNavListDataGet();
+  }, []);
+
+  /** useEffect를 이용하여 userInfo key에 대한 값이 있다면, localStorage의 데이터를 가져옵니다.
+   * 1. localStorage에 userInfo key에 대한 값이 있다면, userInfoData에 값을 저장합니다.
+   * 2. 값이 있다면 userInfo 변수에 JSON.parse()를 이용하여 객체로 변환하여 저장합니다.
+   * 3. userInfoData에 변환한 객체를 담아줍니다.
+   */
+  useEffect(() => {
+    const localUserInfo = localStorage.getItem('userInfo');
+
+    if (localUserInfo) {
+      const userInfo = JSON.parse(localUserInfo);
+
+      setUserInfoData({
+        ...userInfoData,
+        name: userInfo.name,
+      });
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   /**
@@ -143,7 +164,7 @@ const Nav = ({ navToggle, setNavToggle }) => {
         {token ? (
           <LogOutWrapDiv>
             <div>
-              <span>회원님 반갑습니다.</span>
+              <span>{`${userInfoData.name} 반갑습니다.`}</span>
             </div>
             <LogOutBtnInnerDiv>
               <button type="button" onClick={logOut}>
