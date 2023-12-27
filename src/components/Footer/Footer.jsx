@@ -122,7 +122,6 @@ const Footer = () => {
             </SnsConnectionArea>
           </InnerTopSection>
           <AddressSection>
-            <span>© 2009-2023 REUNION.CO.ALL RIGHT RESERVED</span>
             <address>
               <ul>
                 <AddressDetailList>
@@ -144,6 +143,7 @@ const Footer = () => {
                 </AddressDetailList>
               </ul>
             </address>
+            <span>© 2009-2023 REUNION.CO.ALL RIGHT RESERVED</span>
           </AddressSection>
         </div>
       </FooterContainer>
@@ -259,13 +259,13 @@ const SnsConnectionArea = styled.div`
 const AddressSection = styled.section`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   margin-top: 35px;
-  white-space: nowrap;
 
   & > address {
     & > ul {
       display: flex;
+      line-height: 22px;
     }
   }
 
@@ -278,7 +278,7 @@ const AddressSection = styled.section`
 `;
 
 const AddressDetailList = styled.li`
-  margin-right: 32px;
+  margin-right: 20px;
   position: relative;
   font-size: 11px;
   font-family: 'NanumSquareRoundR';
@@ -300,8 +300,8 @@ const AddressDetailList = styled.li`
     height: 8px;
     background: ${props => props.theme.transparentA};
     position: absolute;
-    top: 40%;
-    right: -16px;
+    top: 47%;
+    right: -10px;
     transform: translate(0, -50%);
   }
 `;
