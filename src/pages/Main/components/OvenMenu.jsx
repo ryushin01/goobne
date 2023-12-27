@@ -43,8 +43,6 @@ const OvenMenu = ({ scrollY }) => {
     }
   };
 
-  // if (!bandDataList) return null;
-
   return (
     <>
       {loading && <Loading />}

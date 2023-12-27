@@ -39,7 +39,6 @@ const GoobNews = () => {
     }
   };
 
-  // if (!newsDataList) return null;
   return (
     <>
       {loading && <Loading />}

@@ -38,8 +38,6 @@ const GoobStar = () => {
     }
   };
 
-  // if (!goobStarDataList) return null;
-
   return (
     <>
       {loading && <Loading />}
