@@ -1,118 +1,179 @@
 import styled from 'styled-components';
 import IconButton from '../IconButton/IconButton';
+import { useState } from 'react';
+import Portal from '../Modal/Portal';
+import Modal from '../Modal/Modal';
+import FooterTerms from '../Modal/FooterTerms';
+import FooterUserInfo from '../Modal/FooterUserInfo';
+import FooterEmailRefusal from '../Modal/FooterEmailRefusal';
 
 /**
  * @default "#"  - a태그의 링크기능을 무효화 하는것을 의미합니다.
  */
 
 const Footer = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalState, setModalState] = useState(null);
+
+  const handleModalOpen = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
   return (
-    <FooterContainer>
-      <div>
-        <InnerTopSection>
-          <div>
-            <ul>
-              <li>
-                <InquirySubText>전화주문&nbsp;</InquirySubText>
-                <InquiryNumber>1544-0000</InquiryNumber>
-              </li>
-              <li>
-                <InquirySubText>창업문의&nbsp;</InquirySubText>
-                <InquiryNumber>1644-0000</InquiryNumber>
-              </li>
-            </ul>
-          </div>
-          <InfoArea>
-            <ul>
-              <li>
-                <InfoAreaTargetButton type="button">
-                  이용약관
-                </InfoAreaTargetButton>
-              </li>
-              <li>
-                <InfoAreaTargetButton type="button">
-                  개인정보처리방침
-                </InfoAreaTargetButton>
-              </li>
-              <li>
-                <InfoAreaTargetButton type="button">
-                  이메일무단수집거부
-                </InfoAreaTargetButton>
-              </li>
-              <li>
-                <InfoAreaTargetLink href="#">찾아오시는길</InfoAreaTargetLink>
-              </li>
-            </ul>
-          </InfoArea>
-          <SnsConnectionArea>
-            <ul>
-              <li>
-                <a href="#">
-                  <IconButton
+    <>
+      <FooterContainer>
+        <div>
+          <InnerTopSection>
+            <div>
+              <ul>
+                <li>
+                  <InquirySubText>전화주문&nbsp;</InquirySubText>
+                  <InquiryNumber>1544-0000</InquiryNumber>
+                </li>
+                <li>
+                  <InquirySubText>창업문의&nbsp;</InquirySubText>
+                  <InquiryNumber>1644-0000</InquiryNumber>
+                </li>
+              </ul>
+            </div>
+            <InfoArea>
+              <ul>
+                <li>
+                  <InfoAreaTargetButton
                     type="button"
-                    content="instagram"
-                    size="small"
-                    color="white"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <IconButton
+                    onClick={() => {
+                      handleModalOpen();
+                      setModalState(1);
+                    }}
+                  >
+                    이용약관
+                  </InfoAreaTargetButton>
+                </li>
+                <li>
+                  <InfoAreaTargetButton
                     type="button"
-                    content="facebook"
-                    size="small"
-                    color="white"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <IconButton
+                    onClick={() => {
+                      handleModalOpen();
+                      setModalState(2);
+                    }}
+                  >
+                    개인정보처리방침
+                  </InfoAreaTargetButton>
+                </li>
+                <li>
+                  <InfoAreaTargetButton
                     type="button"
-                    content="blog"
-                    size="small"
-                    color="white"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <IconButton
-                    type="button"
-                    content="youtube"
-                    size="small"
-                    color="white"
-                  />
-                </a>
-              </li>
-            </ul>
-          </SnsConnectionArea>
-        </InnerTopSection>
-        <AddressSection>
-          <span>© 2009-2023 REUNION.CO.ALL RIGHT RESERVED</span>
-          <address>
-            <ul>
-              <AddressDetailList>
-                주식회사 리유니온 대표자 : 류창선
-              </AddressDetailList>
-              <AddressDetailList>
-                주소 서울특별시 중구 한강대로 416 서울스퀘어 13층
-              </AddressDetailList>
-              <AddressDetailList>사업자등록번호 000-00-00000</AddressDetailList>
-              <AddressDetailList>
-                통신판매업신고번호 제 2023-서울중구-0000호
-              </AddressDetailList>
-              <AddressDetailList>TEL 00-0000-0000</AddressDetailList>
-              <AddressDetailList>FAX 00-0000-0000</AddressDetailList>
-              <AddressDetailList>
-                광고 제휴 문의 example@example.com
-              </AddressDetailList>
-            </ul>
-          </address>
-        </AddressSection>
-      </div>
-    </FooterContainer>
+                    onClick={() => {
+                      handleModalOpen();
+                      setModalState(3);
+                    }}
+                  >
+                    이메일무단수집거부
+                  </InfoAreaTargetButton>
+                </li>
+                <li>
+                  <InfoAreaTargetLink href="#">찾아오시는길</InfoAreaTargetLink>
+                </li>
+              </ul>
+            </InfoArea>
+            <SnsConnectionArea>
+              <ul>
+                <li>
+                  <a href="#">
+                    <IconButton
+                      type="button"
+                      content="instagram"
+                      size="small"
+                      color="white"
+                    />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <IconButton
+                      type="button"
+                      content="facebook"
+                      size="small"
+                      color="white"
+                    />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <IconButton
+                      type="button"
+                      content="blog"
+                      size="small"
+                      color="white"
+                    />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <IconButton
+                      type="button"
+                      content="youtube"
+                      size="small"
+                      color="white"
+                    />
+                  </a>
+                </li>
+              </ul>
+            </SnsConnectionArea>
+          </InnerTopSection>
+          <AddressSection>
+            <span>© 2009-2023 REUNION.CO.ALL RIGHT RESERVED</span>
+            <address>
+              <ul>
+                <AddressDetailList>
+                  주식회사 리유니온 대표자 : 류창선
+                </AddressDetailList>
+                <AddressDetailList>
+                  주소 서울특별시 중구 한강대로 416 서울스퀘어 13층
+                </AddressDetailList>
+                <AddressDetailList>
+                  사업자등록번호 000-00-00000
+                </AddressDetailList>
+                <AddressDetailList>
+                  통신판매업신고번호 제 2023-서울중구-0000호
+                </AddressDetailList>
+                <AddressDetailList>TEL 00-0000-0000</AddressDetailList>
+                <AddressDetailList>FAX 00-0000-0000</AddressDetailList>
+                <AddressDetailList>
+                  광고 제휴 문의 example@example.com
+                </AddressDetailList>
+              </ul>
+            </address>
+          </AddressSection>
+        </div>
+      </FooterContainer>
+      <Portal>
+        {isModalOpen && modalState === 1 && (
+          <Modal
+            title="이용약관"
+            size="medium"
+            content={<FooterTerms />}
+            isCloseBtn={true}
+          />
+        )}
+        {isModalOpen && modalState === 2 && (
+          <Modal
+            title="개인정보 수집 및 이용 동의"
+            size="medium"
+            content={<FooterUserInfo />}
+            isCloseBtn={true}
+          />
+        )}
+        {isModalOpen && modalState === 3 && (
+          <Modal
+            title="이메일수집거부"
+            size="medium"
+            content={<FooterEmailRefusal />}
+            isCloseBtn={true}
+          />
+        )}
+      </Portal>
+    </>
   );
 };
 
