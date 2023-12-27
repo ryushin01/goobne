@@ -216,7 +216,7 @@ const HeaderContainer = styled.header`
   width: 100%;
   height: 110px;
   top: 0;
-  z-index: 99;
+  z-index: 9;
   transition: all 0.3s ease-in-out;
 
   ${props => {
