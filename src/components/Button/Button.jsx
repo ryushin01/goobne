@@ -28,15 +28,15 @@ const Button = ({
 const SIZE_STYLES = {
   small: {
     padding: '10px 10px',
-    fontSize: '14px',
+    fontSize: '11px',
   },
   medium: {
-    padding: '11px 10px',
-    fontSize: '16px',
+    padding: '13px 10px',
+    fontSize: '13px',
   },
   large: {
     padding: '14px 10px',
-    fontSize: '18px',
+    fontSize: '15px',
   },
 };
 

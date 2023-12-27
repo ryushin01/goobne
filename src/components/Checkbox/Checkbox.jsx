@@ -50,7 +50,7 @@ const CheckboxWrap = styled.div`
 const CheckboxLabel = styled.label`
   padding-left: 8px;
   color: ${props => props.theme.grayscaleG};
-  font-size: 14px;
+  font-size: 13px;
   font-weight: ${({ weight }) =>
     LABEL_FONT_WEIGHT[weight]?.fontWeight || 'normal'};
 `;

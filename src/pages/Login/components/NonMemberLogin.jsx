@@ -144,7 +144,6 @@ const NonMemberLogin = () => {
           <Input
             placeholder="이름"
             type="text"
-            label="이름"
             direction="column"
             name="name"
             onChange={saveNonMemberLoginInfo}
@@ -153,7 +152,6 @@ const NonMemberLogin = () => {
             <Input
               placeholder="- 없이 입력하세요."
               type="number"
-              label="핸드폰 번호"
               direction="column"
               name="phoneNum"
               onChange={saveNonMemberLoginInfo}
@@ -162,7 +160,7 @@ const NonMemberLogin = () => {
             <BtnInner>
               <Button
                 size="medium"
-                content="인증번호발송"
+                content="인증번호 발송"
                 color="black"
                 onClick={getCertNumber}
                 type="button"
@@ -173,7 +171,6 @@ const NonMemberLogin = () => {
           <Input
             placeholder="인증번호를 입력헤주세요."
             type="number"
-            label="인증번호"
             direction="column"
             name="certificationNum"
             onChange={saveNonMemberLoginInfo}
@@ -211,7 +208,7 @@ const NonMemberLogin = () => {
       <NonMemBerOrderContainer>
         <Button
           color="black"
-          content="비회원 주문"
+          content="비회원 주문하기"
           size="large"
           type="button"
           onClick={submitBtn}
@@ -259,6 +256,7 @@ const AgreementItemLi = styled.li`
   display: flex;
   justify-content: space-between;
   padding: 2px 30px;
+  margin-bottom: 5px;
 `;
 
 const AgreementContentSpan = styled.span`
