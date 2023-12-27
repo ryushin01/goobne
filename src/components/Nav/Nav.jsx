@@ -295,14 +295,14 @@ const LoginJoinBtnContainerDiv = styled.div`
   flex-direction: row;
   gap: 10px;
   width: 100%;
-  padding: 60px 0px;
+  padding: 50px 0px 70px 50px;
 `;
 const LoginBtnButton = styled.button`
   position: relative;
   border: none;
   background-color: ${props => props.theme.grayscaleB};
   color: ${props => props.theme.grayscaleD};
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 700;
   cursor: pointer;
   margin-right: 20px;
@@ -323,7 +323,7 @@ const JoinBtnButton = styled.button`
   border: none;
   background-color: ${props => props.theme.grayscaleB};
   color: ${props => props.theme.grayscaleD};
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 700;
   cursor: pointer;
   margin-left: 20px;
@@ -352,7 +352,7 @@ const NavAccordionButton = styled.button`
   background-color: transparent;
   cursor: pointer;
   padding-right: 25px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   position: relative;
 
   &.DownArrow::after {
@@ -382,13 +382,13 @@ const NavAccordionButton = styled.button`
 const ChildAccordionContainerUl = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 20px;
   font-size: 20px;
 `;
 
 const ChildAccordionListLi = styled.li`
   & > a {
-    font-size: 20px;
+    font-size: 18px;
     color: ${props => props.theme.grayscaleD};
   }
 `;
@@ -396,7 +396,7 @@ const ChildAccordionListLi = styled.li`
 const NavCallNumBerContainerDl = styled.dl`
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
   width: 100%;
   font-size: 20px;
   font-weight: 900;
