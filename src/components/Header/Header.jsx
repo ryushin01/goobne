@@ -273,6 +273,7 @@ const MenuWrap = styled.div`
   & > ul > li {
     position: relative;
     margin-right: 65px;
+    padding-bottom: 15px;
     font-size: 19px;
     font-weight: bold;
     white-space: nowrap;
