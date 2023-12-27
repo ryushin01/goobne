@@ -25,8 +25,6 @@ const CartSwiper = () => {
       alert('리스트 생성에 실패했습니다.'); //요청이 실패시 alert생성.
     }
   };
-  // SwiperItem이 없는 경우, null을 반환합니다.
-  if (!swiperItem) return null;
 
   return (
     <CartSwiperContainer>

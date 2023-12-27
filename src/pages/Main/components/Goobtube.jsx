@@ -37,8 +37,6 @@ const Goobtube = () => {
       alert('에러가 발생했습니다.');
     }
   };
-  /** goobtubeDataList에 데이터가 없다면 null Return */
-  // if (!goobutbeDataList) return null;
 
   return (
     <>

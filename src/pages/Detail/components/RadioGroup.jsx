@@ -9,9 +9,6 @@ const RadioGroup = ({ data, onChange, setRadioData }) => {
     data && setRadioData(data[0]?.id);
   }, []);
 
-  /** data가 없을 경우 null을 반환합니다. */
-  if (!data) return null;
-
   return (
     <RadioGroupContainer>
       {data?.map(({ id, label, isChecked, name, disabled }) => {

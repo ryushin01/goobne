@@ -26,9 +26,6 @@ const DeliverySwiper = () => {
     }
   };
 
-  // SwiperItem이 없는 경우, null을 반환합니다.
-  if (!deliverySwiperItem) return null;
-
   return (
     // 구동방식 - 자동재생(2초)
     <Swiper

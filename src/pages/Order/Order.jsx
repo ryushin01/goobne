@@ -60,9 +60,6 @@ const Order = () => {
     console.log(requestSelectData);
   };
 
-  /** orderInfo이 없는 경우, null을 반환합니다.*/
-  if (!orderInfo) return null;
-
   /** deliveryFee라는 변수에 배달금액을 할당합니다. */
   const deliveryFee = 3000;
 

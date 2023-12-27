@@ -39,8 +39,6 @@ const DropDown = ({ data, country, nutrient, countryInfo, nutrientInfo }) => {
     }
   };
 
-  // if (!countryInfo && !nutrientInfo) return null;
-
   return (
     <>
       <DropDownButton
