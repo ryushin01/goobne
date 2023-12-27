@@ -141,6 +141,7 @@ const NonMemberLogin = () => {
       <NonLoginWrapForm onSubmit={submitBtn}>
         <fieldset>
           <legend>비회원로그인</legend>
+          <label>이름</label>
           <Input
             placeholder="이름"
             type="text"
@@ -149,6 +150,7 @@ const NonMemberLogin = () => {
             onChange={saveNonMemberLoginInfo}
           />
           <PhoneAuthenticationDiv>
+            <label>휴대폰번호</label>
             <Input
               placeholder="- 없이 입력하세요."
               type="number"
@@ -167,7 +169,7 @@ const NonMemberLogin = () => {
               />
             </BtnInner>
           </PhoneAuthenticationDiv>
-
+          <label>인증번호</label>
           <Input
             placeholder="인증번호를 입력헤주세요."
             type="number"
@@ -234,15 +236,18 @@ const NonLoginWrapForm = styled.form`
   & > fieldset > legend {
     font-size: 0;
   }
+  label {
+    font-size: 0px;
+  }
 `;
 const PhoneAuthenticationDiv = styled.div`
   display: flex;
   align-items: flex-end;
-  gap: 10px;
   width: 100%;
 `;
 const BtnInner = styled.div`
   width: 200px;
+  margin-left: 5px;
 `;
 
 const AgreementWrapDiv = styled.div`
