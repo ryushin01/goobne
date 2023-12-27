@@ -18,19 +18,13 @@ const DeliverySwiper = () => {
   }, []);
 
   const getDeliverySwiperItemInfoData = async () => {
-    const response = await customAxios //eslint-disable-line no-unused-vars
-      .get(API.DELIVERY_SWIPER) //API.DELIVERY_SWIPER 로 GET 요청을 보냅니다.
-      .then(response => {
-        setDeliverySwiperItem(response.data.result);
-      }) //요청이 성공하였을때 setSwiperItem함수가 실행, 데이터를 가져옵니다.
-      .catch(error => {
-        if (error) {
-          alert('리스트 생성에 실패했습니다.'); //요청이 실패시 alert생성.
-        }
-      });
+    try {
+      const request = await customAxios.get(API.DELIVERY_SWIPER); //API.DELIVERY_SWIPER 로 GET 요청을 보냅니다.
+      setDeliverySwiperItem(request.data.result);
+    } catch (error) {
+      alert('리스트 생성에 실패했습니다.'); //요청이 실패시 alert생성.
+    }
   };
-  // SwiperItem이 없는 경우, null을 반환합니다.
-  if (!deliverySwiperItem) return null;
 
   return (
     // 구동방식 - 자동재생(2초)

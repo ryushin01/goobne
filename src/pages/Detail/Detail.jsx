@@ -12,7 +12,7 @@ import styled, { css } from 'styled-components';
 
 const Detail = () => {
   /** detail Page에 대한 Data를 저장하는 useState 입니다. */
-  const [detailData, setDetailData] = useState([]);
+  const [detailData, setDetailData] = useState({});
   /** radio 버튼 선택 id를 저장합니다. 초기값은 0번 입니다. */
   const [radioData, setRadioData] = useState(0);
   /** 상품 수량을 저장하는 useState 입니다. 초기값은 1개 입니다. */
@@ -82,9 +82,6 @@ const Detail = () => {
     );
   };
 
-  /** detailData가 없을 경우 null을 반환합니다. */
-  if (!detailData) return null;
-
   return (
     <DetailContainer>
       <ContainerInnerWrap key={detailData.id}>
@@ -100,10 +97,12 @@ const Detail = () => {
                 country="true"
                 countryInfo={currentProductDetailData?.origin?.bacon}
               />
-              <DropDown
-                nutrient="true"
-                nutrientInfo={currentProductDetailData?.servingSize}
-              />
+              {currentProductDetailData && (
+                <DropDown
+                  nutrient="true"
+                  nutrientInfo={currentProductDetailData?.servingSize}
+                />
+              )}
             </DetailInfo>
           </DetailInfoWrap>
           <DetailInnerWrap>
