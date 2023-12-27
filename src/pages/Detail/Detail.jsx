@@ -97,10 +97,12 @@ const Detail = () => {
                 country="true"
                 countryInfo={currentProductDetailData?.origin?.bacon}
               />
-              <DropDown
-                nutrient="true"
-                nutrientInfo={currentProductDetailData?.servingSize}
-              />
+              {currentProductDetailData && (
+                <DropDown
+                  nutrient="true"
+                  nutrientInfo={currentProductDetailData?.servingSize}
+                />
+              )}
             </DetailInfo>
           </DetailInfoWrap>
           <DetailInnerWrap>

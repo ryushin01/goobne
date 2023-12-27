@@ -14,7 +14,7 @@ const Nutrient = ({ open, nutrientInfo }) => {
     transFat,
   } = nutrientInfo;
 
-  if (!nutrientInfo) return null;
+  // if (!nutrientInfo) return null;
 
   return (
     <DropDownOption className={open && 'open'}>
