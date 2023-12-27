@@ -8,7 +8,7 @@ import FooterUserInfo from '../Modal/FooterUserInfo';
 import FooterEmailRefusal from '../Modal/FooterEmailRefusal';
 
 /**
- * @default "#"  - a태그의 링크기능을 무효화 하는것을 의미합니다.
+ * @default "#none"  - a태그의 링크기능을 무효화 하는것을 의미합니다.
  */
 
 const Footer = () => {
@@ -72,14 +72,16 @@ const Footer = () => {
                   </InfoAreaTargetButton>
                 </li>
                 <li>
-                  <InfoAreaTargetLink href="#">찾아오시는길</InfoAreaTargetLink>
+                  <InfoAreaTargetLink href="#none">
+                    찾아오시는길
+                  </InfoAreaTargetLink>
                 </li>
               </ul>
             </InfoArea>
             <SnsConnectionArea>
               <ul>
                 <li>
-                  <a href="#">
+                  <a href="#none">
                     <IconButton
                       type="button"
                       content="instagram"
@@ -89,7 +91,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#none">
                     <IconButton
                       type="button"
                       content="facebook"
@@ -99,7 +101,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#none">
                     <IconButton
                       type="button"
                       content="blog"
@@ -109,7 +111,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#none">
                     <IconButton
                       type="button"
                       content="youtube"
