@@ -150,7 +150,7 @@ const Order = () => {
               <StoreInfoLine>
                 <DeliveryAddress>주문매장</DeliveryAddress>
                 <OrderArea>{userOrderInfo.store}</OrderArea>
-                <span>{userOrderInfo.storePhone}</span>
+                <StoreNumber>{userOrderInfo.storePhone}</StoreNumber>
               </StoreInfoLine>
 
               <NameInfoLine>
@@ -269,6 +269,7 @@ const Order = () => {
           <OrderDetailArea>
             <OrderDetailInfo>주문내역</OrderDetailInfo>
             {cartState.map(({ id, name, count, price }) => {
+              const itemTotalPrice = price * count;
               return (
                 <ProductDetailArea key={id}>
                   <ProductDetailInner>
@@ -276,7 +277,7 @@ const Order = () => {
                     <span>&nbsp;X&nbsp;</span>
                     <span>{count}</span>
                   </ProductDetailInner>
-                  <span>{price?.toLocaleString('ko-KR')}원</span>
+                  <span>{itemTotalPrice?.toLocaleString('ko-KR')}원</span>
                 </ProductDetailArea>
               );
             })}
@@ -453,6 +454,13 @@ const OrderArea = styled.span`
   background-color: ${props => props.theme.grayscaleH};
   color: ${props => props.theme.grayscaleA};
   margin-right: 5px;
+  font-weight: 700;
+  font-family: 'Rubik';
+`;
+
+const StoreNumber = styled.span`
+  font-family: 'Rubik';
+  color: #999999;
 `;
 
 const SelectArea = styled.div`
@@ -490,9 +498,10 @@ const RiderInfo = styled.div`
 
 const RiderTopArea = styled.span`
   position: relative;
-  background-color: ${props => props.theme.grayscaleC};
-  color: ${props => props.theme.grayscaleA};
+  background-color: #999999;
   width: 50px;
+  font-family: 'Noto Sans KR';
+  color: ${props => props.theme.grayscaleA};
   text-align: center;
   padding: 2px 0;
   border-radius: 10px;
@@ -598,6 +607,11 @@ const PointInquiry = styled.div`
 
 const PointCheckButton = styled.div`
   width: 300px;
+
+  & > button {
+    font-size: 13px;
+    font-family: 'NanumSquareRoundR';
+  }
 `;
 
 const PointInformation = styled.div`
@@ -701,6 +715,7 @@ const ProductDetailArea = styled.div`
   & > span {
     font-size: 14px;
     font-weight: 700;
+    font-family: sans-serif;
   }
 `;
 
@@ -711,6 +726,7 @@ const ProductDetailInner = styled.div`
   & span {
     font-size: 14px;
     font-weight: 700;
+    font-family: sans-serif;
   }
 `;
 
@@ -765,6 +781,7 @@ const PaymentAmountItem = styled.div`
   & > span {
     font-size: 14px;
     font-weight: 700;
+    font-family: sans-serif;
   }
 `;
 
@@ -779,6 +796,7 @@ const PaymentAmountItemBottom = styled.div`
     color: ${props => props.theme.primaryColor};
     font-size: 18px;
     font-weight: 700;
+    font-family: sans-serif;
   }
 `;
 
