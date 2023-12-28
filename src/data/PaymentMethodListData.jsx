@@ -4,7 +4,7 @@ const PAYMENT_METHOD_LIST_DATA = [
     name: 'PaymentMethod',
     value: 'creditCard',
     text: '신용카드',
-    src: '/goobne/images/PaymentList/CreditCard.svg',
+    src: 'https://ryushin01.github.io/goobne/images/PaymentList/CreditCard.svg',
   },
   {
     id: 2,
