@@ -119,7 +119,7 @@ const ListItem = ({
             {isModalOpen && (
               <Modal
                 size="small"
-                title="메뉴에 대한 옵션을 선택하시겟습니까?"
+                title="메뉴에 대한 옵션을 선택하시겠습니까?"
                 isCloseBtn={true}
                 content={
                   <DetailSelectModal
