@@ -118,7 +118,7 @@ const SelectBoxContainer = styled.div`
 
   & > span {
     font-size: 16px;
-    color: ${props => props.theme.grayscaleC};
+    color: ${props => props.theme.grayscaleH};
     margin-left: 10px;
     text-align: center;
     cursor: pointer;
