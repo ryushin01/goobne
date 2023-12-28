@@ -33,6 +33,106 @@
               "name": "chicken",
               "label": "한마리",
               "isChecked": true
+            },
+            {
+              "id": 1,
+              "name": "chicken",
+              "label": "통다리",
+              "isChecked": false
+            },
+            {
+              "id": 2,
+              "name": "chicken",
+              "label": "숯불구이",
+              "isChecked": false
+            }
+          ]
+        },
+        {
+          "title": "숯불 양념 치킨 통다리",
+          "image": "/goobne/images/chicken00_1.png",
+          "alt": "숯불 양념 통다리 치킨이미지",
+          "badges": ["md", "hot", "best", "new"],
+          "description": "스근한 숯불로 맛있게 구운 치킨을 통다리만! 육즙이 입안에서 펑펑 터진다~",
+          "price": 21000,
+          "origin": {
+            "bacon": "닭고기[국산]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "113g (2조각)",
+            "calories": 155,
+            "sodium": 492,
+            "carbohydrates": 15,
+            "sugars": 2,
+            "fat": 16,
+            "transFat": 0.3,
+            "saturatedFat": 11,
+            "cholesterol": 35,
+            "protein": 10
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "chicken",
+              "label": "한마리",
+              "isChecked": false
+            },
+            {
+              "id": 1,
+              "name": "chicken",
+              "label": "통다리",
+              "isChecked": true
+            },
+            {
+              "id": 2,
+              "name": "chicken",
+              "label": "세트",
+              "isChecked": false
+            }
+          ]
+        },
+        {
+          "title": "숯불 양념 치킨 세트",
+          "image": "/goobne/images/chicken00_2.png",
+          "alt": "숯불 양념 치킨 세트 이미지",
+          "badges": ["md", "hot", "best", "new"],
+          "description": "스근한 숯불로 맛있게 구운 치킨과 사이드 메뉴를 함께 즐겨요.",
+          "price": 25000,
+          "origin": {
+            "bacon": "닭고기[국산]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "113g (2조각)",
+            "calories": 155,
+            "sodium": 492,
+            "carbohydrates": 15,
+            "sugars": 2,
+            "fat": 16,
+            "transFat": 0.3,
+            "saturatedFat": 11,
+            "cholesterol": 35,
+            "protein": 10
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "chicken",
+              "label": "한마리",
+              "isChecked": false
+            },
+            {
+              "id": 1,
+              "name": "chicken",
+              "label": "통다리",
+              "isChecked": false
+            },
+            {
+              "id": 2,
+              "name": "chicken",
+              "label": "숯불구이",
+              "isChecked": true
             }
           ]
         }
