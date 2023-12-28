@@ -58,7 +58,7 @@ const List = () => {
       {loading && <Loading />}
       <ListWrapMain>
         <ListContainerSection>
-          <h2>메뉴</h2>
+          <h2>메뉴보기</h2>
 
           <ButtonWrapDiv>
             <MenuChipGroup chipSelect={chipSelect}></MenuChipGroup>
