@@ -54,7 +54,6 @@ const TextOrderArea = styled.span`
   height: 395px;
   padding: 40px 0px;
   line-height: 18px;
-  font-family: 'NanumSquareRoundR';
   border-top: 1px solid ${props => props.theme.grayscaleH};
   color: ${props => props.theme.grayscaleD};
 `;
