@@ -87,8 +87,8 @@ const List = () => {
             ) : (
               <NotDataImgInnerWrap>
                 <img
-                  src="https://ryushin01.githu.io/goobne/images/notData.png"
-                  alt="메뉴가없음 이미지."
+                  src="https://ryushin01.github.io/goobne/images/notData.png"
+                  alt="메뉴가 없음 이미지"
                 />
               </NotDataImgInnerWrap>
             )}
