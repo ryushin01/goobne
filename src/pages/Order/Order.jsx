@@ -144,7 +144,6 @@ const Order = () => {
   };
 
   return (
-
     <>
       <OrderContainer>
         <OrderContentWrap>
@@ -163,7 +162,7 @@ const Order = () => {
                 <StoreInfoLine>
                   <DeliveryAddress>주문매장</DeliveryAddress>
                   <OrderArea>{userOrderInfo.store}</OrderArea>
-                  <span>{userOrderInfo.storePhone}</span>
+                  <StoreNumber>{userOrderInfo.storePhone}</StoreNumber>
                 </StoreInfoLine>
 
                 <NameInfoLine>
@@ -172,7 +171,6 @@ const Order = () => {
                     label="이름"
                     isDot={true}
                     value={userOrderInfo.userName}
-
                   />
                 </NameInfoLine>
 
@@ -354,7 +352,6 @@ const Order = () => {
         )}
       </Portal>
     </>
-
   );
 };
 

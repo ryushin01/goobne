@@ -81,6 +81,9 @@ export default BigBanner;
 const BigBannerContainer = styled.section`
   width: 100%;
   height: 100vh;
+  cursor:
+    url('../goobne/images/banner-cursor.png') 24 24,
+    auto;
 
   & > .swiperContainer {
     width: 100%;
@@ -108,13 +111,9 @@ const BigBannerContainer = styled.section`
   }
 
   & a {
-    cursor: none;
-
-    &:hover {
-      cursor:
-        url('../goobne/images/banner-cursor.png') 24 24,
-        auto;
-    }
+    cursor:
+      url('../goobne/images/banner-cursor.png') 24 24,
+      auto;
   }
 
   & img {
