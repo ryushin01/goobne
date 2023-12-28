@@ -17,14 +17,14 @@
     {
       "id": 3,
       "href": "/list",
-      "src": "../goobne/images/main_chicken_03.jpg",
+      "src": "../goobne/images/main-pizza.jpg",
       "alt": "SmallBand 이미지 3",
       "tag": "PIZZA"
     },
     {
       "id": 4,
       "href": "/list",
-      "src": "../goobne/images/main-pizza.jpg",
+      "src": "../goobne/images/main_side_dish.jpg",
       "alt": "SmallBand 이미지 4",
       "tag": "SIDE DISH"
     },

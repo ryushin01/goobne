@@ -88,10 +88,12 @@ const Detail = () => {
         <h2>{detailData.mainTitle}</h2>
         <DetailWrap>
           <DetailInfoWrap>
-            <img
-              src={currentProductDetailData?.image}
-              alt={currentProductDetailData?.alt}
-            />
+            <div>
+              <img
+                src={currentProductDetailData?.image}
+                alt={currentProductDetailData?.alt}
+              />
+            </div>
             <DetailInfo>
               <DropDown
                 country="true"
@@ -199,6 +201,13 @@ const DetailInfoWrap = styled.div`
   width: 50%;
   height: 100%;
   padding: 0 50px;
+
+  & > div:first-child {
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
 
   img {
     object-fit: cover;
