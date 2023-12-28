@@ -144,6 +144,7 @@ const Order = () => {
   };
 
   return (
+
     <>
       <OrderContainer>
         <OrderContentWrap>
@@ -171,6 +172,7 @@ const Order = () => {
                     label="이름"
                     isDot={true}
                     value={userOrderInfo.userName}
+
                   />
                 </NameInfoLine>
 
@@ -247,6 +249,7 @@ const Order = () => {
                         type="text"
                         placeholder="공백없이 수기입력해주세요."
                       />
+
                       <PointCheckButton>
                         <Button
                           type="button"
@@ -351,6 +354,7 @@ const Order = () => {
         )}
       </Portal>
     </>
+
   );
 };
 
@@ -481,6 +485,13 @@ const OrderArea = styled.span`
   background-color: ${props => props.theme.grayscaleH};
   color: ${props => props.theme.grayscaleA};
   margin-right: 5px;
+  font-weight: 700;
+  font-family: 'Rubik';
+`;
+
+const StoreNumber = styled.span`
+  font-family: 'Rubik';
+  color: #999999;
 `;
 
 const SelectArea = styled.div`
@@ -518,9 +529,10 @@ const RiderInfo = styled.div`
 
 const RiderTopArea = styled.span`
   position: relative;
-  background-color: ${props => props.theme.grayscaleC};
-  color: ${props => props.theme.grayscaleA};
+  background-color: #999999;
   width: 50px;
+  font-family: 'Noto Sans KR';
+  color: ${props => props.theme.grayscaleA};
   text-align: center;
   padding: 2px 0;
   border-radius: 10px;
@@ -626,6 +638,11 @@ const PointInquiry = styled.div`
 
 const PointCheckButton = styled.div`
   width: 300px;
+
+  & > button {
+    font-size: 13px;
+    font-family: 'NanumSquareRoundR';
+  }
 `;
 
 const PointInformation = styled.div`
@@ -729,6 +746,7 @@ const ProductDetailArea = styled.div`
   & > span {
     font-size: 14px;
     font-weight: 700;
+    font-family: sans-serif;
   }
 `;
 
@@ -739,6 +757,7 @@ const ProductDetailInner = styled.div`
   & span {
     font-size: 14px;
     font-weight: 700;
+    font-family: sans-serif;
   }
 `;
 
@@ -793,6 +812,7 @@ const PaymentAmountItem = styled.div`
   & > span {
     font-size: 14px;
     font-weight: 700;
+    font-family: sans-serif;
   }
 `;
 
@@ -807,6 +827,7 @@ const PaymentAmountItemBottom = styled.div`
     color: ${props => props.theme.primaryColor};
     font-size: 18px;
     font-weight: 700;
+    font-family: sans-serif;
   }
 `;
 

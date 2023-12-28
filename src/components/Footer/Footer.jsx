@@ -8,7 +8,7 @@ import FooterUserInfo from '../Modal/FooterUserInfo';
 import FooterEmailRefusal from '../Modal/FooterEmailRefusal';
 
 /**
- * @default "#"  - a태그의 링크기능을 무효화 하는것을 의미합니다.
+ * @default "#none"  - a태그의 링크기능을 무효화 하는것을 의미합니다.
  */
 
 const Footer = () => {
@@ -72,14 +72,16 @@ const Footer = () => {
                   </InfoAreaTargetButton>
                 </li>
                 <li>
-                  <InfoAreaTargetLink href="#">찾아오시는길</InfoAreaTargetLink>
+                  <InfoAreaTargetLink href="#none">
+                    찾아오시는길
+                  </InfoAreaTargetLink>
                 </li>
               </ul>
             </InfoArea>
             <SnsConnectionArea>
               <ul>
                 <li>
-                  <a href="#">
+                  <a href="#none">
                     <IconButton
                       type="button"
                       content="instagram"
@@ -89,7 +91,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#none">
                     <IconButton
                       type="button"
                       content="facebook"
@@ -99,7 +101,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#none">
                     <IconButton
                       type="button"
                       content="blog"
@@ -109,7 +111,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#none">
                     <IconButton
                       type="button"
                       content="youtube"
@@ -122,7 +124,6 @@ const Footer = () => {
             </SnsConnectionArea>
           </InnerTopSection>
           <AddressSection>
-            <span>© 2009-2023 REUNION.CO.ALL RIGHT RESERVED</span>
             <address>
               <ul>
                 <AddressDetailList>
@@ -144,6 +145,7 @@ const Footer = () => {
                 </AddressDetailList>
               </ul>
             </address>
+            <span>© 2009-2023 REUNION.CO.ALL RIGHT RESERVED</span>
           </AddressSection>
         </div>
       </FooterContainer>
@@ -179,7 +181,7 @@ const Footer = () => {
 
 const FooterContainer = styled.footer`
   width: 100%;
-  padding: 0 95px 30px 95px;
+  padding: 0 75px 30px 75px;
   background-color: ${props => props.theme.grayscaleF};
 `;
 
@@ -258,32 +260,29 @@ const SnsConnectionArea = styled.div`
 
 const AddressSection = styled.section`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 35px;
-  white-space: nowrap;
+  margin-top: 30px;
 
   & > address {
     & > ul {
       display: flex;
+      flex-wrap: wrap;
+      line-height: 20px;
     }
   }
 
   & > span {
-    font-size: 12px;
-    font-weight: 700;
-    font-family: 'NanumSquareRoundR';
+    font-size: 11px;
     color: ${props => props.theme.transparentA};
   }
 `;
 
 const AddressDetailList = styled.li`
-  margin-right: 32px;
+  margin-right: 20px;
   position: relative;
-  font-size: 11px;
-  font-family: 'NanumSquareRoundR';
-  color: ${props => props.theme.transparentA};
+  font-size: 10px;
   font-weight: 700;
+  font-family: 'Rubik';
+  color: ${props => props.theme.transparentA};
 
   &:last-child {
     margin-right: 0px;
@@ -300,8 +299,8 @@ const AddressDetailList = styled.li`
     height: 8px;
     background: ${props => props.theme.transparentA};
     position: absolute;
-    top: 40%;
-    right: -16px;
+    top: 47%;
+    right: -10px;
     transform: translate(0, -50%);
   }
 `;

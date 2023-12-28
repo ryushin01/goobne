@@ -34,6 +34,13 @@
       "name": "메뉴",
       "content": "주류",
       "defaultChecked": false
+    },
+    {
+      "id": 6,
+      "category": "Packaging",
+      "name": "메뉴",
+      "content": "포장전용",
+      "defaultChecked": false
     }
   ]
 }

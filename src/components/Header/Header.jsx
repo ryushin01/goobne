@@ -105,18 +105,16 @@ const Header = () => {
             </h1>
           </Link>
         </HeaderLogo>
-        <AddressWrap>
-          {location.pathname === '/' ? (
+        {location.pathname === '/' && (
+          <AddressWrap>
             <>
               <Cursor />
               <Link to="">
                 {isLogin ? userInfoStore.store : '가까운 매장 보기'}
               </Link>
             </>
-          ) : (
-            ''
-          )}
-        </AddressWrap>
+          </AddressWrap>
+        )}
         <MenuWrap>
           <ul>
             <li>
@@ -216,7 +214,7 @@ const HeaderContainer = styled.header`
   width: 100%;
   height: 110px;
   top: 0;
-  z-index: 99;
+  z-index: 9;
   transition: all 0.3s ease-in-out;
 
   ${props => {
@@ -238,7 +236,7 @@ const HeaderInnerWrap = styled.section`
   align-items: center;
   width: 80%;
   margin: 0 auto;
-  padding-top: 20px;
+  padding-top: 15px;
 `;
 
 const HeaderLogo = styled.div`
@@ -251,7 +249,7 @@ const HeaderLogo = styled.div`
 const AddressWrap = styled.div`
   display: flex;
   align-items: center;
-  height: 35px;
+  height: 28px;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 20px;
   padding: 0 10px;
@@ -259,7 +257,7 @@ const AddressWrap = styled.div`
   & > a {
     white-space: nowrap;
     padding: 0 30px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
   }
 `;
@@ -274,10 +272,16 @@ const MenuWrap = styled.div`
 
   & > ul > li {
     position: relative;
-    padding: 35px 35px;
-    font-size: 20px;
+    margin-right: 65px;
+    margin-top: 15px;
+    padding-bottom: 15px;
+    font-size: 19px;
     font-weight: bold;
     white-space: nowrap;
+
+    &:last-child {
+      margin-right: 0;
+    }
 
     &:hover {
       & > ul {
@@ -323,8 +327,8 @@ const SignWrap = styled.div`
 const SubMenuWrap = styled.ul`
   display: none;
   position: absolute;
-  top: 90px;
-  left: -60px;
+  top: 30px;
+  left: -90px;
   background-color: ${props => props.theme.grayscaleA};
   border: 1px solid ${props => props.theme.grayscaleH};
   border-radius: 8px;

@@ -1,24 +1,52 @@
 {
   "result": [
     {
-      "id": 1,
-      "image": "../goobne/images/main_banner_02.jpg",
-      "alt": "샐러드 이미지",
-      "mainTitle": "샐러드",
-      "category": "side",
-      "price": 6500,
-      "badge": ["new", "md"],
+      "id": 12,
+      "image": "/goobne/images/side12.png",
+      "alt": "텐더치킨 샐러드 이미지",
+      "mainTitle": "오븐치킨텐더 샐러드",
+      "price": 9900,
+      "badge": ["best", "md", "new"],
       "count": 1,
       "radioData": 0
     },
     {
-      "id": 3,
-      "image": "../goobne/images/main_salad.jpg",
-      "alt": "샐러드2 이미지",
-      "mainTitle": "샐러드2",
-      "category": "side",
-      "price": 7900,
-      "badge": ["new", "md"],
+      "id": 13,
+      "image": "/goobne/images/side13.png",
+      "alt": "핫 후라이드텐더 샐러드 이미지",
+      "mainTitle": "핫 후라이드텐더 치킨 샐러드",
+      "price": 9900,
+      "badge": ["best", "md", "hot"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 14,
+      "image": "/goobne/images/side14.png",
+      "alt": "리코타 샐러드 이미지",
+      "mainTitle": "리코타 샐러드",
+      "price": 6900,
+      "badge": ["best"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 15,
+      "image": "/goobne/images/side15.png",
+      "alt": "달짝지근 떡볶이 이미지",
+      "mainTitle": "달짝지근 떡볶이",
+      "price": 5000,
+      "badge": ["best", "md", "hot"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 16,
+      "image": "/goobne/images/side16.png",
+      "alt": "토마토 오븐 스파게티 이미지",
+      "mainTitle": "토마토 오븐 스파게티",
+      "price": 8800,
+      "badge": ["best", "md"],
       "count": 1,
       "radioData": 0
     }

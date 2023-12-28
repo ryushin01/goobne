@@ -7,8 +7,8 @@
 - Developers & parts
 
   - <a href="https://github.com/kgy8987" target="_blank">김기영</a>
-    - 컴포넌트: Input, Footer, Radio
-    - 페이지: 결제, 이벤트
+    - 컴포넌트: Input, Footer, Radio, Swiper
+    - 페이지: 결제, 장바구니 UI
   - <a href="https://github.com/Jaylogg" target="_blank">박민재</a>
     - 컴포넌트: Chip, CheckBox, Modal
     - 페이지: 장바구니 UI
@@ -16,13 +16,13 @@
     - 컴포넌트: SelectBox, Swiper, Header, Badge, Count, DropDown
     - 페이지: 메인, 상세, 장바구니 기능
   - <a href="https://github.com/leechengwon" target="_blank">이청원</a>
-    - 컴포넌트: Nav, IconButton, Button, Tab
+    - 컴포넌트: Nav, IconButton, Button, Loading
     - 페이지: 로그인, 회원가입, 목록
 
 - Tech stacks
 
-  - <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&amp;logo=React&amp;logoColor=black">
-  - <img src="https://img.shields.io/badge/styled_components-DB7093?style=flat-square&amp;logo=styledcomponents&amp;logoColor=black">
+  - <img src="https://img.shields.io/badge/React-%2320232a?style=flat-square&amp;logo=React&amp;logoColor=%2361DAFB">
+  - <img src="https://img.shields.io/badge/styled_components-DB7093?style=flat-square&amp;logo=styled-components&amp;logoColor=white">
   - <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&amp;logo=JavaScript&amp;logoColor=black">
   - <img src="https://img.shields.io/badge/Redux-764ABC?style=flat-square&amp;logo=Redux&amp;logoColor=white">
   - <img src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&amp;logo=Vite&amp;logoColor=white">

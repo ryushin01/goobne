@@ -104,7 +104,7 @@ const LoginContainerSection = styled.section`
   margin: 0 auto;
   & > h2 {
     font-weight: 900;
-    font-size: 40px;
+    font-size: 33px;
   }
 `;
 const LoginTabContainerDiv = styled.div`
@@ -117,8 +117,9 @@ const TabBtnButton = styled.button`
   border: none;
   background-color: transparent;
   font-weight: 800;
-  font-size: 16px;
-  padding: 10px 0;
+  font-size: 15px;
+  padding: 15px 0;
+  margin-bottom: 15px;
   border-bottom: 1px solid
     ${props =>
       props.$active ? props.theme.grayscaleH : props.theme.grayscaleC};
@@ -130,7 +131,6 @@ const TabBtnButton = styled.button`
 const CouponBannerImgInner = styled.div`
   width: 100%;
   height: 250px;
-  margin-bottom: 30px;
   & > img {
     width: 100%;
     height: 100%;
@@ -140,13 +140,14 @@ const JoinMemberContainerDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
   width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 
   & > h3 {
-    font-size: 14px;
-    font-weight: 800;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 16px 0px;
   }
 `;
 
@@ -158,7 +159,7 @@ const EasyLoginContainerDiv = styled.div`
   padding: 0px 20px;
   margin-bottom: 100px;
   & > h3 {
-    font-size: 14px;
-    font-weight: 900;
+    font-size: 13px;
+    font-weight: 700;
   }
 `;

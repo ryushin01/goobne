@@ -299,12 +299,14 @@ const Join = () => {
               content="이전단계"
               type="button"
               onClick={backPage}
+              size="large"
             />
             <Button
               color="black"
               content="가입하기"
               type="submit"
               onClick={joinInfoSubmit}
+              size="large"
             />
           </FormSelectBtnInner>
         </FormContainerForm>
@@ -336,13 +338,13 @@ const JoinContainerWrapSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 500px;
+  width: 675px;
   min-width: 550px;
   margin: 0 auto;
 `;
 const JoinHeading = styled.h2`
   font-weight: 900;
-  font-size: 35px;
+  font-size: 33px;
 `;
 
 const FormContainerForm = styled.form`
@@ -356,7 +358,7 @@ const FormSelectBtnInner = styled.div`
   display: flex;
   gap: 5px;
   width: 400px;
-  margin: 50px auto;
+  margin: 80px auto 160px auto;
 `;
 
 // userJoinInfo 데이터 정리 참고

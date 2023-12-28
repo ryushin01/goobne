@@ -81,6 +81,7 @@ export default BigBanner;
 const BigBannerContainer = styled.section`
   width: 100%;
   height: 100vh;
+
   & > .swiperContainer {
     width: 100%;
     height: 100vh;
@@ -103,6 +104,16 @@ const BigBannerContainer = styled.section`
       background-color: ${props => props.theme.grayscaleA};
       width: 25px;
       height: 25px;
+    }
+  }
+
+  & a {
+    cursor: none;
+
+    &:hover {
+      cursor:
+        url('../goobne/images/banner-cursor.png') 24 24,
+        auto;
     }
   }
 
