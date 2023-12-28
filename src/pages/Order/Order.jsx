@@ -287,6 +287,7 @@ const Order = () => {
             <OrderDetailArea>
               <OrderDetailInfo>주문내역</OrderDetailInfo>
               {cartState.map(({ id, name, count, price }) => {
+                const itemTotalPrice = price * count;
                 return (
                   <ProductDetailArea key={id}>
                     <ProductDetailInner>
@@ -294,7 +295,7 @@ const Order = () => {
                       <span>&nbsp;X&nbsp;</span>
                       <span>{count}</span>
                     </ProductDetailInner>
-                    <span>{price?.toLocaleString('ko-KR')}원</span>
+                    <span>{itemTotalPrice?.toLocaleString('ko-KR')}원</span>
                   </ProductDetailArea>
                 );
               })}
