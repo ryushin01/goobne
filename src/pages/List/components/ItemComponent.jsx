@@ -65,26 +65,21 @@ const ListItem = ({
 
   return (
     <ListItemDiv className="emphasisContainer" {...props}>
-      <ImgInnerBtnButton
-        className="emphasisImgInner"
-        onClick={() => {
-          onClick(id);
-        }}
-      >
-        <img src={image} alt={alt} />
-      </ImgInnerBtnButton>
+      <ImgBtnWrap className="emphasisImgWrap">
+        <ImgInnerBtnButton
+          className="emphasisImgInner"
+          onClick={() => {
+            onClick(id);
+          }}
+        >
+          <img src={image} alt={alt} />
+        </ImgInnerBtnButton>
+      </ImgBtnWrap>
 
       <ListInfoWrapDiv>
-        <BadgeWrapDiv>
+        <BadgeWrapDiv className="emphasisBadge">
           {badge?.map((badge, index) => {
-            return (
-              <Badge
-                key={index}
-                shape={badge}
-                size="small"
-                className="emphasisBadge"
-              />
-            );
+            return <Badge key={index} shape={badge} size="small" />;
           })}
         </BadgeWrapDiv>
 
@@ -154,9 +149,19 @@ const ListInfoWrapDiv = styled.div`
     top: -15px; */ //이전방법!
   }
 `;
-const ImgInnerBtnButton = styled.button`
+
+const ImgBtnWrap = styled.div`
+  display: flex;
+  background-color: white;
   width: 300px;
   height: 300px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+`;
+const ImgInnerBtnButton = styled.button`
+  width: 200px;
+  height: 200px;
   border: none;
   cursor: pointer;
 
@@ -165,6 +170,7 @@ const ImgInnerBtnButton = styled.button`
     height: 100%;
     border-radius: 10px;
     aspect-ratio: 1/1;
+    background-color: white;
   }
 `;
 const BadgeWrapDiv = styled.div`

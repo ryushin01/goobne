@@ -2,7 +2,7 @@
   "result": [
     {
       "id": 0,
-      "image": "/goobne/images/main_chicken_01.jpg",
+      "image": "/goobne/images/testimg.png",
       "alt": "허리바사삭 곱빼기 이미지",
       "mainTitle": "허리바사삭 곱빼기",
       "category": "chicken",
@@ -13,7 +13,7 @@
     },
     {
       "id": 1,
-      "image": "../goobne/images/main_banner_02.jpg",
+      "image": "/goobne/images/testimg.png",
       "alt": "샐러드 이미지",
       "mainTitle": "샐러드",
       "category": "side",
@@ -24,7 +24,7 @@
     },
     {
       "id": 2,
-      "image": "../goobne/images/main-pizza.jpg",
+      "image": "/goobne/images/testimg.png",
       "alt": "피자 이미지",
       "mainTitle": "피자",
       "category": "pizza",
@@ -35,7 +35,7 @@
     },
     {
       "id": 3,
-      "image": "../goobne/images/main_salad.jpg",
+      "image": "/goobne/images/testimg.png",
       "alt": "샐러드2 이미지",
       "mainTitle": "샐러드2",
       "category": "side",
@@ -46,7 +46,7 @@
     },
     {
       "id": 4,
-      "image": "../goobne/images/main_banner_01.jpg",
+      "image": "/goobne/images/testimg.png",
       "alt": "닭강정 이미지",
       "mainTitle": "닭강정",
       "category": "chicken",
@@ -57,7 +57,7 @@
     },
     {
       "id": 5,
-      "image": "../goobne/images/main_beer.jpg",
+      "image": "/goobne/images/testimg.png",
       "alt": "맥주이미지",
       "mainTitle": "맥주",
       "category": "beer",
