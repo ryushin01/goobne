@@ -77,7 +77,7 @@ const OrderProduct = () => {
                   <ProductDeleteBtnWrap>
                     <button onClick={() => CartDataDelete(id, radioData)}>
                       <img
-                        src="./public/images/ProductDeleteButton.png"
+                        src="https://ryushin01.github.io/goobne/images/ProductDeleteButton.png"
                         alt="상품이미지"
                       />
                     </button>
