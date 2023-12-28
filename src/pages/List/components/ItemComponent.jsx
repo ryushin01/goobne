@@ -176,7 +176,8 @@ const BadgeWrapDiv = styled.div`
 const PriceButton = styled.button`
   border: none;
   background-color: transparent;
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 900;
   cursor: pointer;
 
   & + div {
@@ -188,8 +189,8 @@ const PriceButton = styled.button`
 const TitleBtn = styled.button`
   border: none;
   background-color: transparent;
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
 `;
 

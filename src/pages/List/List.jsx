@@ -58,7 +58,7 @@ const List = () => {
       {loading && <Loading />}
       <ListWrapMain>
         <ListContainerSection>
-          <h2>메뉴</h2>
+          <h2>메뉴보기</h2>
 
           <ButtonWrapDiv>
             <MenuChipGroup chipSelect={chipSelect}></MenuChipGroup>
@@ -113,7 +113,7 @@ const ListContainerSection = styled.section`
   margin: 0 auto;
   & > h2 {
     font-weight: 900;
-    font-size: 40px;
+    font-size: 33px;
   }
 `;
 
@@ -172,7 +172,7 @@ const ListItemLi = styled.li`
 const ButtonWrapDiv = styled.div`
   display: flex;
   gap: 10px;
-  margin: 30px 0px;
+  margin: 50px 0px;
   & > button {
     background-color: black;
     color: white;
