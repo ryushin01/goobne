@@ -145,7 +145,7 @@ const ListItemLi = styled.li`
       position: relative;
       display: flex;
       background-color: white;
-      width: 100%;
+      width: 600px;
       height: 670px;
       align-items: center;
       justify-content: center;
