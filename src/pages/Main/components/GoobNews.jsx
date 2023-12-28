@@ -87,12 +87,12 @@ const MainContainer = styled.section`
   position: relative;
   background-color: ${props => props.theme.grayscaleB};
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   padding: 0 60px;
 
   & > h2 {
     position: absolute;
-    top: 5%;
+    top: 10%;
     left: 50%;
     transform: translate(-50%);
     font-size: 48px;
