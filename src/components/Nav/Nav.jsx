@@ -363,7 +363,8 @@ const NavAccordionButton = styled.button`
     right: 0;
     width: 20px;
     height: 20px;
-    background-image: url('/goobne/src/svg/Nav/NavDownArrow.svg');
+    /* background-image: url('/goobne/src/svg/Nav/NavDownArrow.svg'); */
+    background-image: url('https://ryushin01.github.io/goobne/images/NavDownArrow.svg');
     background-repeat: no-repeat;
   }
   &.UpArrow::after {
@@ -374,7 +375,8 @@ const NavAccordionButton = styled.button`
     right: 0;
     width: 20px;
     height: 20px;
-    background-image: url('/goobne/src/svg/Nav/NavUpArrow.svg');
+    /* background-image: url('/goobne/src/svg/Nav/NavUpArrow.svg'); */
+    background-image: url('https://ryushin01.github.io/goobne/images/NavUpArrow.svg');
     background-repeat: no-repeat;
   }
 `;
