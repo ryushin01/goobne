@@ -89,7 +89,7 @@ const CartSwiperContainer = styled.div`
     width: 40px;
     height: 40px;
     top: 28%;
-    left: 0;
+    left: -9px;
 
     &::after {
       display: none;
@@ -104,6 +104,7 @@ const CartSwiperContainer = styled.div`
     width: 40px;
     height: 40px;
     top: 28%;
+    right: -10px;
 
     &::after {
       display: none;
