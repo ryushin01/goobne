@@ -75,6 +75,7 @@ const GoobStarMainContainer = styled.section`
   align-items: center;
   width: 100%;
   height: 100vh;
+  background-color: ${props => props.theme.grayscaleB};
 `;
 
 const GoobStarInnerWrap = styled.div`

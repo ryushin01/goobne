@@ -92,10 +92,10 @@ const MainContainer = styled.section`
 
   & > h2 {
     position: absolute;
-    top: 10%;
+    top: 5%;
     left: 50%;
     transform: translate(-50%);
-    font-size: 52px;
+    font-size: 48px;
     font-weight: bold;
     font-family: 'Rubik';
   }
@@ -129,7 +129,7 @@ const TextWrap = styled.div`
     display: flex;
     width: 100%;
     height: 100%;
-    padding: 40px 0;
+    padding: 50px 0;
 
     &:hover {
       background-color: ${props => props.theme.grayscaleH};

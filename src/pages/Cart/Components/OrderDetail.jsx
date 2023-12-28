@@ -65,8 +65,8 @@ const OrderDetail = () => {
       <ButtonWrap>
         <OrderBtn>
           <Button
-            size="small"
-            color="primary"
+            size="large"
+            color="beige"
             content="+ 메뉴 추가하기"
             onClick={() => {
               navigate('/list');
@@ -75,11 +75,14 @@ const OrderDetail = () => {
         </OrderBtn>
         <OrderBtnRight>
           <OrderBtn>
-            <Button size="small" color="beige" content="쿠폰함" />
+            <Button size="large" color="beige" content="쿠폰함    .." />
+            <div>
+              <span>0</span>
+            </div>
           </OrderBtn>
           <OrderBtn>
             <Button
-              size="small"
+              size="large"
               color="black"
               content="주문하기"
               onClick={() => {
@@ -119,6 +122,10 @@ const OrderDetailTitleWrap = styled.div`
 
 const DeleteAllBtnWrap = styled.div`
   width: 110px;
+
+  & > button {
+    font-size: 13px;
+  }
 `;
 
 const OrderProductTable = styled.table`
@@ -153,4 +160,20 @@ const OrderBtn = styled.div`
   display: flex;
   align-items: center;
   width: 180px;
+  position: relative;
+
+  & > div {
+    position: absolute;
+    top: 15px;
+    right: 45px;
+
+    background-color: ${props => props.theme.primaryColor};
+    border-radius: 50%;
+    padding: 4px 8px;
+
+    & > span {
+      font-size: 15px;
+      color: ${props => props.theme.grayscaleA};
+    }
+  }
 `;

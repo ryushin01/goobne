@@ -136,16 +136,16 @@ const OrderTableBody = styled.tr`
   }
 
   & > td {
-    padding: 20px 10px;
+    padding: 30px 10px;
     vertical-align: middle;
 
     & h4 {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
     }
 
     & span {
-      font-size: 14px;
+      font-size: 13px;
     }
   }
 `;
@@ -187,6 +187,10 @@ const TotalPriceWrap = styled.div`
 
     &:last-child {
       font-size: 20px;
+    }
+
+    &:nth-child(2) {
+      color: ${props => props.theme.primaryColor};
     }
   }
 `;

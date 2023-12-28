@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Input from '../../components/Input/Input';
 import SelectBox from '../../components/SelectBox/SelectBox';
+import Portal from '../../components/Modal/Portal';
+import Modal from '../../components/Modal/Modal';
+import OrderAmountModal from '../../components/Modal/orderAmountModal';
 import Button from '../../components/Button/Button';
 import PaymentMethodListGroup from './components/PaymentMethodListGroup';
 import { ORDER_SELECT_BOX_DATA } from '../../data/OrderSelectBoxData';
@@ -29,6 +32,9 @@ const Order = () => {
     price: '',
     count: '',
   });
+
+  /** Modal을 여닫기 위한 state */
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   /** useNavigate훅을 navigate 변수에 담습니다. */
   const navigate = useNavigate();
@@ -115,6 +121,11 @@ const Order = () => {
     setUserOrderInfo({ ...userOrderInfo, [name]: value });
   };
 
+  /** Modal의 상태값을 변화시키기 위한 함수 */
+  const handleModalOpen = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
   const handleSubmitOrderDataPost = e => {
     e.preventDefault();
     basic_test(200) //테스트용 api입니다. 인자로 원하는 상태값을 넘겨주면됩니다.
@@ -133,196 +144,217 @@ const Order = () => {
   };
 
   return (
-    <OrderContainer>
-      <OrderContentWrap>
-        <OrderTitle>결제하기</OrderTitle>
 
-        <form>
-          <DeliveryInfo>
-            <DeliveryInfoTitle>배달정보</DeliveryInfoTitle>
-            <DeliveryItemArea>
-              <AddressInfoLine>
-                <DeliveryAddress>주소</DeliveryAddress>
+    <>
+      <OrderContainer>
+        <OrderContentWrap>
+          <OrderTitle>결제하기</OrderTitle>
 
-                <DeliveryArea>{userOrderInfo.storeAddress}</DeliveryArea>
-              </AddressInfoLine>
+          <form>
+            <DeliveryInfo>
+              <DeliveryInfoTitle>배달정보</DeliveryInfoTitle>
+              <DeliveryItemArea>
+                <AddressInfoLine>
+                  <DeliveryAddress>주소</DeliveryAddress>
 
-              <StoreInfoLine>
-                <DeliveryAddress>주문매장</DeliveryAddress>
-                <OrderArea>{userOrderInfo.store}</OrderArea>
-                <span>{userOrderInfo.storePhone}</span>
-              </StoreInfoLine>
+                  <DeliveryArea>{userOrderInfo.storeAddress}</DeliveryArea>
+                </AddressInfoLine>
 
-              <NameInfoLine>
-                <Input
-                  type="text"
-                  label="이름"
-                  isDot={true}
-                  value={userOrderInfo.userName}
-                />
-              </NameInfoLine>
+                <StoreInfoLine>
+                  <DeliveryAddress>주문매장</DeliveryAddress>
+                  <OrderArea>{userOrderInfo.store}</OrderArea>
+                  <span>{userOrderInfo.storePhone}</span>
+                </StoreInfoLine>
 
-              <PhoneNumberInfoLine>
-                <Input
-                  type="text"
-                  label="연락처"
-                  isDot={true}
-                  value={userOrderInfo.userPhoneNumber}
-                />
-              </PhoneNumberInfoLine>
+                <NameInfoLine>
+                  <Input
+                    type="text"
+                    label="이름"
+                    isDot={true}
+                    value={userOrderInfo.userName}
 
-              <DeliveryRequest>
-                <RequestTitle>가게사장님께 요청사항</RequestTitle>
-                <SelectArea>
-                  <SelectBox
-                    data={ORDER_SELECT_BOX_DATA}
-                    value="직접입력"
-                    onChange={value => selectBoxOrderOption(value, 'ceo')}
-                    name="ceo"
                   />
+                </NameInfoLine>
 
-                  {userOrderInfo.ceo === '직접입력' && (
-                    <RequestTextArea
-                      placeholder="매장 요청사항을 입력해주세요"
-                      name="ceoDirectRequest"
-                      onChange={saveDirectRequest}
-                    />
-                  )}
-                </SelectArea>
-              </DeliveryRequest>
-
-              <RiderArea>
-                <RiderInfo>
-                  <RiderTopArea>배달</RiderTopArea>
-                  <span>라이더님께</span>
-                </RiderInfo>
-
-                <SelectArea>
-                  <SelectBox
-                    data={ORDER_RIDER_SELECT_BOX_DATA}
-                    value="안전하게 와주세요"
-                    onChange={value => selectBoxOrderOption(value, 'rider')}
-                    name="rider"
+                <PhoneNumberInfoLine>
+                  <Input
+                    type="text"
+                    label="연락처"
+                    isDot={true}
+                    value={userOrderInfo.userPhoneNumber}
                   />
-                  {userOrderInfo.rider === '직접입력' && (
-                    <RequestTextArea
-                      placeholder="매장 요청사항을 입력해주세요"
-                      onChange={saveDirectRequest}
-                      name="riderDirectRequest"
-                    />
-                  )}
-                </SelectArea>
-              </RiderArea>
-            </DeliveryItemArea>
-          </DeliveryInfo>
+                </PhoneNumberInfoLine>
 
-          <PaymentInfo>
-            <PaymentMethod>결제방법</PaymentMethod>
-
-            <PaymentItemArea>
-              <CouponList>
-                <CouponTitle>내&nbsp;쿠폰&nbsp;리스트</CouponTitle>
-                <SelectBox data={COUPON_DATA} value="쿠폰을 선택하여주세요." />
-              </CouponList>
-              <PersonalPoint>
-                <PointTitle>e-금액권</PointTitle>
-                <PointRight>
-                  <PointInquiry>
-                    <Input
-                      type="text"
-                      placeholder="공백없이 수기입력해주세요."
+                <DeliveryRequest>
+                  <RequestTitle>가게사장님께 요청사항</RequestTitle>
+                  <SelectArea>
+                    <SelectBox
+                      data={ORDER_SELECT_BOX_DATA}
+                      value="직접입력"
+                      onChange={value => selectBoxOrderOption(value, 'ceo')}
+                      name="ceo"
                     />
-                    <PointCheckButton>
-                      <Button
-                        type="button"
-                        size="medium"
-                        color="black"
-                        content="조회"
+
+                    {userOrderInfo.ceo === '직접입력' && (
+                      <RequestTextArea
+                        placeholder="매장 요청사항을 입력해주세요"
+                        name="ceoDirectRequest"
+                        onChange={saveDirectRequest}
                       />
-                    </PointCheckButton>
-                  </PointInquiry>
-                  <PointInformation>
-                    <span>•&nbsp;e-금액권 이용안내</span>
-                    <button type="button">?</button>
-                  </PointInformation>
-                </PointRight>
-              </PersonalPoint>
+                    )}
+                  </SelectArea>
+                </DeliveryRequest>
 
-              {/* 결제 선택방법 라디오버튼 영역입니다 */}
-              <PaymentListInnerDiv>
-                <span>결제방법</span>
-                <PaymentButtonList>
-                  <PaymentMethodListGroup onChange={handleChangePayment} />
-                </PaymentButtonList>
-              </PaymentListInnerDiv>
+                <RiderArea>
+                  <RiderInfo>
+                    <RiderTopArea>배달</RiderTopArea>
+                    <span>라이더님께</span>
+                  </RiderInfo>
 
-              <CashReceipt>
-                <span>※&nbsp;할인 제품의 경우 금액권 적용이 불가합니다.</span>
-                <span>
-                  ※&nbsp;현금영수증 발행은 매장으로 문의 부탁드립니다.
-                </span>
-              </CashReceipt>
-              {/* 결제 선택방법 라디오버튼 앤드라인 입니다 */}
-            </PaymentItemArea>
-          </PaymentInfo>
-          {/* 주문내역 영역입니다. */}
-          <OrderDetailArea>
-            <OrderDetailInfo>주문내역</OrderDetailInfo>
-            {cartState.map(({ id, name, count, price }) => {
-              return (
-                <ProductDetailArea key={id}>
-                  <ProductDetailInner>
-                    <DetailItemName>{name}</DetailItemName>
-                    <span>&nbsp;X&nbsp;</span>
-                    <span>{count}</span>
-                  </ProductDetailInner>
-                  <span>{price?.toLocaleString('ko-KR')}원</span>
-                </ProductDetailArea>
-              );
-            })}
-          </OrderDetailArea>
-          {/* 주문내역 영역입니다. */}
-          <PaymentAmountArea>
-            <PaymentAmountSection>최종결제금액</PaymentAmountSection>
-            <PaymentAmountInfo>
-              <PaymentAmountItem>
-                <PaymentAmountLeftArea>주문금액</PaymentAmountLeftArea>
-                <span>{totalPrice.toLocaleString('ko-KR')}원</span>
-              </PaymentAmountItem>
-              <PaymentAmountItem>
-                <PaymentAmountLeftArea>배달비</PaymentAmountLeftArea>
-                <span>{deliveryFee.toLocaleString('ko-KR')}원</span>
-              </PaymentAmountItem>
-              <PaymentAmountItem>
-                <PaymentAmountLeftArea>
-                  할인&nbsp;or&nbsp;쿠폰
-                </PaymentAmountLeftArea>
-                <span>-0원</span>
-              </PaymentAmountItem>
-              <PaymentAmountItemBottom>
-                <span>총&nbsp;결제금액</span>
-                <span>{totalAmount.toLocaleString('ko-KR')}원</span>
-              </PaymentAmountItemBottom>
-            </PaymentAmountInfo>
-            <StoreStreetInfo>
-              ※&nbsp;매장&nbsp;간의&nbsp;거리,&nbsp;상황에&nbsp;따라&nbsp;추가&nbsp;배달비&nbsp;청구&nbsp;및&nbsp;주문이&nbsp;취소가&nbsp;될&nbsp;수&nbsp;있습니다.
-            </StoreStreetInfo>
-          </PaymentAmountArea>
-          <FinalPaymentArea>
-            <div>
-              <Button
-                type="submit"
-                size="medium"
-                color="black"
-                content="결제하기"
-                onClick={handleSubmitOrderDataPost}
-              />
-            </div>
-          </FinalPaymentArea>
-        </form>
-        {/* 주문내역 끝나는 지점입니다. */}
-      </OrderContentWrap>
-    </OrderContainer>
+                  <SelectArea>
+                    <SelectBox
+                      data={ORDER_RIDER_SELECT_BOX_DATA}
+                      value="안전하게 와주세요"
+                      onChange={value => selectBoxOrderOption(value, 'rider')}
+                      name="rider"
+                    />
+                    {userOrderInfo.rider === '직접입력' && (
+                      <RequestTextArea
+                        placeholder="매장 요청사항을 입력해주세요"
+                        onChange={saveDirectRequest}
+                        name="riderDirectRequest"
+                      />
+                    )}
+                  </SelectArea>
+                </RiderArea>
+              </DeliveryItemArea>
+            </DeliveryInfo>
+
+            <PaymentInfo>
+              <PaymentMethod>결제방법</PaymentMethod>
+
+              <PaymentItemArea>
+                <CouponList>
+                  <CouponTitle>내&nbsp;쿠폰&nbsp;리스트</CouponTitle>
+                  <SelectBox
+                    data={COUPON_DATA}
+                    value="쿠폰을 선택하여주세요."
+                  />
+                </CouponList>
+                <PersonalPoint>
+                  <PointTitle>e-금액권</PointTitle>
+                  <PointRight>
+                    <PointInquiry>
+                      <Input
+                        type="text"
+                        placeholder="공백없이 수기입력해주세요."
+                      />
+
+                      <PointCheckButton>
+                        <Button
+                          type="button"
+                          size="medium"
+                          color="black"
+                          content="조회"
+                        />
+                      </PointCheckButton>
+                    </PointInquiry>
+                    <PointInformation>
+                      <span>•&nbsp;e-금액권 이용안내</span>
+                      <button type="button" onClick={handleModalOpen}>
+                        ?
+                      </button>
+                    </PointInformation>
+                  </PointRight>
+                </PersonalPoint>
+
+                {/* 결제 선택방법 라디오버튼 영역입니다 */}
+                <PaymentListInnerDiv>
+                  <span>결제방법</span>
+                  <PaymentButtonList>
+                    <PaymentMethodListGroup onChange={handleChangePayment} />
+                  </PaymentButtonList>
+                </PaymentListInnerDiv>
+
+                <CashReceipt>
+                  <span>※&nbsp;할인 제품의 경우 금액권 적용이 불가합니다.</span>
+                  <span>
+                    ※&nbsp;현금영수증 발행은 매장으로 문의 부탁드립니다.
+                  </span>
+                </CashReceipt>
+                {/* 결제 선택방법 라디오버튼 앤드라인 입니다 */}
+              </PaymentItemArea>
+            </PaymentInfo>
+            {/* 주문내역 영역입니다. */}
+            <OrderDetailArea>
+              <OrderDetailInfo>주문내역</OrderDetailInfo>
+              {cartState.map(({ id, name, count, price }) => {
+                return (
+                  <ProductDetailArea key={id}>
+                    <ProductDetailInner>
+                      <DetailItemName>{name}</DetailItemName>
+                      <span>&nbsp;X&nbsp;</span>
+                      <span>{count}</span>
+                    </ProductDetailInner>
+                    <span>{price?.toLocaleString('ko-KR')}원</span>
+                  </ProductDetailArea>
+                );
+              })}
+            </OrderDetailArea>
+            {/* 주문내역 영역입니다. */}
+            <PaymentAmountArea>
+              <PaymentAmountSection>최종결제금액</PaymentAmountSection>
+              <PaymentAmountInfo>
+                <PaymentAmountItem>
+                  <PaymentAmountLeftArea>주문금액</PaymentAmountLeftArea>
+                  <span>{totalPrice.toLocaleString('ko-KR')}원</span>
+                </PaymentAmountItem>
+                <PaymentAmountItem>
+                  <PaymentAmountLeftArea>배달비</PaymentAmountLeftArea>
+                  <span>{deliveryFee.toLocaleString('ko-KR')}원</span>
+                </PaymentAmountItem>
+                <PaymentAmountItem>
+                  <PaymentAmountLeftArea>
+                    할인&nbsp;or&nbsp;쿠폰
+                  </PaymentAmountLeftArea>
+                  <span>-0원</span>
+                </PaymentAmountItem>
+                <PaymentAmountItemBottom>
+                  <span>총&nbsp;결제금액</span>
+                  <span>{totalAmount.toLocaleString('ko-KR')}원</span>
+                </PaymentAmountItemBottom>
+              </PaymentAmountInfo>
+              <StoreStreetInfo>
+                ※&nbsp;매장&nbsp;간의&nbsp;거리,&nbsp;상황에&nbsp;따라&nbsp;추가&nbsp;배달비&nbsp;청구&nbsp;및&nbsp;주문이&nbsp;취소가&nbsp;될&nbsp;수&nbsp;있습니다.
+              </StoreStreetInfo>
+            </PaymentAmountArea>
+            <FinalPaymentArea>
+              <div>
+                <Button
+                  type="submit"
+                  size="medium"
+                  color="black"
+                  content="결제하기"
+                  onClick={handleSubmitOrderDataPost}
+                />
+              </div>
+            </FinalPaymentArea>
+          </form>
+          {/* 주문내역 끝나는 지점입니다. */}
+        </OrderContentWrap>
+      </OrderContainer>
+      <Portal>
+        {isModalOpen && (
+          <Modal
+            title="e-쿠폰 이용안내"
+            size="medium"
+            content={<OrderAmountModal />}
+            isCloseBtn={true}
+          />
+        )}
+      </Portal>
+    </>
+
   );
 };
 
@@ -453,6 +485,13 @@ const OrderArea = styled.span`
   background-color: ${props => props.theme.grayscaleH};
   color: ${props => props.theme.grayscaleA};
   margin-right: 5px;
+  font-weight: 700;
+  font-family: 'Rubik';
+`;
+
+const StoreNumber = styled.span`
+  font-family: 'Rubik';
+  color: #999999;
 `;
 
 const SelectArea = styled.div`
@@ -490,9 +529,10 @@ const RiderInfo = styled.div`
 
 const RiderTopArea = styled.span`
   position: relative;
-  background-color: ${props => props.theme.grayscaleC};
-  color: ${props => props.theme.grayscaleA};
+  background-color: #999999;
   width: 50px;
+  font-family: 'Noto Sans KR';
+  color: ${props => props.theme.grayscaleA};
   text-align: center;
   padding: 2px 0;
   border-radius: 10px;
@@ -598,6 +638,11 @@ const PointInquiry = styled.div`
 
 const PointCheckButton = styled.div`
   width: 300px;
+
+  & > button {
+    font-size: 13px;
+    font-family: 'NanumSquareRoundR';
+  }
 `;
 
 const PointInformation = styled.div`
@@ -701,6 +746,7 @@ const ProductDetailArea = styled.div`
   & > span {
     font-size: 14px;
     font-weight: 700;
+    font-family: sans-serif;
   }
 `;
 
@@ -711,6 +757,7 @@ const ProductDetailInner = styled.div`
   & span {
     font-size: 14px;
     font-weight: 700;
+    font-family: sans-serif;
   }
 `;
 
@@ -765,6 +812,7 @@ const PaymentAmountItem = styled.div`
   & > span {
     font-size: 14px;
     font-weight: 700;
+    font-family: sans-serif;
   }
 `;
 
@@ -779,6 +827,7 @@ const PaymentAmountItemBottom = styled.div`
     color: ${props => props.theme.primaryColor};
     font-size: 18px;
     font-weight: 700;
+    font-family: sans-serif;
   }
 `;
 

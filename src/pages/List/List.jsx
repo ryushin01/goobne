@@ -58,7 +58,7 @@ const List = () => {
       {loading && <Loading />}
       <ListWrapMain>
         <ListContainerSection>
-          <h2>메뉴</h2>
+          <h2>메뉴보기</h2>
 
           <ButtonWrapDiv>
             <MenuChipGroup chipSelect={chipSelect}></MenuChipGroup>
@@ -113,7 +113,7 @@ const ListContainerSection = styled.section`
   margin: 0 auto;
   & > h2 {
     font-weight: 900;
-    font-size: 40px;
+    font-size: 33px;
   }
 `;
 
@@ -141,15 +141,26 @@ const ListItemLi = styled.li`
     .emphasisContainer {
       width: 100%;
     }
+    .emphasisImgWrap {
+      position: relative;
+      display: flex;
+      background-color: white;
+      width: 600px;
+      height: 670px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+    }
     .emphasisImgInner {
-      width: 100%;
-      height: 650px;
+      width: 400px;
+      height: 400px;
     }
     .emphasisTitleInner {
       font-size: 50px;
     }
 
     .emphasisTitlePriceWrap {
+      margin-top: 40px;
       width: 100%;
     }
     .emphasisPriceInner {
@@ -159,9 +170,12 @@ const ListItemLi = styled.li`
       width: 40px;
       position: absolute;
       right: 15px;
-      top: 10px;
+      top: 40px;
     }
     .emphasisBadge {
+      position: absolute;
+      top: 0;
+      left: 20px;
       & > span {
         font-size: 20px;
       }
@@ -172,7 +186,7 @@ const ListItemLi = styled.li`
 const ButtonWrapDiv = styled.div`
   display: flex;
   gap: 10px;
-  margin: 30px 0px;
+  margin: 50px 0px;
   & > button {
     background-color: black;
     color: white;
