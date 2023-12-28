@@ -2,7 +2,7 @@
   "name": "goobne",
   "private": true,
   "homepage": "https://ryushin0.github.io/goobne",
-  "version": "0.0.1",
+  "version": "1.0.7",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",

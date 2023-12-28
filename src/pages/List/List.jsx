@@ -64,9 +64,9 @@ const List = () => {
             <MenuChipGroup chipSelect={chipSelect}></MenuChipGroup>
           </ButtonWrapDiv>
 
-          <ListContainerUl>
-            {productListData.length > 0 ? (
-              productListData?.map(
+          {productListData.length > 0 ? (
+            <ListContainerUl>
+              {productListData?.map(
                 ({ id, image, price, mainTitle, badge, alt }, index) => {
                   return (
                     <ListItemLi key={index}>
@@ -83,16 +83,16 @@ const List = () => {
                     </ListItemLi>
                   );
                 },
-              )
-            ) : (
-              <NotDataImgInnerWrap>
-                <img
-                  src="https://ryushin01.github.io/goobne/images/notData.png"
-                  alt="메뉴가 없음 이미지"
-                />
-              </NotDataImgInnerWrap>
-            )}
-          </ListContainerUl>
+              )}
+            </ListContainerUl>
+          ) : (
+            <NotDataImgInnerWrap>
+              <img
+                src="https://ryushin01.github.io/goobne/images/notData.png"
+                alt="메뉴가 없음 이미지"
+              />
+            </NotDataImgInnerWrap>
+          )}
         </ListContainerSection>
       </ListWrapMain>
     </>
@@ -200,12 +200,12 @@ const ButtonWrapDiv = styled.div`
   }
 `;
 const NotDataImgInnerWrap = styled.div`
-  position: absolute;
-  top: -100%;
-  left: 50%;
-  transform: translate(-50%, 0%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 300px;
   height: 300px;
+  margin: 30px;
   & > img {
     object-fit: cover;
   }
