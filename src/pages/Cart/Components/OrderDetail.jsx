@@ -75,10 +75,7 @@ const OrderDetail = () => {
         </OrderBtn>
         <OrderBtnRight>
           <OrderBtn>
-            <Button size="large" color="beige" content="쿠폰함    .." />
-            <div>
-              <span>0</span>
-            </div>
+            <Button size="large" color="beige" content="쿠폰함" />
           </OrderBtn>
           <OrderBtn>
             <Button
@@ -161,19 +158,4 @@ const OrderBtn = styled.div`
   align-items: center;
   width: 180px;
   position: relative;
-
-  & > div {
-    position: absolute;
-    top: 15px;
-    right: 45px;
-
-    background-color: ${props => props.theme.primaryColor};
-    border-radius: 50%;
-    padding: 4px 8px;
-
-    & > span {
-      font-size: 15px;
-      color: ${props => props.theme.grayscaleA};
-    }
-  }
 `;

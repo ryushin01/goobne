@@ -25,6 +25,8 @@ const Detail = () => {
   const dispatch = useDispatch();
   /** react-router-dom의 navigate를 사용하기 위한 변수 입니다. */
   const navigate = useNavigate();
+  /** 로그인 여부를 확인하는 변수 입니다. */
+  const isLogin = localStorage.getItem('accessToken');
 
   /** useEffect를 이용해 처음 랜더링 될 때 detailData를 가져오는 함수를 실행합니다. */
   useEffect(() => {
@@ -149,7 +151,7 @@ const Detail = () => {
                 size="medium"
                 onClick={() => {
                   putInCartData();
-                  navigate('/delivery');
+                  isLogin ? navigate('/delivery') : navigate('/login');
                 }}
               />
             </OrderBtnWrap>
