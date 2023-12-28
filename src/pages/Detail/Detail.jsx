@@ -212,7 +212,7 @@ const DetailInfoWrap = styled.div`
   }
 
   img {
-    object-fit: cover;
+    aspect-ratio: 1/1;
   }
 `;
 
