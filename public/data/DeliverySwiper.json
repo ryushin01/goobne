@@ -2,22 +2,22 @@
   "result": [
     {
       "id": 1,
-      "img": "./public/images/CartSwiper_1.jpg",
+      "img": "https://github.com/ryushin01/goobne/images/CartSwiper_1.jpg",
       "alt": "주문방법선택 배너1"
     },
     {
       "id": 2,
-      "img": "./public/images/CartSwiper_2.jpg",
+      "img": "https://github.com/ryushin01/goobne/images/CartSwiper_2.jpg",
       "alt": "주문방법선택 배너2"
     },
     {
       "id": 3,
-      "img": "./public/images/CartSwiper_3.jpg",
+      "img": "https://github.com/ryushin01/goobne/images/CartSwiper_3.jpg",
       "alt": "주문방법선택 배너3"
     },
     {
       "id": 4,
-      "img": "./public/images/CartSwiper_4.jpg",
+      "img": "https://github.com/ryushin01/goobne/images/CartSwiper_4.jpg",
       "alt": "주문방법선택 배너4"
     }
   ]

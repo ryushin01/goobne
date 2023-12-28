@@ -86,7 +86,7 @@ const List = () => {
               )
             ) : (
               <NotDataImgInnerWrap>
-                <img src="../goobne/images/notData.png" />
+                <img src="https://ryushin01.github.io/goobne/images/notData.png" />
               </NotDataImgInnerWrap>
             )}
           </ListContainerUl>
