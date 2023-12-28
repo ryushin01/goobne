@@ -102,8 +102,8 @@ const CountInnerWrap = styled.div`
   font-size: 16px;
 
   & > button {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 28px;
     border: none;
     background-color: transparent;
     font-size: inherit;
