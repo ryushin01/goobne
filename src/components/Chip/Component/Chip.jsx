@@ -44,13 +44,13 @@ const ChipWrap = styled.div`
 
   // label의 기본값
   & > label {
-    padding: 10px 14px;
+    padding: 11px 14px;
     background-color: ${props =>
       (props.color === 'white' && props.theme.grayscaleA) ||
       (props.color === 'beige' && props.theme.grayscaleB) ||
       props.theme.grayscaleA};
     border-radius: 20px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     color: ${props => props.theme.grayscaleH};
     cursor: pointer;

@@ -119,7 +119,7 @@ const ListItem = ({
             {isModalOpen && (
               <Modal
                 size="small"
-                title="메뉴에 대한 옵션을 선택하시겟습니까?"
+                title="메뉴에 대한 옵션을 선택하시겠습니까?"
                 isCloseBtn={true}
                 content={
                   <DetailSelectModal
@@ -176,7 +176,8 @@ const BadgeWrapDiv = styled.div`
 const PriceButton = styled.button`
   border: none;
   background-color: transparent;
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 900;
   cursor: pointer;
 
   & + div {
@@ -188,8 +189,8 @@ const PriceButton = styled.button`
 const TitleBtn = styled.button`
   border: none;
   background-color: transparent;
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
 `;
 
