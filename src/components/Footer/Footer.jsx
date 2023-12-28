@@ -179,7 +179,7 @@ const Footer = () => {
 
 const FooterContainer = styled.footer`
   width: 100%;
-  padding: 0 95px 30px 95px;
+  padding: 0 75px 30px 75px;
   background-color: ${props => props.theme.grayscaleF};
 `;
 
@@ -258,20 +258,18 @@ const SnsConnectionArea = styled.div`
 
 const AddressSection = styled.section`
   width: 100%;
-  margin-top: 35px;
+  margin-top: 30px;
 
   & > address {
     & > ul {
       display: flex;
       flex-wrap: wrap;
-      line-height: 22px;
+      line-height: 20px;
     }
   }
 
   & > span {
-    font-size: 12px;
-    font-weight: 700;
-    font-family: 'NanumSquareRoundR';
+    font-size: 11px;
     color: ${props => props.theme.transparentA};
   }
 `;
@@ -279,10 +277,10 @@ const AddressSection = styled.section`
 const AddressDetailList = styled.li`
   margin-right: 20px;
   position: relative;
-  font-size: 11px;
-  font-family: 'NanumSquareRoundR';
-  color: ${props => props.theme.transparentA};
+  font-size: 10px;
   font-weight: 700;
+  font-family: 'Rubik';
+  color: ${props => props.theme.transparentA};
 
   &:last-child {
     margin-right: 0px;
