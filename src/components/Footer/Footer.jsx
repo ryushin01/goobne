@@ -258,13 +258,12 @@ const SnsConnectionArea = styled.div`
 
 const AddressSection = styled.section`
   width: 100%;
-  display: flex;
-  flex-direction: column;
   margin-top: 35px;
 
   & > address {
     & > ul {
       display: flex;
+      flex-wrap: wrap;
       line-height: 22px;
     }
   }
