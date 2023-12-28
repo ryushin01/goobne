@@ -137,6 +137,7 @@ const MainGoobtubeContainer = styled.section`
   position: relative;
   width: 100%;
   height: 100vh;
+  background-color: ${props => props.theme.grayscaleB};
 
   & > h2 {
     display: flex;
