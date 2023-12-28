@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
+import { useNavigate } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import styled from 'styled-components';
@@ -16,6 +17,8 @@ const CartSwiper = () => {
     getSwiperItemInfoData();
   }, []);
 
+  const navigate = useNavigate();
+
   //SwiperItem을 가져오는 비동기 함수를 정의합니다.
   const getSwiperItemInfoData = async () => {
     try {
@@ -24,6 +27,10 @@ const CartSwiper = () => {
     } catch (error) {
       alert('리스트 생성에 실패했습니다.'); //요청이 실패시 alert생성.
     }
+  };
+
+  const navigateDetail = id => {
+    navigate(`/detail/${id}`);
   };
 
   return (
@@ -39,9 +46,23 @@ const CartSwiper = () => {
           <SwiperSlide key={id}>
             <CartSwiperBox>
               <SwiperImgWrap>
-                <img src={image} alt={alt} />
+                <TitleImage
+                  onClick={() => {
+                    navigateDetail(id);
+                  }}
+                >
+                  <img src={image} alt={alt} />
+                </TitleImage>
               </SwiperImgWrap>
-              <SwiperTitle>{mainTitle}</SwiperTitle>
+              <SwiperTitle>
+                <TitleItemButton
+                  onClick={() => {
+                    navigateDetail(id);
+                  }}
+                >
+                  {mainTitle}
+                </TitleItemButton>
+              </SwiperTitle>
             </CartSwiperBox>
           </SwiperSlide>
         ))}
@@ -101,8 +122,21 @@ const SwiperImgWrap = styled.div`
   cursor: pointer;
 `;
 
-const SwiperTitle = styled.div`
+const TitleImage = styled.button`
+  background-color: transparent;
+  border: none;
+  width: 200px;
+  height: 200px;
+`;
+
+const SwiperTitle = styled.h2`
   margin-top: 20px;
+  font-size: 16px;
+`;
+
+const TitleItemButton = styled.button`
+  background-color: transparent;
+  border: none;
   font-size: 16px;
 `;
 
