@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const OrderInfo = () => {
@@ -32,7 +33,8 @@ const OrderInfo = () => {
   return (
     <OrderInfoMain>
       <OrderInfoTitleWrap>
-        <h3>포장주문</h3>
+        <h3>배달주문</h3>
+        <Link to="/delivery">변경</Link>
       </OrderInfoTitleWrap>
       <OrderInfoBox>
         <OrderInfoColumn>
@@ -44,7 +46,7 @@ const OrderInfo = () => {
           <span>{userInfoData.storePhone}</span>
         </OrderInfoColumn>
         <OrderInfoColumn>
-          <OrderInfoSubject>매장 주소</OrderInfoSubject>
+          <OrderInfoSubject>배달받을 주소</OrderInfoSubject>
           <span>{userInfoData.storeAddress}</span>
         </OrderInfoColumn>
       </OrderInfoBox>
@@ -60,6 +62,7 @@ const OrderInfoMain = styled.div`
 `;
 
 const OrderInfoTitleWrap = styled.div`
+  display: flex;
   padding-bottom: 22px;
   border-bottom: 1px solid ${props => props.theme.grayscaleH};
 
@@ -67,6 +70,14 @@ const OrderInfoTitleWrap = styled.div`
     margin-right: 5px;
     font-size: 19px;
     font-weight: 700;
+  }
+
+  & > a {
+    display: flex;
+    align-items: end;
+    font-size: 14px;
+    color: ${props => props.theme.blue};
+    border-bottom: 1px solid ${props => props.theme.blue};
   }
 `;
 
