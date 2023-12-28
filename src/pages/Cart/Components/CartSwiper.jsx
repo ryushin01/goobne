@@ -35,13 +35,13 @@ const CartSwiper = () => {
         navigation={true}
         className="swiperContainer"
       >
-        {swiperItem.map(({ id, img, alt, name }) => (
+        {swiperItem.map(({ id, image, alt, mainTitle }) => (
           <SwiperSlide key={id}>
             <CartSwiperBox>
               <SwiperImgWrap>
-                <img src={img} alt={alt} />
+                <img src={image} alt={alt} />
               </SwiperImgWrap>
-              <SwiperTitle>{name}</SwiperTitle>
+              <SwiperTitle>{mainTitle}</SwiperTitle>
             </CartSwiperBox>
           </SwiperSlide>
         ))}
