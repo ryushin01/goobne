@@ -1,0 +1,64 @@
+{
+  "result": [
+    {
+      "id": 6,
+      "image": "/goobne/images/pizza06.png",
+      "alt": "하와이안 피자 이미지",
+      "mainTitle": "새콤달콤 하와이안 피자",
+      "price": 25000,
+      "badge": ["best", "md", "new"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 7,
+      "image": "/goobne/images/pizza07.png",
+      "alt": "토마토 시카고 피자이미지",
+      "mainTitle": "토마토 시카고 피자",
+      "price": 22000,
+      "badge": ["best"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 8,
+      "image": "/goobne/images/pizza08.png",
+      "alt": "페페로니 피자이미지",
+      "mainTitle": "페페로니 피자",
+      "price": 23500,
+      "badge": ["best", "hot"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 9,
+      "image": "/goobne/images/pizza09.png",
+      "alt": "핫 닭가슴살 피자이미지",
+      "mainTitle": "핫 닭가슴살 피자",
+      "price": 18500,
+      "badge": ["best", "hot", "md"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 10,
+      "image": "/goobne/images/pizza10.png",
+      "alt": "향 듬뿍 양송이 피자이미지",
+      "mainTitle": "향 듬뿍 양송이 피자",
+      "price": 17000,
+      "badge": ["best", "md"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 11,
+      "image": "/goobne/images/pizza11.png",
+      "alt": "리코타 피자 이미지",
+      "mainTitle": "리코타 피자 피자",
+      "price": 22000,
+      "badge": ["best", "md", "new"],
+      "count": 1,
+      "radioData": 0
+    }
+  ]
+}

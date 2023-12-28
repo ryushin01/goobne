@@ -1,0 +1,46 @@
+{
+  "result": [
+    {
+      "id": 1,
+      "category": "All",
+      "name": "메뉴",
+      "content": "전체",
+      "defaultChecked": true
+    },
+    {
+      "id": 2,
+      "category": "Chicken",
+      "name": "메뉴",
+      "content": "치킨",
+      "defaultChecked": false
+    },
+    {
+      "id": 3,
+      "category": "Pizza",
+      "name": "메뉴",
+      "content": "피자",
+      "defaultChecked": false
+    },
+    {
+      "id": 4,
+      "category": "Side",
+      "name": "메뉴",
+      "content": "사이드",
+      "defaultChecked": false
+    },
+    {
+      "id": 5,
+      "category": "Beer",
+      "name": "메뉴",
+      "content": "주류",
+      "defaultChecked": false
+    },
+    {
+      "id": 6,
+      "category": "Packaging",
+      "name": "메뉴",
+      "content": "포장전용",
+      "defaultChecked": false
+    }
+  ]
+}

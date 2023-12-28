@@ -1,0 +1,1000 @@
+{
+  "result": [
+    {
+      "id": 0,
+      "mainTitle": "숯불 양념 치킨",
+      "productDetail": [
+        {
+          "title": "숯불 양념 치킨",
+          "image": "/goobne/images/chicken00.png",
+          "alt": "숯불 양념 치킨이미지",
+          "badges": ["md", "hot", "best", "new"],
+          "description": "스근한 숯불로 맛있게 구워 육즙이 펑펑~",
+          "price": 19000,
+          "origin": {
+            "bacon": "닭고기[국산]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "113g (2조각)",
+            "calories": 155,
+            "sodium": 492,
+            "carbohydrates": 15,
+            "sugars": 2,
+            "fat": 16,
+            "transFat": 0.3,
+            "saturatedFat": 11,
+            "cholesterol": 35,
+            "protein": 10
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "chicken",
+              "label": "한마리",
+              "isChecked": true
+            },
+            {
+              "id": 1,
+              "name": "chicken",
+              "label": "통다리",
+              "isChecked": false
+            },
+            {
+              "id": 2,
+              "name": "chicken",
+              "label": "숯불구이",
+              "isChecked": false
+            }
+          ]
+        },
+        {
+          "title": "숯불 양념 치킨 통다리",
+          "image": "/goobne/images/chicken00_1.png",
+          "alt": "숯불 양념 통다리 치킨이미지",
+          "badges": ["md", "hot", "best", "new"],
+          "description": "스근한 숯불로 맛있게 구운 치킨을 통다리만! 육즙이 입안에서 펑펑 터진다~",
+          "price": 21000,
+          "origin": {
+            "bacon": "닭고기[국산]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "113g (2조각)",
+            "calories": 155,
+            "sodium": 492,
+            "carbohydrates": 15,
+            "sugars": 2,
+            "fat": 16,
+            "transFat": 0.3,
+            "saturatedFat": 11,
+            "cholesterol": 35,
+            "protein": 10
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "chicken",
+              "label": "한마리",
+              "isChecked": false
+            },
+            {
+              "id": 1,
+              "name": "chicken",
+              "label": "통다리",
+              "isChecked": true
+            },
+            {
+              "id": 2,
+              "name": "chicken",
+              "label": "세트",
+              "isChecked": false
+            }
+          ]
+        },
+        {
+          "title": "숯불 양념 치킨 세트",
+          "image": "/goobne/images/chicken00_2.png",
+          "alt": "숯불 양념 치킨 세트 이미지",
+          "badges": ["md", "hot", "best", "new"],
+          "description": "스근한 숯불로 맛있게 구운 치킨과 사이드 메뉴를 함께 즐겨요.",
+          "price": 25000,
+          "origin": {
+            "bacon": "닭고기[국산]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "113g (2조각)",
+            "calories": 155,
+            "sodium": 492,
+            "carbohydrates": 15,
+            "sugars": 2,
+            "fat": 16,
+            "transFat": 0.3,
+            "saturatedFat": 11,
+            "cholesterol": 35,
+            "protein": 10
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "chicken",
+              "label": "한마리",
+              "isChecked": false
+            },
+            {
+              "id": 1,
+              "name": "chicken",
+              "label": "통다리",
+              "isChecked": false
+            },
+            {
+              "id": 2,
+              "name": "chicken",
+              "label": "숯불구이",
+              "isChecked": true
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 1,
+      "mainTitle": "오리지널 오븐 치킨",
+      "productDetail": [
+        {
+          "title": "오리지널 오븐 치킨",
+          "image": "/goobne/images/chicken01.png",
+          "alt": "오리지널 오븐 치킨이미지",
+          "badges": ["new", "md", "best"],
+          "description": "200도 온도로 노릇노릇하게 구운 원조 오븐 치킨!",
+          "price": 15000,
+          "origin": {
+            "bacon": "닭고기: [국산]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "156g (2조각)",
+            "calories": 257,
+            "sodium": 569,
+            "carbohydrates": 27,
+            "sugars": 24,
+            "fat": 31,
+            "transFat": 0.5,
+            "saturatedFat": 6,
+            "cholesterol": 32,
+            "protein": 13
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "oven",
+              "label": "한마리",
+              "isChecked": true
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 2,
+      "mainTitle": "새콤달콤 오븐 칠리치킨",
+      "productDetail": [
+        {
+          "title": "오리지널 오븐 치킨",
+          "image": "/goobne/images/chicken02.png",
+          "alt": "새콤달콤 오븐 칠리치킨 이미지",
+          "badges": ["md", "best"],
+          "description": "200도 온도로 노릇노릇하게 구운 치킨에 칠리소스를 발랐다!",
+          "price": 20000,
+          "origin": {
+            "bacon": "닭고기: [국산] 칠리: [칠리산]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "326g (2조각)",
+            "calories": 557,
+            "sodium": 669,
+            "carbohydrates": 41,
+            "sugars": 34,
+            "fat": 33,
+            "transFat": 0.7,
+            "saturatedFat": 12,
+            "cholesterol": 22,
+            "protein": 33
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "ovenChicken",
+              "label": "한마리",
+              "isChecked": true
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 3,
+      "mainTitle": "새콤달콤 웰빙 치킨",
+      "productDetail": [
+        {
+          "title": "새콤달콤 웰빙 치킨",
+          "image": "/goobne/images/chicken03.png",
+          "alt": "새콤달콤 웰빙 치킨 이미지",
+          "badges": ["md", "best"],
+          "description": "치킨은 칼로리가 높다? 이걸 먹어보자. 맛있으면 0칼로리!",
+          "price": 22000,
+          "origin": {
+            "bacon": "닭고기: [국산], 샐러드 : [호주산]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "256g (2조각)",
+            "calories": 657,
+            "sodium": 469,
+            "carbohydrates": 21,
+            "sugars": 14,
+            "fat": 23,
+            "transFat": 0.5,
+            "saturatedFat": 14,
+            "cholesterol": 23,
+            "protein": 33
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "WellBeingChicken",
+              "label": "한마리",
+              "isChecked": true
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 4,
+      "mainTitle": "핫쇼킹 치즈 불닭",
+      "productDetail": [
+        {
+          "title": "치즈 불닭",
+          "image": "/goobne/images/chicken04.png",
+          "alt": "치즈불닭 이미지",
+          "badges": ["best", "hot"],
+          "description": "스트레스 해소에는 매운거! 매운거 하면 치 즈 불 닭 !",
+          "price": 20000,
+          "origin": {
+            "bacon": "닭고기: [국산], 치즈: [파마산]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "656g (2조각)",
+            "calories": 557,
+            "sodium": 1469,
+            "carbohydrates": 31,
+            "sugars": 24,
+            "fat": 43,
+            "transFat": 0.7,
+            "saturatedFat": 24,
+            "cholesterol": 33,
+            "protein": 33
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "Buldak",
+              "label": "한마리",
+              "isChecked": true
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 5,
+      "mainTitle": "쫀쫀 치킨",
+      "productDetail": [
+        {
+          "title": "쫀쫀 치킨",
+          "image": "/goobne/images/chicken05.png",
+          "alt": "쫀쫀 치킨 이미지",
+          "badges": ["best", "md"],
+          "description": "연애는 자고로 쫀쫀하게, 그러니 치킨도 연애처럼!",
+          "price": 23000,
+          "origin": {
+            "bacon": "닭고기: [국산]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "756g (2조각)",
+            "calories": 457,
+            "sodium": 869,
+            "carbohydrates": 36,
+            "sugars": 35,
+            "fat": 21,
+            "transFat": 0.7,
+            "saturatedFat": 34,
+            "cholesterol": 43,
+            "protein": 34
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "Jjonjjong",
+              "label": "한마리",
+              "isChecked": true
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 6,
+      "mainTitle": "하와이안 피자",
+      "productDetail": [
+        {
+          "title": "새콤달콤 하와이안 피자",
+          "image": "/goobne/images/pizza06.png",
+          "alt": "하와이안 피자 이미지",
+          "badges": ["new", "best", "md"],
+          "description": "피자 중 탑 중의 탑은 하와이에서 먹는 하와이안 피자!",
+          "price": 25000,
+          "origin": {
+            "bacon": "페퍼로니: 돼지고기[국내산과 외국산(미국,아일랜드,스페인)섞음], 쇠고기(호주산)"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "143g (2조각)",
+            "calories": 455,
+            "sodium": 692,
+            "carbohydrates": 35,
+            "sugars": 4,
+            "fat": 26,
+            "transFat": 0.7,
+            "saturatedFat": 12,
+            "cholesterol": 33,
+            "protein": 20
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "hawaiian",
+              "label": "한판",
+              "isChecked": true
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 7,
+      "mainTitle": "토마토 시카고 피자",
+      "productDetail": [
+        {
+          "title": "토마토 시카고 피자",
+          "image": "/goobne/images/pizza07.png",
+          "alt": "토마토 시카고 피자 이미지",
+          "badges": ["best"],
+          "description": "향긋한 바질 페스토와 새콤달콤 토마토 마리네이드가 만난 클래식한 씬크러스트 피자",
+          "price": 22000,
+          "origin": {
+            "bacon": "쇠고기(호주산)"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "143g (2조각)",
+            "calories": 455,
+            "sodium": 692,
+            "carbohydrates": 35,
+            "sugars": 4,
+            "fat": 26,
+            "transFat": 0.7,
+            "saturatedFat": 12,
+            "cholesterol": 33,
+            "protein": 20
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "tomatoChicaco",
+              "label": "한판",
+              "isChecked": true
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 8,
+      "mainTitle": "페페로니 피자",
+      "productDetail": [
+        {
+          "title": "페페로니 피자",
+          "image": "/goobne/images/pizza08.png",
+          "alt": "페페로니 피자 이미지",
+          "badges": ["best", "hot"],
+          "description": "페페로니 특유의 진한 향과 매콤함이 돋보이는 피자",
+          "price": 23500,
+          "origin": {
+            "bacon": "페퍼로니: 돼지고기[국내산과 외국산(미국,아일랜드,스페인)섞음]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "143g (2조각)",
+            "calories": 455,
+            "sodium": 692,
+            "carbohydrates": 35,
+            "sugars": 4,
+            "fat": 26,
+            "transFat": 0.7,
+            "saturatedFat": 12,
+            "cholesterol": 33,
+            "protein": 20
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "pepperoni",
+              "label": "한판",
+              "isChecked": true
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 9,
+      "mainTitle": "핫 닭가슴살 피자",
+      "productDetail": [
+        {
+          "title": "핫 닭가슴살 피자",
+          "image": "/goobne/images/pizza09.png",
+          "alt": "핫 닭가슴살 피자 이미지",
+          "badges": ["best", "hot", "md"],
+          "description": "한국인의 매콤한 입맛과 건강까지 같이 잡은 피자",
+          "price": 18500,
+          "origin": {
+            "bacon": "닭고기[국내산]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "143g (2조각)",
+            "calories": 455,
+            "sodium": 692,
+            "carbohydrates": 35,
+            "sugars": 4,
+            "fat": 26,
+            "transFat": 0.7,
+            "saturatedFat": 12,
+            "cholesterol": 33,
+            "protein": 20
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "hotChickenBreast",
+              "label": "한판",
+              "isChecked": true
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 10,
+      "mainTitle": "향 듬뿍 양송이 피자",
+      "productDetail": [
+        {
+          "title": "향 듬뿍 양송이 피자",
+          "image": "/goobne/images/pizza10.png",
+          "alt": "향 듬뿍 양송이 피자 이미지",
+          "badges": ["best", "md"],
+          "description": "양송이 버섯의 은은한 향을 느껴보세요!",
+          "price": 17000,
+          "origin": {
+            "bacon": "양송이 버섯[중국산]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "143g (2조각)",
+            "calories": 455,
+            "sodium": 692,
+            "carbohydrates": 35,
+            "sugars": 4,
+            "fat": 26,
+            "transFat": 0.7,
+            "saturatedFat": 12,
+            "cholesterol": 33,
+            "protein": 20
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "mushroom",
+              "label": "한판",
+              "isChecked": true
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 11,
+      "mainTitle": "리코타 피자",
+      "productDetail": [
+        {
+          "title": "리코타 피자",
+          "image": "/goobne/images/pizza11.png",
+          "alt": "리코타 피자 이미지",
+          "badges": ["best", "md", "new"],
+          "description": "스위트 리코타 치즈의 풍미가 가득한 피자",
+          "price": 22000,
+          "origin": {
+            "bacon": "리코타 치즈[이탈리아산]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "143g (2조각)",
+            "calories": 455,
+            "sodium": 692,
+            "carbohydrates": 35,
+            "sugars": 4,
+            "fat": 26,
+            "transFat": 0.7,
+            "saturatedFat": 12,
+            "cholesterol": 33,
+            "protein": 20
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "ricotta",
+              "label": "한판",
+              "isChecked": true
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 12,
+      "mainTitle": "오븐치킨텐더 샐러드",
+      "productDetail": [
+        {
+          "title": "텐더치킨 샐러드",
+          "image": "/goobne/images/side12.png",
+          "alt": "텐더치킨 샐러드 이미지",
+          "badges": ["best", "md", "new"],
+          "description": "담백하고 고소한 풍미의 샐러드",
+          "price": 9900,
+          "origin": {
+            "bacon": "닭[국산]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "143g (2조각)",
+            "calories": 455,
+            "sodium": 692,
+            "carbohydrates": 35,
+            "sugars": 4,
+            "fat": 26,
+            "transFat": 0.7,
+            "saturatedFat": 12,
+            "cholesterol": 33,
+            "protein": 20
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "ovenChickenTender",
+              "label": "보울",
+              "isChecked": true
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 13,
+      "mainTitle": "핫 후라이드텐더 치킨 샐러드",
+      "productDetail": [
+        {
+          "title": "핫 후라이드텐더 치킨 샐러드",
+          "image": "/goobne/images/side13.png",
+          "alt": "핫 후라이드텐더 치킨 샐러드 이미지",
+          "badges": ["best", "md", "new"],
+          "description": "매콤하고 고소한 풍미의 샐러드",
+          "price": 9900,
+          "origin": {
+            "bacon": "닭[국산]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "143g (2조각)",
+            "calories": 455,
+            "sodium": 692,
+            "carbohydrates": 35,
+            "sugars": 4,
+            "fat": 26,
+            "transFat": 0.7,
+            "saturatedFat": 12,
+            "cholesterol": 33,
+            "protein": 20
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "friedChickenTender",
+              "label": "보울",
+              "isChecked": true
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 14,
+      "mainTitle": "리코타 샐러드",
+      "productDetail": [
+        {
+          "title": "리코타 샐러드",
+          "image": "/goobne/images/side14.png",
+          "alt": "리코타 샐러드 이미지",
+          "badges": ["best"],
+          "description": "고소한 풍미의 샐러드",
+          "price": 6900,
+          "origin": {
+            "bacon": "리코타 치즈[이탈리아산]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "143g (2조각)",
+            "calories": 455,
+            "sodium": 692,
+            "carbohydrates": 35,
+            "sugars": 4,
+            "fat": 26,
+            "transFat": 0.7,
+            "saturatedFat": 12,
+            "cholesterol": 33,
+            "protein": 20
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "ricottaSalad",
+              "label": "보울",
+              "isChecked": true
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 15,
+      "mainTitle": "달짝지근 떡볶이",
+      "productDetail": [
+        {
+          "title": "달짝지근 떡볶이",
+          "image": "/goobne/images/side15.png",
+          "alt": "달짝지근 떡볶이 이미지",
+          "badges": ["best", "md", "hot"],
+          "description": "옛날 분식점 맛을 그대로 재현한 달짝지근한 맛을 다시 먹고 싶다면!",
+          "price": 5000,
+          "origin": {
+            "bacon": "떡[국산]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "143g (2조각)",
+            "calories": 455,
+            "sodium": 692,
+            "carbohydrates": 35,
+            "sugars": 4,
+            "fat": 26,
+            "transFat": 0.7,
+            "saturatedFat": 12,
+            "cholesterol": 33,
+            "protein": 20
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "tteokbokki",
+              "label": "한팩",
+              "isChecked": true
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 16,
+      "mainTitle": "토마토 오븐 스파게티",
+      "productDetail": [
+        {
+          "title": "토마토 오븐 스파게티",
+          "image": "/goobne/images/side16.png",
+          "alt": "토마토 오븐 스파게티 이미지",
+          "badges": ["best", "md"],
+          "description": "고오급 레스토랑에서 맛보는 토마토 베이스 스파게티",
+          "price": 8800,
+          "origin": {
+            "bacon": "토마토[중국산], 스파게티면[이탈리아산]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "143g (2조각)",
+            "calories": 455,
+            "sodium": 692,
+            "carbohydrates": 35,
+            "sugars": 4,
+            "fat": 26,
+            "transFat": 0.7,
+            "saturatedFat": 12,
+            "cholesterol": 33,
+            "protein": 20
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "tomatoSpaghetti",
+              "label": "한팩",
+              "isChecked": true
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 17,
+      "mainTitle": "기네스 355ml 병맥주",
+      "productDetail": [
+        {
+          "title": "기네스 355ml 병맥주",
+          "image": "/goobne/images/beer17.png",
+          "alt": "기네스 355ml 병맥주 이미지",
+          "badges": ["best", "md"],
+          "description": "첩보 영화의 단골로 등장하는 흑맥주",
+          "price": 5000,
+          "origin": {
+            "bacon": "맥아 보리[아일랜드산]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "143g (2조각)",
+            "calories": 455,
+            "sodium": 692,
+            "carbohydrates": 35,
+            "sugars": 4,
+            "fat": 26,
+            "transFat": 0.7,
+            "saturatedFat": 12,
+            "cholesterol": 33,
+            "protein": 20
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "guinness",
+              "label": "한병",
+              "isChecked": true
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 18,
+      "mainTitle": "버드와이저 355ml 병맥주",
+      "productDetail": [
+        {
+          "title": "버드와이저 355ml 병맥주",
+          "image": "/goobne/images/beer18.png",
+          "alt": "버드와이저 355ml 병맥주 이미지",
+          "badges": ["best", "md"],
+          "description": "미국을 대표하는 맥주",
+          "price": 5000,
+          "origin": {
+            "bacon": "맥아 보리[미국산]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "143g (2조각)",
+            "calories": 455,
+            "sodium": 692,
+            "carbohydrates": 35,
+            "sugars": 4,
+            "fat": 26,
+            "transFat": 0.7,
+            "saturatedFat": 12,
+            "cholesterol": 33,
+            "protein": 20
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "budweiser",
+              "label": "한병",
+              "isChecked": true
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 19,
+      "mainTitle": "아사히 355ml 병맥주",
+      "productDetail": [
+        {
+          "title": "아사히 355ml 병맥주",
+          "image": "/goobne/images/beer19.png",
+          "alt": "아사히 355ml 병맥주 이미지",
+          "badges": ["best", "md", "new"],
+          "description": "일본에서 가장 많이 팔리는 맥주 1위",
+          "price": 5000,
+          "origin": {
+            "bacon": "맥아 보리[일본산]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "143g (2조각)",
+            "calories": 455,
+            "sodium": 692,
+            "carbohydrates": 35,
+            "sugars": 4,
+            "fat": 26,
+            "transFat": 0.7,
+            "saturatedFat": 12,
+            "cholesterol": 33,
+            "protein": 20
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "asahi",
+              "label": "한병",
+              "isChecked": true
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 20,
+      "mainTitle": "라거 355ml 병맥주",
+      "productDetail": [
+        {
+          "title": "라거 355ml 병맥주",
+          "image": "/goobne/images/beer20.png",
+          "alt": "라거 355ml 병맥주 이미지",
+          "badges": ["best", "md"],
+          "description": "대중들의 맥주",
+          "price": 5000,
+          "origin": {
+            "bacon": "맥아 보리[일본산]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "143g (2조각)",
+            "calories": 455,
+            "sodium": 692,
+            "carbohydrates": 35,
+            "sugars": 4,
+            "fat": 26,
+            "transFat": 0.7,
+            "saturatedFat": 12,
+            "cholesterol": 33,
+            "protein": 20
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "lager",
+              "label": "한병",
+              "isChecked": true
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 21,
+      "mainTitle": "코로나 355ml 병맥주",
+      "productDetail": [
+        {
+          "title": "코로나 355ml 병맥주",
+          "image": "/goobne/images/beer21.png",
+          "alt": "코로나 355ml 병맥주 이미지",
+          "badges": ["best", "md"],
+          "description": "마시면 라틴 댄스가 절로 나온다는 멕시코의 상징적인 맥주",
+          "price": 5000,
+          "origin": {
+            "bacon": "맥아 보리[멕시코산]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "143g (2조각)",
+            "calories": 455,
+            "sodium": 692,
+            "carbohydrates": 35,
+            "sugars": 4,
+            "fat": 26,
+            "transFat": 0.7,
+            "saturatedFat": 12,
+            "cholesterol": 33,
+            "protein": 20
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "corona",
+              "label": "한병",
+              "isChecked": true
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 22,
+      "mainTitle": "하이네켄 355ml 병맥주",
+      "productDetail": [
+        {
+          "title": "하이네켄 355ml 병맥주",
+          "image": "/goobne/images/beer22.png",
+          "alt": "하이네켄 355ml 병맥주 이미지",
+          "badges": ["best", "md"],
+          "description": "이것이 네덜란드 맥주의 품격, 고급 맥주의 대명사",
+          "price": 5000,
+          "origin": {
+            "bacon": "맥아 보리[네덜란드산]"
+          },
+          "disclaimer": "본 이미지는 실제와 다를 수 있으며 가맹점 상황에 따라 가격이 상이할 수 있습니다.",
+          "servingSize": {
+            "amountPerServing": "143g (2조각)",
+            "calories": 455,
+            "sodium": 692,
+            "carbohydrates": 35,
+            "sugars": 4,
+            "fat": 26,
+            "transFat": 0.7,
+            "saturatedFat": 12,
+            "cholesterol": 33,
+            "protein": 20
+          },
+          "option": [
+            {
+              "id": 0,
+              "name": "heineken",
+              "label": "한병",
+              "isChecked": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

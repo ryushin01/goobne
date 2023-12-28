@@ -1,0 +1,66 @@
+{
+  "result": [
+    {
+      "id": 0,
+      "image": "/goobne/images/chicken00.png",
+      "alt": "숯불 양념 치킨이미지",
+      "mainTitle": "숯불 양념 치킨",
+      "category": "chicken",
+      "price": 19000,
+      "badge": ["new", "hot"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 1,
+      "image": "/goobne/images/chicken01.png",
+      "alt": "오리지널 오븐 치킨이미지",
+      "mainTitle": "오리지널 오븐 치킨",
+      "category": "chicken",
+      "price": 15000,
+      "badge": ["new", "md", "best"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 2,
+      "image": "/goobne/images/chicken02.png",
+      "alt": "새콤달콤 오븐 칠리치킨 이미지",
+      "mainTitle": "새콤달콤 오븐 칠리치킨",
+      "price": 20000,
+      "badge": ["md", "best"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 3,
+      "image": "/goobne/images/chicken03.png",
+      "alt": "새콤달콤 웰빙 치킨",
+      "mainTitle": "새콤달콤 웰빙 치킨",
+      "price": 22000,
+      "badge": ["md", "best"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 4,
+      "image": "/goobne/images/chicken04.png",
+      "alt": "치즈불닭 이미지",
+      "mainTitle": "핫쇼킹 치즈불닭",
+      "price": 20000,
+      "badge": ["best", "hot"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 5,
+      "image": "/goobne/images/chicken05.png",
+      "alt": "쫀쫀치킨 이미지",
+      "mainTitle": "쫀쫀치킨",
+      "price": 23000,
+      "badge": ["best", "md"],
+      "count": 1,
+      "radioData": 0
+    }
+  ]
+}

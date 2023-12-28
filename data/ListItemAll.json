@@ -1,0 +1,236 @@
+{
+  "result": [
+    {
+      "id": 0,
+      "image": "/goobne/images/chicken00.png",
+      "alt": "숯불 양념 치킨이미지",
+      "mainTitle": "숯불 양념 치킨",
+      "category": "chicken",
+      "price": 19000,
+      "badge": ["new", "hot"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 1,
+      "image": "/goobne/images/chicken01.png",
+      "alt": "오리지널 오븐 치킨이미지",
+      "mainTitle": "오리지널 오븐 치킨",
+      "category": "chicken",
+      "price": 15000,
+      "badge": ["new", "md", "best"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 2,
+      "image": "/goobne/images/chicken02.png",
+      "alt": "새콤달콤 오븐 칠리치킨 이미지",
+      "mainTitle": "새콤달콤 오븐 칠리치킨",
+      "price": 20000,
+      "badge": ["md", "best"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 3,
+      "image": "/goobne/images/chicken03.png",
+      "alt": "새콤달콤 웰빙 치킨",
+      "mainTitle": "새콤달콤 웰빙 치킨",
+      "price": 22000,
+      "badge": ["md", "best"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 4,
+      "image": "/goobne/images/chicken04.png",
+      "alt": "치즈불닭 이미지",
+      "mainTitle": "핫쇼킹 치즈불닭",
+      "price": 20000,
+      "badge": ["best", "hot"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 5,
+      "image": "/goobne/images/chicken05.png",
+      "alt": "쫀쫀치킨 이미지",
+      "mainTitle": "쫀쫀치킨",
+      "price": 23000,
+      "badge": ["best", "md"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 6,
+      "image": "/goobne/images/pizza06.png",
+      "alt": "하와이안 피자 이미지",
+      "mainTitle": "새콤달콤 하와이안 피자",
+      "price": 25000,
+      "badge": ["best", "md", "new"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 7,
+      "image": "/goobne/images/pizza07.png",
+      "alt": "토마토 시카고 피자이미지",
+      "mainTitle": "토마토 시카고 피자",
+      "price": 22000,
+      "badge": ["best"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 8,
+      "image": "/goobne/images/pizza08.png",
+      "alt": "페페로니 피자이미지",
+      "mainTitle": "페페로니 피자",
+      "price": 23500,
+      "badge": ["best", "hot"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 9,
+      "image": "/goobne/images/pizza09.png",
+      "alt": "핫 닭가슴살 피자이미지",
+      "mainTitle": "핫 닭가슴살 피자",
+      "price": 18500,
+      "badge": ["best", "hot", "md"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 10,
+      "image": "/goobne/images/pizza10.png",
+      "alt": "향 듬뿍 양송이 피자이미지",
+      "mainTitle": "향 듬뿍 양송이 피자",
+      "price": 17000,
+      "badge": ["best", "md"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 11,
+      "image": "/goobne/images/pizza11.png",
+      "alt": "리코타 피자 이미지",
+      "mainTitle": "리코타 피자 피자",
+      "price": 22000,
+      "badge": ["best", "md", "new"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 12,
+      "image": "/goobne/images/side12.png",
+      "alt": "텐더치킨 샐러드 이미지",
+      "mainTitle": "오븐치킨텐더 샐러드",
+      "price": 9900,
+      "badge": ["best", "md", "new"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 13,
+      "image": "/goobne/images/side13.png",
+      "alt": "핫 후라이드텐더 샐러드 이미지",
+      "mainTitle": "핫 후라이드텐더 치킨 샐러드",
+      "price": 9900,
+      "badge": ["best", "md", "hot"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 14,
+      "image": "/goobne/images/side14.png",
+      "alt": "리코타 샐러드 이미지",
+      "mainTitle": "리코타 샐러드",
+      "price": 6900,
+      "badge": ["best"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 15,
+      "image": "/goobne/images/side15.png",
+      "alt": "달짝지근 떡볶이 이미지",
+      "mainTitle": "달짝지근 떡볶이",
+      "price": 5000,
+      "badge": ["best", "md", "hot"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 16,
+      "image": "/goobne/images/side16.png",
+      "alt": "토마토 오븐 스파게티 이미지",
+      "mainTitle": "토마토 오븐 스파게티",
+      "price": 8800,
+      "badge": ["best", "md"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 17,
+      "image": "/goobne/images/beer17.png",
+      "alt": "기네스 병맥주 이미지",
+      "mainTitle": "기네스 355ml 병맥주",
+      "price": 5000,
+      "badge": ["best", "md"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 18,
+      "image": "/goobne/images/beer18.png",
+      "alt": "버드와이저 병맥주 이미지",
+      "mainTitle": "버드와이저 355ml 병맥주",
+      "price": 5000,
+      "badge": ["best", "md"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 19,
+      "image": "/goobne/images/beer19.png",
+      "alt": "아사히 병맥주 이미지",
+      "mainTitle": "아사히 355ml 병맥주",
+      "price": 5000,
+      "badge": ["best", "md", "new"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 20,
+      "image": "/goobne/images/beer20.png",
+      "alt": "라거 병맥주 이미지",
+      "mainTitle": "라거 355ml 병맥주",
+      "price": 5000,
+      "badge": ["best", "md"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 21,
+      "image": "/goobne/images/beer21.png",
+      "alt": "코로나 병맥주 이미지",
+      "mainTitle": "코로나 355ml 병맥주",
+      "price": 5000,
+      "badge": ["best", "md"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 22,
+      "image": "/goobne/images/beer22.png",
+      "alt": "하이네켄 병맥주 이미지",
+      "mainTitle": "하이네켄 355ml 병맥주",
+      "price": 5000,
+      "badge": ["best", "md"],
+      "count": 1,
+      "radioData": 0
+    }
+  ]
+}

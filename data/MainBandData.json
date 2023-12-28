@@ -1,0 +1,39 @@
+{
+  "result": [
+    {
+      "id": 1,
+      "href": "/list",
+      "src": "../goobne/images/main_chicken_01.jpg",
+      "alt": "SmallBand 이미지 1",
+      "tag": "ALL"
+    },
+    {
+      "id": 2,
+      "href": "/list",
+      "src": "../goobne/images/main_chicken_02.jpg",
+      "alt": "SmallBand 이미지 2",
+      "tag": "CHICKEN"
+    },
+    {
+      "id": 3,
+      "href": "/list",
+      "src": "../goobne/images/main-pizza.jpg",
+      "alt": "SmallBand 이미지 3",
+      "tag": "PIZZA"
+    },
+    {
+      "id": 4,
+      "href": "/list",
+      "src": "../goobne/images/main_side_dish.jpg",
+      "alt": "SmallBand 이미지 4",
+      "tag": "SIDE DISH"
+    },
+    {
+      "id": 5,
+      "href": "/list",
+      "src": "../goobne/images/main_wast_set.jpg",
+      "alt": "SmallBand 이미지 5",
+      "tag": "Packaging"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "result": [
+    {
+      "id": 0,
+      "label": "굽네 스토리",
+      "open": false,
+      "depth": [
+        { "depthLabel": "브랜드스토리", "path": "/" },
+        { "depthLabel": "경영철학", "path": "/" },
+        { "depthLabel": "인재채용", "path": "/" },
+        { "depthLabel": "글로벌", "path": "/" }
+      ]
+    },
+    {
+      "id": 1,
+      "label": "굽네 플레이타운",
+      "path": "/"
+    },
+    {
+      "id": 2,
+      "label": "바사삭 유니버스",
+      "path": "/"
+    },
+    {
+      "id": 3,
+      "label": "브랜드관",
+      "open": false,
+      "depth": [
+        {
+          "depthLabel": "어나더사이드",
+          "path": "https://instagram.com/anotherside_coffee/?igshid=MzRlODBiNWFlZA%3D%3D"
+        },
+        { "depthLabel": "양철북 곱창", "path": "http://www.yangfb.co.kr/" }
+      ]
+    },
+    {
+      "id": 4,
+      "label": "e-쿠폰",
+      "path": "/"
+    },
+    {
+      "id": 5,
+      "label": "신제품",
+      "open": false,
+      "depth": [
+        { "depthLabel": "싱글 피자&파스타", "path": "/" },
+        { "depthLabel": "포토제닉 테이스트 피자 ", "path": "/" },
+        { "depthLabel": "최고의 고추.마늘 모았다! ", "path": "/" },
+        { "depthLabel": "맵달떡볶이 ", "path": "/" },
+        { "depthLabel": "남해마늘 바사삭 ", "path": "/" }
+      ]
+    },
+    {
+      "id": 6,
+      "label": "메뉴소개 ",
+      "open": false,
+      "depth": [{ "depthLabel": "전체 ", "path": "/list" }]
+    },
+    {
+      "id": 7,
+      "path": "/",
+      "label": "매장찾기 "
+    },
+    {
+      "id": 8,
+      "path": "/",
+      "label": "이벤트 "
+    },
+    {
+      "id": 9,
+      "label": "창업안내 ",
+      "open": false,
+      "depth": [
+        { "depthLabel": "프렌차이즈쿱네 ", "path": "/" },
+        {
+          "depthLabel": "창업프로세스 및 예상비용 ",
+          "path": "/brd/const/process"
+        },
+        { "depthLabel": "온라인 창업상담 ", "path": "/" }
+      ]
+    },
+    {
+      "id": 10,
+      "label": "굽뉴스",
+      "path": "/"
+    },
+    {
+      "id": 11,
+      "label": "굽민의소리 ",
+      "path": "/"
+    }
+  ]
+}

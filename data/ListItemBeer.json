@@ -1,0 +1,64 @@
+{
+  "result": [
+    {
+      "id": 17,
+      "image": "/goobne/images/beer17.png",
+      "alt": "기네스 병맥주 이미지",
+      "mainTitle": "기네스 355ml 병맥주",
+      "price": 5000,
+      "badge": ["best", "md"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 18,
+      "image": "/goobne/images/beer18.png",
+      "alt": "버드와이저 병맥주 이미지",
+      "mainTitle": "버드와이저 355ml 병맥주",
+      "price": 5000,
+      "badge": ["best", "md"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 19,
+      "image": "/goobne/images/beer19.png",
+      "alt": "아사히 병맥주 이미지",
+      "mainTitle": "아사히 355ml 병맥주",
+      "price": 5000,
+      "badge": ["best", "md", "new"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 20,
+      "image": "/goobne/images/beer20.png",
+      "alt": "라거 병맥주 이미지",
+      "mainTitle": "라거 355ml 병맥주",
+      "price": 5000,
+      "badge": ["best", "md"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 21,
+      "image": "/goobne/images/beer21.png",
+      "alt": "코로나 병맥주 이미지",
+      "mainTitle": "코로나 355ml 병맥주",
+      "price": 5000,
+      "badge": ["best", "md"],
+      "count": 1,
+      "radioData": 0
+    },
+    {
+      "id": 22,
+      "image": "/goobne/images/beer22.png",
+      "alt": "하이네켄 병맥주 이미지",
+      "mainTitle": "하이네켄 355ml 병맥주",
+      "price": 5000,
+      "badge": ["best", "md"],
+      "count": 1,
+      "radioData": 0
+    }
+  ]
+}
